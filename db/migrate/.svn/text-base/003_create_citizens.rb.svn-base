@@ -1,0 +1,29 @@
+class CreateCitizens < ActiveRecord::Migration
+  def self.up
+    create_table :migratorystatuses, :force => true do |t|
+      t.string :name, :null => false
+    end
+
+    create_table :citizenmodalities, :force => true do |t|
+      t.string :name, :null => false
+    end
+
+    create_table :citizens, :force => true do |t|
+      t.references :user, :migratorystatus, :citizenmodality, :null => false
+      t.references :citizen_country, :class_name =>"Country", :foreign_key => "citizen_country_id", :null => false
+      t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
+      t.timestamps
+    end
+    add_index :citizens, [:user_id, :citizen_country_id, :migratorystatus_id, :citizenmodality_id], :name => :citizens_name_key, :unique => true
+
+    fixtures :citizenmodalities
+    add_index :citizenmodalities, [:name], :name => :citizenmodalities_name_key, :unique => true
+
+    fixtures :migratorystatuses
+    add_index :migratorystatuses, [:name], :name => :migratorystatuses_name_key, :unique => true
+  end
+
+  def self.down
+    drop_table :citizens, :citizenmodalities, :migratorystatuses
+  end
+end

@@ -1,0 +1,57 @@
+class CreateApplicantRequestTests < ActiveRecord::Migration
+  def self.up
+
+    create_table :applicant_request_schoolings do |t|
+      t.references :schooling, :applicant_request, :null => false
+      t.float      :average, :null => false
+      t.integer    :total_of_semester, :total_of_courses, :months, :null => false
+      t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
+      t.timestamps
+    end
+
+    create_table :courses do |t|
+      t.string     :name, :null => false
+      t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
+      t.timestamps
+    end
+
+    create_table :applicant_request_tests do |t|
+      t.references :applicant_request, :course, :null => false
+      t.float      :propedeutic_scores, :applicant_test_scores, :final_scores
+      t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
+      t.timestamps
+    end
+
+    create_table :applicant_request_requirements do |t|
+      t.references :applicant_request, :null => false
+      t.text       :descr, :null => false
+      t.date       :startdate, :enddate
+      t.float      :scores
+      t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
+      t.timestamps
+    end
+
+    create_table :applicant_request_results do |t|
+      t.references :applicant_request, :null => false
+      t.boolean     :is_exemption_approved
+      t.text           :exemption_observations # Observaciones de la exención
+      t.text           :subcomite_interview
+      t.boolean     :is_accepted
+      t.date           :acceptance_date # Fecha de aceptación
+      t.integer      :attempt_number # 1ra. o 2da. ocasión
+      t.text           :acceptance_observations # Recomendaciones, observaciones y/o condicionantes
+      t.boolean     :has_inscription
+      t.date          :inscription_date # Fecha de aceptación
+      t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
+      t.timestamps
+    end
+
+    fixtures :courses
+    add_index :courses, [:name], :name => :courses_name_key, :unique => true
+  end
+
+  def self.down
+    drop_table :applicant_request_schoolings, :courses, :applicant_request_tests,
+               :applicant_request_requirements, :applicant_request_results
+  end
+end

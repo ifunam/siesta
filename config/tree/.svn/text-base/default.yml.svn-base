@@ -1,0 +1,13 @@
+- general
+- - people
+  - addresses
+  - citizens
+  - user_identifications
+- schoolings
+- user_languages
+- documents
+- - user_documents
+  - user_letters
+  - applicant_requests
+  - send_applicant_requests
+- change_passwd

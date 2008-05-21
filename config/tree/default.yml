@@ -1,0 +1,9 @@
+- general
+- - people
+  - addresses
+- schoolings
+- documents
+- - user_documents
+  - user_requests
+  - send_user_requests
+- change_passwd
