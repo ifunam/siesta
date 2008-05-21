@@ -7,12 +7,12 @@
   <title>Posgrado en Ciencias Físicas - UNAM, <%= controller.controller_name %>: <%= controller.action_name %></title>
   <%= stylesheet_link_tag 'application', 'forms'%>
   <%= javascript_include_tag :defaults %>
+ <%= calendar_date_select_includes "red" %>
 </head>
 <body>
 
 <div id="header">
-
-        <a href="http://www.posgrado.fisica.unam.mx" target="_new">http://www.posgrado.fisica.unam.mx</a>
+        <a href="http://www.fisica.unam.mx" target="_new">http://www.fisica.unam.mx</a>
 </div>
 <div class="toplinks">
         Usuario: <span class="logged_user"><%= logged_user %></span> |
@@ -20,7 +20,7 @@
         <!-- | <%= link_to('Soporte técnico', { :controller => 'ticket', :action => 'new'}) %> -->
 </div>
 <div id="tree">
-  <%= render :partial => 'pcf/tree', :locals => {:tree => @tree, :css => 'open'} %>
+  <%= render :partial => 'shared/tree', :locals => {:tree => @tree, :css => 'open'} %>
 </div>
         <div id ="body">
                 <h2><%= get_controller_name %></h2>

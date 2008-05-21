@@ -1,42 +1,14 @@
 ENV["RAILS_ENV"] = "development"
 require File.expand_path(File.dirname(__FILE__) + "/../../config/environment")
 require 'yaml'
+require 'active_record'
+require 'active_record/fixtures'
 namespace :db do
-
-  desc "Load tree into current environment (see RAILS_ROOT/tree/filename.yml)"
-  task "tree:load" do
-    filename = ENV['tree'] || 'default'
-    file  = "#{RAILS_ROOT}/config/tree/#{filename}.yml"
-    db    = ENV['DB']   || 'development'
-    if File.exists? file
-      tree = YAML::load_file(file)
-      tree_loader([filename, tree])
-    else
-      p "You should put your yaml tree into #{RAILS_ROOT}/config/tree/ directory"
+  desc "Load catalogs from fixtures into current environment"
+  task "catalogs:load" do
+    %w(userstatuses users countries states cities addresstypes degrees 
+    institutions careers documents periods).each do |fixture|
+      Fixtures.create_fixtures(RAILS_ROOT + '/test/fixtures', [fixture.to_s]) if ENV['RAILS_ENV'] != 'test'
     end
    end
-
-  desc "Delete specific tree from current environment..."
-  task "tree:delete" do
-    tree = ENV['tree']
-    require 'tree'
-    Tree.find_by_data(tree).destroy unless tree.nil?
-  end
-
-  private
-  def tree_loader(tree, parent_id=nil)
-    prev_id = nil
-    tree.each  do |child|
-      if child.is_a? Array
-        tree_loader(child, prev_id)
-      else
-        require 'tree'
-        @t = Tree.new({:data => child})
-        @t.save
-        @t.move_to_child_of parent_id if parent_id != nil
-        prev_id = @t.id
-      end
-    end
-  end
-
 end

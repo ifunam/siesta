@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="135"
+   name=""
+   committed-date="2008-03-24T14:39:03.700032Z"
+   url="svn+ssh://alex@posgrado.fisica.unam.mx/var/lib/svn/pcf/app/views/sessions"
+   last-author="alex"
+   kind="dir"
+   uuid="d216ad7c-e8dd-4d7f-9c80-d7e7929f7703"
+   revision="175"/>
+<entry
+   committed-rev="95"
+   name="_recovery_passwd_request.html.erb"
+   text-time="2008-03-04T01:45:24.000000Z"
+   committed-date="2008-03-02T04:49:50.125287Z"
+   checksum="239d419631481620865330a4f3d246fe"
+   last-author="alex"
+   kind="file"
+   prop-time="2008-03-04T01:45:24.000000Z"/>
+<entry
+   committed-rev="1"
+   name="_login.html.erb"
+   text-time="2008-03-04T01:45:24.000000Z"
+   committed-date="2008-02-07T06:50:34.370296Z"
+   checksum="cd14f55ab97032b9fbc8e79374fbf792"
+   last-author="alex"
+   kind="file"
+   prop-time="2008-03-04T01:45:24.000000Z"/>
+<entry
+   committed-rev="4"
+   name="created.html.erb"
+   text-time="2008-03-04T01:45:24.000000Z"
+   committed-date="2008-02-08T02:19:34.769400Z"
+   checksum="37b1c7d8bb08c4096644fcb6f64c9d28"
+   last-author="alex"
+   kind="file"
+   prop-time="2008-03-04T01:45:24.000000Z"/>
+<entry
+   committed-rev="135"
+   name="index.html.erb"
+   text-time="2008-03-24T17:23:17.000000Z"
+   committed-date="2008-03-24T14:39:03.700032Z"
+   checksum="e23151066f4a93423d5fc382e673564a"
+   last-author="alex"
+   kind="file"
+   prop-time="2008-03-24T17:23:17.000000Z"/>
+<entry
+   committed-rev="1"
+   name="recovery_passwd_request.html.erb"
+   text-time="2008-03-04T01:45:24.000000Z"
+   committed-date="2008-02-07T06:50:34.370296Z"
+   checksum="1d4e772f1b60c570f5ad1403cdfbfab8"
+   last-author="alex"
+   kind="file"
+   prop-time="2008-03-04T01:45:24.000000Z"/>
+<entry
+   committed-rev="95"
+   name="_new.html.erb"
+   text-time="2008-03-04T01:45:24.000000Z"
+   committed-date="2008-03-02T04:49:50.125287Z"
+   checksum="78a007664c1186aaf1a4e52a585e6d45"
+   last-author="alex"
+   kind="file"
+   prop-time="2008-03-04T01:45:24.000000Z"/>
+<entry
+   committed-rev="65"
+   name="logout.html.erb"
+   text-time="2008-03-04T01:45:24.000000Z"
+   committed-date="2008-02-28T06:37:22.028849Z"
+   checksum="0056f35f6baab2d99d58c418b3acd625"
+   last-author="alex"
+   kind="file"
+   prop-time="2008-03-04T01:45:24.000000Z"/>
+<entry
+   committed-rev="1"
+   name="new.html.erb"
+   text-time="2008-03-04T01:45:24.000000Z"
+   committed-date="2008-02-07T06:50:34.370296Z"
+   checksum="2c1fb32b96d75d6729601a89fa535b94"
+   last-author="alex"
+   kind="file"
+   prop-time="2008-03-04T01:45:24.000000Z"/>
+<entry
+   committed-rev="4"
+   name="recovery_passwd.html.erb"
+   text-time="2008-03-04T01:45:24.000000Z"
+   committed-date="2008-02-08T02:19:34.769400Z"
+   checksum="bf369e5e0f14a0f933e0131b2442c34a"
+   last-author="alex"
+   kind="file"
+   prop-time="2008-03-04T01:45:24.000000Z"/>
+<entry
+   committed-rev="1"
+   name="activated.html.erb"
+   text-time="2008-03-04T01:45:24.000000Z"
+   committed-date="2008-02-07T06:50:34.370296Z"
+   checksum="07c27538de0043c8e18f21bac403dede"
+   last-author="alex"
+   kind="file"
+   prop-time="2008-03-04T01:45:24.000000Z"/>
+</wc-entries>

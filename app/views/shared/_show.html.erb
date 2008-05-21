@@ -1,0 +1,7 @@
+<% @show_array.each do |column, value | %>
+<p>
+<label for="<%= h(column) %>" class="label"><%= column%></label>
+<%= value %>
+</p>
+<br/>
+<% end %>

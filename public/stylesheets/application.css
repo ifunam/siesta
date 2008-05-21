@@ -10,12 +10,12 @@ body {
 
 #header {
   background: url(/images/header.png) top left no-repeat;
-  text-align: right;
-  padding-top: 78px;
+  text-align: center;
+  padding-top: 2px;
   font: 10pt "arial";
   border: 0px;
   width: 800px;
-  height: 20px;
+  height: 88px;
   font-weight: bold;
   white-space: nowrap;
   margin-bottom: 5px;
