@@ -1,0 +1,21 @@
+juancho:
+ id: 1
+ firstname: Juancho
+ lastname1: Argáez
+ lastname2: García
+ gender: t
+ birthdate: 1983-10-26
+ country_id: <%= Country.find_by_name('México').id %>
+ state_id: <%= State.find_by_name('Distrito Federal').id %>
+ city_id: <%= City.find_by_name('Ciudad de México').id %>
+ user_id: <%= User.find_by_login('juancho').id %>
+
+pancha:
+ id: 2
+ firstname: Francisca
+ lastname1: Goümes
+ gender: f
+ birthdate: 1985-01-20
+ country_id: <%= Country.find_by_name('Estados Unidos de América').id %>
+ city_id: <%= City.find_by_name('Seattle').id %>
+ user_id: <%= User.find_by_login('pancha').id %>
