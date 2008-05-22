@@ -1,8 +1,0 @@
-<%= error_messages_for :person %>
-<%= render :partial => 'pcf/required_note' %>
-<% form_for(@person, :builder =>  LabelFormBuilder) do |f| %>
-  <%= render :partial =>'form', :locals => { :f => f } %>
-  <p>
-    <%= f.submit get_label("save") %> | <%= link_to get_label('cancel'), @person %>
-  </p>
-<% end %>

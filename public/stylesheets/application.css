@@ -1,6 +1,6 @@
 body {
   background-color: #fff;
-  color: #333; 
+  color: #333;
   margin-top: .2%;
   margin-left: .5%;
   margin-right: .5%;
@@ -10,49 +10,49 @@ body {
 
 #header {
   background: url(/images/header.png) top left no-repeat;
-  text-align: center;
-  padding-top: 2px;
+  text-align: right;
+  padding-top: 55px;
   font: 10pt "arial";
   border: 0px;
-  width: 800px;
-  height: 88px;
+  width: 600px;
+  height: 40px;
   font-weight: bold;
   white-space: nowrap;
   margin-bottom: 5px;
 }
 
-#header a, a:visited { 
-	color: #666;
-	text-decoration: none;
+#header a, a:visited {
+        color: #666;
+        text-decoration: none;
     padding-right: 10px;
-	vertical-align: bottom;
+        vertical-align: bottom;
 }
 
-#header a:hover { 
-	color: blue; 
+#header a:hover {
+        color: blue;
 }
 
 .toplinks {
-	width: 100%;
-	display: table;
-	text-align: right;
-	color: #0F4180;
+        width: 100%;
+        display: table;
+        text-align: right;
+        color: #0F4180;
     vertical-align: bottom;
 }
 
 .toplinks a, a:visited {
-	color: #0F4180;
+        color: #0F4180;
     text-decoration: underline;
 }
 
 .toplinks a:hover {
-	color: green;
+        color: green;
     text-decoration: underline;
 }
 
 .logged_user {
     color: green;
-    font-weight: bold;	
+    font-weight: bold;
 }
 
 body, p, ol, ul, td {

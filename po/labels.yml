@@ -6,6 +6,7 @@ email: Correo electr贸nico
 kcs7: Certificado para firma digital
 general: Informaci贸n general
 people: Datos personales
+person: Datos personales
 firstname: Nombre(s)
 lastname1: Apellido paterno
 lastname2: Apellido materno
@@ -17,6 +18,7 @@ state: Estado
 photo: Fotograf铆a
 other: Informaci贸n adicional
 addresses: Direcci贸n
+address: Direcci贸n
 addresstype: Tipo de direcci贸n
 location: Direcci贸n
 pobox: Apartado postal
@@ -61,15 +63,15 @@ year: A帽o
 schoolings: Antecedentes acad茅micos
 user_documents: Documentos probatorios
 documents: Documentaci贸n y tr谩mites
-user_requests: Solicitud de estudiante o resello
+user_requests: Solicitud  o resello
 show: Mostrar
 send_user_requests: Envio de solicitud
 estimated_endmonth: Mes estimado para concluir estas actividades
 estimated_endyear: A杘 estimado para concluir estas actividades
 file: Archivo
-date: Fecha 
+date: Fecha
 male: M谩sculino
 female: Femenino
-change_passwd: Cambiar contrase朼
+change_passwd: Cambiar contrase帽a
 created_at: Fecha de creaci贸n
 updated_at: Fecha de actualizaci贸n

@@ -1,1 +1,1 @@
-page.alert "An error happened!"
+page.replace_html 'myerror_messages', :partial => 'shared/errors'

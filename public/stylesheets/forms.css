@@ -4,7 +4,7 @@
         padding-left: 5px;
         padding-right: 0px;
         margin-right: 25px;
-        width: 240px;
+        width: 200px;
         min-height: 700px;
         font-weight: bold;
         white-space: nowrap;
@@ -22,7 +22,8 @@
 }
 
 #tree li {
-	font-size:11px;
+    font-size:11px;
+    padding-left: -10px;
     margin:1px;
     padding:2px;
     border-bottom:1px solid silver;
@@ -32,11 +33,12 @@
 #tree li a {
        display:block;
        width: 95px;
-       padding: 4px 0px;
+
+       padding: 4px 0px 0px 0px;
        text-decoration:none;
-       text-align:center;
+       text-align: left;
        font-size:11px;
-	   color: #003399;
+       color: #003399;
 }
 
 #tree li a:hover {
@@ -52,16 +54,16 @@
 }
 
 #body #main_form {
-	float: left;
-	display: table-cell;
-	margin-right: 10px;
-   
+        float: left;
+        display: table-cell;
+        margin-right: 10px;
+
 }
 
 #body #quickpost_form {
-	border: 1px solid green;
-	display: table-cell;
-	padding: 10px;
+        border: 1px solid green;
+        display: table-cell;
+        padding: 10px;
 }
 
 #body h2{
@@ -69,7 +71,7 @@
 }
 
 #body h3{
- 	color: #0F4180;;
+        color: #0F4180;;
 }
 
 #body a, a:visited {
@@ -115,9 +117,9 @@ input[type="button"]:hover, input[type="submit"]:hover {
 }
 
 select {
-	width: expression(document.body.clientWidth < 742? "300px" : document.body.clientWidth > 1202? "400px" : "auto");
+        width: expression(document.body.clientWidth < 742? "300px" : document.body.clientWidth > 1202? "400px" : "auto");
     max-width: 350px;
-    overflow: visible; 
+    overflow: visible;
 }
 
 .box {
@@ -197,11 +199,11 @@ select {
 }
 
 p.required_note {
-	background-color: #FFFFCC;
-	width: 380px;
-	margin-left: 70px;
-	border: 1px groove green;
-	padding: 3px;
+        background-color: #FFFFCC;
+        width: 380px;
+        margin-left: 70px;
+        border: 1px groove green;
+        padding: 3px;
 }
 
 .th_large {
@@ -228,7 +230,7 @@ p.required_note {
 }
 
 .box_for_show p {
-	border-bottom: 1px solid silver;
+        border-bottom: 1px solid silver;
 }
 
 .box_for_show h3 {
@@ -254,7 +256,7 @@ p.required_note {
 }
 
 .td li {
-	font-size:11px;
+        font-size:11px;
     margin:1px;
     padding:2px;
     color:  #003399;
@@ -266,7 +268,7 @@ p.required_note {
        text-decoration:none;
        text-align:center;
        font-size:11px;
-	   color: #003399;
+           color: #003399;
 }
 
 .td li a:hover {

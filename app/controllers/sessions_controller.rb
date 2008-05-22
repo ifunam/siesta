@@ -48,9 +48,8 @@ class SessionsController < ApplicationController
     respond_to do |format|
       if User.authenticate?(params[:user][:login],params[:user][:passwd])
         session[:user] = User.find_by_login(params[:user][:login]).id
-        flash[:notice] = "Bienvenido (a), ha iniciado una sesión en el sistema del PCF!"
-        default = (session[:user] == 1 ? 'admin/applicants' : 'people')
-        format.html { session[:return_to] ? redirect_to(session[:return_to]) : redirect_to(:controller => default) }
+        flash[:notice] = "Bienvenido (a), ha iniciado una sesión en el SIESTA!"
+        format.html { session[:return_to] ? redirect_to(session[:return_to]) : redirect_to(:controller => 'person') }
       else
         flash[:notice] = "El login o el password es incorrecto!"
         format.html { render :action => "index" }

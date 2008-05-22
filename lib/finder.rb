@@ -25,6 +25,7 @@ class Finder
     @model = model
     @hidden_attributes = opts[:hidden_attributes] || []
     @primary_key = opts[:primary_key] || 'id'
+     opts[:attributes] = opts[:attributes].collect { |a| (a.to_s =~ /_id$/) ? a.sub(/_id$/,'') : a } if opts.has_key? :attributes
     @sql = (opts.has_key? :attributes) ? build_sql(opts) : @sql = build_simple_sql(set_attributes(@model).join(', '), opts)
   end
 
@@ -192,7 +193,7 @@ class Finder
   end
 
   def column_names(m)
-    reserved_attributes = %w(id moduser_id created_on updated_on user_id parent_id file content_type filename)
+    reserved_attributes = %w(id moduser_id created_on updated_on user_id parent_id)
     reserved_attributes << Inflector.foreign_key(m) # Avoiding recursion problems for tables with himself references
     modelize(m).column_names - reserved_attributes
   end
@@ -227,6 +228,23 @@ class Finder
 
   def as_collection
     find_collection
+  end
+
+  def as_record
+    find_collection.first # This method just works with one record.
+  end
+
+  def record_as_pair
+    record = self.as_record
+    unless record.nil?
+      @columns.collect { |column|
+        if column != @primary_key and column != 'id' and !record.send(column).nil? and !record.send(column).to_s.strip.empty?
+          table_prefix = Inflector.tableize(record.class.name)  + '_'
+          c =  column !~ /^#{table_prefix}/ ? Inflector.singularize(column.sub(/(_.+)$/,'')) : column.sub(/^#{table_prefix}/,'')
+          [c, get_string(record, column)]
+        end
+      }.compact
+     end
   end
 
   def get_text(record)
