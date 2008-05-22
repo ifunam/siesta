@@ -1,0 +1,8 @@
+<div id="form">
+<% @pairs.each do |c| %>
+<label><%= get_label(c[0]) %>: </label><%= c[1] %>
+<br/>
+<br/>
+<% end %>
+<%= link_to_remote 'edit', :url => edit_person_path, :method => :get, :update => 'form' %>
+</div>
