@@ -1,6 +1,6 @@
 class CreateInstitutions < ActiveRecord::Migration
   def self.up
-    transaction do
+    # transaction do
       create_table :institutions do |t|
         t.text         :name, :null => false
         t.references   :country, :null => false
@@ -9,7 +9,7 @@ class CreateInstitutions < ActiveRecord::Migration
         t.references  :moduser, :class_name => "User", :foreign_key => 'moduser_id'
         t.timestamps
       end
-    end
+    # end
   end
 
   def self.down

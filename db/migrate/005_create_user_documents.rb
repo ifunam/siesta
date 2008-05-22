@@ -1,6 +1,6 @@
 class CreateUserDocuments < ActiveRecord::Migration
   def self.up
-    transaction do
+    # transaction do
       create_table :user_documents do |t|
         t.references :user, :document, :null => false
         t.binary  :file, :null => false
@@ -8,7 +8,7 @@ class CreateUserDocuments < ActiveRecord::Migration
         t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
         t.timestamps
       end
-    end
+    # end
   end
 
   def self.down

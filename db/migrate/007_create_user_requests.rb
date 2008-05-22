@@ -1,7 +1,7 @@
 class CreateUserRequests < ActiveRecord::Migration
 
   def self.up
-    transaction do
+    #transaction do
       create_table :roles do |t|
         t.string   :name, :administrative_key, :null => false
         t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
@@ -25,7 +25,7 @@ class CreateUserRequests < ActiveRecord::Migration
       add_index :user_requests, [:user_id, :period_id], :name => :user_requests_user_id_key, :unique => true
       add_index :roles, [:name], :name => :academicprograms_name_key, :unique => true
       add_index :periods, [:name, :startdate, :enddate], :name => :periods_name_key, :unique => true
-    end
+    # end
   end
 
   def self.down

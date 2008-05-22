@@ -1,6 +1,6 @@
 class CreateAddresses < ActiveRecord::Migration
   def self.up
-    transaction do
+    #transaction do
       create_table :addresstypes, :force => true do |t|
         t.text            :name, :null => false
         t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
@@ -20,7 +20,7 @@ class CreateAddresses < ActiveRecord::Migration
 
       add_index :addresses, [:user_id, :addresstype_id], :name => :addresses_user_id_key, :unique => true
       add_index :addresstypes, [:name], :name => :addresstypes_name_key, :unique => true
-    end
+    #end
   end
   
   def self.down

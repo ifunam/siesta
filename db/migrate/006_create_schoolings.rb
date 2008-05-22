@@ -1,6 +1,6 @@
 class CreateSchoolings < ActiveRecord::Migration
   def self.up
-    transaction do
+    #transaction do
       create_table :degrees do |t|
         t.text     :name, :null => false
         t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
@@ -31,7 +31,7 @@ class CreateSchoolings < ActiveRecord::Migration
 
       add_index :degrees, [:name], :name => :degrees_name_key, :unique => true
       add_index :careers, [:name, :degree_id, :institution_id], :name => :careers_name_key, :unique => true
-    end
+    #end
   end
 
   def self.down

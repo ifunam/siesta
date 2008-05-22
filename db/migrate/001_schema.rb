@@ -1,6 +1,6 @@
 class Schema < ActiveRecord::Migration
   def self.up
-    transaction do
+    #transaction do
       create_table :userstatuses, :force => true do |t|
         t.text     :name, :null => false
         t.timestamps
@@ -66,7 +66,7 @@ class Schema < ActiveRecord::Migration
       add_index :countries, [:name], :name => "countries_name_key", :unique => true
       add_index :states, [:name, :country_id], :name => "states_name_key", :unique => true
       add_index :cities, [:state_id, :name], :name => "cities_state_id_key", :unique => true
-    end
+    #end
     change_column :countries, :id, :integer, :null => false
   end
 

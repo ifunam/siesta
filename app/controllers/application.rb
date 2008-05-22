@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
-  protect_from_forgery # :secret => '3ae605004c29b251466d3bbae32d99c5'
+  #protect_from_forgery # :secret => '3ae605004c29b251466d3bbae32d99c5'
 
   def navigator
     @tree = Tree.find_by_data('default')
@@ -19,9 +19,9 @@ class ApplicationController < ActionController::Base
     render :partial => params[:partial]
   end
 
-   def update_select
+  def update_select
       render :partial => params[:partial], :locals => { :id => params[:id], :object => params[:object], :default => params[:default] }
-    end
+  end
   
   def set_user(model)
     unless session[:user].nil?

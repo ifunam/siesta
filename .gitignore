@@ -1,8 +1,11 @@
 config/database.yml
 config/site.yml
 config/mail.yml
+db/schema.rb
 tmp/*
 log/*
 *~
 semantic.cache
 .#*
+.svn
+.svn/*
