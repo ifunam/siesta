@@ -66,8 +66,11 @@ class RecordController < ApplicationController
   protected
   def set_quickposts(record)
     params[:quickposts].keys.each do |k|
-      record.send k+'=', Inflector.classify(k).constantize.new(params[:quickposts][k])
-      record.[]=("#{k}_id", nil)
+      m = Inflector.classify(k).constantize
+      h = params[:quickposts][k]
+      belongs_to_record = m.exists?(h) ? m.find(:first, :conditions => h) : m.new(h)
+      record.send(k+'=', belongs_to_record)
+      record.[]=(Inflector.foreign_key(m), nil)
     end
   end
 end
