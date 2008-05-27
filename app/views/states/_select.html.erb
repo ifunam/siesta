@@ -1,26 +1,22 @@
-<%= stop_observer(:person_country_id) %>
-<%= observe_field(:person_country_id, :update => 'select_person_state_id', :url => { :action => :update_select, :params => { :object => :person, :partial => 'states/select' }}, :with => "'id='+value", :on => 'click') %>
-<div id="select_person_state_id">
+<%= stop_observer("#{object}_country_id") %>
+<%= observe_field("#{object}_country_id", :update => "select_#{object}_state_id", 
+                  :url => { :action => :update_select, :params => { :object => object, :partial => 'states/select' }}, 
+                  :with => "'id='+value", :on => 'click') %>
+
+<div id="select_<%= object %>_state_id">
 <% if !id.nil? and id.to_i == 484 %>
 <p><label>Estado<span class="required">*</span></label>
-        <%= select_conditions :state, :attributes => %w(name), :conditions => 'states.country_id = 484', :default => 9, :order => 'states.name ASC', :required => true, :object_name => object %>
+<%= select_conditions :state, :attributes => %w(name), :conditions => 'states.country_id = 484', 
+                       :default => 9, :order => 'states.name ASC', :required => true, :object_name => object %>
 </p>
-<%= stop_observer(:person_state_id) %>
-<%= observe_field(:person_state_id, :update => 'select_person_city_id', :url => { :action => :update_select, :params => { :object => :person, :partial => 'cities/select' }}, :with => "'id='+value", :on => 'click') %>
-<% if @record.nil? %>
-<% state_id = 9 %>
-<% else %>
-<% state_id = @record.state.nil? ? 9 : @record.state_id %>
-<% end %>
-<%= render :partial => 'cities/select', :locals => {:id => state_id, :object => :person} %>
 
+<% if @record.nil? %>
+  <% state_id = 9 %>
 <% else %>
-<%= hidden_field object, :state_id, :value => 83 %>
-    <script type="text/javascript">
-    //<![CDATA[
-     $('select_person_city_id').update('');
-    //]]>
-    </script>
+  <% state_id = @record.state.nil? ? 9 : @record.state_id %>
+<% end %>
+<%= render :partial => 'cities/select', :locals => {:id => state_id, :object => object} %>
+<% else %>
 <%= render :partial => 'cities/quickpost' %>
 <% end %>
 </div>

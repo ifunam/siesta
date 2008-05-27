@@ -7,8 +7,8 @@ module Labels
       condition ? get_label('male') : get_label('female')
     when /has_group_right/
       condition ? get_label('group_permission') : get_label('without_group_permission')
-    when /ismainauthor/
-      condition ? get_label('mainauthor') : get_label('coauthor')
+    when /is_restamped/
+      condition ? get_label('restamping') : get_label('student_request')
     when /is_studying_this/
       condition ? get_label('no') : get_label('yes')
     when /isseminary/

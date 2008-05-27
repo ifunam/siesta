@@ -51,7 +51,7 @@ career_id: Carrera
 institutioncareer: Carrera en institución
 degree_id: Grado
 has_group_right: Privilegios de grupo
-role: Rol(es) de usuario
+role: Actividad a realizar
 institutioncareer_id: Carrera e institución
 credential_id: Nivel
 average: Promedio
@@ -72,6 +72,12 @@ file: Archivo
 date: Fecha
 male: Másculino
 female: Femenino
-change_passwd: Cambiar contraseña
+change_password: Cambiar contraseña
+change_passwords: Cambiar contraseña
 created_at: Fecha de creación
 updated_at: Fecha de actualización
+document: Documento
+is_restamped: Tipo de solicitud
+restamping: Resello de crendencial
+student_request: Solicitud nueva
+current_passwd: Contraseña actual

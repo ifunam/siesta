@@ -4,6 +4,7 @@ class Period < ActiveRecord::Base
   validates_inclusion_of :is_active, :in=> [true, false]
   validates_uniqueness_of :name
   
+  # named_scope :most_recent, prepare this to work with rails 2.1
   class << self
     def get_most_recent
       Period.get_active || Period.get_last

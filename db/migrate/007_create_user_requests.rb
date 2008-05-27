@@ -3,7 +3,7 @@ class CreateUserRequests < ActiveRecord::Migration
   def self.up
     #transaction do
       create_table :roles do |t|
-        t.string   :name, :administrative_key, :null => false
+        t.string   :name
         t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
         t.timestamps
       end
@@ -17,7 +17,9 @@ class CreateUserRequests < ActiveRecord::Migration
       end
 
       create_table :user_requests do |t|
-        t.references  :user, :period, :null => false
+        t.references  :user, :period, :role, :null => false
+        t.references :user_incharge, :class_name => "User", :foreign_key => 'user_incharge_id', :null => false
+        t.boolean     :is_restamped, :null => false, :default => false
         t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
         t.timestamps
       end

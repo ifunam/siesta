@@ -5,9 +5,12 @@ module ApplicationHelper
   include Labels
 
   def get_controller_name
-    get_label(@controller.controller_class_name.sub(/Controller$/, '').underscore)
+    get_label(controller_name)
   end
-
+  
+  def controller_name
+    @controller.controller_class_name.sub(/Controller$/, '').underscore
+  end
   def text_field_for_date(attribute, options)
     text_field_date(attribute, 2, 3) + ' / ' +  text_field_date(attribute, 2, 2) + ' / '  + text_field_date(attribute, 4, 1)
   end
