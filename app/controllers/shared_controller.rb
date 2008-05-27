@@ -6,11 +6,11 @@ class SharedController < ApplicationController
    end
 
   def index
-    set_user_condition if @model.column_names.include?('user_id')
-
-    @collection = @model.paginate :page => params[:page] || 1, :per_page => 10 || param[:per_page],
-    :conditions => @find_options[:conditions], :include => @find_options[:include], :joins => @find_options[:joins],
-    :select => @find_options[:select], :order => @find_options[:order]
+    # set_user_condition if @model.column_names.include?('user_id')
+    @collection = Finder.new(@model, :all, :attributes => @columns, :conditions => "#{Inflector.tableize(@model)}.user_id = #{session[:user]}").as_pair
+    # @collection = @model.paginate :page => params[:page] || 1, :per_page => 10 || param[:per_page],
+    # :conditions => @find_options[:conditions], :include => @find_options[:include], :joins => @find_options[:joins],
+    # :select => @find_options[:select], :order => @find_options[:order]
 
     respond_to do |format|
       if request.xhr?
@@ -23,7 +23,7 @@ class SharedController < ApplicationController
   end
 
   def show
-    @record = @model.find(params[:id])
+    @finder = Finder.new(@model, :first, :attributes => @columns,  :conditions => "#{Inflector.tableize(@model)}.id = #{params[:id]}")
     respond_to do |format|
       format.html { render :partial => 'shared/show', :layout => false}
     end

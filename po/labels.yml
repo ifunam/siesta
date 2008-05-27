@@ -78,6 +78,7 @@ created_at: Fecha de creación
 updated_at: Fecha de actualización
 document: Documento
 is_restamped: Tipo de solicitud
-restamping: Resello de crendencial
+restamping: Resello de credencial
 student_request: Solicitud nueva
 current_passwd: Contraseña actual
+period: Periodo

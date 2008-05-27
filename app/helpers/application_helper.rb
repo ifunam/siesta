@@ -11,21 +11,7 @@ module ApplicationHelper
   def controller_name
     @controller.controller_class_name.sub(/Controller$/, '').underscore
   end
-  def text_field_for_date(attribute, options)
-    text_field_date(attribute, 2, 3) + ' / ' +  text_field_date(attribute, 2, 2) + ' / '  + text_field_date(attribute, 4, 1)
-  end
-
-  def text_field_date(attribute, size, order)
-    k = [:year, :month, :day]
-    v =  nil
-    if !@object.nil? and !@object.send(attribute).nil?
-      v = @object.send(attribute).send(k[(order -1)])
-      v = "0#{v}" if v.to_s.size < 2
-    end
-    @template.text_field_tag("#{@object_name}[#{attribute}(#{order}i)]", v,
-                             :size => size, :maxlength => size, :id => "#{@object_name}_#{attribute}_#{order}i")
-  end
-
+ 
   def radio_buttons(attribute ,options)
     s = ''
     options[:values].each do |v|

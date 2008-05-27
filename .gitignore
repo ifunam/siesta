@@ -1,7 +1,8 @@
 config/database.yml
 config/site.yml
 config/mail.yml
-db/schema.rb
+db/*
+!db/migrate
 tmp/*
 log/*
 *~
