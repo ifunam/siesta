@@ -1,7 +1,7 @@
 class SharedController < ApplicationController
   def initialize
     @hash_name  = Inflector.tableize(@model).singularize.to_sym
-    @columns = @model.column_names - %w(id user_id created_at updated_at)
+    @columns = @model.column_names - %w(id user_id created_at updated_at moduser_id)
     @find_options = { }
    end
 

@@ -1,3 +1,4 @@
+<div id="controller_form">
 <div id="myerror_messages"></div>
 <div id="form">
 <%= render :partial => 'shared/required_note' %>
@@ -7,4 +8,5 @@
     <%= f.submit get_label("save") %> | <%= link_to_remote get_label('cancel'), :url => person_path, :method => :get, :update => 'form'%>
   </p>
 <% end %>
+</div>
 </div>

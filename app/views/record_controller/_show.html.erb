@@ -1,3 +1,4 @@
+<div id="controller_form">
 <div id="form">
 <% @pairs.each do |c| %>
 <p>
@@ -5,4 +6,5 @@
 </p>
 <% end %>
 <%= link_to_remote 'edit', :url => edit_person_path, :method => :get, :update => 'form' %>
+</div>
 </div>

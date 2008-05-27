@@ -1,3 +1,4 @@
+<div id="controller_form">
 <div id="loading" style="display: none"> Actualizando... </div>
 <% remote_form_for(controller_name, :url => {:action => :destroy_all}, :html => {:id => "list_form"}) do |f| %>
 <div id="collection">
@@ -16,3 +17,4 @@
         <%= render :partial => 'shared/add' %>
 </div>
 
+</div>
