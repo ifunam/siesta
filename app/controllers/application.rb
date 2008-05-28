@@ -30,13 +30,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def set_file(model,form_key=nil)
-    if !model.file.nil? && (model.file.class == ActionController::UploadedTempfile || model.file.class == ActionController::UploadedStringIO)
-        model.file = model.file.read
-        form_key = form_key.nil? ? Inflector.tableize(model.class.name).singularize.to_sym : form_key
-        model.content_type = params[form_key][:file].content_type.chomp.to_s
-        model.filename = params[form_key][:file].original_filename.chomp
-    end
+  def set_file(model, hash_name)
+    model.file = params[hash_name][:file].read
+    # if !model.file.nil? && (model.file.class == ActionController::UploadedTempfile || model.file.class == ActionController::UploadedStringIO)
+    model.content_type = params[hash_name][:file].content_type.chomp.to_s
+    model.filename = params[hash_name][:file].original_filename.chomp
+    # end
   end
 
   def login_required

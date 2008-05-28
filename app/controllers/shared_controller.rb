@@ -6,19 +6,14 @@ class SharedController < ApplicationController
    end
 
   def index
-    # set_user_condition if @model.column_names.include?('user_id')
     @collection = Finder.new(@model, :all, :attributes => @columns, :conditions => "#{Inflector.tableize(@model)}.user_id = #{session[:user]}").as_pair
-    # @collection = @model.paginate :page => params[:page] || 1, :per_page => 10 || param[:per_page],
-    # :conditions => @find_options[:conditions], :include => @find_options[:include], :joins => @find_options[:joins],
-    # :select => @find_options[:select], :order => @find_options[:order]
-
     respond_to do |format|
       if request.xhr?
-        format.html { render :action => 'index', :layout => false} # index.html.erb
+        format.html { render :action => 'index', :layout => false } 
       else
-        format.html { render :action => 'index'} # index.html.erb
+        format.html { render :action => 'index' }
       end
-      format.xml  { render :xml => @collection }
+      format.xml { render :xml => @collection }
     end
   end
 
@@ -32,7 +27,11 @@ class SharedController < ApplicationController
   def new
     @record = @model.new
     respond_to do |format|
-      format.html { render :partial => 'shared/new', :layout => false }
+      if request.xhr?
+        format.html { render :partial => 'shared/new', :layout => false }
+      else
+        format.html { render :action => 'new'}
+      end
       format.xml  { render :xml => @record }
     end
   end
@@ -47,9 +46,14 @@ class SharedController < ApplicationController
   def create
     @record = @model.new(params[@hash_name])
     self.set_user(@record)
+    self.set_file(@record, @hash_name) if @record.has_attribute? 'file'
     respond_to do |format|
       if @record.save
-        format.js { render :partial => 'shared/create.rjs'}
+        format.js do
+          responds_to_parent do
+              render :partial => 'shared/create.rjs'
+          end
+        end
         format.xml  { render :xml => @record, :status => :created, :location => @record }
       else
         format.js { render :partial => "shared/errors.rjs" }
@@ -90,16 +94,4 @@ class SharedController < ApplicationController
     end
     @model.delete(@collection.collect {|record| record.id })
    end
-
-  protected
-  def set_user_condition
-    user_condition = @model.table_name + '.user_id =  ' + session[:user].to_s
-    if @find_options.has_key?(:joins)
-      @find_options[:joins] += " AND #{user_condition}"
-    elsif @find_options.has_key?(:conditions)
-      @find_options[:conditions] += " AND #{user_condition}"
-    else
-      @find_options[:conditions] = user_condition
-    end
-  end
 end
