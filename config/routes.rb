@@ -2,6 +2,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resource  :session
   map.resource  :person
   map.resource  :address
+  map.resources :schoolings
   map.resources :user_documents
   map.resources :user_requests
   map.resource  :change_password

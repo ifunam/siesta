@@ -47,13 +47,10 @@ previus_page: Página anterior
 next_page: Página siguiente
 results_page: Página(s) de resultados
 home: Inicio
-career_id: Carrera
-institutioncareer: Carrera en institución
 degree_id: Grado
 has_group_right: Privilegios de grupo
 role: Actividad a realizar
-institutioncareer_id: Carrera e institución
-credential_id: Nivel
+studentid: No. de cuenta
 average: Promedio
 is_studying_this: ¿Concluyó actividades académicas (incluyendo titulación)?
 is_titleholder: ¿Titulado?
@@ -82,3 +79,12 @@ restamping: Resello de credencial
 student_request: Solicitud nueva
 current_passwd: Contraseña actual
 period: Periodo
+degree: Grado
+career: Carrera
+school: Escuela o Facultad
+institution: Institución
+startmonth: Mes de inicio
+startyear: Año de inicio
+endmonth: Mes de término
+endyear: Mes de término
+credits: Créditos

@@ -7,7 +7,7 @@ namespace :db do
   desc "Load catalogs from fixtures into current environment"
   task "catalogs:load" do
     %w(userstatuses users countries states cities addresstypes degrees 
-    institutions careers documents periods roles).each do |fixture|
+    institutions documents periods roles).each do |fixture|
       Fixtures.create_fixtures(RAILS_ROOT + '/test/fixtures', [fixture.to_s]) if ENV['RAILS_ENV'] != 'test'
     end
    end
