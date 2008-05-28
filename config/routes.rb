@@ -5,6 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :schoolings
   map.resources :user_documents
   map.resources :user_requests
+  map.resources :send_user_requests
   map.resource  :change_password
   # The priority is based upon order of creation: first created -> highest priority.
 

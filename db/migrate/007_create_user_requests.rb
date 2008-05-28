@@ -8,6 +8,12 @@ class CreateUserRequests < ActiveRecord::Migration
         t.timestamps
       end
 
+      create_table :requeststatuses do |t|
+        t.string   :name
+        t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
+        t.timestamps
+      end
+
       create_table :periods do |t|
         t.string :name, :null  => false
         t.date   :startdate,  :enddate, :null => false
@@ -18,6 +24,7 @@ class CreateUserRequests < ActiveRecord::Migration
 
       create_table :user_requests do |t|
         t.references  :user, :period, :role, :null => false
+        t.references  :requeststatus, :null => false, :default => 1
         t.references :user_incharge, :class_name => "User", :foreign_key => 'user_incharge_id', :null => false
         t.boolean     :is_restamped, :null => false, :default => false
         t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'

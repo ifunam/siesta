@@ -1,0 +1,19 @@
+<div id="controller_form">
+<%= @user_request.requirements.collect do |h|
+                if  h[:filled]  == true
+                 content_tag(:p, get_label(h[:controller]) + ' ' + image_tag('ok.gif'))
+                else
+			   	 content_tag(:p, link_to_remote(get_label(h[:controller]),  :url => {:controller => h[:controller]}, :method => :get, :update => 'controller_form') + ' ' + image_tag('pending.gif'))
+                 
+                end
+        end
+ %>
+
+<% if @user_request.has_filled_requirements? %>
+ <% if @user_request.is_current_request_saved? %>
+   <%= link_to 'Enviar solicitud de ingreso', :action => 'send_request', :id => @user_request.current_request.id %>
+ <% else %>
+   <h3>Su solicitud de ingreso ha sido <%= @user_request.current_request_status.downcase %>.</h3>
+  <% end %>
+<% end %>
+</div>
