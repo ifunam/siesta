@@ -48,7 +48,7 @@ class SessionsController < ApplicationController
     respond_to do |format|
       if User.authenticate?(params[:user][:login],params[:user][:passwd])
         session[:user] = User.find_by_login(params[:user][:login]).id
-        flash[:notice] = "Bienvenido (a), ha iniciado una sesión en el SIESTA!"
+        flash[:notice] = "Bienvenido(a), ha iniciado una sesión en el SIESTA!"
         format.html { session[:return_to] ? redirect_to(session[:return_to]) : redirect_to(:controller => 'person') }
       else
         flash[:notice] = "El login o el password es incorrecto!"

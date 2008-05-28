@@ -4,5 +4,6 @@ class UserDocumentsController < SharedController
   def initialize
     @model = UserDocument
     super
+    @columns = %w( document )
   end
 end

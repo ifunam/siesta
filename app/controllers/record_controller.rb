@@ -5,28 +5,28 @@ class RecordController < ApplicationController
   end
 
   def show
-    unless @model.find(:first, :conditions => ['user_id = ?', session[:user]]).nil?
-      @finder = Finder.new(@model, :first, :attributes => @columns,  :conditions => "#{Inflector.tableize(@model)}.user_id = #{session[:user]}")
-      @pairs = @finder.record_as_pair
-      options = { :action => 'show' }
-      options[:layout] = false if request.xhr?
+    @record = @model.find(:first, :conditions => "#{Inflector.tableize(@model)}.user_id = #{session[:user]}")
+    unless @record.nil?
       respond_to do |format|
-        format.html { render options }
-      end
+        if request.xhr?
+          format.html { render  :partial => 'record_controller/show'  }
+        else
+          format.html { render  :action => 'show'  }
+        end
+     end
     else
-      render :update do |page|
-        page.hide 'form'
-        page.redirect_to :action => 'new'
-      end
+      redirect_to :action => :new
     end
   end
 
   def new
     @record = @model.new
-    options = { :action => 'new' }
-    options[:layout] = false if request.xhr?
     respond_to do |format|
-      format.html { render options }
+      if request.xhr?
+        format.html { render  :action => 'new', :layout => false }
+      else
+        format.html { render  :action => 'new'  }
+      end
     end
   end
 
@@ -36,7 +36,7 @@ class RecordController < ApplicationController
     self.set_quickposts(@record)
     respond_to do |format|
       if  @record.save
-        format.html { redirect_to :action => 'show' }
+        format.js { render :partial => 'record_controller/create.rjs' }
       else
         format.js { render :partial => 'shared/errors.rjs' }
       end
@@ -56,21 +56,23 @@ class RecordController < ApplicationController
     self.set_quickposts(@record)
     respond_to do |format|
       if  @record.update_attributes(params[@hash_name])
-        format.html { redirect_to :action => 'show' }
+        format.js { render :partial => 'record_controller/update.rjs' }
       else
         format.js { render :partial => 'shared/errors.rjs' }
       end
     end
   end
-  
+
   protected
   def set_quickposts(record)
-    params[:quickposts].keys.each do |k|
-      m = Inflector.classify(k).constantize
-      h = params[:quickposts][k]
-      belongs_to_record = m.exists?(h) ? m.find(:first, :conditions => h) : m.new(h)
-      record.send(k+'=', belongs_to_record)
-      record.[]=(Inflector.foreign_key(m), nil)
+    unless params[:quickposts].nil?
+      params[:quickposts].keys.each do |k|
+        m = Inflector.classify(k).constantize
+        h = params[:quickposts][k]
+        belongs_to_record = m.exists?(h) ? m.find(:first, :conditions => h) : m.new(h)
+        record.send(k+'=', belongs_to_record)
+        record.[]=(Inflector.foreign_key(m), nil)
+      end
     end
   end
 end

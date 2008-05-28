@@ -1,5 +1,5 @@
 class Adscription < ActiveResource::Base
- self.site = 'http://localhost:3000/'
+ self.site = 'http://salva.fisica.unam.mx/'
 
  def self.find_users(id)
    i = 0

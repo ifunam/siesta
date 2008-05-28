@@ -9,7 +9,7 @@ class SharedController < ApplicationController
     @collection = Finder.new(@model, :all, :attributes => @columns, :conditions => "#{Inflector.tableize(@model)}.user_id = #{session[:user]}").as_pair
     respond_to do |format|
       if request.xhr?
-        format.html { render :action => 'index', :layout => false } 
+        format.html { render :action => 'index', :layout => false }
       else
         format.html { render :action => 'index' }
       end
@@ -49,14 +49,10 @@ class SharedController < ApplicationController
     self.set_file(@record, @hash_name) if @record.has_attribute? 'file'
     respond_to do |format|
       if @record.save
-        format.js do
-          responds_to_parent do
-              render :partial => 'shared/create.rjs'
-          end
-        end
+        format.js { responds_to_parent { render :partial => 'shared/create.rjs' } }
         format.xml  { render :xml => @record, :status => :created, :location => @record }
       else
-        format.js { render :partial => "shared/errors.rjs" }
+        format.js { responds_to_parent { render :partial => 'shared/errors.rjs' } }
         format.xml  { render :xml => @record.errors, :status => :unprocessable_entity }
       end
     end
@@ -66,10 +62,10 @@ class SharedController < ApplicationController
     @record = @model.find(params[:id])
     respond_to do |format|
       if @record.update_attributes(params[@hash_name])
-        format.js { render :partial => 'shared/update.rjs'}
+        format.js { responds_to_parent { render :partial => 'shared/update.rjs' } }
         format.xml { head :ok }
       else
-        format.js { render :partial => "shared/errors.rjs" }
+        format.js { responds_to_parent { render :partial => 'shared/errors.rjs' } }
         format.xml { render :xml => @record.errors, :status => :unprocessable_entity }
       end
     end

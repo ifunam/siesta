@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   def update_select
       render :partial => params[:partial], :locals => { :id => params[:id], :object => params[:object], :default => params[:default] }
   end
-  
+
   def set_user(model)
     unless session[:user].nil?
       model.user_id = session[:user] if model.has_attribute? 'user_id'
@@ -31,11 +31,12 @@ class ApplicationController < ActionController::Base
   end
 
   def set_file(model, hash_name)
-    model.file = params[hash_name][:file].read
-    # if !model.file.nil? && (model.file.class == ActionController::UploadedTempfile || model.file.class == ActionController::UploadedStringIO)
-    model.content_type = params[hash_name][:file].content_type.chomp.to_s
-    model.filename = params[hash_name][:file].original_filename.chomp
-    # end
+    file = params[hash_name][:file]
+    if !file.nil? && (file.class == ActionController::UploadedTempfile || file.class == ActionController::UploadedStringIO)
+      model.file = file.read
+      model.content_type = file.content_type.chomp.to_s
+      model.filename = file.original_filename.chomp
+    end
   end
 
   def login_required
