@@ -17,8 +17,8 @@ class CreateSchoolings < ActiveRecord::Migration
       create_table :schoolings do |t|
         t.references :user, :career, :null => false
         t.integer :startmonth, :startyear, :null => false
-        t.integer :endmonth, :endyear, :credits, :estimated_endmonth, :estimated_endyear
-        t.string  :studentid
+        t.integer :endmonth, :endyear, :credits  #, :estimated_endmonth, :estimated_endyear
+        t.string  :studentid                                     #TODO: Check for estimated month and year at schoolings table
         t.float   :average
         t.boolean :is_studying_this, :default => true, :null => false
         t.boolean :is_titleholder, :default => false, :null => false
