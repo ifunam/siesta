@@ -15,7 +15,14 @@ class RecordController < ApplicationController
         end
      end
     else
-      redirect_to :action => :new
+      if request.xhr?
+        render :update do |page|
+               page.hide 'form'
+               page.redirect_to :action => 'new'
+         end
+      else
+        redirect_to :action => :new
+      end
     end
   end
 
