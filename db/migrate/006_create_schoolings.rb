@@ -17,10 +17,10 @@ class CreateSchoolings < ActiveRecord::Migration
       create_table :schoolings do |t|
         t.references :user, :degree, :country,:null => false
         t.text  :career, :school, :institution, :null => false # TODO: Use career reference instead these fields
-        t.integer :startmonth, :startyear, :null => false
-        t.integer :endmonth, :endyear, :credits  #, :estimated_endmonth, :estimated_endyear
-        t.string  :studentid                                     # TODO: Check for estimated month and year at schoolings table
-        t.float   :average
+        t.integer :startyear, :null => false
+        t.integer :endyear, :credits 
+        t.string  :studentid                                   
+        t.float   :average,  :null => false
         t.boolean :is_studying_this, :default => true, :null => false
         t.boolean :is_titleholder, :default => false, :null => false
         t.binary  :file, :null => false
