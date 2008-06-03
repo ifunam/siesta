@@ -124,7 +124,7 @@ div.progressBar div.background {
 
 #footer {
   position: static;
-  background: url(/images/footer.png) top left no-repeat;
+  /* background: url(/images/footer.png) top left no-repeat; */
   text-align: center;
   margin-top: 10px;
   font: 10pt "arial";

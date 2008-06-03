@@ -6,9 +6,7 @@
  <%= f.text_field :studentid, :size => 20, :maxlength => 35 %>
  <%= f.text_field :average, :size => 3, :maxlength => 3, :required => true %>
  <%= f.text_field :credits, :size => 3, :maxlength => 3, :required => true %> 
- <%= f.text_field :startmonth, :size => 2, :maxlength => 2, :required => true %>
  <%= f.text_field :startyear, :size => 4, :maxlength => 4, :required => true %>
- <%= f.text_field :endmonth, :size => 2, :maxlength => 2 %>
  <%= f.text_field :endyear, :size => 4, :maxlength => 4 %>
  <%= f.radio_buttons :is_studying_this, :values => [false, true], :required => true %><br/>
  <%= f.radio_buttons :is_titleholder, :values => [false, true], :required => true %><br/>
