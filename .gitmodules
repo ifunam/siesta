@@ -7,3 +7,6 @@
 [submodule "vendor/plugins/will_paginate"]
 	path = vendor/plugins/will_paginate
 	url = git://github.com/mislav/will_paginate.git
+[submodule "vendor/plugins/validates_email_veracity"]
+	path = vendor/plugins/validates_email_veracity
+	url = git://github.com/Empact/validates_email_veracity_of.git

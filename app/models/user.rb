@@ -1,91 +1,65 @@
 require 'digest/sha2'
+require 'resolv'
 class User < ActiveRecord::Base
-
   attr_accessor :current_passwd
-
   validates_presence_of     :login, :email, :passwd
-  validates_uniqueness_of   :login
-  validates_uniqueness_of   :email
-  validates_uniqueness_of   :login, :scope => [:email]
   validates_length_of       :login, :within => 3..30
   validates_length_of       :email, :within => 7..100
   validates_length_of       :passwd, :within => 5..200, :allow_nil => true
   validates_confirmation_of :passwd
   validates_format_of       :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
   validates_format_of       :login, :with =>  /\A[-a-z0-9\.]*\Z/
+  validates_email_veracity_of :email # Depends on internet connectivity and right configuration of your dns
+  validates_uniqueness_of   :login, :scope => [:email]
+  
+  named_scope :unactivated, :conditions => { :userstatus_id => 1 }
+  named_scope :activated, :conditions => { :userstatus_id => 2 }
+  named_scope :locked?, :conditions => { :userstatus_id => 3 }
+  named_scope :in_history_file, :conditions => { :userstatus_id => 4 }
+  named_scope :with_user_incharge, lambda { { :conditions => 'user_incharge_id IS NOT NULL'} }
 
   belongs_to :userstatus
   has_one :person
+  belongs_to :user_incharge, :class_name => 'User', :foreign_key => 'user_incharge_id'
 
   # Callbacks
   before_create :prepare_new_record
   after_validation_on_create :encrypt_password
   before_validation_on_update :verify_current_password
-  class << self
 
-    def authenticate?(login,password)
-      @user = User.find_by_login(login)
-      (!@user.nil? and @user.passwd == encrypt(password, @user.salt) and @user.is_confirmed?) ? true : false
-    end
-
-    def authenticate_by_token?(login,token)
-      @user = User.find_by_login(login)
-      (!@user.nil? and @user.token== token and @user.is_confirmed?) ? true : false
-    end
-
-    def encrypt(password, mysalt)
-      Digest::SHA512.hexdigest(password + mysalt)
-    end
+  # Static or class methods
+  def self.authenticate?(login,password)
+    @user = User.find_by_login(login)
+    (!@user.nil? and @user.passwd == encrypt(password, @user.salt) and @user.is_activated?) ? true : false
   end
 
-  def confirm
-    change_userstatus(2)
-    self.token = nil
-    save(true)
+  def self.authenticate_by_token?(login,token)
+    @user = User.find_by_login(login)
+    (!@user.nil? and @user.token== token and @user.is_activated?) ? true : false
   end
 
+  def self.change_password(login, current_pw, new_pw)
+    record = User.find_by_login(login)
+    record.current_passwd = current_pw
+    record.passwd = new_pw
+    record.save
+  end
+
+  def self.encrypt(password, mysalt)
+    Digest::SHA512.hexdigest(password + mysalt)
+  end
+
+  # Instance methods
   def activate
-    change_userstatus(3)
-  end
-
-  def approve
-    change_userstatus(5)
+    change_userstatus(2)
   end
 
   def lock
+    change_userstatus(3)
+  end
+
+  def send_to_history_file
     change_userstatus(4)
-  end
-
-  def reject
-    change_userstatus(6)
-  end
-
-  def is_new?
-    self.userstatus_id == 1 # 'Nuevo'
-  end
-
-  def is_confirmed?
-    self.userstatus_id == 2 # 'Cuenta confirmada o Confimado'
-  end
-
-  def is_approved?
-     self.userstatus_id == 5 # 'Aprobado'
-  end
-
-  def is_locked?
-    self.userstatus_id == 4 # 'En suspensión'
-  end
-
-  def is_rejected?
-    self.userstatus_id == 6 # 'Rechazado'
-  end
-
-  def is_in_history_file?
-    self.userstatus_id >= 6 # Look for history file: 'No Aprobado', 'Egresado' 'Titulado', 'Baja'
-  end
-
-  def has_user_incharge?
-    !self.user_incharge_id.nil?
   end
 
   def new_token
@@ -100,20 +74,32 @@ class User < ActiveRecord::Base
     save(true)
   end
 
+  def is_unactivated?
+    self.userstatus_id == 1
+  end
+
+  def is_activated?
+    self.userstatus_id == 2
+  end
+
+  def is_locked? 
+    self.userstatus_id == 3
+  end
+  
+  def is_in_history_file?
+    self.userstatus_id == 4
+  end
+
   protected
   def prepare_new_record
-    # New userstatus and preparing the tokens for the account activation process
-    # The salt is used to add a random factor to the plaintext. This might
-    # make some cryptographic attacks more difficult.
     self.userstatus_id = 1
-
     self.token = token_string(10)
     self.token_expiry = 7.days.from_now
   end
 
   def encrypt_password
     if self.passwd != nil
-      self.salt = get_salt
+      self.salt = token_string(40)
       plaintext = passwd
       self.passwd = User.encrypt(plaintext, self.salt)
       self.passwd_confirmation = nil
@@ -135,10 +121,6 @@ class User < ActiveRecord::Base
     save(true)
   end
 
-  def get_salt
-    token_string(40)
-  end
-
   def token_string(n)
     if n.to_i > 1
       s = ""
@@ -147,5 +129,4 @@ class User < ActiveRecord::Base
       s
     end
   end
-
 end
