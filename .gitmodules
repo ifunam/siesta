@@ -10,3 +10,12 @@
 [submodule "vendor/plugins/validates_email_veracity"]
 	path = vendor/plugins/validates_email_veracity
 	url = git://github.com/Empact/validates_email_veracity_of.git
+[submodule "vendor/plugins/acts_as_tree"]
+	path = vendor/plugins/acts_as_tree
+	url = git://github.com/rails/acts_as_tree.git
+[submodule "vendor/plugins/shoulda"]
+	path = vendor/plugins/shoulda
+	url = git://github.com/thoughtbot/shoulda.git
+[submodule "vendor/plugins/rspec-rails"]
+	path = vendor/plugins/rspec-rails
+	url = git://github.com/dchelimsky/rspec-rails.git
