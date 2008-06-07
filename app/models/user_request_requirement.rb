@@ -10,11 +10,11 @@ class UserRequestRequirement < User
   end
 
   def has_address?
-    !Address.find(:first, :conditions => "user_id = #{self.id} AND addresstype_id = 1").nil?
+    !Address.find(:first, :conditions => ['user_id = ? AND addresstype_id = 1', self.id]).nil?
   end
 
   def has_schooling?
-    !Schooling.find(:first, :conditions => "schoolings.user_id = #{self.id}").nil?
+    !Schooling.find(:first, :conditions => ["schoolings.user_id = ?", self.id]).nil?
   end
 
   def has_user_documents?
@@ -22,7 +22,7 @@ class UserRequestRequirement < User
   end
 
   def has_user_request?
-    !UserRequest.find(:first, :conditions => "user_requests.user_id = #{self.id} AND user_requests.period_id = #{Period.get_most_recent.id}").nil?
+    !UserRequest.find(:first, :conditions => [ 'user_requests.user_id = ? AND user_requests.period_id = ?', self.id, Period.get_most_recent.id]).nil?
   end
 
   def requirements
@@ -53,7 +53,7 @@ class UserRequestRequirement < User
   end
 
   def current_request
-    UserRequest.find(:first, :conditions => "user_requests.user_id = #{self.id} AND user_requests.period_id = #{Period.get_most_recent.id}")
+    UserRequest.find(:first, :conditions => [ 'user_requests.user_id = ? AND user_requests.period_id = ?', self.id, Period.get_most_recent.id])
   end
 
   def is_current_request_saved?
@@ -70,6 +70,6 @@ class UserRequestRequirement < User
 
   def all_requests
     # todo: You should use periods.startdate instead applicant_requests.period_id at order option
-    UserRequest.find(:all, :conditions => "user_requests.user_id = #{self.id}", :order => 'user_requests.period_id DESC')
+    UserRequest.find(:all, :conditions => [ 'user_requests.user_id = ?', self.id], :include => [:period], :order => 'periods.startdate DESC')
   end
 end
