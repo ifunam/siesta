@@ -1,0 +1,85 @@
+id, name, institution_id
+1, Universidad Nacional Autónoma de México                               ,1
+7,Escuela Nacional de Artes Plásticas                                    ,1
+8,Escuela Nacional de Enfermería y Obstetricia                           ,1
+9,Escuela Nacional de Música                                             ,1
+10,Escuela Nacional de Trabajo Social                                     ,1
+11,Facultad de Estudios Profesionales Acatlán                             ,1
+12,Facultad de Estudios Profesionales Aragón                              ,1
+13,Facultad de Arquitectura                                               ,1
+14,Facultad de Ciencias                                                   ,1
+15,Facultad de Ciencias Políticas y Sociales                              ,1
+16,Facultad de Contaduría y Administración                                ,1
+17,Facultad de Derecho                                                    ,1
+18,Facultad de Economía                                                   ,1
+19,Facultad de Filosofía y Letras                                         ,1
+20,Facultad de Ingeniería                                                 ,1
+21,Facultad de Medicina                                                   ,1
+22,Facultad de Medicina Veterinaria y Zootecnia                           ,1
+23,Facultad de Odontología                                                ,1
+24,Facultad de Psicología                                                 ,1
+25,Facultad de Química                                                    ,1
+26,Facultad de Estudios Superiores Iztacala                               ,1
+27,Facultad de Estudios Superiores Cuautitlán                             ,1
+28,Facultad de Estudios Superiores Zaragoza                               ,1
+30,Instituto de Física                                                    ,1
+31,Instituto de Neurobiología                                             ,1
+32,Instituto de Astronomía                                                ,1
+33,Instituto de Biología                                                  ,1
+34,Instituto de Biotecnología                                             ,1
+35,Instituto de Ciencias del Mar y Limnología                             ,1
+36,Instituto de Ciencias Nucleares                                        ,1
+37,Instituto de Ecología                                                  ,1
+38,Instituto de Fisiología Celular                                        ,1
+39,Instituto de Geofísica                                                 ,1
+40,Instituto de Geografía                                                 ,1
+41,Instituto de Geología                                                  ,1
+42,Instituto de Ingeniería                                                ,1
+43,Instituto de Investigaciones Biomédicas                                ,1
+44,Instituto de Investigaciones en Matemáticas Aplicadas y en Sistemas    ,1
+45,Instituto de Investigaciones en Materiales                             ,1
+46,Instituto de Matemáticas                                               ,1
+47,Instituto de Química                                                   ,1
+48,Instituto de Investigaciones Antropológicas                            ,1
+49,Instituto de Investigaciones Bibliográficas                            ,1
+50,Instituto de Investigaciones Económicas                                ,1
+51,Instituto de Investigaciones Estéticas                                 ,1
+52,Instituto de Investigaciones Filológicas                               ,1
+53,Instituto de Investigaciones Filosóficas                               ,1
+54,Instituto de Investigaciones Históricas                                ,1
+55,Instituto de Investigaciones Jurídicas                                 ,1
+56,Instituto de Investigaciones Sociales                                  ,1
+57,Centro de Ciencias de la Atmósfera                                     ,1
+58,"Centro de Ciencias de la Materia Condensada en Ensenada, B.C.        ",1
+59,Centro de Ciencias Aplicadas y Desarrollo Tecnológico                  ,1
+60,Centro de Investigación en Energía                                     ,1
+61,Centro de Investigación sobre Fijación de Nitrógeno                    ,1
+62,Centro Coordinador y Difusor de Estudios Latinoamericanos              ,1
+63,Centro de Estudios sobre la Universidad                                ,1
+64,Centro de Investigaciones Interdisciplinarias en Ciencias y Humanidades,1
+65,Centro de Investigaciones sobre América del Norte                      ,1
+66,Centro Regional de Investigaciones Multidisciplinarias                 ,1
+67,Centro Universitario de Investigaciones Bibliotecológicas              ,1
+68,Centro de Ciencias Físicas                                             ,1
+69,"Centro de Física Aplicada y Tecnología Avanzada en Juriquilla, Qro.  ",1
+70,"Centro de Geociencias en Juriquilla, Qro.                            ",1
+71,Centro de Enseñanza de Lenguas Extranjeras                             ,1
+72,Centro de Enseñanza para Extranjeros                                   ,1
+73,Centro Universitario de Estudios Cinematográficos                      ,1
+74,Centro Universitario de Teatro                                         ,1
+75,"Centro de Radioastronomía y Astrofísica en Morelia, Mich.             ",1
+76,Centro de Investigaciones en Ecosistemas                               ,1
+125,Plantel 1 Gabino Barreda                                               ,1
+126,Plantel 2 Erasmo Castellanos Quinto                                    ,1
+127,Plantel 3 Justo Sierra                                                 ,1
+128,Plantel 4 Vidal Castañeda y Nájera                                     ,1
+129,Plantel 5 José Vasconcelos                                             ,1
+130,Plantel 6 Antonio Caso                                                 ,1
+131,Plantel 7 Ezequiel A. Chávez                                           ,1
+132,Plantel 8 Miguel E. Schultz                                            ,1
+133,Plantel 9 Pedro de Alba                                                ,1
+134,Plantel Azcapotzalco                                                   ,1
+135,Plantel Naucalpan                                                      ,1
+136,Plantel Vallejo                                                        ,1
+137,Plantel Oriente                                                        ,1
+138,Plantel Sur                                                            ,1

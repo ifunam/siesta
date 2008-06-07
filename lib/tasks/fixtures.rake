@@ -6,8 +6,10 @@ require 'active_record/fixtures'
 namespace :db do
   desc "Load catalogs from fixtures into current environment"
   task "catalogs:load" do
-    %w(userstatuses users countries states cities addresstypes degrees 
-    institutions documents periods roles requeststatuses).each do |fixture|
+    %w( userstatuses users countries states cities addresstypes 
+        degrees institutions schools careers documents 
+        periods roles requeststatuses ).each do |fixture|
+      puts 'Loading data from ' + fixture + '...'
       Fixtures.create_fixtures(RAILS_ROOT + '/test/fixtures', [fixture.to_s]) if ENV['RAILS_ENV'] != 'test'
     end
    end

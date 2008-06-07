@@ -1,0 +1,156 @@
+id,name,degree_id,school_id
+1,Actuaria,3,11
+2,Actuaria,3,14
+3,Administración,3,27
+4,Administración,3,16
+5,Arquitectura,3,13
+6,Arquitectura del Paisaje,3,11
+7,Arquitectura del Paisaje,3,12
+8,Arquitectura del Paisaje,3,13
+9,Artes Visuales,3, 7
+10,Bibliotecología,3,19
+11,Biología,3,28
+12,Biología,3,14
+13,Biología,3,26
+14,Canto,3, 9
+15,Ciencias Políticas y Administración Pública - Opción Administración Pública,3,11
+16,Ciencias Políticas y Administración Pública - Opción Administración Pública,3,15
+17,Ciencias de la Computación,3,14
+18,Ciencias de la Comunicación,3,15
+19,Cirujano Dentista (Odontología),3,28
+20,Cirujano Dentista (Odontología),3,23
+21,Cirujano Dentista (Odontología),3,26
+22,Composición,3, 9
+23,Comunicación Gráfica,3, 7
+24,Contaduría,3,27
+25,Contaduría,3,16
+26,Derecho,3,11
+27,Derecho,3,12
+28,Derecho,3,17
+29,Diseño Gráfico,3,11
+30,Diseño Gráfico,3, 7
+31,Diseño Industrial,3,12
+32,Diseño Industrial,3,13
+33,Economía,3,11
+34,Economía,3,12
+35,Economía,3,18
+36,Educación Musical,3, 9
+37,Enfermería y Obstetricia,3, 8
+38,Enseñanza del Inglés,3,11
+39,Estudios Latinomericanos,3,19
+40,Etnomusicología,3, 9
+41,Filosofía,3,11
+42,Filosofía,3,19
+43,Física,3,14
+44,Geografía,3,19
+45,Historia,3,11
+46,Historia,3,19
+47,Informática,3,27
+48,Informática,3,16
+49,Ingeniería Agrícola,3,27
+50,Ingeniería Civil,3,11
+51,Ingeniería Civil,3,12
+52,Ingeniería Civil,3,20
+53,Ingeniería Eléctrica y Electrónica,3,20
+54,Ingeniería Geofísica,3,20
+55,Ingeniería Geológica,3,20
+56,Ingeniería Industrial,3,20
+57,Ingeniería Mecánica,3,12
+58,Ingeniería Mecánica,3,27
+59,Ingeniería Mecánica Eléctrica,3,20
+60,Ingeniería Petrolera,3,20
+61,Ingeniería Química,3,25
+62,Ingeniería Química Metalúrgica,3,27
+63,Ingeniería Química Metalúrgica,3,28
+64,Ingeniería Química Metalúrgica,3,25
+65,Ingeniería Química Metalúrgica,3,26
+66,Ingeniería Topográfica y Geodésica,3,20
+67,Ingeniería de Minas y Metalurgía,3,20
+68,Ingeniería en Alimentos,3,27
+69,Ingeniería en Computación,3,12
+70,Ingeniería en Computación,3,20
+71,Ingeniería en Telecomunicaciones,3,20
+72,Instrumentista,3, 9
+73,Investigación Biomédica Básica,3,43
+74,Lengua y Literaturas Hispánicas,3,11
+75,Lengua y Literaturas Hispánicas,3,19
+76,Lengua y Literaturas Modernas,3,19
+77,Letras Clásicas,3,19
+78,Literatura Dramática y Teatro,3,19
+79,Matemáticas,3,11
+80,Medicina,3,27
+81,Medicina,3,22
+82,Medicina Veterinaria y Zootecnia,3,28
+83,Medicina Veterinaria y Zootecnia,3,21
+84,Medicina Veterinaria y Zootecnia,3,26
+85,Optometría,3,26
+86,Pedagogía,3,11
+87,Pedagogía,3,12
+88,Pedagogía,3,19
+89,Periodismo y Comunicación Colectiva,3,11
+90,Periodismo y Comunicación Colectiva,3,12
+91,Piano,3, 9
+92,Planificación para el Desarrollo Agropecuario,3,12
+93,Psicología,3,28
+94,Psicología,3,24
+95,Psicología,3,26
+96,Química Industrial,3,27
+97,Química Industrial,3,28
+98,Química Industrial,3,25
+99,Química de Alimentos,3,27
+100,Química,3,25
+101,Química Farmacéutico Biológica,3,27
+102,Química Farmacéutico Biológica,3,25
+103,Relaciones Internacionales,3,11
+104,Relaciones Internacionales,3,12
+105,Relaciones Internacionales,3,15
+106,Sociología,3,11
+107,Sociología,3,12
+108,Sociología,3,15
+109,Trabajo Social,3,10
+110,Urbanismo,3,13
+111,Ciencias Políticas y Administración Pública - Opción Ciencia Política,3,15
+112,Maestría en Antropología,5,1
+113,Maestría en Ciencias de la Administración,5,1
+114,Maestría en Derecho,5,1
+115,Maestría en Economía,5,1
+116,Maestría en Geografía,5,1
+117,Maestría en Pedagogía,5,1
+118,Maestría en Psicología,5,1
+119,Maestría en Arquitectura,5,1
+120,Maestría en Urbanismo,5,1
+121,Maestría en Bibliotecología y Estudios de la Información,5,1
+122,Maestría en Ciencxias e Ingeniería de Materiales,5,1
+123,Maestría en Ciencias (Astronomía),5,1
+124,Maestría en Ciencias Biológicas,5,1
+125,Maestría en Ciencias Bioquímicas,5,1
+126,Maestría en Ciencias de la producción y salud animal,5,1
+127,Maestría en Ciencias de la Tierra,5,1
+128,Maestría en Ciencias Matemáticas y de la Especialización en Estadística Aplicada,5,1
+129,Maestría eb Ciencias del Mar y Limnología,5,1
+130,Maestría en Ciencia e Ingeniería de la Computación,5,1
+131,Maestría en Ciencias (Física),5,1
+132,Maestría en Ciencias Médicas Odontológicas y de la Salud,5,1
+133,Maestría en Ciencias Químicas,5,1
+134,Maestría en Estudios Mesoamericanos,5,1
+135,Maestría en Filosofía,5,1
+136,Maestría en Filosofía de la Ciencia,5,1
+137,Maestría en Historia,5,1
+138,Maestría en Historia del Arte,5,1
+139,Maestría en Ingeniería,5,1
+140,Maestría en Letras,5,1
+141,Maestría en Lingüística,5,1
+142,Maestría en Música,5,1
+143,Maestría en Artes Visuales,5,1
+144,Maestría en Ciencias (Neurobiología),5,1
+145,Maestría en Diseño Industrial,5,1
+146,Maestría en Enfermería,5,1
+147,Maestría en Estudios Políticos y Sociales,5,1
+148,Maestría en Gobierno y Asuntos Públicos,5,1
+149,Maestría en Comunicación,5,1
+150,Maestría en Estudios en Relaciones Internacionales,5,1
+151,Maestría en Estudios México-Estados Unidos,5,1
+152,Maestría en Estudios Latinoamericanos,5,1
+153,Maestría en Docencia para la Educación Media Superior,5,1
+154,Maestría en Trabajo Social,5,1
+155,Maestría en Ciencias (Física Médica),5,1

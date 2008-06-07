@@ -7,16 +7,22 @@ class CreateSchoolings < ActiveRecord::Migration
         t.timestamps
       end
 
-      # create_table :careers do |t|
-      #   t.text     :name, :null => false
-      #   t.references  :degree, :institution, :null => false
-      #   t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
-      #   t.timestamps
-      # end
+      create_table :schools do |t|
+         t.text     :name, :null => false
+         t.references :institution, :null => false
+         t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
+         t.timestamps
+      end
+
+      create_table :careers do |t|
+         t.text     :name, :null => false
+         t.references  :degree, :school, :null => false
+         t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
+         t.timestamps
+      end
 
       create_table :schoolings do |t|
-        t.references :user, :degree, :country,:null => false
-        t.text  :career, :school, :institution, :null => false # TODO: Use career reference instead these fields
+        t.references :user, :career,:null => false
         t.integer :startyear, :null => false
         t.integer :endyear, :credits 
         t.string  :studentid                                   
@@ -31,11 +37,12 @@ class CreateSchoolings < ActiveRecord::Migration
       end
 
       add_index :degrees, [:name], :name => :degrees_name_key, :unique => true
-      #add_index :careers, [:name, :degree_id, :institution_id], :name => :careers_name_key, :unique => true
+      add_index :careers, [:name, :degree_id, :school_id], :name => :careers_name_key, :unique => true
+      add_index :schools, [:name, :institution_id], :name => :schools_name_key, :unique => true
     #end
   end
 
   def self.down
-    drop_table :schoolings, :careers, :degrees
+    drop_table :schoolings, :careers, :schools, :degrees
   end
 end
