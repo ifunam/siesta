@@ -8,13 +8,13 @@ class User < ActiveRecord::Base
   validates_length_of       :passwd, :within => 5..200, :allow_nil => true
   validates_confirmation_of :passwd
   validates_format_of       :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
-  validates_format_of       :login, :with =>  /\A[-a-z0-9\.]*\Z/
-  validates_email_veracity_of :email # Depends on internet connectivity and right configuration of your dns
+  validates_format_of       :login, :with =>  /\A[-a-z0-9\.\-\_]*\Z/
+#  validates_email_veracity_of :email # Depends on internet connectivity and right configuration of your dns
   validates_uniqueness_of   :login, :scope => [:email]
-  
+
   named_scope :unactivated, :conditions => { :userstatus_id => 1 }
   named_scope :activated, :conditions => { :userstatus_id => 2 }
-  named_scope :locked?, :conditions => { :userstatus_id => 3 }
+  named_scope :locked, :conditions => { :userstatus_id => 3 }
   named_scope :in_history_file, :conditions => { :userstatus_id => 4 }
   named_scope :with_user_incharge, lambda { { :conditions => 'user_incharge_id IS NOT NULL'} }
 
@@ -34,8 +34,8 @@ class User < ActiveRecord::Base
   end
 
   def self.authenticate_by_token?(login,token)
-    @user = User.find_by_login(login)
-    (!@user.nil? and @user.token== token and @user.is_activated?) ? true : false
+    @user = User.find(:first, :conditions => { :login => login, :token => token })
+    (!@user.nil? and @user.is_activated?) ? true : false
   end
 
   def self.change_password(login, current_pw, new_pw)
@@ -82,10 +82,10 @@ class User < ActiveRecord::Base
     self.userstatus_id == 2
   end
 
-  def is_locked? 
+  def is_locked?
     self.userstatus_id == 3
   end
-  
+
   def is_in_history_file?
     self.userstatus_id == 4
   end

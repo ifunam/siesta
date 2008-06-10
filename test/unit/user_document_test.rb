@@ -1,8 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class UserDocumentTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  def test_truth
+  def test_true
     assert true
   end
 end
