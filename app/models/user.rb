@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   validates_format_of       :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
   validates_format_of       :login, :with =>  /\A[-a-z0-9\.\-\_]*\Z/
 #  validates_email_veracity_of :email # Depends on internet connectivity and right configuration of your dns
+  validates_uniqueness_of   :login
+  validates_uniqueness_of   :email
   validates_uniqueness_of   :login, :scope => [:email]
 
   named_scope :unactivated, :conditions => { :userstatus_id => 1 }
