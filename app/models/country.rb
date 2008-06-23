@@ -5,4 +5,5 @@ class Country < ActiveRecord::Base
   validates_uniqueness_of :name, :code, :citizen
 
   has_many :states
+  has_many :institutions
 end

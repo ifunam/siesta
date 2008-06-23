@@ -1,9 +1,9 @@
 class Adscription < ActiveResource::Base
- self.site = 'http://localhost:3000/'
+ self.site = 'http://salva.fisica.unam.mx/'
 
- def self.find_users(id)
+ def self.users
    i = 0
-   self.get("users/#{id}").collect { |h|
+   self.find(self.id).collect { |h|
      unless User.find_by_email(h['user']['email']).nil?
        [ %w(lastname1 lastname2 firstname).collect {|k| h['user']['person'][k] }.join(' '), User.find_by_email(h['user']['email']).id]
      end

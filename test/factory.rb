@@ -5,20 +5,13 @@ module Factory
   def self.included(base)
     base.extend(self)
   end
-
-  # build_valid method: Returns an active_record object using first record from fixtures for this model.
-  def build_valid(params = {})
-    record = new(build_valid_hash(params))
-    record.save
-    record
-  end
-
-  def build_valid_hash(params={})
+  
+  def valid_options(params={})
     fixture = "#{RAILS_ROOT}/test/fixtures/" + self.name.underscore.pluralize
     raise "There are no default data from #{fixture}[.yml|.csv]" unless File.exists?("#{fixture}.csv") or File.exists?("#{fixture}.yml")
     h = Fixtures.new(self.connection, self.name.tableize, self.name, "#{fixture}").first[1].to_hash
-    h.delete('id')
-    h.keys.each { |k| h[k] = 'test_' + h[k] if h[k].is_a? String }
+    %w(id created_at update_at moduser_id).each do |k| h.delete(k) end
+    h.keys.each { |k| h[k] = 'test_' + h[k] if h[k].is_a? String and h[k].to_i == 0 }
     h.merge(params)
   end
 end

@@ -1,7 +1,7 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
-require File.dirname(__FILE__) + "/factory"
 require 'test_help'
+require File.dirname(__FILE__) + "/factory"
 require 'flexmock/test_unit'
 
 class Test::Unit::TestCase
@@ -35,9 +35,54 @@ class Test::Unit::TestCase
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
   fixtures :all
-
-  def deny(assert, msg)
-    assert !assert, msg
+  
+  module Shoulda # :nodoc: all
+    module Extensions 
+        include Test::Unit::Assertions
+        def should_allow_nil_value_for(attribute)
+            record = make_model
+            record.send("#{attribute}=", nil)
+            assert record.valid?, get_errors(record) 
+        end
+      
+        def should_not_allow_nil_value_for(attribute)
+             record = make_model
+             record.send("#{attribute}=", nil)
+             assert !record.valid?, get_errors(record)
+        end
+        
+        def should_not_allow_float_number_for(attribute)
+             record = make_model
+             record.send("#{attribute}=", 1.01)
+             assert !record.valid?, get_errors(record)
+        end
+        
+        private
+        def make_model_with(new_options={})
+            make_model {|options| options.merge!(new_options)}
+        end
+         
+        def make_model_without(field)
+            make_model {|options| options.delete(field) }
+        end
+        
+        def make_model
+              model = model_under_test
+              options = model.valid_options
+              yield options if block_given?
+              model.new(options)
+        end
+         
+        def model_under_test
+            self.to_s.gsub('Test', '').constantize
+        end
+         
+        def get_errors(record)
+          "\nErrors:\n" + record.errors.full_messages.join("\n")
+        end
+    end
   end
-
+  include Shoulda::Extensions
+  extend Shoulda::Extensions
+  
 end
