@@ -1,3 +1,5 @@
+require 'rubygems'
+require 'activeresource'
 class Adscription < ActiveResource::Base
  self.site = 'http://salva.fisica.unam.mx/'
 

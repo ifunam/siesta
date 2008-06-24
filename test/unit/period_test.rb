@@ -5,14 +5,18 @@ class PeriodTest < ActiveSupport::TestCase
 
   should_require_attributes :name, :startdate, :enddate
   should_require_unique_attributes :name
+
   should_allow_values_for :is_active, true, false
+
   should_only_allow_numeric_values_for :id
   should_not_allow_values_for :id, -1,  :message => /must be greater than 0/
   should_not_allow_values_for :id, 0,  :message => /must be greater than 0/
+  #  should_allow_nil_value_for :id
+  should_not_allow_float_number_for :id
 
   context "A Period" do
     setup do
-      @period = Period.build_valid
+      @period = Period.new(:name => "2009-2", :startdate => '2008-08-11', :enddate => "2008-12-12")
     end
 
     should "be use a valid range of dates" do

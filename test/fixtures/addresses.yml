@@ -1,0 +1,24 @@
+---
+admin:
+  id: 1
+  user_id: 1
+  location: Instituto de Física, Edificio principal, Cubículo 254, Circuito de la Investigación Científica S/N, Ciudad Universitaria, Delegación Coyoacán
+  zipcode: 04510
+  country_id: 484
+  state_id: 9
+  city_id: 64
+  addresstype_id: 1
+  is_postaddress: t
+
+alejandro:
+  id: 2
+  user_id: 2
+  location: Instituto de Física, Edificio principal, Cubículo 254, Circuito de la Investigación Científica S/N, Ciudad Universitaria, Delegación Coyoacán
+  zipcode: 04510
+  country_id: 484
+  state_id: 9
+  city_id: 64
+  addresstype_id: 1
+  phone: 56225001
+  is_postaddress: t
+

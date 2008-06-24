@@ -13,7 +13,7 @@ class Test::Unit::TestCase
   # Read Mike Clark's excellent walkthrough at
   #   http://clarkware.com/cgi/blosxom/2005/10/24#Rails10FastTesting
   #
-  # Every Active Record database supports transactions except MyISAM tables
+  # Every Active object database supports transactions except MyISAM tables
   # in MySQL.  Turn off transactional fixtures in this case; however, if you
   # don't care one way or the other, switching from MyISAM to InnoDB tables
   # is recommended.
@@ -34,55 +34,47 @@ class Test::Unit::TestCase
   #
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
-  fixtures :all
-  
+  # fixtures :all
+  def deny(condition, message)
+    assert !condition, message
+  end
+
   module Shoulda # :nodoc: all
-    module Extensions 
+    module Extensions
         include Test::Unit::Assertions
         def should_allow_nil_value_for(attribute)
-            record = make_model
-            record.send("#{attribute}=", nil)
-            assert record.valid?, get_errors(record) 
+            object = make_model
+            object.send("#{attribute}=", nil)
+            assert object.valid?, get_errors(object)
         end
-      
+
         def should_not_allow_nil_value_for(attribute)
-             record = make_model
-             record.send("#{attribute}=", nil)
-             assert !record.valid?, get_errors(record)
+             object = make_model
+             object.send("#{attribute}=", nil)
+             assert !object.valid?, get_errors(object)
         end
-        
+
         def should_not_allow_float_number_for(attribute)
-             record = make_model
-             record.send("#{attribute}=", 1.01)
-             assert !record.valid?, get_errors(record)
+             object = make_model
+             object.send("#{attribute}=", 1.01)
+             assert !object.valid?, get_errors(object)
         end
-        
-        private
-        def make_model_with(new_options={})
-            make_model {|options| options.merge!(new_options)}
-        end
-         
-        def make_model_without(field)
-            make_model {|options| options.delete(field) }
-        end
-        
+
+#        private
+
         def make_model
-              model = model_under_test
-              options = model.valid_options
-              yield options if block_given?
-              model.new(options)
+            model =  model_class
+            options = model.valid_options
+            yield options if block_given?
+            model.new(options)
         end
-         
-        def model_under_test
-            self.to_s.gsub('Test', '').constantize
-        end
-         
-        def get_errors(record)
-          "\nErrors:\n" + record.errors.full_messages.join("\n")
+
+        def get_errors(object)
+          "\nErrors:\n" + object.errors.full_messages.join("\n")
         end
     end
   end
   include Shoulda::Extensions
   extend Shoulda::Extensions
-  
+
 end

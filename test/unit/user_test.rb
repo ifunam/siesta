@@ -1,9 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 class UserTest < Test::Unit::TestCase
   fixtures :userstatuses, :users
-  def setup
-    @logins = User.find(:all).collect { |u|  u.login }
-  end
 
   # Testing basic constraints
   should_require_attributes :login, :email, :passwd
@@ -22,8 +19,10 @@ class UserTest < Test::Unit::TestCase
 
   should_require_unique_attributes :login
   should_require_unique_attributes :email
-#  should_require_unique_attributes :email, :scoped_to => :login
 
+  def setup
+    @logins = User.find(:all).collect { |u|  u.login }
+  end
 
   def test_authenticate?
     assert User.authenticate?('admin','maltiempo')
@@ -91,7 +90,7 @@ class UserTest < Test::Unit::TestCase
   end
 
   def test_new_user_should_be_unactivated
-    @user = User.build_valid(:login => 'john', :passwd => 'supersecret', :email => 'john@somedomain.com')
+    @user = User.new(:login => 'john', :passwd => 'supersecret', :email => 'john@somedomain.com')
     assert @user.valid?
     @user.save
     assert @user.is_unactivated?
@@ -105,8 +104,8 @@ class UserTest < Test::Unit::TestCase
   end
 
    def test_unactivated_users
-     record = User.build_valid
-     record.save
+     user = User.build_valid
+     user.save
      assert_equal 1, User.unactivated.count
    end
 
@@ -131,9 +130,9 @@ class UserTest < Test::Unit::TestCase
    end
 
    def test_users_with_user_incharge
-     record = User.build_valid
-     record.user_incharge = User.find_by_login('admin')
-     record.save
+     user = User.build_valid
+     user.user_incharge = User.find_by_login('admin')
+     user.save
      assert_equal 1, User.with_user_incharge.count
    end
 
