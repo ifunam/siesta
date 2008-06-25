@@ -9,6 +9,7 @@ class PersonTest < ActiveSupport::TestCase
   should_not_allow_values_for :id, -1,  :message => /must be greater than 0/
   should_not_allow_values_for :id, 0,  :message => /must be greater than 0/
   should_not_allow_float_number_for :id
+  should_allow_nil_value_for :id
 
   should_allow_values_for :gender, true, false
   should_only_allow_numeric_values_for :user_id, :country_id, :state_id, :city_id
@@ -17,6 +18,7 @@ class PersonTest < ActiveSupport::TestCase
   should_not_allow_float_number_for :country_id
   should_not_allow_float_number_for :state_id
   should_not_allow_float_number_for :city_id
+
 
   should_belong_to :country
   should_belong_to :state
