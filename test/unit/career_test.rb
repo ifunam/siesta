@@ -6,7 +6,7 @@ class CareerTest < ActiveSupport::TestCase
   should_require_attributes :name, :degree_id
 
   should_only_allow_numeric_values_for :id,  :degree_id, :school_id
-  should_allow_nil_value_for :id, :school_id # You can use @careerd.school = @school
+  should_allow_nil_value_for :id, :school_id # You could use @career.school = @school
   should_not_allow_float_number_for :id, :degree_id, :school_id
   should_not_allow_zero_or_negative_number_for :id, :degree_id, :school_id
 

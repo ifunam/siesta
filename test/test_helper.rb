@@ -77,8 +77,7 @@ class Test::Unit::TestCase
         def assert_validation_with_message(pattern, attribute)
           model_name = @record.class
           @record.valid?
-          assert @record.errors.on(attribute)
-          "Expected #{model_name} to have an error on #{attribute}, but it did not."
+          assert @record.errors.on(attribute), "Expected #{model_name} to have an error on #{attribute}, but it did not."
           actual_error = @record.errors.on(attribute).to_s
           assert_match(pattern, actual_error, "Expected #{model_name} to have the error #{pattern}\n Real message was: #{actual_error}")
         end

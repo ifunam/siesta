@@ -19,6 +19,7 @@ class UserTest < Test::Unit::TestCase
 
   should_require_unique_attributes :login
   should_require_unique_attributes :email
+  
 
   def setup
     @logins = User.find(:all).collect { |u|  u.login }

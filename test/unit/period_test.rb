@@ -9,8 +9,7 @@ class PeriodTest < ActiveSupport::TestCase
   should_allow_values_for :is_active, true, false
 
   should_only_allow_numeric_values_for :id
-  should_not_allow_values_for :id, -1,  :message => /must be greater than 0/
-  should_not_allow_values_for :id, 0,  :message => /must be greater than 0/
+  should_not_allow_zero_or_negative_number_for :id
   should_allow_nil_value_for :id
   should_not_allow_float_number_for :id
 
