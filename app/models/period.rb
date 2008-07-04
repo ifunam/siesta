@@ -15,11 +15,11 @@ class Period < ActiveRecord::Base
   end
 
   def self.get_last
-    self.find(:first, :conditions => { :is_active => false}, :order => "startdate DESC")
+    self.find_by_is_active(false, :order => "startdate DESC")
   end
 
   def self.get_active
-      self.find(:first, :conditions => { :is_active => true})
+      self.find_by_is_active(true)
   end
 
   private

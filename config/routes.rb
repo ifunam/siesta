@@ -1,5 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
+  map.root :controller => 'sessions'
   map.resource  :session
+  map.resource  :user, :member => { :confirm => :get, :recovery_passwd_request => :get, :recovery_passwd => :post }
   map.resource  :person
   map.resource  :address
   map.resources :schoolings
@@ -7,6 +9,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :user_requests
   map.resources :send_user_requests
   map.resource  :change_password
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -38,8 +41,7 @@ ActionController::Routing::Routes.draw do |map|
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.
-  map.root :controller => "sessions"
-
+  
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end

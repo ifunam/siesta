@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   validates_confirmation_of :passwd
   validates_format_of       :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
   validates_format_of       :login, :with =>  /\A[-a-z0-9\.\-\_]*\Z/
-#  validates_email_veracity_of :email # Depends on internet connectivity and right configuration of your dns
+  validates_email_veracity_of :email # Depends on internet connectivity and right configuration of your dns
   validates_uniqueness_of   :login
   validates_uniqueness_of   :email
   validates_uniqueness_of   :login, :scope => [:email]
@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   named_scope :activated, :conditions => { :userstatus_id => 2 }
   named_scope :locked, :conditions => { :userstatus_id => 3 }
   named_scope :in_history_file, :conditions => { :userstatus_id => 4 }
-  named_scope :with_user_incharge, lambda { { :conditions => 'user_incharge_id IS NOT NULL'} }
+  named_scope :with_user_incharge, :conditions => 'user_incharge_id IS NOT NULL'
 
   belongs_to :userstatus
   has_one :person
@@ -32,14 +32,18 @@ class User < ActiveRecord::Base
   # Static or class methods
   def self.authenticate?(login,password)
     @user = User.find_by_login(login)
-    (!@user.nil? and @user.passwd == encrypt(password, @user.salt) and @user.is_activated?) ? true : false
+    !@user.nil? and @user.passwd == User.encrypt(password, @user.salt) and @user.is_activated? ? true : false
   end
 
   def self.authenticate_by_token?(login,token)
-    @user = User.find(:first, :conditions => { :login => login, :token => token })
-    (!@user.nil? and @user.is_activated?) ? true : false
+    @user = User.find_by_login_and_token(login,token)
+    !@user.nil? and @user.is_activated? ? true : false
   end
 
+  def self.find_by_valid_token(id,token) 
+    User.find_by_id_and_token(id, token, :conditions => [ 'token_expiry >= ?', 7.days.from_now ])
+  end
+  
   def self.change_password(login, current_pw, new_pw)
     record = User.find_by_login(login)
     record.current_passwd = current_pw
@@ -110,7 +114,7 @@ class User < ActiveRecord::Base
 
   def verify_current_password
     if !self.current_passwd.nil?
-      if User.find(:first, :conditions => ["id = ?", self.id]).passwd != User.encrypt(self.current_passwd, self.salt)
+      if User.find(self.id).passwd != User.encrypt(self.current_passwd, self.salt)
         errors.add("current_passwd", "is not valid")
         return false
       end

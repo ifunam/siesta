@@ -34,8 +34,13 @@ class UserTest < Test::Unit::TestCase
   end
 
   def test_should_authenticate_by_token?
-    assert User.authenticate_by_token?('alex.juarez','lcGVrs2FmS')
+    assert User.authenticate_by_token?('john.due','lcGVrs2FmS')
     assert !User.authenticate_by_token?('admin','badtoken')
+  end
+
+  def test_should_find_user_by_valid_token
+    assert_instance_of User, User.find_by_valid_token(3,'lcGVrs2FmS')
+    assert_equal nil, User.find_by_valid_token(1,'lcGVrs2FmS')
   end
 
   def test_should_change_password
@@ -75,7 +80,7 @@ class UserTest < Test::Unit::TestCase
   end
 
   def test_should_get_new_token
-    for login in (%w(alejandro admin))
+    for login in (%w(alex admin))
       @user = User.find_by_login(login)
       assert @user.token.empty?
       @user.new_token
@@ -84,7 +89,7 @@ class UserTest < Test::Unit::TestCase
   end
 
   def test_should_destroy_token
-    @user = User.find_by_login('alex.juarez')
+    @user = User.find_by_login('john.due')
     assert !@user.token.empty?
     @user.destroy_token
     assert @user.token.nil?
@@ -115,7 +120,7 @@ class UserTest < Test::Unit::TestCase
    end
 
    def test_locked_users
-     usersc=%w(admin alejandro)
+     usersc=%w(admin alex)
      users.each do |user|
        User.find_by_login(user).lock
      end
@@ -123,10 +128,10 @@ class UserTest < Test::Unit::TestCase
    end
 
    def test_users_in_history_file
-       users = %w(admin alejandro)
-       users.each do |user|
-             User.find_by_login(user).send_to_history_file
-       end
+     users = %w(admin alex)
+     users.each do |user|
+         User.find_by_login(user).send_to_history_file
+     end
      assert_equal users.size, User.in_history_file.count
    end
 
@@ -136,5 +141,4 @@ class UserTest < Test::Unit::TestCase
      user.save
      assert_equal 1, User.with_user_incharge.count
    end
-
 end

@@ -12,7 +12,6 @@ module Factory
     record
   end
 
-
   def valid_options(params={})
     fixture = "#{RAILS_ROOT}/test/fixtures/" + self.name.underscore.pluralize
     raise "There are no default data from #{fixture}[.yml|.csv]" unless File.exists?("#{fixture}.csv") or File.exists?("#{fixture}.yml")

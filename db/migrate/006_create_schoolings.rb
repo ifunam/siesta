@@ -24,14 +24,13 @@ class CreateSchoolings < ActiveRecord::Migration
       create_table :schoolings do |t|
         t.references :user, :career,:null => false
         t.integer :startyear, :null => false
-        t.integer :endyear, :credits 
+        t.integer :endyear, :credits  
         t.string  :studentid                                   
         t.float   :average,  :null => false
         t.boolean :is_studying_this, :default => true, :null => false
         t.boolean :is_titleholder, :default => false, :null => false
-        t.binary  :file, :null => false
-        t.text    :filename, :content_type, :null => false
-
+        t.binary  :file
+        t.text    :filename, :content_type
         t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
         t.timestamps
       end

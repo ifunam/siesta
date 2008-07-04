@@ -4,28 +4,15 @@ class RecordController < ApplicationController
     @columns = @model.column_names - %w(id user_id created_at updated_at moduser_id)
   end
 
-  def show
-    @record = @model.find(:first, :conditions => "#{Inflector.tableize(@model)}.user_id = #{session[:user]}")
+  def index
+    @record = @model.find_by_user_id(session[:user_id])
     unless @record.nil?
-      respond_to do |format|
-        if request.xhr?
-          format.html { render  :partial => 'record_controller/show'  }
-        else
-          format.html { render  :action => 'show'  }
-        end
-     end
+       redirect_to :action => :show
     else
-      if request.xhr?
-        render :update do |page|
-               page.hide 'form'
-               page.redirect_to :action => 'new'
-         end
-      else
-        redirect_to :action => :new
-      end
+       redirect_to :action => :new
     end
   end
-
+  
   def new
     @record = @model.new
     respond_to do |format|
@@ -37,6 +24,17 @@ class RecordController < ApplicationController
     end
   end
 
+  def show
+    @record = @model.find_by_user_id(session[:user_id])
+    respond_to do |format|
+      if request.xhr?
+        format.html { render  :partial => 'record_controller/show'  }
+      else
+        format.html { render  :action => 'show'  }
+      end
+    end
+  end
+  
   def create
     @record = @model.new(params[@hash_name])
     self.set_user(@record)
@@ -51,14 +49,14 @@ class RecordController < ApplicationController
   end
 
   def edit
-    @record = @model.find(:first, :conditions => ['user_id = ?', session[:user]])
+    @record = @model.find_by_user_id(session[:user_id])
     respond_to do |format|
       format.html { render :partial=> 'record_controller/edit', :layout => false }
     end
   end
 
   def update
-    @record = @model.find(:first, :conditions => ['user_id = ?', session[:user]])
+    @record = @model.find_by_user_id(session[:user_id])
     self.set_user(@record)
     self.set_quickposts(@record)
     respond_to do |format|

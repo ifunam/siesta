@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
 
   def login_required
     store_location
-    (!session[:user].nil? and !User.find(session[:user]).nil?) ? (return true) : (redirect_to :controller=> :sessions and return false)
+    (!session[:user_id].nil? and !User.find(session[:user_id]).nil?) ? (return true) : (redirect_to :controller=> :sessions and return false)
   end
 
   def store_location

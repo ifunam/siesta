@@ -9,6 +9,7 @@ namespace :db do
     file  = "#{RAILS_ROOT}/config/tree/#{filename}.yml"
     db    = ENV['DB']   || 'development'
     if File.exists? file
+      puts "Loading tree: #{filename} ..." 
       tree = YAML::load_file(file)
       tree_loader([filename, tree])
     else

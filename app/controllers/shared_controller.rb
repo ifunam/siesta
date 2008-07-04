@@ -6,7 +6,7 @@ class SharedController < ApplicationController
    end
 
   def index
-    @collection = Finder.new(@model, :all, :attributes => @columns, :conditions => "#{Inflector.tableize(@model)}.user_id = #{session[:user]}").as_pair
+    @collection = Finder.new(@model, :all, :attributes => @columns, :conditions => "#{Inflector.tableize(@model)}.user_id = #{session[:user_id]}").as_pair
     respond_to do |format|
       if request.xhr?
         format.html { render :action => 'index', :layout => false }

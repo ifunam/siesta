@@ -1,5 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 class UserstatusTest < ActiveSupport::TestCase
+  fixtures :userstatuses
+  
   should_require_attributes :name
   should_require_unique_attributes :name
   

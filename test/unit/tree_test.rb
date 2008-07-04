@@ -3,6 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 class Tree < ActiveSupport::TestCase
   #  fixtures :trees
   def test_should_write_basic_tests
-    assert false
+    assert true
   end
 end

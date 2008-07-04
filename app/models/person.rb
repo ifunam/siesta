@@ -7,11 +7,11 @@ class Person < ActiveRecord::Base
   validates_uniqueness_of :user_id
 
   def fullname
-    [self.lastname1.strip, (self.lastname2 != nil ? self.lastname2.strip : nil), self.firstname].compact.join(' ')
+    [lastname1.strip, (lastname2 != nil ? lastname2.strip : nil), firstname].compact.join(' ')
   end
 
   def placeofbirth
-    [self.city.name,  self.state.name, self.country.name].compact.join(', ')
+    [city.name,  state.name, country.name].compact.join(', ')
   end
 
   def validate

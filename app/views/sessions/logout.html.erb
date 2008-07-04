@@ -3,6 +3,6 @@
 <p style="color: green"><%= flash[:notice] %></p>
 <p>Su sesión en el sistema ha terminado...</p>
 <p>Gracias por usar el sistema del Posgrado en Ciencias (Física)!</p>
-<%= link_to_remote "Regresar a inicio de sesión", :update => 'form', :url => { :action => "update_partial", :partial => 'login' } %>
+<%= link_to_remote "Regresar a inicio de sesión", :url => session_url, :method => :get %>
 </div> <!-- end of form-->
 </div> <!-- end of box -->

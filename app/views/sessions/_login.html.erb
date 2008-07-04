@@ -16,8 +16,8 @@
 <hr />
 
 <p>¿No tiene una cuenta en el sistema?</p>
-<%= link_to_remote "Obtenga una ahora", :update => 'form', :url => { :action => "update_partial", :partial => 'new' } %>
+<%= link_to_remote "Obtenga una ahora", :url => new_user_path, :method => :get  %>
 
 <hr />
 <p>¿Ha olvidado su contraseña?</p>
-<%= link_to_remote "Cambie su contraseña", :update => 'form', :url => { :action => "update_partial", :partial => 'recovery_passwd_request' } %>
+<%= link_to_remote "Cambie su contraseña", :url => recovery_passwd_request_user_path, :method => :get %>
