@@ -35,13 +35,12 @@ class User < ActiveRecord::Base
     !@user.nil? and @user.passwd == User.encrypt(password, @user.salt) and @user.is_activated? ? true : false
   end
 
-  def self.authenticate_by_token?(login,token)
-    @user = User.find_by_login_and_token(login,token)
-    !@user.nil? and @user.is_activated? ? true : false
+  def self.authenticate_by_token?(id,token)
+    User.find_by_id_and_token(id,token).nil? ? false : true 
   end
 
   def self.find_by_valid_token(id,token) 
-    User.find_by_id_and_token(id, token, :conditions => [ 'token_expiry >= ?', 7.days.from_now ])
+    User.find_by_id_and_token(id, token, :conditions => [ 'token_expiry >= ?', Date.today])
   end
   
   def self.change_password(login, current_pw, new_pw)
