@@ -11,8 +11,9 @@ class RecordController < ApplicationController
         format.html { render :action => 'show'  }
         format.js   { render :action => 'show.rjs'}
       else
-        format.html { redirect_to :action => 'new' }
-        format.js { redirect_to :action => 'new.rjs' }
+        @record = @model.new
+        format.html { render :action => 'new' }
+        format.js { render :action => 'new.rjs' }
       end
     end
   end
@@ -29,7 +30,7 @@ class RecordController < ApplicationController
   def create
     @record = @model.new(params[@hash_name])
     self.set_user(@record)
-    # self.set_quickposts(@record)
+    self.set_quickposts(@record)
     respond_to do |format|
       if @record.save
         format.html { redirect_to :action => :index }
@@ -52,7 +53,7 @@ class RecordController < ApplicationController
   def update
     @record = @model.find_by_user_id(session[:user_id])
     self.set_user(@record)
-    # self.set_quickposts(@record)
+    self.set_quickposts(@record)
     respond_to do |format|
       if @record.update_attributes(params[@hash_name])
         format.html { redirect_to :action => :index }
@@ -72,7 +73,6 @@ class RecordController < ApplicationController
       format.js { render :action => 'destroy.rjs' }
     end
   end
-
 
   protected
   def set_quickposts(record)

@@ -1,6 +1,6 @@
 class ChangePasswordsController < ApplicationController
   def show
-    @record = User.find(session[:user])
+    @record = User.find(session[:user_id])
     @record.passwd = nil
     params = { :action => 'show' }
     params[:layout] = false if request.xhr?
@@ -10,7 +10,7 @@ class ChangePasswordsController < ApplicationController
   end
 
   def update
-    @record = User.find(session[:user])
+    @record = User.find(session[:user_id])
     respond_to do |format|
       if @record.update_attributes(params[:user])
         format.js { render :action => 'update.rjs' }
