@@ -24,9 +24,9 @@ class ApplicationController < ActionController::Base
   end
 
   def set_user(model)
-    unless session[:user].nil?
-      model.user_id = session[:user] if model.has_attribute? 'user_id'
-      model.moduser_id = session[:user] if model.has_attribute? 'user_id'
+    unless session[:user_id].nil?
+      model.user_id = session[:user_id] if model.has_attribute? 'user_id'
+      model.moduser_id = session[:user_id] if model.has_attribute? 'user_id'
     end
   end
 

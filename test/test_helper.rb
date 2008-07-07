@@ -38,6 +38,12 @@ class Test::Unit::TestCase
   def deny(condition, message)
     assert !condition, message
   end
+  
+  def login_as(login)
+      user = User.find_by_login(login.to_s)
+      @request.session[:user_id] = user.id ? user.id : nil
+      user
+  end
 
   module Shoulda # :nodoc: all
     module Extensions

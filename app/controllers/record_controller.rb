@@ -6,44 +6,37 @@ class RecordController < ApplicationController
 
   def index
     @record = @model.find_by_user_id(session[:user_id])
-    unless @record.nil?
-       redirect_to :action => :show
-    else
-       redirect_to :action => :new
+    respond_to do |format|
+      unless @record.nil?
+        format.html { render :action => 'show'  }
+        format.js   { render :action => 'show.rjs'}
+      else
+        format.html { redirect_to :action => 'new' }
+        format.js { redirect_to :action => 'new.rjs' }
+      end
     end
   end
-  
+  alias_method :show, :index 
+
   def new
     @record = @model.new
     respond_to do |format|
-      if request.xhr?
-        format.html { render  :action => 'new', :layout => false }
-      else
-        format.html { render  :action => 'new'  }
-      end
+      format.html { render  :action => 'new'  }
+      format.js { render  :action => 'new.rjs' }
     end
   end
 
-  def show
-    @record = @model.find_by_user_id(session[:user_id])
-    respond_to do |format|
-      if request.xhr?
-        format.html { render  :partial => 'record_controller/show'  }
-      else
-        format.html { render  :action => 'show'  }
-      end
-    end
-  end
-  
   def create
     @record = @model.new(params[@hash_name])
     self.set_user(@record)
-    self.set_quickposts(@record)
+    # self.set_quickposts(@record)
     respond_to do |format|
-      if  @record.save
-        format.js { render :partial => 'record_controller/create.rjs' }
+      if @record.save
+        format.html { redirect_to :action => :index }
+        format.js { render :action=> 'create.rjs' }
       else
-        format.js { render :partial => 'shared/errors.rjs' }
+        format.html { render :action => 'new'  }
+        format.js { render :action => 'errors.rjs' }
       end
     end
   end
@@ -51,22 +44,35 @@ class RecordController < ApplicationController
   def edit
     @record = @model.find_by_user_id(session[:user_id])
     respond_to do |format|
-      format.html { render :partial=> 'record_controller/edit', :layout => false }
+      format.html { render :action => 'edit' }
+      format.js { render :action => 'edit.rjs' }
     end
   end
 
   def update
     @record = @model.find_by_user_id(session[:user_id])
     self.set_user(@record)
-    self.set_quickposts(@record)
+    # self.set_quickposts(@record)
     respond_to do |format|
-      if  @record.update_attributes(params[@hash_name])
-        format.js { render :partial => 'record_controller/update.rjs' }
+      if @record.update_attributes(params[@hash_name])
+        format.html { redirect_to :action => :index }
+        format.js { render :action => 'update.rjs' }
       else
-        format.js { render :partial => 'shared/errors.rjs' }
+        format.html { render :action => 'edit' }
+        format.js { render :action => 'errors.rjs' }
       end
     end
   end
+
+  def destroy
+    @record = @model.find_by_user_id(session[:user_id])
+    @record.destroy
+    respond_to do |format|
+      format.html { redirect_to :action => :index }
+      format.js { render :action => 'destroy.rjs' }
+    end
+  end
+
 
   protected
   def set_quickposts(record)
