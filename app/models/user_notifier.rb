@@ -26,7 +26,7 @@ class UserNotifier < ActionMailer::Base
     setup(:recipients => user.email, :subject => 'Información para cambiar la contraseña de su cuenta', :body => { :user => user})
   end
 
-  def user_request(from_user, to_user)
-    setup(:recipients => [user.email, to_user.email ], :subject => 'Solicitud de Estudiante Asociado - IFUNAM', :body => { :fullname => user.person.fullname })
+  def user_request(user)
+    setup(:recipients => user.email, :subject => 'Solicitud de Estudiante Asociado - IFUNAM')
   end
 end

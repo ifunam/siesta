@@ -6,5 +6,11 @@ class UserRequest < ActiveRecord::Base
     belongs_to :user
     belongs_to :period
     belongs_to :role
+    belongs_to :requeststatus
     belongs_to :user_incharge, :class_name => "User", :foreign_key => "user_incharge_id"
+    
+    def send_request
+      self.requeststatus_id  = 2
+      save(true)
+    end
 end
