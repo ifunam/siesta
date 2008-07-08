@@ -276,7 +276,7 @@ p.required_note {
         border-left-color:#99CC00; //Luego le cambio el color al borde en el evento hover.
 }
 
-#form p {
+#controller_form p {
 	display: table-row;
 	text-align: left;
     border-bottom: 1px solid blue;
