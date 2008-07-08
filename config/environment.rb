@@ -57,4 +57,10 @@ Rails::Initializer.run do |config|
 
   # Make Active Record use UTC-base instead of local time
   # config.active_record.default_timezone = :utc
+  config.action_mailer.default_url_options = { :host => "siesta.fisica.unam.mx" }
+  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.sendmail_settings = {
+      :location       => '/usr/sbin/sendmail',
+      :arguments      => '-i -t -f noreply@fisica.unam.mx'
+   }
 end

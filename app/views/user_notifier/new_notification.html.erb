@@ -13,8 +13,9 @@ Para entrar al sistema es necesario que confirme la activación de
 su cuenta usando el siguiente enlace en el navegador de su
 preferencia:
 
-<%=  url_for(:controller=> :users, :action => :confirm, 
-             :id => @user.id, :token => @user.token) %>
+<%= url_for(:controller=> :users, :action => :confirm, 
+            :id => @user.id, :token => @user.token, 
+            :only_path => false) %>
 
 Gracias por usar el SIESTA.
 

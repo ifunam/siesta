@@ -1,4 +1,3 @@
-require 'lib/finder'
 class SharedController < ApplicationController
   def initialize
     @hash_name  = Inflector.tableize(@model).singularize.to_sym
