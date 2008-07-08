@@ -1,16 +1,28 @@
-#require 'rcov/rcovtask'
-
-#namespace 'rcov' do 
-#  Rcov::RcovTask.new do |t| 
-#    t.name = "all" 
-#    t.libs << "test"
-#    t.test_files = FileList['test/**/*test.rb']   
-#    t.verbose = true 
-#    t.rcov_opts = [
-#      '-x', '^config/boot',
-#      '-x', '^/Library',
-#      '--rails', '--sort',  '--aggregate','coverage']     
-#  end 
-#end 
-#
-#task :coverage => "rcov:all"
+namespace :test do
+  
+  desc 'Tracks test coverage with rcov'
+  task :coverage do
+    rm_f "coverage"
+    rm_f "coverage.data"
+    
+    unless PLATFORM['i386-mswin32']
+      rcov = "rcov --sort coverage --rails --aggregate coverage.data " +
+             "--text-summary -Ilib -T -x gems/*,rcov*"
+    else
+      rcov = "rcov.cmd --sort coverage --rails --aggregate coverage.data " +
+             "--text-summary -Ilib -T"
+    end
+    
+    system("#{rcov} --no-html test/unit/*_test.rb")
+    system("#{rcov} --no-html test/functional/*_test.rb")
+    system("#{rcov} --html test/integration/*_test.rb")
+    
+    unless PLATFORM['i386-mswin32']
+      system("open coverage/index.html") if PLATFORM['darwin']
+    else
+      system("\"C:/Program Files/Mozilla Firefox/firefox.exe\" " +
+             "coverage/index.html")
+    end
+  end
+  
+end

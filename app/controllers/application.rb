@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   def navigator
     @tree = Tree.find_by_data('default')
   end
-
+  
   def update_partial
     render :partial => params[:partial]
   end

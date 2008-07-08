@@ -23,9 +23,10 @@
   <%= render :partial => 'shared/tree', :locals => {:tree => @tree, :css => 'open'} %>
 </div>
         <div id ="body">
-                <h2><%= get_controller_name %></h2>
-                <p style="color: green"><%= flash[:notice] %></p>
+		<div id= "controller_form">
+   			   <p style="color: green"><%= flash[:notice] %></p>
                 <%= yield  %>
+        </div>
         </div>
 <div id="footer">
 </div>

@@ -1,6 +1,5 @@
-<div id="controller_form">
+<h2><%= get_controller_name %></h2>
 <div id ="myerror_messages"></div>
-<div id ="form">
 <%= render :partial => 'shared/required_note' %>
   <% remote_form_for Inflector.camelize(@record.class.name).underscore.to_sym, @record, :builder =>  LabelFormBuilder, :url => {:action =>:create} do |f| %>
   <%= render :partial =>'form', :locals => { :f => f } %>
@@ -8,5 +7,3 @@
     <%= f.submit get_label('save') %>
   </p>
 <% end %>
-</div>
-</div>
