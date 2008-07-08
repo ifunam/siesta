@@ -1,17 +1,14 @@
 class SendUserRequestsController < ApplicationController
   def index
-    @user_request = UserRequestRequirement.find(session[:user])
+    @user_request = UserRequestRequirement.find(session[:user_id])
     respond_to do |format|
-      if request.xhr?
-        format.html { render :action => 'index', :layout => false}
-      else
+        format.js { render :action => 'index.rjs' }
         format.html { render :action => 'index'}
-      end
     end
   end
 
   def send_request
-    @request = UserRequest.find(:first, :conditions => ['id = ? AND user_id = ?', params[:id], session[:user]])
+    @request = UserRequest.find(:first, :conditions => ['id = ? AND user_id = ?', params[:id], session[:user_id]])
     @user = User.find(session[:user])
     respond_to do |format|
       if @request.send_request
