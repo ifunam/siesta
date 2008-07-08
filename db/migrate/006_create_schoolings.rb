@@ -15,14 +15,16 @@ class CreateSchoolings < ActiveRecord::Migration
       end
 
       create_table :careers do |t|
-         t.text     :name, :null => false
-         t.references  :degree, :school, :null => false
-         t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
-         t.timestamps
+          t.text     :name, :null => false
+          t.references  :degree, :school, :null => false
+          t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
+          t.timestamps
       end
 
       create_table :schoolings do |t|
-        t.references :user, :career,:null => false
+#        t.references :user, :career,:null => false
+        t.references :user, :degree, :null => false
+        t.string :career, :school, :institution, :null => false
         t.integer :startyear, :null => false
         t.integer :endyear, :credits  
         t.string  :studentid                                   
