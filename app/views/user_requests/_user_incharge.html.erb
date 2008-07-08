@@ -1,4 +1,4 @@
 <p>
 	<label>Responsable académico</label> 
-    <%= select :user_request, :user_incharge_id, Adscription.find_users(id), { :prompt => '-- Seleccionar --' } %>
+    <%= select :user_request, :user_incharge_id, Adscription.find_users_by_id(id), { :prompt => '-- Seleccionar --' } %>
 </p>

@@ -1,1 +1,0 @@
-page.replace_html 'form', :partial => 'changed_password_msg'

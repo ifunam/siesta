@@ -26,6 +26,6 @@ module ApplicationHelper
   end
 
   def logged_user
-    session[:user].nil? ? '<login>' : User.find(session[:user]).login
+    session[:user_id].nil? ? '<login>' : User.find(session[:user_id]).login
   end
 end

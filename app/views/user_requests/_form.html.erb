@@ -3,6 +3,7 @@
    <label>Periodo</label> <%= period.name %>
    	<%= f.hidden_field :period_id, :value => period.id %>
    </p>
+<br/>
    <p>
    <label>Departamento del responsable académico</label>
    	<%= select :filter, :adscription_id, Adscription.find(:all).collect { |record| [record.name, record.id] }, { :prompt => '-- Seleccionar --' } %>
