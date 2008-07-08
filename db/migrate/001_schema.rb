@@ -37,7 +37,8 @@ class Schema < ActiveRecord::Migration
       end
 
       create_table :people, :force => true do |t|
-        t.references  :user, :country, :state, :city, :null => false
+        t.references  :user, :country, :city, :null => false
+        t.references  :state
         t.text     :firstname,  :lastname1,  :null => false
         t.text     :lastname2, :photo_filename, :photo_content_type, :other
         t.boolean  :gender, :null => false

@@ -8,11 +8,11 @@ class CreateAddresses < ActiveRecord::Migration
       end
 
       create_table :addresses, :force => true do |t|
-        t.references   :user, :addresstype, :country, :null => false
-        t.text             :location,              :null => false
-        t.references  :state, :city
-        t.integer        :zipcode
-        t.text             :pobox, :phone, :fax, :movil, :other
+        t.references   :user, :addresstype, :country, :city, :null => false
+        t.references   :state
+        t.text         :location, :null => false
+        t.integer      :zipcode
+        t.text         :pobox, :phone, :fax, :movil, :other
         t.boolean      :is_postaddress, :default => false, :null => false
         t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
         t.timestamps
