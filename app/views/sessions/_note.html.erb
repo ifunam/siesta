@@ -1,9 +1,11 @@
+
 <div class="note">
+<% period = Period.most_recent %>
 <p>
-Registro y resello de Estudiantes Asociados al Instituto de Física de la UNAM (Periodo: <%= Period.get_most_recent.name %>, Fecha de inicio <%= Period.get_most_recent.startdate %>).
+Registro y resello de Estudiantes Asociados al Instituto de Física de la UNAM (Periodo: <%= period.name %>, Fecha de inicio <%= period.startdate %>).
 </p>
 <p style="color: green;">
-El registro para nuevos estudiantes o resello estar&aacute; abierto hasta el <%= Period.get_most_recent.enddate %>.
+El registro para nuevos estudiantes o resello estar&aacute; abierto hasta el <%= period.enddate %>.
 </p>
 
 <p style="background: #ffffff; padding: 10px; border: 1px groove green;">

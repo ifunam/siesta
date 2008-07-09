@@ -1,1 +1,8 @@
-<h2>Hello!</h2>
+<div id="collection">
+ <div class="row">
+   <span class="th_content">Estudiante</span>
+   <span class="th_content">Actividad</span>
+   <span class="th_actions">Acciones</span>
+ </div>
+ <%= render :partial => 'user_request', :collection => @collection %>
+</div>

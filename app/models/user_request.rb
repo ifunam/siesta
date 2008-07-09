@@ -2,7 +2,7 @@ class UserRequest < ActiveRecord::Base
     validates_presence_of :period_id, :role_id, :user_incharge_id, :is_restamped
     validates_numericality_of :period_id, :role_id, :user_incharge_id, :greater_than => 0, :only_integer => true
     validates_uniqueness_of :period_id, :scope => [:user_id]
-    
+
     belongs_to :user
     belongs_to :period
     belongs_to :role
@@ -11,6 +11,8 @@ class UserRequest < ActiveRecord::Base
 
     after_save :set_user_incharge
     after_destroy :unset_user_incharge
+    
+    named_scope :search, lambda{ |user_incharge_id, period_id| { :conditions => ['user_incharge_id = ? AND period_id = ?', user_incharge_id, period_id] } }
     
     def send_request
       self.requeststatus_id  = 2

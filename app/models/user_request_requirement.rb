@@ -22,7 +22,7 @@ class UserRequestRequirement < User
   end
 
   def has_user_request?
-    !UserRequest.find(:first, :conditions => [ 'user_requests.user_id = ? AND user_requests.period_id = ?', self.id, Period.get_most_recent.id]).nil?
+    !UserRequest.find(:first, :conditions => [ 'user_requests.user_id = ? AND user_requests.period_id = ?', self.id, Period.most_recent.id]).nil?
   end
 
   def requirements
@@ -53,7 +53,7 @@ class UserRequestRequirement < User
   end
 
   def current_request
-    UserRequest.find(:first, :conditions => [ 'user_requests.user_id = ? AND user_requests.period_id = ?', self.id, Period.get_most_recent.id])
+    UserRequest.find(:first, :conditions => [ 'user_requests.user_id = ? AND user_requests.period_id = ?', self.id, Period.most_recent.id])
   end
 
   def is_current_request_saved?

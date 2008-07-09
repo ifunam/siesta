@@ -1,5 +1,5 @@
    <p>
-    <% period = Period.get_most_recent%>
+    <% period = Period.most_recent %>
    <label>Periodo</label> <%= period.name %>
    	<%= f.hidden_field :period_id, :value => period.id %>
    </p>

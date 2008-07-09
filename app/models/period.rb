@@ -10,7 +10,7 @@ class Period < ActiveRecord::Base
     end
   end
 
-  def self.get_most_recent
+  def self.most_recent
     Period.get_active || Period.get_last
   end
 
