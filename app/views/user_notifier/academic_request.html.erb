@@ -10,7 +10,7 @@ Estudiante: <%= @user.person.fullname %>
 
 Para atender esta solicitud debe usar la siguiente dirección:
 
-<%= url_for(:controller => 'admin/user_request', 
+<%= url_for(:controller => 'academic/user_requests', 
 			:only_path => false) %>
 
 Gracias por usar el SIESTA.
