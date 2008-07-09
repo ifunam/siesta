@@ -8,9 +8,22 @@ class UserRequest < ActiveRecord::Base
     belongs_to :role
     belongs_to :requeststatus
     belongs_to :user_incharge, :class_name => "User", :foreign_key => "user_incharge_id"
+
+    after_save :set_user_incharge
+    after_destroy :unset_user_incharge
     
     def send_request
       self.requeststatus_id  = 2
       save(true)
+    end
+    
+    def set_user_incharge
+      @user = User.find(self.user_id)
+      @user.update_attribute('user_incharge_id', self.user_incharge_id)
+    end
+
+    def unset_user_incharge
+      @user = User.find(self.user_id)
+      @user.update_attribute('user_incharge_id', nil)
     end
 end

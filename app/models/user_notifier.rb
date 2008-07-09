@@ -15,18 +15,22 @@ class UserNotifier < ActionMailer::Base
 
   public
   def new_notification(user)
-    setup(:recipients => user.email, :subject => 'Su cuenta ha sido creada, por favor activela...', :body => { :user => user})
+    setup(:recipients => user.email, :subject => 'Su cuenta ha sido creada, por favor activela...', :body => { :user => user })
   end
 
   def activation(user)
-    setup(:recipients => user.email, :subject => 'Su cuenta ha sido activada', :body => { :user => user})
+    setup(:recipients => user.email, :subject => 'Su cuenta ha sido activada', :body => { :user => user })
   end
 
   def password_recovery(user)
-    setup(:recipients => user.email, :subject => 'Información para cambiar la contraseña de su cuenta', :body => { :user => user})
+    setup(:recipients => user.email, :subject => 'Información para cambiar la contraseña de su cuenta', :body => { :user => user })
   end
 
   def user_request(user)
     setup(:recipients => user.email, :subject => 'Solicitud de Estudiante Asociado - IFUNAM')
+  end
+  
+  def academic_request(from_user, to_user)
+    setup(:recipients => to_user.email, :subject => 'Solicitud de Estudiante Asociado - IFUNAM',  :body => { :user => from_user })
   end
 end

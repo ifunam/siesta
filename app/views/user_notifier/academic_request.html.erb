@@ -3,9 +3,15 @@
 *                            NO HAGA REPLY                         *
 ********************************************************************
 
-Su solicitud de estudiante asociado al Instituto de Física ha sido
-enviada. En fecha próxima recibirá la aprobación de su responsable 
-académico.
+Usted ha recibido una  solicitud de estudiante asociado al Instituto 
+de Física. 
+
+Estudiante: <%= @user.person.fullname %>
+
+Para atender esta solicitud debe usar la siguiente dirección:
+
+<%= url_for(:controller => 'admin/user_request', 
+			:only_path => false) %>
 
 Gracias por usar el SIESTA.
 
