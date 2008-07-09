@@ -27,6 +27,7 @@ class CreateUserRequests < ActiveRecord::Migration
         t.references  :requeststatus, :null => false, :default => 1
         t.references :user_incharge, :class_name => "User", :foreign_key => 'user_incharge_id', :null => false
         t.boolean     :is_restamped, :null => false, :default => false
+        t.boolean     :is_official, :null => false, :default => false
         t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
         t.timestamps
       end

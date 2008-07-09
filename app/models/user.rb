@@ -32,11 +32,11 @@ class User < ActiveRecord::Base
   # Static or class methods
   def self.authenticate?(login,password)
     @user = User.find_by_login(login)
-    !@user.nil? and @user.passwd == User.encrypt(password, @user.salt) and @user.is_activated? ? true : false
+    !@user.nil? and !@user.salt.nil? and @user.passwd == User.encrypt(password, @user.salt) and @user.is_activated? ? true : false
   end
 
-  def self.authenticate_by_token?(id,token)
-    User.find_by_id_and_token(id,token).nil? ? false : true 
+  def self.authenticate_by_token?(login,token)
+    User.find_by_login_and_token(login,token).nil? ? false : true 
   end
 
   def self.find_by_valid_token(id,token) 

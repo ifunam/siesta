@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       if User.authenticate?(params[:user][:login],params[:user][:passwd])
         session[:user_id] = User.find_by_login(params[:user][:login]).id
         flash[:notice] = "Bienvenido(a), ha iniciado una sesión en el SIESTA!"
-        format.html { session[:return_to] ? redirect_to(session[:return_to]) : redirect_to(person_path) }
+        format.html { redirect_to(session[:return_to] ? session[:return_to] : person_path) }
       else
         flash[:notice] = "El login o el password es incorrecto!"
         format.html { render :action => "index" }
@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
         session[:user_id] = @user.id
         @user.destroy_token
         flash[:notice] = "Bienvenido(a), por favor cambie su contraseña..."
-        format.html { redirect_to(change_password_path) }
+        format.html { redirect_to(edit_change_password_path) }
       else
         flash[:notice] = "La información es inválida!"
         format.html { render :action => "index" }

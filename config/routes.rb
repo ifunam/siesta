@@ -10,6 +10,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :send_user_requests, :member => { :send_request => :get }
   map.resource  :change_password
 
+  map.namespace :academic do |academic|
+      academic.resource  :session
+      academic.resources :user_requests
+  end
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
