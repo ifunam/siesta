@@ -21,8 +21,10 @@ class User < ActiveRecord::Base
   named_scope :with_user_incharge, :conditions => 'user_incharge_id IS NOT NULL'
 
   belongs_to :userstatus
-  has_one :person
   belongs_to :user_incharge, :class_name => 'User', :foreign_key => 'user_incharge_id'
+
+  has_one :person
+  has_one :photo
 
   # Callbacks
   before_create :prepare_new_record

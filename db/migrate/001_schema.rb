@@ -39,11 +39,10 @@ class Schema < ActiveRecord::Migration
       create_table :people, :force => true do |t|
         t.references  :user, :country, :city, :null => false
         t.references  :state
-        t.text     :firstname,  :lastname1,  :null => false
-        t.text     :lastname2, :photo_filename, :photo_content_type, :other
+        t.text     :firstname, :lastname1,  :null => false
+        t.text     :lastname2, :other
         t.boolean  :gender, :null => false
         t.date     :birthdate,        :null => false
-        t.binary   :photo
         t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
         t.timestamps
       end
