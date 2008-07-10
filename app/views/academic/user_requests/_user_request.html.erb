@@ -1,7 +1,25 @@
-<div class="row" id="<%= user_request.dom_id %>">
-<span class="td_content"> <%= user_request.user.person.fullname %> </span>
-<span class="td_content"> <%= user_request.role.name %> </span>
-<span class="td_actions">
-	
-</span>
+<div class="user_profile">
+<div class="row">
+	<div class="photo">
+		<%= image_tag("/academic/photos/#{user_request.user_id}.jpg", :size => "70x80", :border => '1px') %>
+	</div>
+	<div class="profile">
+		<b>Nombre: </b> <%= user_request.user.person.fullname %> <br/>
+		<b>Genéro: </b> <%= label_for_boolean('gender', user_request.user.person.gender) %> <br/>
+		<b>Fecha de nacimiento: </b> <%= user_request.user.person.birthdate %> <br/>
+		<b>Actividad a realizar: </b> <%= user_request.role.name %> <br/>
+		<b>Periodo: </b> <%= user_request.period.name %> <br/>
+	</div>
+	<div class="status">
+		<b>Estado de solicitud: </b> <%= user_request.requeststatus.name %> <br/>
+	</div>
+</div>
+<div class="row">
+	<b>Dirección</b><br/>
+</div>
+
+<div class="row">
+	<b>Grado más reciente o en curso</b><br/>
+	<%= link_to 'Cardex o historial académico', 'some_place' %>
+</div>
 </div>

@@ -11,8 +11,10 @@ class UserRequest < ActiveRecord::Base
 
     after_save :set_user_incharge
     after_destroy :unset_user_incharge
-    
-    named_scope :search, lambda{ |user_incharge_id, period_id| { :conditions => ['user_incharge_id = ? AND period_id = ?', user_incharge_id, period_id] } }
+
+    def self.search(user_incharge_id, period_id, requeststatus_id=2)
+      all(:conditions => ['user_incharge_id = ? AND period_id = ? AND requeststatus_id = ?', user_incharge_id, period_id, requeststatus_id])
+    end
     
     def send_request
       self.requeststatus_id  = 2

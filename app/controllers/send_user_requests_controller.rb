@@ -12,7 +12,8 @@ class SendUserRequestsController < ApplicationController
     respond_to do |format|
       if @urequest.send_request
         @user = User.find(session[:user_id])
-        UserNotifier.deliver_user_request(@user)
+        # TODO: Uncomment this line after migration 
+        # UserNotifier.deliver_user_request(@user)
         UserNotifier.deliver_academic_request(@user, @user.user_incharge)
         flash[:notice] = 'Su solicitud de ingreso se ha enviado!'
         format.html { redirect_to :action => 'index'}
