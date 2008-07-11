@@ -15,6 +15,12 @@ ActionController::Routing::Routes.draw do |map|
       academic.resources :user_requests, :member => { :authorize => :get, :unauthorize => :get }
       academic.resources  :photos
   end
+
+  map.namespace :department do |department|
+      department.resource  :session
+      department.resources :user_requests, :collection => { :search => :get}
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
