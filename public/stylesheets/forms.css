@@ -160,7 +160,7 @@ select {
 }
 
 .user_profile {
-	min-width: 800px;
+	min-width: 700px;
 	border: 1px solid silver;
 	padding: 5px;
 	margin-right: 10%;
@@ -183,12 +183,61 @@ select {
 	height: 85px;
 }
 
-.row .status {
+.row .status_1 {
 	float: none;
+	background-color: #FAAC58;
 	margin-right: 10px;	
-	height: 85px;
+	height: 70px;
+	margin-left: 380px;
+	margin-bottom: 5px;
+	width: 300px;
+	padding: 5px;
+	border: 1px dotted silver;
 }
 
+.row .status_2 {
+	float: none;
+	background-color: #F3F781;
+	margin-right: 10px;	
+	height: 70px;
+	margin-left: 380px;
+	margin-bottom: 5px;
+	width: 300px;
+	padding: 5px;
+	border: 1px solid silver;
+}
+
+.row .status_3 {
+	float: none;
+	background-color: #04B404;
+	color: #F2F2F2;
+	margin-right: 10px;	
+	height: 70px;
+	margin-left: 380px;
+	margin-bottom: 5px;
+	width: 320px;
+	padding: 5px;
+	border: 1px solid blue;
+}
+
+.row .status_4 {
+	float: none;
+	background-color: #610B0B;
+	color: #F2F2F2;
+	margin-right: 10px;	
+	height: 70px;
+	margin-left: 380px;
+	margin-bottom: 5px;
+	width: 320px;
+	padding: 5px;
+	border: 1px solid yellow;
+}
+
+.authorization_form {
+	border: 1px solid green;
+	padding: 5px;
+	margin: 5px;
+}
 .th {
   display: table-cell;
   font-weight: bold;

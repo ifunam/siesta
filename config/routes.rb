@@ -12,7 +12,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.namespace :academic do |academic|
       academic.resource  :session
-      academic.resources :user_requests
+      academic.resources :user_requests, :member => { :authorize => :get, :unauthorize => :get }
       academic.resources  :photos
   end
   # The priority is based upon order of creation: first created -> highest priority.

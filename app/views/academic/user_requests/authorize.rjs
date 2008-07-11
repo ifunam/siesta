@@ -1,0 +1,1 @@
+page.replace 'status_' + @user_request.dom_id, :partial => 'user_requeststatus', :locals => { :user_request => @user_request }

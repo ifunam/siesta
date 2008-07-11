@@ -10,9 +10,7 @@
 		<b>Actividad a realizar: </b> <%= user_request.role.name %> <br/>
 		<b>Periodo: </b> <%= user_request.period.name %> <br/>
 	</div>
-	<div class="status">
-		<b>Estado de solicitud: </b> <%= user_request.requeststatus.name %> <br/>
-	</div>
+	<%= render :partial => 'user_requeststatus', :locals => { :user_request => user_request } %>
 </div>
 <div class="row">
 	<b>Dirección</b><br/>

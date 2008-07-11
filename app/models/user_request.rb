@@ -9,16 +9,29 @@ class UserRequest < ActiveRecord::Base
     belongs_to :requeststatus
     belongs_to :user_incharge, :class_name => "User", :foreign_key => "user_incharge_id"
 
+    has_many :comments
+    
     after_save :set_user_incharge
     after_destroy :unset_user_incharge
 
-    def self.search(user_incharge_id, period_id, requeststatus_id=2)
-      all(:conditions => ['user_incharge_id = ? AND period_id = ? AND requeststatus_id = ?', user_incharge_id, period_id, requeststatus_id])
+    def self.search(user_incharge_id, period_id, requeststatus_id = nil)
+      if requeststatus_id.nil?
+        all(:conditions => ['user_incharge_id = ? AND period_id = ?', user_incharge_id, period_id])
+      else
+        all(:conditions => ['user_incharge_id = ? AND period_id = ? AND requeststatus_id = ?', user_incharge_id, period_id, requeststatus_id])
+      end
     end
     
     def send_request
-      self.requeststatus_id  = 2
-      save(true)
+      change_requeststatus(2)
+    end
+    
+    def authorize
+      change_requeststatus(3)
+    end
+
+    def unauthorize
+      change_requeststatus(4)
     end
     
     def set_user_incharge
@@ -29,5 +42,12 @@ class UserRequest < ActiveRecord::Base
     def unset_user_incharge
       @user = User.find(self.user_id)
       @user.update_attribute('user_incharge_id', nil)
+    end
+    
+    private
+    
+    def change_requeststatus(id)
+      self.requeststatus_id = id
+      save(true)
     end
 end

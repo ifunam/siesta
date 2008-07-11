@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  user_request_id: 1
+  subject: MyString
+  body: MyText
+  moduser_id: 1
+  parent_id: 1
+
+two:
+  user_id: 1
+  user_request_id: 1
+  subject: MyString
+  body: MyText
+  moduser_id: 1
+  parent_id: 1

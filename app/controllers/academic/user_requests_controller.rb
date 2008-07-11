@@ -10,7 +10,26 @@ class Academic::UserRequestsController < ApplicationController
     end
   end
   
-  def update
-
+  def authorize
+    @user_request = UserRequest.find_by_id_and_user_incharge_id(params[:id], session[:user_id])
+    respond_to do |format|
+      if @user_request.authorize
+        format.js { render :action => 'authorize.rjs' }
+      else
+        format.js { render :action => 'errors.rjs' }
+      end
+    end
   end
+  
+  def unauthorize
+    @user_request = UserRequest.find_by_id_and_user_incharge_id(params[:id], session[:user_id])
+    respond_to do |format|
+      if @user_request.unauthorize
+        format.js { render :action => 'unauthorize.rjs' }
+      else
+        format.js { render :action => 'errors.rjs' }
+      end
+    end
+  end
+  
 end
