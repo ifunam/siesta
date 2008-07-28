@@ -57,8 +57,8 @@ class PeriodTest < ActiveSupport::TestCase
     assert_equal '2009-1', Period.get_active.name
   end
 
-  def test_should_get_most_recent_period
-    assert_equal '2009-1', Period.get_most_recent.name
+  def test_should_most_recent_period
+    assert_equal '2009-1', Period.most_recent.name
   end
 end
 

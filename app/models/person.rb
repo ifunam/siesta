@@ -14,10 +14,9 @@ class Person < ActiveRecord::Base
     [city.name,  state.name, country.name].compact.join(', ')
   end
 
-# #Uncomment it after migration
-#  def validate
-#    errors.add(:birthdate, 'You should use a birthdate greather than 15') if  !birthdate.nil? and birthdate.to_date > (Date.today - (365 * 15))
-#  end
+  def validate
+    errors.add(:birthdate, 'You should use a birthdate greather than 15') if  !birthdate.nil? and birthdate.to_date > (Date.today - (365 * 15))
+  end
 
   belongs_to :user
   belongs_to :country

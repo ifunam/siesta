@@ -14,7 +14,7 @@ class PersonTest < ActiveSupport::TestCase
   should_require_unique_attributes :user_id
 
   def test_fullname
-    assert_equal 'Due John', Person.find(:first).fullname
+    assert_equal 'Juarez Robles Alejandro', Person.find(:first).fullname
   end
 
   def test_placeofbirth

@@ -79,7 +79,14 @@ class Test::Unit::TestCase
             should_not_allow_values_for attribute, 0,  :message => /must be greater than 0/
           end
         end
-
+        
+        def should_allow_only_boolean_for(*attributes)
+            attributes.each do |attribute|
+              should_allow_values_for attribute, [false, true]
+              should_not_allow_values_for attribute, nil, :message =>  /is not included in the list/
+            end
+        end
+        
         def assert_validation_with_message(pattern, attribute)
           model_name = @record.class
           @record.valid?

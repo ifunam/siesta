@@ -34,8 +34,8 @@ class UserTest < Test::Unit::TestCase
   end
 
   def test_should_authenticate_by_token?
-    assert User.authenticate_by_token?(3,'lcGVrs2FmS')
-    assert !User.authenticate_by_token?(1,'badtoken')
+    assert User.authenticate_by_token?('john.due','lcGVrs2FmS')
+    assert !User.authenticate_by_token?('alex','badtoken')
   end
 
   def test_should_find_user_by_valid_token

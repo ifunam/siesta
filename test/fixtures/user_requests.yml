@@ -1,7 +1,16 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+john_request1:
+ id: 3
+ user_id: 3
+ period_id: 1
+ role_id: 1
+ user_incharge_id: 2
+ is_restamped: f
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+john_request2:
+  id: 2
+  user_id: 3
+  period_id: 2
+  role_id: 2
+  user_incharge_id: 2
+  is_restamped: t

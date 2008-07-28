@@ -12,5 +12,5 @@ class CareerTest < ActiveSupport::TestCase
 
   should_belong_to :school
   should_belong_to :degree
-  should_have_many :schoolings
+ # should_have_many :schoolings
 end
