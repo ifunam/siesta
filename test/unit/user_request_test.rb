@@ -13,6 +13,5 @@ class UserRequestTest < ActiveSupport::TestCase
    
    should_belong_to :user, :period, :role, :user_incharge
 
-
    should_have_many :comments
 end
