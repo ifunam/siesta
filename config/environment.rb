@@ -65,7 +65,10 @@ Rails::Initializer.run do |config|
   }
 
   # Requires de latest versions of following gems:
-  ('rmagick', 'barby', 'rcov', 'starling', 'memcached-client', 'chronic').each do |mygem|
-    config.gem mygem
-  end
+  config.gem 'rmagick'
+  config.gem 'barby'
+  config.gem 'starling'
+  config.gem 'memcache-client'
+  config.gem 'chronic'
+  config.gem 'rcov'
 end
