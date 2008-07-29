@@ -62,5 +62,10 @@ Rails::Initializer.run do |config|
   config.action_mailer.sendmail_settings = {
       :location       => '/usr/sbin/sendmail',
       :arguments      => '-i -t -f noreply@fisica.unam.mx'
-   }
+  }
+
+  # Requires de latest versions of following gems:
+  ('rmagick', 'barby', 'rcov', 'starling', 'memcached-client', 'chronic').each do |mygem|
+    config.gem mygem
+  end
 end
