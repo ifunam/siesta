@@ -19,7 +19,7 @@ class Period < ActiveRecord::Base
   end
 
   def self.get_active
-      self.find_by_is_active(true)
+    self.find_by_is_active(true)
   end
 
   private

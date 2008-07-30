@@ -21,6 +21,12 @@ ActionController::Routing::Routes.draw do |map|
       department.resources :user_requests, :collection => { :search => :get}
   end
 
+  map.namespace :admin do |admin|
+      admin.resource  :session
+#      admin.resources :users, :collection => { :search => :get}
+      admin.resources :cards
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

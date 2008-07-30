@@ -52,7 +52,7 @@ has_group_right: Privilegios de grupo
 role: Actividad a realizar
 studentid: No. de cuenta
 average: Promedio
-is_studying_this: ¿Concluyó actividades académicas (incluyendo titulación)?
+is_studying_this: ¿Concluyó actividades académicas?
 is_titleholder: ¿Titulado?
 titlemodality_id: Modalidad de titulación
 professionalid: Cédula profesional

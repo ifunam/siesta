@@ -17,14 +17,10 @@ class UserRequest < ActiveRecord::Base
     after_save :set_user_incharge
     after_destroy :unset_user_incharge
 
-    def self.search(user_incharge_id, period_id, requeststatus_id = nil)
-      if requeststatus_id.nil?
-        all(:conditions => ['user_incharge_id = ? AND period_id = ?', user_incharge_id, period_id])
-      else
-        all(:conditions => ['user_incharge_id = ? AND period_id = ? AND requeststatus_id = ?', user_incharge_id, period_id, requeststatus_id])
-      end
+    def self.search(options)
+        all(:conditions => options)
     end
-    
+
     def send_request
       change_requeststatus(2)
     end

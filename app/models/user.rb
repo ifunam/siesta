@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates_length_of       :email, :within => 7..100
   validates_length_of       :passwd, :within => 5..200, :allow_nil => true
   validates_confirmation_of :passwd
+  #validates_presence_of     :passwd_confirmation, :if => :passwd_changed?
   validates_format_of       :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
   validates_format_of       :login, :with =>  /\A[-a-z0-9\.\-\_]*\Z/
   # TODO: Uncomment this line after migration
@@ -29,9 +30,9 @@ class User < ActiveRecord::Base
 
   # Callbacks
   before_create :prepare_new_record
-  after_validation_on_create :encrypt_password
+  after_validation_on_create  :encrypt_password
   before_validation_on_update :verify_current_password
-
+  
   # Static or class methods
   def self.authenticate?(login,password)
     @user = User.find_by_login(login)
@@ -50,7 +51,7 @@ class User < ActiveRecord::Base
     record = User.find_by_login(login)
     record.current_passwd = current_pw
     record.passwd = new_pw
-    record.save
+    record.save if record.valid?
   end
 
   def self.encrypt(password, mysalt)
@@ -115,13 +116,15 @@ class User < ActiveRecord::Base
   end
 
   def verify_current_password
-    if !self.current_passwd.nil?
-      if User.find(self.id).passwd != User.encrypt(self.current_passwd, self.salt)
-        errors.add("current_passwd", "is not valid")
+    if !self.current_passwd.nil? and User.find(self.id).passwd != User.encrypt(self.current_passwd, self.salt)
+        errors.add("passwd", "is not valid")
         return false
-      end
-      encrypt_password
     end
+    if !self.passwd_confirmation.nil? and self.passwd != self.passwd_confirmation
+        errors.add("passwd", "doesn't match confirmation")
+        return false
+    end
+    encrypt_password if passwd_changed?
   end
 
   def change_userstatus(status)
