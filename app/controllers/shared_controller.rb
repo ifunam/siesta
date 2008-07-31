@@ -16,6 +16,7 @@ class SharedController < ApplicationController
 
   def show
     @f = Finder.new(@model, :first, :attributes => @columns,  :conditions => "#{Inflector.tableize(@model)}.id = #{params[:id]}")
+    @record = @model.find(params[:id])
     respond_to do |format|
       format.js { render :action => 'show.rjs'}
       format.html { render :action => 'show'}
@@ -86,5 +87,14 @@ class SharedController < ApplicationController
       format.js { render :partial => 'destroy_id.rjs',  :collection => @collection }
     end
     @model.delete(@collection.collect {|record| record.id })
+  end
+  
+  def get_file
+    @record = @model.find(params[:id])
+    if !@record.nil? and !@record.file.nil? and !@record.file.to_s.empty?
+       send_data @record.file, :filename => @record.filename, :type => @record.content_type, :disposition => 'inline' 
+    else
+       render :text => "File not found!", :status => 440
+    end
   end
 end
