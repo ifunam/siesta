@@ -34,6 +34,7 @@
   border-color: #5268a0 #6377a9 #112153 #09143a; 
   min-width: 250px;
   padding: 10px;
+  width: expression( document.body.clientWidth < 801 ? "200px" : "35%" );
 }
 
 .box .title {

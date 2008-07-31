@@ -18,32 +18,37 @@
 #tree ul {
         padding-left: 10px;
         top: 0;
-        left: 0
+        left: 0;
+		margin: 0 0 5px 0px;  
+		padding: 20 0 3px 0;
 }
+
+
 
 #tree li {
     font-size:11px;
-    padding-left: -10px;
+	list-style: none;
     margin:1px;
     padding:2px;
-    border-bottom:1px solid silver;
-    color:  #003399;
+    color: #003399;
+    padding: 4px 0 3px 0;
+    border-bottom: 1px solid silver;
 }
 
 #tree li a {
        display:block;
        width: 95px;
-
        padding: 4px 0px 0px 0px;
        text-decoration:none;
        text-align: left;
        font-size:11px;
        color: #003399;
+  
 }
 
 #tree li a:hover {
         color:  #1E90FF;
-        border-left-color:#99CC00; //Luego le cambio el color al borde en el evento hover.
+        border-left-color: #99CC00;
 }
 
 #body {
@@ -165,6 +170,14 @@ select {
 	padding: 5px;
 	margin-right: 10%;
 }
+
+#collection {
+	display: table;
+	width: 90%;
+	border: 1px solid green;
+	margin-bottom: 10px;
+}
+
 .row {
   border-bottom: 1px solid silver;	
   position: relative;
@@ -243,7 +256,25 @@ select {
   font-weight: bold;
   width: 140px;
   padding: 3px;
-  border-bottom: 1px solid silver;
+}
+
+.th_id {
+  display: table-cell;
+  font-weight: bold;
+  width: 10%;
+  padding: 3px;
+}
+
+.th_content {
+  display: table-cell;
+  font-weight: bold;
+  width: 80%;
+}
+
+.th_actions {
+  display: table-cell;
+  font-weight: bold;
+  width: 10%;
 }
 
 .th_action {
@@ -252,7 +283,6 @@ select {
   width: 45px;
   padding: 3px;
   text-align: center;
-  border-bottom: 1px solid silver;
 }
 
 .td {
@@ -260,7 +290,23 @@ select {
   width: 140px;
   vertical-align: top;
   padding: 2px;
-  border-bottom: 1px solid silver;
+}
+
+.td_id {
+  display: table-cell;
+  width: 10%;
+  padding: 3px;
+}
+
+.td_content {
+  display: table-cell;
+  width: 70%;
+  margin-right: 5px;
+}
+
+.td_actions {
+  display: table-cell;
+  width: 300px;
 }
 
 .td_action {
@@ -269,7 +315,6 @@ select {
   padding: 3px;
   vertical-align: top;
   text-align: center;
-  border-bottom: 1px solid silver;
 }
 
 .required {
@@ -358,5 +403,4 @@ p.required_note {
 #controller_form p {
 	display: table-row;
 	text-align: left;
-    border-bottom: 1px solid blue;
 }

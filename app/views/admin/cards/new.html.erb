@@ -1,1 +1,6 @@
-<%= render :partial => 'shared/new' %>
+<div id ="myerror_messages"></div>
+<% form_for(@record, :url => formatted_admin_card_path(:format => 'js'), :html => { :multipart => true, :target => 'upload_frame'}, :builder => LabelFormBuilder) do |f| %>
+        <%= render :partial => 'form', :locals => { :f => f } %>
+ 		<%= f.submit get_label("save") %> 
+<% end %>
+<iframe id='upload_frame' name="upload_frame" style="width:1px;height:1px;border:0px" src="about:blank"></iframe>

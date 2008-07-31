@@ -2,10 +2,10 @@
 <span class="td_id"> <%= check_box_tag("id[]", record[1], checked=false) %> </span>
 <span class="td_content"> <%= record[0] %> </span>
 <span class="td_actions">
-<span class="td_action"><%= link_to_remote get_label('show'), :url =>  method("#{Inflector.singularize(controller_name)}_path").call(:id => record[1]), :method => :get  %></span>
-<span class="td_action"><%= link_to_remote get_label('edit'), :url => method("edit_#{Inflector.singularize(controller_name)}_path").call(:id => record[1]), :method => :get  %></span>
-<span class="td_action"><%= link_to_remote get_label("del"), :url => method("#{Inflector.singularize(controller_name)}_url").call(:id => record[1]), :method => :delete, :confirm =>
-  "Desea borrar este registro" %> </span>
+<%= link_to_remote get_label('show'), :url =>  method("#{Inflector.singularize(controller_name)}_path").call(:id => record[1]), :method => :get  %>
+<%= link_to_remote get_label('edit'), :url => method("edit_#{Inflector.singularize(controller_name)}_path").call(:id => record[1]), :method => :get  %>
+<%= link_to_remote get_label("del"), :url => method("#{Inflector.singularize(controller_name)}_url").call(:id => record[1]), :method => :delete, :confirm =>
+  "Desea borrar este registro" %> 
 </span>
 </div>
 

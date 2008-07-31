@@ -12,7 +12,7 @@ class Photo < ActiveRecord::Base
   
   def setup_image
     unless self.file.nil?
-      photo = Magick::Image.from_blob(self.file.read).first
+      photo = Magick::Image.from_blob(self.file).first
       maxwidth = 200
       maxheight = 250
       aspectratio = maxwidth.to_f / maxheight.to_f

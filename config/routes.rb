@@ -23,7 +23,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.namespace :admin do |admin|
     admin.resource  :session
-    admin.resources :card
+    admin.resource  :card
     #      admin.resources :users, :collection => { :search => :get}
 
   end
