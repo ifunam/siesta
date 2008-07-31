@@ -22,9 +22,10 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.namespace :admin do |admin|
-      admin.resource  :session
-#      admin.resources :users, :collection => { :search => :get}
-      admin.resources :cards
+    admin.resource  :session
+    admin.resources :card
+    #      admin.resources :users, :collection => { :search => :get}
+
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
