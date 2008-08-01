@@ -9,7 +9,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :user_requests
   map.resources :send_user_requests, :member => { :send_request => :get }
   map.resource  :change_password
-
+  map.resource :photo
+  
   map.namespace :academic do |academic|
       academic.resource  :session
       academic.resources :user_requests, :member => { :authorize => :get, :unauthorize => :get }
@@ -23,7 +24,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.namespace :admin do |admin|
     admin.resource  :session
-    admin.resource  :card
+    admin.resource  :card, :member => { :front => :get, :back => :get }
     #      admin.resources :users, :collection => { :search => :get}
 
   end

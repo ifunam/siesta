@@ -1,59 +1,22 @@
-require 'barby'
+require 'card'
 class Admin::CardsController < ApplicationController
   layout 'academic'
-
-  def show
-  end
   
-  def new
-    @record = Photo.new
-    @record.user_id ||= params[:id]
+  def front
+    @card = Card.new(params[:id])
     respond_to do |format|
-      format.js { render :action => 'new.rjs' }
-      format.html { render :action => 'new'}
-      format.xml  { render :xml => @record }
-    end
-  end
-  
-  def edit 
-    @record = Photo.find(params[:id])
-    respond_to do |format|
-      format.js { render :action => 'edit.rjs' }
-      format.html { render :action => 'edit'}
-      format.xml  { render :xml => @record }
-    end
-  end
-    
-  def create
-    @record = Photo.new(params[:photo])
-    @record.moduser_id = session[:user_id]
-    self.set_file(@record, :photo) 
-    respond_to do |format|
-      if @record.save
-        format.js { responds_to_parent { render :action => 'create.rjs'} }
-        format.html { redirect_to :action => :index }
-        format.xml  { render :xml => @record, :status => :created, :location => @record }
-      else
-        format.js { responds_to_parent { render :action => 'errors.rjs' } }
-        format.html { redirect_to :action => :new }
+      format.jpg do
+        send_data @card.front, :filename => "front_studentid.jpg", :type => 'image/jpeg', :disposition => 'attachment'  
       end
     end
   end
   
-  def update
-    @record = Photo.find(params[:id])
-    @record.moduser_id = session[:user_id]
-    self.set_file(@record, :photo) 
+  def back
+    @card = Card.new(params[:id])
     respond_to do |format|
-      if @record.save
-        format.js { responds_to_parent { render :action => 'create.rjs'} }
-        format.html { redirect_to :action => :index }
-        format.xml  { render :xml => @record, :status => :created, :location => @record }
-      else
-        format.js { responds_to_parent { render :action => 'errors.rjs' } }
-        format.html { redirect_to :action => :new }
+      format.jpg do
+        send_data @card.back, :filename => "back_studentid.jpg", :type => 'image/jpeg', :disposition => 'inline'  
       end
     end
   end
-  
 end

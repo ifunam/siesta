@@ -15,7 +15,11 @@ class Period < ActiveRecord::Base
   end
 
   def self.get_last
-    self.find_by_is_active(false, :order => "startdate DESC")
+    self.find(:first, :conditions => ['enddate >= ?', Date.today], :order => "startdate ASC")
+  end
+
+  def self.get_previus
+    self.find(:first, :conditions => ['enddate < ?', Period.get_last.enddate], :order => "startdate ASC")
   end
 
   def self.get_active
