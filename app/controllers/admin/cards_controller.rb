@@ -15,7 +15,7 @@ class Admin::CardsController < ApplicationController
     @card = Card.new(params[:id])
     respond_to do |format|
       format.jpg do
-        send_data @card.back, :filename => "back_studentid.jpg", :type => 'image/jpeg', :disposition => 'inline'  
+        send_data @card.back, :filename => "back_studentid.jpg", :type => 'image/jpeg', :disposition => 'attachment'  
       end
     end
   end
