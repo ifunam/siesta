@@ -1,0 +1,8 @@
+<div class="user_profile">
+<%= render :partial => 'user_profile/basic' %>
+</div>
+<div id ="myerror_messages"></div>
+<% form_for(@record, :url => { :action => :create }, :html => { :multipart => true}, :builder => LabelFormBuilder) do |f| %>
+<%= render :partial => 'form', :locals => { :f => f } %>
+<%= f.submit get_label("save") %> 
+<% end %>

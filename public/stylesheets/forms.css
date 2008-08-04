@@ -165,9 +165,10 @@ select {
 }
 
 .user_profile {
+	display: table;
 	min-width: 700px;
 	border: 1px solid silver;
-	padding: 5px;
+	padding: 10px;
 	margin-right: 10%;
 }
 
@@ -192,7 +193,7 @@ select {
 .row .profile {
 	float: left;
 	margin-right: 10px;	
-	width: 300px;
+	width: 400px;
 	height: 85px;
 }
 

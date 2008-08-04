@@ -9,12 +9,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :user_requests
   map.resources :send_user_requests, :member => { :send_request => :get }
   map.resource  :change_password
-  map.resource :photo
-  
+  map.resources  :photos
+
   map.namespace :academic do |academic|
       academic.resource  :session
       academic.resources :user_requests, :member => { :authorize => :get, :unauthorize => :get }
-      academic.resources  :photos
+#      academic.resources  :photos
   end
 
   map.namespace :department do |department|
@@ -23,10 +23,11 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.namespace :admin do |admin|
-    admin.resource  :session
-    admin.resource  :card, :member => { :front => :get, :back => :get }
-    #      admin.resources :users, :collection => { :search => :get}
-
+    admin.resource :session
+    admin.resource :card, :member => { :front => :get, :back => :get }
+    admin.resources :photos
+    admin.resources :user_requests
+    admin.resources :users
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

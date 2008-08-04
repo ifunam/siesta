@@ -1,0 +1,13 @@
+<div class="row" style="float:none;">
+	<div class="photo">
+	  <%= image_tag("/photos/#{@user_profile.id}.jpg", :size => "70x80", :border => '1px') %>
+	</div>
+	<div class="profile">
+		<b>Nombre: </b> <%= @user_profile.fullname %> <br/>
+		<b>Genéro: </b> <%= @user_profile.gender %> <br/>
+		<b>Fecha de nacimiento: </b> <%= @user_profile.birthdate %> <br/>
+		<b>Actividad a realizar: </b> <%= @user_profile.student_type %> <br/>
+		<b>Responsable académico: </b> <%= @user_profile.academic_incharge %> <br/>
+		<b>Periodo: </b> <%= @user_profile.period %> <br/>
+	</div>
+</div>

@@ -11,5 +11,4 @@ class PhotosController < ApplicationController
       }
     end
   end
-#  alias_method :show 
 end

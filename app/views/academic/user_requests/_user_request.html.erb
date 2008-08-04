@@ -1,7 +1,7 @@
 <div class="user_profile">
 <div class="row">
 	<div class="photo">
-		<%= image_tag("/academic/photos/#{user_request.user_id}.jpg", :size => "70x80", :border => '1px') %>
+		<%= image_tag("/photos/#{user_request.user_id}.jpg", :size => "70x80", :border => '1px') %>
 	</div>
 	<div class="profile">
 		<b>Nombre: </b> <%= user_request.user.person.fullname %> <br/>
