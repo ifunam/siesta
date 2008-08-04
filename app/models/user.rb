@@ -10,8 +10,7 @@ class User < ActiveRecord::Base
   #validates_presence_of     :passwd_confirmation, :if => :passwd_changed?
   validates_format_of       :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
   validates_format_of       :login, :with =>  /\A[-a-z0-9\.\-\_]*\Z/
-  # TODO: Uncomment this line after migration
-  # validates_email_veracity_of :email # Depends on internet connectivity and right configuration of your dns
+  validates_email_veracity_of :email # Depends on internet connectivity and right configuration of your dns
   validates_uniqueness_of   :login
   validates_uniqueness_of   :email
   validates_uniqueness_of   :login, :scope => [:email]
