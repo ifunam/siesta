@@ -166,8 +166,7 @@ select {
 
 .user_profile {
 	display: table;
-	min-width: 700px;
-	height: 150px;
+
 	border: 1px solid silver;
 	padding: 10px;
 	margin-right: 10%;
@@ -194,7 +193,7 @@ select {
 .row .profile {
 	float: left;
 	margin-right: 10px;	
-	width: 400px;
+	width: 420px;
 	height: 85px;
 }
 
@@ -202,8 +201,7 @@ select {
 	float: none;
 	background-color: #FAAC58;
 	margin-right: 10px;	
-	height: 70px;
-	margin-left: 320px;
+	margin-left: 500px;
 	margin-bottom: 5px;
 	width: 320px;
 	padding: 5px;
@@ -214,8 +212,7 @@ select {
 	float: none;
 	background-color: #F3F781;
 	margin-right: 10px;	
-	height: 70px;
-	margin-left: 320px;
+	margin-left: 500px;
 	margin-bottom: 5px;
 	width: 320px;
 	padding: 5px;
@@ -227,8 +224,7 @@ select {
 	background-color: #04B404;
 	color: #F2F2F2;
 	margin-right: 10px;	
-	height: 70px;
-	margin-left: 320px;
+	margin-left: 500px;
 	margin-bottom: 5px;
 	width: 320px;
 	padding: 5px;
@@ -240,8 +236,7 @@ select {
 	background-color: #610B0B;
 	color: #F2F2F2;
 	margin-right: 10px;	
-	height: 70px;
-	margin-left: 320px;
+	margin-left: 500px;
 	margin-bottom: 5px;
 	width: 320px;
 	padding: 5px;
