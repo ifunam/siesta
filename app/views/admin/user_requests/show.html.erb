@@ -22,7 +22,7 @@
      content_tag(:span, link_to_remote(get_label(h[:controller]), :url =>  "/#{h[:controller]}/#{@user_request.id}"), :class => 'section_link')
     end
    else
-    content_tag(:span, "##{h[:controller]}" + image_tag('pending.gif'), {:escape => false, :class => 'section_link'} )
+    content_tag(:span, "#{get_label(h[:controller])}" + image_tag('pending.gif'), {:escape => false, :class => 'section_link'} )
    end
 end.join(' | ')
 %>

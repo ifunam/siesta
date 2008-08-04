@@ -6,7 +6,7 @@ class UserRequest < ActiveRecord::Base
     validates_inclusion_of :is_restamped, :in => [true, false]
     validates_inclusion_of :is_official, :in => [true, false]
     
-    belongs_to :user
+    belongs_to :user, :class_name => "User", :foreign_key => "user_id"
     belongs_to :period
     belongs_to :role
     belongs_to :requeststatus

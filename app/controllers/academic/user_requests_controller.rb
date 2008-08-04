@@ -14,6 +14,7 @@ class Academic::UserRequestsController < ApplicationController
     @user_request = UserRequest.find_by_id_and_user_incharge_id(params[:id], session[:user_id])
     respond_to do |format|
       if @user_request.authorize
+        UserNotifier.deliver_user_request_authorized(@user_request.user_incharge, @user_request.user_id)
         format.js { render :action => 'authorize.rjs' }
       else
         format.js { render :action => 'errors.rjs' }
@@ -25,6 +26,7 @@ class Academic::UserRequestsController < ApplicationController
     @user_request = UserRequest.find_by_id_and_user_incharge_id(params[:id], session[:user_id])
     respond_to do |format|
       if @user_request.unauthorize
+        UserNotifier.deliver_user_request_unauthorized(@user_request.user_incharge, @user_request.user_id)
         format.js { render :action => 'unauthorize.rjs' }
       else
         format.js { render :action => 'errors.rjs' }

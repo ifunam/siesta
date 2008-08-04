@@ -33,4 +33,13 @@ class UserNotifier < ActionMailer::Base
   def academic_request(from_user, to_user)
     setup(:recipients => to_user.email, :subject => 'Solicitud de Estudiante Asociado - IFUNAM',  :body => { :user => from_user })
   end
+  
+  def user_request_authorized(from_user, to_user)#, to_user)
+    setup(:recipients => User.find(to_user).email, :from => from_user.email, :subject => 'Solicitud de Estudiante Asociado - IFUNAM')
+  end
+
+  def user_request_unauthorized(from_user, to_user)
+    setup(:recipients => User.find(to_user).email, :from => from_user.email, :subject => 'Solicitud de Estudiante Asociado - IFUNAM')
+  end
+  
 end
