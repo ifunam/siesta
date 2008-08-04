@@ -4,7 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resource  :user, :member => { :confirm => :get, :recovery_passwd_request => :get, :confirm => :get, :recovery_passwd => :post }
   map.resource  :person
   map.resource  :address
-  map.resources :schoolings
+  map.resources :schoolings, :collection => { :list => :get}
   map.resources :user_documents
   map.resources :user_requests
   map.resources :send_user_requests, :member => { :send_request => :get }

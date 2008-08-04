@@ -1,0 +1,2 @@
+page.replace_html 'controller_form', :partial => 'shared/list', :locals => { :title => 'Solicitudes' }
+

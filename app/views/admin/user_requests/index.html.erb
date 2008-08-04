@@ -1,0 +1,14 @@
+<table id="collection">
+ <tr class="row">
+   <th>Imagen</th>
+   <th>Nombre</th>
+   <th>Nivel</th>
+   <th>Actividad a realizar</th>
+   <th>Responsable académico</th>
+   <th>Estado</th>
+   <th>Acciones</th>
+ </tr>
+ <%= render :partial => 'record', :collection => @collection %>
+</table>
+
+<%= will_paginate @collection %>

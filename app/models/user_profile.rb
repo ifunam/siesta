@@ -25,7 +25,7 @@ class UserProfile < User
     self.addresses.find(:conditions => 'addresstype_id = 1')
   end
 
-  def most_recent_schooling_degree
+  def most_recent_schooling
     self.schoolings.find(:first, :select => 'degree_id', :order => 'startyear DESC')
   end
 

@@ -167,6 +167,7 @@ select {
 .user_profile {
 	display: table;
 	min-width: 700px;
+	height: 150px;
 	border: 1px solid silver;
 	padding: 10px;
 	margin-right: 10%;

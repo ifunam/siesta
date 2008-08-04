@@ -1,6 +1,6 @@
 require 'card'
 class Admin::CardsController < ApplicationController
-  layout 'academic'
+  layout 'admin'
   
   def front
     @card = Card.new(params[:id])

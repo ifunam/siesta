@@ -56,7 +56,7 @@ class Card
   
   def add_last_degree!
     add_text!('Nivel: ', 290, 180, 24, BoldWeight)
-    add_text!(@user.most_recent_schooling_degree.degree.name, 360, 180)    
+    add_text!(@user.most_recent_schooling.degree.name, 360, 180)    
   end  
   
   def add_department_and_user_incharge!

@@ -1,5 +1,5 @@
 class Admin::PhotosController < ApplicationController
-  layout 'academic'
+  layout 'admin'
 
   def new
     @user_profile = UserProfile.find(params[:id])

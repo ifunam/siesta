@@ -13,6 +13,17 @@ class SharedController < ApplicationController
       format.xml { render :xml => @collection }
     end
   end
+  
+  def list
+    @collection = Finder.new(@model, :all, :attributes => @columns, :conditions => "#{Inflector.tableize(@model)}.user_id = #{params[:id]}").as_pair
+    respond_to do |format|
+      format.js { render :action => 'list.rjs' }
+      format.html { render :action => 'list' }
+      format.xml { render :xml => @collection }
+    end
+  end
+  
+#  alias_method :list, :index
 
   def show
     @f = Finder.new(@model, :first, :attributes => @columns,  :conditions => "#{Inflector.tableize(@model)}.id = #{params[:id]}")

@@ -1,0 +1,15 @@
+<tr>
+<td>
+  <%= image_tag("/photos/#{record.user_id}.jpg", :size => "35x40", :border => '1px') %>
+</td>
+<% user = UserProfile.find(record.user_id) %>
+<td> <%=  user.fullname %> </td>
+<td> <%= user.most_recent_schooling.degree.name %></td>
+<td> <%= user.student_type %> </td>
+<td> <%= user.academic_incharge %> </td>
+<td> <%= record.requeststatus.name %> </td>
+<td>
+  <%= link_to get_label('edit'), admin_user_request_path(user) %>
+</td>
+</tr>
+
