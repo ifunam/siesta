@@ -4,7 +4,7 @@
    <%= f.radio_buttons :gender, :values => [true, false], :required => true %>
    <h3>Fecha y lugar de nacimiento</h3>
    <p><label>Fecha<span class="required">*</span></label>
-   <%= calendar_date_select_tag 'person[birthdate]', nil, :year_range => 85.years.ago..15.years.ago %>
+   <%= f.calendar_date_select(:birthdate, :year_range => 85.years.ago..15.years.ago) %>
    </p>
    <%= f.simple_select :country, :default => 484, :required => true %>
    <%= render :partial => 'states/select', :locals => {:id => (@record.country.nil? ? 484 : @record.country_id), :object => :person} %>

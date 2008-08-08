@@ -7,8 +7,7 @@ class LabelFormBuilder < ActionView::Helpers::FormBuilder
   include SelectHelper
   include ApplicationHelper
   include Labels
-  include CalendarDateSelect::FormHelper
-  
+
   helpers.each do |name|
     define_method(name) do |field, *args|
       options = args.last.is_a?(Hash) ? args.pop : { }

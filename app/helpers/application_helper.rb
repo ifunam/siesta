@@ -15,7 +15,13 @@ module ApplicationHelper
   def radio_buttons(attribute ,options)
     s = ''
     options[:values].each do |v|
-      s << label_for_boolean(attribute.to_s.downcase, v) + @template.radio_button(@object_name, attribute, v, :checked => false)
+      if @object.send(attribute).nil?
+        s << label_for_boolean(attribute.to_s.downcase, v) + @template.radio_button(@object_name, attribute, v, :checked => false)
+      elsif @object.send(attribute) == v
+        s << label_for_boolean(attribute.to_s.downcase, v) + @template.radio_button(@object_name, attribute, v, :checked => true )
+      else
+        s << label_for_boolean(attribute.to_s.downcase, v) + @template.radio_button(@object_name, attribute, v, :checked => false)
+      end
     end
     s
   end

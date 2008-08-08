@@ -70,6 +70,10 @@ class SharedController < ApplicationController
 
   def update
     @record = @model.find(params[:id])
+    if @record.has_attribute? 'file' and params[@hash_name].has_key? :file
+      self.set_file(@record, @hash_name) 
+      params[@hash_name].delete(:file)
+    end
     respond_to do |format|
       if @record.update_attributes(params[@hash_name])
         format.js { responds_to_parent { render :action => 'update.rjs' } }
@@ -103,7 +107,7 @@ class SharedController < ApplicationController
   def get_file
     @record = @model.find(params[:id])
     if !@record.nil? and !@record.file.nil? and !@record.file.to_s.empty?
-       send_data @record.file, :filename => @record.filename, :type => @record.content_type, :disposition => 'inline' 
+       send_data @record.file, :filename => @record.filename, :type => @record.content_type, :disposition => 'attachment' 
     else
        render :text => "File not found!", :status => 440
     end
