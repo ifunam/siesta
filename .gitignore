@@ -1,6 +1,7 @@
 config/database.yml
 config/site.yml
 config/mail.yml
+config/mongrel_cluster.yml
 db/*
 !db/migrate
 tmp/*
@@ -12,3 +13,4 @@ semantic.cache
 .svn/*
 \#*
 coverage
+coverage.data

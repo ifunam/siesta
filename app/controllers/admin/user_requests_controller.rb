@@ -3,7 +3,7 @@ class Admin::UserRequestsController < SessionsController
   def index
     @collection = UserRequest.paginate(:conditions => {:period_id => Period.most_recent.id}, :include => [:user => [:person]], 
                                        :order => 'people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC ', 
-                                       :page => params[:page] || 1, :per_page => 10)
+                                       :page => params[:page] || 1, :per_page => 20)
     respond_to do |format|
       format.html { render :action => :index }
     end
