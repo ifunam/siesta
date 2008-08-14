@@ -18,7 +18,7 @@ class UserRequestRequirement < User
   end
 
   def has_user_documents?
-    self.user_documents.size == 1
+    self.user_documents.size >= 1
   end
 
   def has_user_request?
