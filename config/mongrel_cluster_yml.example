@@ -1,0 +1,10 @@
+---
+user: youruser
+cwd: /your/rails/application_directory
+log_file: log/mongrel.log
+port: "8000"
+environment: production
+group: yourgroup 
+address: 127.0.0.1
+pid_file: tmp/pids/mongrel.pid
+servers: 5 

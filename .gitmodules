@@ -25,3 +25,6 @@
 [submodule "vendor/plugins/paperclip"]
 	path = vendor/plugins/paperclip
 	url = git://github.com/thoughtbot/paperclip.git
+[submodule "vendor/plugins/ssl_requirement"]
+	path = vendor/plugins/ssl_requirement
+	url = git://github.com/rails/ssl_requirement.git
