@@ -401,3 +401,22 @@ p.required_note {
 	display: table-row;
 	text-align: left;
 }
+
+#search_description {
+        float: left;
+        display: table;
+        margin-right: 10px;
+		padding: 5px;
+		border: 1px solid silver;
+		height: 160px;
+}
+
+#search {
+        float: none;
+        display: table;
+        margin-right: 10px;
+		padding: 5px;
+		border: 1px solid blue;
+		height: 160px;
+}
+

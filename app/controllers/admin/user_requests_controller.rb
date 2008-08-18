@@ -1,9 +1,16 @@
 class Admin::UserRequestsController < SessionsController
   layout 'admin'
   def index
-    @collection = UserRequest.paginate(:conditions => {:period_id => Period.most_recent.id, :requeststatus_id => 3 }, :include => [:user => [:person]], 
-                                       :order => 'people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC ', 
-                                       :page => params[:page] || 1, :per_page => 20)
+    session[:query] = { :period_id =>  Period.most_recent.id, :requeststatus_id => 3 }
+    @collection = UserRequest.search_with_paginate(session[:query], params[:page])
+    respond_to do |format|
+      format.html { render :action => :index }
+    end
+  end
+
+  def search
+    session[:query] = params[:search] if params[:search]
+    @collection = UserRequest.search_with_paginate(session[:query], params[:page])
     respond_to do |format|
       format.html { render :action => :index }
     end

@@ -26,7 +26,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resource :session
     admin.resource :card, :member => { :front => :get, :back => :get }
     admin.resources :photos
-    admin.resources :user_requests
+    admin.resources :user_requests, :collection => { :search => :get }
     admin.resources :users
   end
 

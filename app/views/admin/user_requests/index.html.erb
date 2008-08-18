@@ -1,14 +1,23 @@
+<div id="search_description">
+<h3>Periodo: <%= Period.find(session[:query][:period_id]).name %></h3>
+<h3>Estado de las solicitudes: <%= session[:query][:requeststatus_id] ? Requeststatus.find(session[:query][:requeststatus_id]).name : 'Todos'%></h3>
+<h3>Tipo de actividad: <%= session[:query][:role_id] ? Role.find(session[:query][:role_id]).name : 'Todas' %></h3>
+</div>
+<div id="search">
+<% form_for(:search, :builder =>  LabelFormBuilder, :url => {:action => :search}, :method => :get ) do |f| -%>
+	<%= f.simple_select :period, :default => Period.most_recent.id %>
+	<%= f.simple_select :requeststatus %>
+	<%= f.simple_select :role %>
+	<%= f.submit  'Buscar' %>
+<% end -%>
+</div>
+<br/>
 <table id="collection">
  <tr class="row">
-   <!-- <th>Imagen</th> -->
+   <th>Imagen</th>
    <th>Nombre</th>
-   <th>Nivel</th>
-   <th>Actividad a realizar</th>
-   <!--   <th>Responsable académico</th> -->
-   <th>Estado</th>
    <th>Acciones</th>
  </tr>
  <%= render :partial => 'record', :collection => @collection %>
 </table>
-
 <%= will_paginate @collection %>
