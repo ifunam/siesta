@@ -20,7 +20,7 @@ class UserRequest < ActiveRecord::Base
     def self.search_with_paginate(options, page=1, per_page=10)
       options.keys.each { |k| options.delete k if options[k].nil? or options[k].to_s.strip.empty? }
       paginate(:all, :conditions => options, 
-               :select => 'user_requests.id, user_requests.user_id, user_requests.requeststatus_id, user_requests.role_id',
+               :select => 'user_requests.*',
                :joins => "LEFT JOIN users ON user_requests.user_id = users.id LEFT JOIN people ON users.id = people.user_id", 
                :order => 'people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC', 
                :page => page, :per_page => per_page)

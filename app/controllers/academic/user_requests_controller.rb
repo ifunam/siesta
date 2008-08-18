@@ -4,7 +4,7 @@ class Academic::UserRequestsController < ApplicationController
   def index
     user_incharge_id = params[:user_id] || session[:user_id] 
     period_id = params[:period_id] || Period.most_recent.id
-    @collection =  UserRequest.search(:user_incharge_id => user_incharge_id, :period_id => period_id)
+    @collection =  UserRequest.search_with_paginate(:user_incharge_id => user_incharge_id, :period_id => period_id)
     respond_to do |format|
         format.html { render :action => 'index' }
     end
