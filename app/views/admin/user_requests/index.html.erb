@@ -8,7 +8,7 @@
 	<%= f.simple_select :period, :default => Period.most_recent.id %>
 	<%= f.simple_select :requeststatus %>
 	<%= f.simple_select :role %>
-	<%= f.submit  'Buscar' %>
+	<%= f.submit  'Buscar' %> | <%= link_to 'Lista principal', admin_user_requests_path %>
 <% end -%>
 </div>
 <br/>
