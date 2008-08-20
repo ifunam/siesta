@@ -16,7 +16,6 @@
  <% end %>
  <%= render :partial => 'cities/select', :locals => {:id => state_id, :object => object} %>
 <% else %>
-  <!-- <%= hidden_field object, :state_id, :value => 83 %> -->
   <%= render :partial => 'cities/quickpost' %>
 <% end %>
 </div>
