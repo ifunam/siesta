@@ -1,4 +1,4 @@
-class Admin::UserRequestsController < SessionsController
+class Admin::UserRequestsController < ApplicationController
   layout 'admin'
   def index
     session[:query] = { :period_id =>  Period.most_recent.id, :requeststatus_id => 3 }
