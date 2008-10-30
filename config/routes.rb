@@ -3,7 +3,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resource  :session
   map.resource  :user, :member => { :confirm => :get, :recovery_passwd_request => :get, :confirm => :get, :recovery_passwd => :post }
   map.resource  :person
+  #map.resources :people
   map.resource  :address
+ # map.resources :addresses
   map.resources :schoolings, :collection => { :list => :get}
   map.resources :user_documents
   map.resources :user_requests
@@ -26,8 +28,9 @@ ActionController::Routing::Routes.draw do |map|
     admin.resource :session
     admin.resource :card, :member => { :front => :get, :back => :get }
     admin.resources :photos
-    admin.resources :user_requests, :collection => { :search => :get }
+    admin.resources :user_requests, :collection => { :search => :get, :report => :get }
     admin.resources :users
+    admin.resources :periods
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

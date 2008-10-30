@@ -28,3 +28,6 @@
 [submodule "vendor/plugins/ssl_requirement"]
 	path = vendor/plugins/ssl_requirement
 	url = git://github.com/rails/ssl_requirement.git
+[submodule "vendor/backgroundrb"]
+	path = vendor/backgroundrb
+	url = git://github.com/gnufied/backgroundrb.git

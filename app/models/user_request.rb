@@ -26,6 +26,14 @@ class UserRequest < ActiveRecord::Base
                :page => page, :per_page => per_page)
     end
 
+    def self.search(options={})
+        default_options = { :select => 'user_requests.*',
+                            :joins => "LEFT JOIN users ON user_requests.user_id = users.id LEFT JOIN people ON users.id = people.user_id", 
+                            :order => 'people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC'
+                          }
+        all(default_options.merge(options))
+    end
+    
     def send_request
       change_requeststatus(2)
     end
