@@ -1,2 +1,0 @@
-page.replace_html 'form', :partial => 'shared/show' 
-page.insert_html :bottom, 'form', ' | ' + link_to('Ver archivo', :action => :get_file, :id => @record.id) 

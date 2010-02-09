@@ -1,6 +1,0 @@
-<div class="user_profile">
-<%= render :partial => 'user_profile/basic' %>
-</div>
-<%= link_to get_label('edit'), edit_admin_photo_path(@user_profile) %> |
-<%= link_to get_label('del'), admin_photo_path(@user_profile), :method => :delete %> |
-<%= link_to get_label('back'), admin_user_request_path(@user_profile), :method => :get %>

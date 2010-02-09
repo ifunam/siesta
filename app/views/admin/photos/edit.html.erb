@@ -1,9 +1,0 @@
-<div class="user_profile">
-<%= render :partial => 'user_profile/basic' %>
-</div>
-<div id ="myerror_messages"></div>
-<% form_for(@record, :url => {:controller => 'admin/photos', :action => :update, :id => @record.id}, :html => { :multipart => true}, :builder => LabelFormBuilder) do |f| %>
-<%= render :partial => 'form', :locals => { :f => f } %>
-<%= f.submit get_label("save") %> | <%= link_to get_label('cancel'), admin_photo_path(@user_profile) %> |
-<%= link_to get_label('back'), admin_user_request_path(@user_profile), :method => :get %>
-<% end %>
