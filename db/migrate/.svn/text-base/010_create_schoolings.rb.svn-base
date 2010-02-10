@@ -1,0 +1,66 @@
+class CreateSchoolings < ActiveRecord::Migration
+  def self.up
+    create_table :degrees do |t|
+      t.text     :name, :null => false
+      t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
+      t.timestamps
+    end
+
+    create_table :careers do |t|
+      t.text     :name, :null => false
+      t.references  :degree, :institution, :null => false
+      t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
+      t.timestamps
+    end
+
+    create_table :schoolings do |t|
+      t.references :user, :career, :null => false
+      t.integer :startmonth, :startyear, :null => false
+      t.integer :endmonth, :endyear, :credits, :estimated_endmonth, :estimated_endyear
+      t.string  :studentid
+      t.float   :average
+      t.boolean :is_studying_this, :default => true, :null => false
+      t.text    :incomplete_activities
+      t.boolean :is_titleholder, :default => false, :null => false
+      t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
+      t.timestamps
+    end
+
+    create_table :schooling_files do |t|
+      t.references :user, :schooling, :document, :null => false
+      t.binary  :file, :null => false
+      t.text    :filename, :content_type, :null => false
+      t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
+      t.timestamps
+    end
+
+    create_table :titlemodalities do |t|
+      t.text     :name, :null => false
+      t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
+      t.timestamps
+    end
+
+    create_table :professionaltitles do |t|
+      t.references :user, :schooling, :titlemodality, :document, :null => false
+      t.text      :other
+      t.integer :month, :year, :null => false
+      t.binary  :file, :null => false
+      t.text      :filename, :content_type, :null => false
+      t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
+      t.timestamps
+    end
+
+    fixtures :degrees
+    add_index :degrees, [:name], :name => :degrees_name_key, :unique => true
+
+    fixtures :careers
+    add_index :careers, [:name, :degree_id, :institution_id], :name => :careers_name_key, :unique => true
+
+    fixtures :titlemodalities
+    add_index :titlemodalities, [:name], :name => :titlemodalities_name_key, :unique => true
+  end
+
+  def self.down
+    drop_table :professionaltitles, :titlemodalities, :schoolings, :careers, :degrees
+  end
+end

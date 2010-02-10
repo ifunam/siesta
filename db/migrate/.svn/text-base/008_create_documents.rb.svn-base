@@ -1,0 +1,15 @@
+class CreateDocuments < ActiveRecord::Migration
+  def self.up
+    create_table :documents do |t|
+      t.text     :name, :null => false
+      t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
+      t.timestamps
+    end
+    fixtures :documents
+    add_index :documents, [:name], :name => :documents_name_key, :unique => true
+  end
+
+  def self.down
+    drop_table :documents
+  end
+end

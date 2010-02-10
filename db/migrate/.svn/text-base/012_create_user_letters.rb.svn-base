@@ -1,0 +1,39 @@
+class CreateUserLetters < ActiveRecord::Migration
+
+  def self.up
+    create_table :academicprograms do |t|
+      t.string   :name, :administrative_key, :null => false
+      t.references  :degree, :null => false
+      t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
+      t.timestamps
+    end
+
+    create_table :periods do |t|
+      t.string :name, :null  => false
+      t.date   :startdate,  :enddate, :null => false
+      t.boolean :is_active, :null => false, :default => false
+      t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
+      t.timestamps
+    end
+
+    create_table :user_letters do |t|
+      t.references  :user, :academicprogram, :period, :null => false
+      t.text     :why, :what, :personal_letter, :current_job, :which, :null => false
+      t.binary :file
+      t.text     :filename, :content_type
+      t.references :moduser, :class_name => "User", :foreign_key => 'moduser_id'
+      t.timestamps
+    end
+    add_index :user_letters, [:user_id, :period_id], :name => :user_letters_user_id_key, :unique => true
+
+    fixtures :academicprograms
+    add_index :academicprograms, [:name, :administrative_key], :name => :academicprograms_name_key, :unique => true
+
+    fixtures :periods
+    add_index :periods, [:name, :startdate, :enddate], :name => :periods_name_key, :unique => true
+  end
+
+  def self.down
+    drop_table :user_letters, :periods, :academiprograms
+  end
+end
