@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   #validates_presence_of     :passwd_confirmation, :if => :passwd_changed?
   validates_format_of       :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
   validates_format_of       :login, :with =>  /\A[-a-z0-9\.\-\_]*\Z/
-  validates_email_veracity_of :email # Depends on internet connectivity and right configuration of your dns
+#  validates_email_veracity_of :email # Depends on internet connectivity and right configuration of your dns
   validates_uniqueness_of   :login
   validates_uniqueness_of   :email
   validates_uniqueness_of   :login, :scope => [:email]
@@ -28,9 +28,9 @@ class User < ActiveRecord::Base
   has_one :photo
 
   # Callbacks
-  before_create :prepare_new_record
-  after_validation_on_create  :encrypt_password
-  before_validation_on_update :verify_current_password
+  # before_create :prepare_new_record
+  # after_validation_on_create  :encrypt_password
+  # before_validation_on_update :verify_current_password
   
   # Static or class methods
   def self.authenticate?(login,password)
