@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # Authorization profile
-  # def set_authorization
+  # Authorization filter
+  # def set_user_authorization
   #  Authorization.current_user = User.find(1)
   # end
 

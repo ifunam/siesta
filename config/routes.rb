@@ -13,6 +13,9 @@ Siesta::Application.routes.draw do |map|
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resource :session
+  resource :recover_password
+  resource :user
+
   resource :dashboard
   # Sample resource route with options:
   #   resources :products do

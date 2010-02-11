@@ -7,21 +7,29 @@
     = image_tag('calendar.png')
     = 'El registro de nuevos estudiantes o resello estará abierto del '
     %b= '15 febrero al 05 de marzo de 2010.'
-%div{:class => 'span-9 last'}
-  %b{:style => 'color: #003399; font-size: 15px;'}= 'Inicio de Sesión'
+  
+  %p{:class => 'browser_note'}
+    = "Esta aplicación es compatible con las versiones más recientes de los navegadores: Firefox, Internet Explorer, Safari o Chrome."
+
+%div{:class => 'span-8 prepend-1 last', :style => 'text-align: left;'}
+  %h3= 'Inicio de Sesión'
   - form_for @session, :session, :url => session_path do |f|
-    %div{:class => 'span-7 prepend-1 last', :style => 'vertical-align: middle;'}
-      = f.label "Usuario:"
+    %p{:style => 'vertical-align: middle;'}
+      = f.label :login, "Usuario:", :class => 'login'
       = f.text_field :login, :size => 12
-    %div{:class => 'span-7 prepend-1 last', :style => 'vertical-align: middle;'}
-      = f.label "Contraseña:"
+    %p{:style => 'vertical-align: middle;'}
+      = f.label :password, "Contraseña:", :class => 'login'
       = f.password_field :password, :size => 12
-    %div{:class => 'span-4 last'}
+    %p
       = submit_tag('Entrar')
-  %div{:class => 'span-8 prepend-1 last', :style => 'text-align: left;'}
+  %p
+    = '¿No tiene una cuenta en el sistema?'
     %br
-    %p= '¿No tiene una cuenta en el sistema?'
-    %p= '¿Ha olvidado su contraseña?'
-    - 1.times do
-      %br
-    %p{:style => 'font-size: 13px;  color: #333333;  font: Arial oblique; text-align: justify;'}= "Esta aplicación es compatible con las versiones más recientes de los navegadores: Firefox, Internet Explorer o Safari."
+    = link_to 'Crear una cuenta nueva', new_user_path
+  %p
+    = '¿Ha olvidado su contraseña?'
+    %br
+    = link_to 'Crear una contraseña nueva', new_recover_password_path
+  %br
+
+.dialog{:id => :recover_password_dialogs, :title => "Recover your password"}

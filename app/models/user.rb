@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   attr_reader :random_password
 
   acts_as_authentic do |c|
-   c.logged_in_timeout = 120.minutes
+	c.logged_in_timeout = 120.minutes
   end
 
   def randomize_password

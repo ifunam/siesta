@@ -3,8 +3,6 @@ source 'http://gemcutter.org'
 
 gem "rails", "3.0.0.beta"
 
-# ActiveRecord requires a database adapter. By default,
-# Rails has selected sqlite3.
 gem "pg"
 gem "haml-edge", "2.3.155", :require => 'haml'
 gem "compass", "0.10.0.pre5", :git => "git://github.com/chriseppstein/compass.git", :branch => 'master'
