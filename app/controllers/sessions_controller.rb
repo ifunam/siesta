@@ -1,28 +1,27 @@
 class SessionsController < ApplicationController
-
+  include SslRequirement
+  ssl_required :create, :new, :recover_password if Rails.env == "production"
   skip_before_filter :require_login, :only => [:new, :create] 
-
-  #include SslRequirement
-  # ssl_required :create, :new, :recover_password if Rails.env == "production"
   caches_action :new
+
+  respond_to :html
 
   def new
     @session = UserSession.new
+	respond_with(@session)
   end
   
   def create
     @session = UserSession.new(params[:user_session])
-    if @session.save
-      flash[:notice] = "Login successful!"
-      redirect_to :controller => dashboard_path,  :protocol => 'http'
-    else
-      render 'new'
-    end
+	flash[:notice] = "User was created successfully." if @session.save
+    respond_with(@session) do |format|
+		format.html { redirect_to dashboard_path,  :protocol => 'http' }
+	end
   end
   
   def destroy
     current_user_session.destroy
     flash[:notice] = "Logout successful!"
-    redirect_back_or_default new_session_url
+    redirect_to new_session_url
   end
 end

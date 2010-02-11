@@ -9,6 +9,7 @@ gem "pg"
 gem "haml-edge", "2.3.155", :require => 'haml'
 gem "compass", "0.10.0.pre5", :git => "git://github.com/chriseppstein/compass.git", :branch => 'master'
 gem "authlogic", "2.1.3", :git => "git://github.com/binarylogic/authlogic.git", :branch => 'master'
+gem "ssl_requirement"
 #gem "paperclip"
 
 group :development do
