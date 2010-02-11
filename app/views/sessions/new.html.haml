@@ -1,0 +1,27 @@
+%div{:class => 'span-12	 prepend-1'}
+  %p{:class => 'notice_box blue'}
+    = image_tag('ok.png')
+    = 'Registro y resello de credenciales para Estudiantes Asociados al Instituto de Física de la UNAM '
+    %b= '(Período: 2010-2).'
+  %p{:class => 'notice_box red'}
+    = image_tag('calendar.png')
+    = 'El registro de nuevos estudiantes o resello estará abierto del '
+    %b= '15 febrero al 05 de marzo de 2010.'
+%div{:class => 'span-9 last'}
+  %b{:style => 'color: #003399; font-size: 15px;'}= 'Inicio de Sesión'
+  - form_for @session, :session, :url => session_path do |f|
+    %div{:class => 'span-7 prepend-1 last', :style => 'vertical-align: middle;'}
+      = f.label "Usuario:"
+      = f.text_field :login, :size => 12
+    %div{:class => 'span-7 prepend-1 last', :style => 'vertical-align: middle;'}
+      = f.label "Contraseña:"
+      = f.password_field :password, :size => 12
+    %div{:class => 'span-4 last'}
+      = submit_tag('Entrar')
+  %div{:class => 'span-8 prepend-1 last', :style => 'text-align: left;'}
+    %br
+    %p= '¿No tiene una cuenta en el sistema?'
+    %p= '¿Ha olvidado su contraseña?'
+    - 1.times do
+      %br
+    %p{:style => 'font-size: 13px;  color: #333333;  font: Arial oblique; text-align: justify;'}= "Esta aplicación es compatible con las versiones más recientes de los navegadores: Firefox, Internet Explorer o Safari."
