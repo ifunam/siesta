@@ -14,7 +14,6 @@ Siesta::Application.routes.draw do |map|
   #   resources :products
   resource :session
   resource :dashboard
-
   # Sample resource route with options:
   #   resources :products do
   #     member do

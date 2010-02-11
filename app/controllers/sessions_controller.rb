@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
     @session = UserSession.new(params[:user_session])
 	flash[:notice] = "User was created successfully." if @session.save
     respond_with(@session) do |format|
-		format.html { redirect_to dashboard_path,  :protocol => 'http' }
+		format.html { redirect_to dashboard_path, :protocol => 'http' }
 	end
   end
   
