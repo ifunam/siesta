@@ -29,7 +29,6 @@
   %p
     = '¿Ha olvidado su contraseña?'
     %br
-    = link_to 'Crear una contraseña nueva', new_recover_password_path
+    %span{:id => 'new_recover_password', :class => 'bluelight' }= 'Crear una contraseña nueva'
   %br
-
-.dialog{:id => :recover_password_dialogs, :title => "Recover your password"}
+%div{:id => :recover_password_dialog, :title => "Recover your password"}
