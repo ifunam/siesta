@@ -2,8 +2,9 @@ class SessionsController < ApplicationController
   include SslRequirement
   ssl_required :create, :new, :recover_password if Rails.env == "production"
   skip_before_filter :require_login, :only => [:new, :create] 
-  caches_action :new
 
+  caches_action :new
+  layout 'session'
   respond_to :html
 
   def new
