@@ -1,13 +1,13 @@
 - blueprint 'span-20 prepend-2 last', :style => 'text-align: left;' do
   %h3= 'Domicilio particular'
   = f.text_area :location, :size => '45x2', :required => true, :blueprint => 'span-10'
-  = f.text_field :pobox, :size => 40, :maxlength => 40, :required => true, :blueprint => 'span-10 last'
+  = f.text_field :pobox, :size => 40, :maxlength => 40, :blueprint => 'span-10 last'
 - blueprint 'span-20 prepend-2 last', :style => 'text-align: left;' do
   = f.text_field :country_id, :size => 15, :required => true, :blueprint => 'span-5'
-  = f.text_field :state_id, :size => 15, :required => true, :blueprint => 'span-5'
+  = f.text_field :state_id, :size => 15, :blueprint => 'span-5'
   = f.text_field :city_id, :size => 15, :required => true, :blueprint => 'span-5 last'
 - blueprint 'span-20 prepend-2 last', :style => 'text-align: left;' do
   = f.text_field :zipcode, :size => 15, :required => true, :blueprint => 'span-5'
   = f.text_field :phone, :size => 15, :required => true, :blueprint => 'span-5'
-  = f.text_field :fax, :size => 15, :required => true, :blueprint => 'span-5 last'
+  = f.text_field :fax, :size => 15, :blueprint => 'span-5 last'
   = f.hidden_field :addresstype_id, :value => 1
