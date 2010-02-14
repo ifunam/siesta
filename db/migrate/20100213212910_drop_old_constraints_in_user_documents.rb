@@ -1,8 +1,8 @@
 class DropOldConstraintsInUserDocuments < ActiveRecord::Migration
   def self.up
-	execute "ALTER TABLE user_documents ALTER COLUMN file_old DROP NOT NULL"
-	execute "ALTER TABLE user_documents ALTER COLUMN content_type DROP NOT NULL"
-	execute "ALTER TABLE user_documents ALTER COLUMN filename DROP NOT NULL"
+    execute "ALTER TABLE user_documents ALTER COLUMN file_old DROP NOT NULL"
+    execute "ALTER TABLE user_documents ALTER COLUMN content_type DROP NOT NULL"
+    execute "ALTER TABLE user_documents ALTER COLUMN filename DROP NOT NULL"
   end
 
   def self.down
