@@ -18,5 +18,4 @@ class ApplicationController < ActionController::Base
   # def set_user_authorization
   #  Authorization.current_user = User.find(1)
   # end
-
 end

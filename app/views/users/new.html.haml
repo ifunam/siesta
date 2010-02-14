@@ -1,18 +1,10 @@
-%div{:class => 'span-18 prepend-2', :style => 'text-align: left;'}
+- blueprint 'span-18 prepend-2', :style => 'text-align: left;' do 
   %h3= 'Crear una cuenta nueva'
-  - form_for @user, :session, :url => user_path do |f|
-    %p
-      = f.label :login, "Usuario:", :class => 'user_new'
-      = f.text_field :login, :size => 12
-    %p
-      = f.label :email, "Correo electrónico:", :class => 'user_new'
-      = f.text_field :email, :size => 30
-    %p
-      = f.label :password, "Contraseña:", :class => 'user_new'
-      = f.password_field :password, :size => 12
-    %p
-      = f.label :password_field,"Confirmación de contraseña:", :class => 'user_new'
-      = f.password_field :password_confirmation, :size => 12
-    %p
+  - form_for @user, :session, :url => user_path, :builder => MyFormBuilder do |f|
+    = f.text_field :login, :size => 12, :required => true, :blueprint => 'span-18 last'
+    = f.text_field :email, :size => 30, :required => true, :blueprint => 'span-18 last'
+    = f.password_field :password, :size => 12, :required => true, :blueprint => 'span-18 last'
+    = f.password_field :password_confirmation, :size => 12, :blueprint => 'span-18 last'
+    - blueprint 'span-18 last' do
       = submit_tag('Crear cuenta')
       = link_to 'Cancelar', new_session_path

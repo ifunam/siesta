@@ -13,21 +13,21 @@ class Schooling < ActiveRecord::Base
   belongs_to :user
   belongs_to :degree
 
-    # def degree_name
-    #    self.career.degree.name
-    #  end
-    # 
-    #  def career_and_institution
-    #    [career_name, institution_name].join(', ')
-    #  end
-    # 
-    #  def career_name
-    #    self.career.name
-    #  end
-    # 
-    #  def institution_name
-    #    values = [ self.career.institution.name ]
-    #    values << self.career.institution.parent.name if !self.career.institution.parent.nil?
-    #    values.join(', ')
-    #  end
+  # def degree_name
+  #    self.career.degree.name
+  #  end
+  # 
+  #  def career_and_institution
+  #    [career_name, institution_name].join(', ')
+  #  end
+  # 
+  #  def career_name
+  #    self.career.name
+  #  end
+  # 
+  #  def institution_name
+  #    values = [ self.career.institution.name ]
+  #    values << self.career.institution.parent.name if !self.career.institution.parent.nil?
+  #    values.join(', ')
+  #  end
 end

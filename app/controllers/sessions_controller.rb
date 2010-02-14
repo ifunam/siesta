@@ -9,17 +9,17 @@ class SessionsController < ApplicationController
 
   def new
     @session = UserSession.new
-	respond_with(@session)
+    respond_with(@session)
   end
-  
+
   def create
     @session = UserSession.new(params[:user_session])
-	flash[:notice] = "User was created successfully." if @session.save
+    flash[:notice] = "User was created successfully." if @session.save
     respond_with(@session) do |format|
-		format.html { redirect_to dashboard_path, :protocol => 'http' }
-	end
+      format.html { redirect_to dashboard_path, :protocol => 'http' }
+    end
   end
-  
+
   def destroy
     current_user_session.destroy
     flash[:notice] = "Logout successful!"

@@ -7,7 +7,7 @@ class RecoverPasswordsController < ApplicationController
     @user = User.new
     respond_with(@user)
   end
-  
+
   def create
     @user = User.find_by_email(params[:login][:email])
     flash[:notice] = "Password was sent successfully." if @user.ramdomize_password
