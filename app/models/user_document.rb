@@ -1,5 +1,7 @@
 class UserDocument < ActiveRecord::Base
-  validates_presence_of :file, :content_type, :filename
+  has_attached_file :file
+  validates_attachment_content_type :file, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'application/pdf', 'application/postscript']
+  validates_attachment_size :file, :max_size => 1..2048
   belongs_to :user
   belongs_to :document
 end
