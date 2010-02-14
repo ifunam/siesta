@@ -22,5 +22,3 @@ group :test do
   gem "rspec"
   gem "rspec-rails"
 end
-
-# compass --rails -f blueprint --sass-dir=app/sass --css-dir=public/stylesheets  --javascript-dir=public/javascripts --images-dir=public/images 
