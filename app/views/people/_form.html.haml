@@ -1,0 +1,13 @@
+- blueprint 'span-20 prepend-2 last', :style => 'text-align: left;' do
+  %h3= t :personal_info
+  = f.text_field :firstname, :size => 15, :required => true, :blueprint => 'span-5'
+  = f.text_field :lastname1, :size => 15, :required => true, :blueprint => 'span-5'
+  = f.text_field :lastname2, :size => 15, :blueprint => 'span-5'
+  = f.text_field :gender, :size => 15, :required => true, :blueprint => 'span-5 last'
+- blueprint 'span-20 prepend-2 last', :style => 'text-align: left;' do
+  %h3= t :date_and_place_of_birth
+  = f.text_field :birthdate, :size => 15, :required => true, :blueprint => 'span-5'
+  - # = f.date_select :birthdate, :year_range => 85.years.ago..15.years.ago
+  = f.text_field :country_id, :size => 15, :required => true, :blueprint => 'span-5'
+  = f.text_field :state_id, :size => 15, :required => true, :blueprint => 'span-5'
+  = f.text_field :city_id, :size => 15, :required => true, :blueprint => 'span-5 last'

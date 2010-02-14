@@ -1,0 +1,29 @@
+%div{:class=> 'span-20 prepend-2 last', :style => 'text-align: left;'}
+  %h3= 'Domicilio particular'
+  %div{:class=> 'span-10'}
+    = f.label :location, "Direcci&oacute;n", :required => true
+    = f.text_area :location, :size => '45x2', :required => true
+  %div{:class=> 'span-10 last'}
+    = f.label :pobox, "Apartado Postal", :required => true
+    = f.text_field :pobox, :size => 40, :maxlength => 40
+%div{:class=> 'span-20 prepend-2 last', :style => 'text-align: left;'}
+  %div{:class=> 'span-5'}
+    = f.label :country_id, "Pa&iacute;s", :required => true
+    = f.text_field :country_id, :size => 15
+  %div{:class=> 'span-5'}
+    = f.label :state_id, "Estado", :required => true
+    = f.text_field :state_id, :size => 15
+  %div{:class=> 'span-5 last'}
+    = f.label :city_id, "Ciudad", :required => true
+    = f.text_field :city_id, :size => 15
+  %div{:class=> 'span-5 last'}
+    = f.label :zipcode, "C&oacute;digo postal", :required => true
+    = f.text_field :zipcode, :size => 15
+%div{:class=> 'span-20 prepend-2 last', :style => 'text-align: left;'}
+  %div{:class=> 'span-5'}
+    = f.label :phone, "Telef&oacute;no", :required => true
+    = f.text_field :phone, :size => 15
+  %div{:class=> 'span-5'}
+    = f.label :fax, "Fax", :required => true
+    = f.text_field :fax, :size => 15
+    = f.hidden_field :addresstype_id, :value => 1
