@@ -1,5 +1,5 @@
 class AdscriptionClient < ActiveResource::Base
-  self.site = 'attributesttp://salva.fisica.unam.mx/'
+  self.site = 'http://salva.fisica.unam.mx/'
   self.element_name = "adscription"
   
   def users
