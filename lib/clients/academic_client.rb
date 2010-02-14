@@ -1,22 +1,20 @@
-require 'rubygems'
-require 'activeresource'
 class AcademicClient < ActiveResource::Base
   self.site = 'http://salva.fisica.unam.mx:8080/'
   self.element_name = "academic"
-  
+
   def self.find_by_login(login)
     @attributes = self.get("show_by_login/#{login}")
     self.find(@attributes['user_id'])
   end
-  
+
   def self.find_by_user_id(id)
-     self.find(id)
+    self.find(id)
   end
 
   def fullname
     @attributes['fullname']
   end
-  
+
   def adscription_name
     @attributes['adscription']
   end
