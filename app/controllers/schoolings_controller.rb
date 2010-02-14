@@ -1,7 +1,7 @@
 class SchoolingsController < ApplicationController
   respond_to :html
   def index
-    @schoolings = Schooling.all(:conditions => { :user_id => current_user.id })
+    @schoolings = Schooling.find_all_by_user_id(current_user.id)
     respond_with(@schoolings)
   end
 

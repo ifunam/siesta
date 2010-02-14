@@ -1,7 +1,7 @@
 class FileUploadersController < ApplicationController
   respond_to :html
   def index
-    @documents = UserDocument.all(:conditions => { :user_id => current_user.id })
+    @documents = UserDocument.find_all_by_user_id(current_user.id)
     respond_with(@documents)
   end
 
