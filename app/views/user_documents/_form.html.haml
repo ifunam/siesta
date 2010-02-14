@@ -1,0 +1,6 @@
+= f.text_field :document_id, :value => 1
+= f.file_field :file
+- blueprint 'span-21 prepend-2 last', :style => 'text-align: left;' do
+  = f.submit
+  = ' | '
+  = link_to t(:cancel), file_uploaders_path

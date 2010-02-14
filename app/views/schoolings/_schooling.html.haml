@@ -1,0 +1,29 @@
+- blueprint 'span-22 last', :id => schooling.dom_id  do
+  - blueprint('span-3') do
+    = schooling.degree.name
+  - blueprint('span-10') do
+    %p
+      %b= t(:career)
+      = schooling.career
+    %p 
+      %b= t :school
+      = schooling.school
+    %p
+      %b= t :institution
+      = schooling.institution
+    %p 
+      %b= t :average
+      = schooling.average
+      = ', '
+      %b= t :credits
+      = schooling.credits || '-'
+    %p
+      = link_to t(:cardex), schooling.file.url, :target => :new
+  - blueprint('span-2') do
+    = schooling.startyear
+  - blueprint('span-2') do
+    = schooling.endyear || '-'
+  - blueprint('span-4 last') do
+    = link_to t(:edit), edit_schooling_path(schooling), :method => :get
+    = ' | '
+    = link_to t(:destroy), schooling_path(schooling), :method => :delete, :confirm => t(:confirm_question)

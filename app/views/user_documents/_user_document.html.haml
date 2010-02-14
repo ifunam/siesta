@@ -1,0 +1,7 @@
+%div{:id =>user_document.dom_id}
+  - blueprint('span-15') do
+    = link_to user_document.document.name, user_document.file.url, :target => :new
+  - blueprint('span-5 last') do
+    = link_to t(:edit), edit_file_uploader_path(user_document), :method => :get
+    = ' | '
+    = link_to t(:destroy), file_uploader_path(user_document), :method => :delete, :confirm => t(:confirm_question)
