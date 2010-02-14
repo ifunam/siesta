@@ -4,7 +4,7 @@ class MyFormBuilder < ActionView::Helpers::FormBuilder
   # include ActionView::Helpers::TranslationHelper
 
   include ERB::Util
-  field_helpers.each do |selector|
+  (field_helpers + [:collection_select]).each do |selector|
     src = <<-end_src
     def #{selector}(method, *args)
       label_key = '.' + method.to_s
