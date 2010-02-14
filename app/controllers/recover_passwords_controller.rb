@@ -1,7 +1,6 @@
 class RecoverPasswordsController < ApplicationController
   skip_before_filter :require_login, :only => [:new, :create] 
   caches_action :new
-
   respond_to :js
 
   def new
