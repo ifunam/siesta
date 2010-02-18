@@ -1,0 +1,22 @@
+%div{:class => 'span-12	 prepend-1'}
+  %p{:class => 'notice_box blue'}
+    = image_tag('ok.png')
+    = 'Ingreso de Académicos al Sistema de Estudiantes Asociados al Instituto de Física de la UNAM '
+    %b= '(Período: 2010-2).'
+  %p{:class => 'notice_box red'}
+    = image_tag('calendar.png')
+    = 'Para entrar al sistema debe usar el usuario y contraseña del correo electrónico del Instituto de Física.'  
+  %p{:class => 'browser_note'}
+    = "Esta aplicación es compatible con las versiones más recientes de los navegadores: Firefox, Internet Explorer, Safari o Chrome."
+
+%div{:class => 'span-8 prepend-1 last', :style => 'text-align: left;'}
+  %h3= 'Inicio de Sesión'
+  - form_for @session, :session, :url => academic_session_path do |f|
+    %p{:style => 'vertical-align: middle;'}
+      = f.label :login, "Usuario:", :class => 'login'
+      = f.text_field :login, :size => 12
+    %p{:style => 'vertical-align: middle;'}
+      = f.label :password, "Contraseña:", :class => 'login'
+      = f.password_field :password, :size => 12
+    %p
+      = submit_tag('Entrar')
