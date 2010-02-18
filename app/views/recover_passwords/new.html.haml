@@ -1,0 +1,10 @@
+- blueprint 'span-15 prepend-2 last' do
+  %h3= 'Enviar contraseña nueva'
+  - form_for(@user, :recover_password, :url => recover_password_path) do |f|
+    %p
+      = f.label 'Correo electrónico con el que registro su cuenta'
+    %p
+      = f.text_field :email, :size => 30
+    - blueprint 'span-15 last' do
+      = submit_tag('Enviar contraseña')
+      = link_to 'Cancelar', new_session_path
