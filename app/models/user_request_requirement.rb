@@ -1,3 +1,4 @@
+# Fix It: Rewrite this class
 class UserRequestRequirement < User
   has_one :person, :foreign_key => :user_id
   has_many :addresses, :foreign_key => :user_id
@@ -27,19 +28,12 @@ class UserRequestRequirement < User
 
   def requirements
     [
-     [:people, 'has_person?', false],
-     [:addresses, 'has_address?', true],
-     [:schoolings, 'has_schooling?', true],
-     [:user_documents, 'has_user_documents?', true],
-     [:user_requests, 'has_user_request?', true],
-    ].collect do  |a|
-        controller = a[0].to_s
-        controller = 'address' if controller == 'addresses'
-        controller = 'person' if controller == 'people'
-        { :controller => controller, :filled => self.send(a[1]), :is_collection => a[2],
-         :records => self.section(a[2] == true ? a[0] : Inflector.singularize(a[0]))
-      }
-    end
+     [:person, :edit_profile, has_person?],
+     [:address, :edit_profile, has_address?],
+     [:schoolings, :schoolings, has_schooling?],
+     [:user_documents, :file_uploaders, has_user_documents?],
+     [:user_requests, :user_requests, has_user_request?]
+    ]
   end
 
   def section(key)
