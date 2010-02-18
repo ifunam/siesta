@@ -1,0 +1,17 @@
+%h3= 'Solicitudes de Estudiante Asociado'
+- blueprint('span-23 prepend-1 last', :id => 'collection') do
+  - blueprint('span-3', :id => 'collection_th') do
+    %b= 'Período'
+  - blueprint('span-4', :id => 'collection_th') do
+    %b= 'Actividad'
+  - blueprint('span-4', :id => 'collection_th') do
+    %b= 'Departamento'
+  - blueprint('span-4', :id => 'collection_th') do
+    %b= 'Responsable Académico'
+  - blueprint('span-4', :id => 'collection_th' ) do
+    %b= 'Tipo de Solicitud'
+  - blueprint('span-4 last', :id => 'collection_th') do
+    %b= 'Acciones'
+  = render :partial => @user_requests
+- blueprint('span-22 prepend-1 last', :id => 'buttons') do
+  = link_to 'Agregar solicitud', new_user_request_path

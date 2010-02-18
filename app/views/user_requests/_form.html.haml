@@ -1,0 +1,24 @@
+%h3= "Solicitud de Estudiante Asociado - Período #{Period.most_recent.name}"
+- blueprint('span-20 prepend-2 last', :id => 'collection_tr') do
+  = f.collection_select :remote_adscription_id, AdscriptionClient.all, :id, :name, {:prompt => '-- Seleccionar --'}, :blueprint => 'span-10'
+  - blueprint 'span-10 last' do
+    = label(:user_request, t(:remote_user_incharge_id))
+    %div{:id=>'remote_user_incharge'}
+      = 'Para asignar un responsable académico seleccione un departamento'
+
+- blueprint('span-20 prepend-2 last', :id => 'collection_tr') do
+  = f.collection_select :role_id, Role.all, :id, :name, {:prompt => '-- Seleccionar --', :blueprint => 'span-10'}
+  - blueprint 'span-10 last' do
+    = label :is_restamped, 'Tipo de soliciud'
+    = (f.radio_button :is_restamped, false, :checked => !f.object.is_restamped) + 'Solicitud nueva'
+    = (f.radio_button :is_restamped, true, :checked => f.object.is_restamped) + 'Resello de credencial'
+- if f.object.role_id.to_i == 1
+  = render :partial => 'form_dates'
+- else
+  %div{:id => 'form_dates'}
+= hidden_field :user_request, :period_id, :value => Period.most_recent.id
+- blueprint 'span-20 prepend-2 last', :id => 'collection_tr' do
+  = f.submit(t(:save))
+  = ' | '
+  = link_to t(:cancel), user_requests_path
+

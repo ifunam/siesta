@@ -1,0 +1,19 @@
+- blueprint('span-22 last', :id => 'collection_tr') do
+  - blueprint('span-3') do
+    = user_request.period.name
+  - blueprint('span-4') do
+    = user_request.role.name
+  - blueprint('span-4') do
+    = user_request.adscription.name
+  - blueprint('span-4') do
+    = user_request.user_incharge.fullname
+  - blueprint('span-4') do
+    = user_request.is_restamped? ? 'Resello' : 'Solicitud nueva'
+  - blueprint('span-3 last') do
+    - unless user_request.is_official?
+      = link_to t(:edit), edit_user_request_path(user_request)
+      = ' | '
+      = link_to t(:delete), user_request_path(:id => user_request.id), :method => :delete, :confirm => t(:confirm_question)
+
+    - else
+      = '-'

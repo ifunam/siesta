@@ -1,0 +1,13 @@
+- blueprint('span-20 prepend-2 last', :id => 'collection_tr') do
+  - blueprint 'span-5' do 
+    = label :start_month, t(:start_month)
+    = select_month(Date.today, :use_month_names => %w(Enero Febrero Marzo Abril Mayo Junio Julio Agosto Septiembre Octubre Noviembre Diciembre), :field_name => 'user_request[start_month]')
+  - blueprint 'span-5' do 
+    = label :start_year, t(:start_year)
+    = text_field :user_request, :start_year, :size => 4
+  - blueprint 'span-5' do 
+    = label :end_month, t(:end_month)
+    = select_month(Date.today, :use_month_names => %w(Enero Febrero Marzo Abril Mayo Junio Julio Agosto Septiembre Octubre Noviembre Diciembre), :field_name => 'user_request[end_month]')
+  - blueprint 'span-5 last' do 
+    = label :end_year, t(:end_year)
+    = text_field :user_request, :end_year, :size => 4

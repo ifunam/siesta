@@ -1,0 +1,22 @@
+%h3= 'Envío de solicitud de Estudiante Asociado al IFUNAM'
+- if !@user_request.nil? and !@user_request.current_request.nil?
+  - blueprint 'span-14 prepend-5 last', :style => 'text-align: left;' do 
+    = "Estado actual de su solicitud para el periodo #{Period.most_recent.name} es "
+    %b= @user_request.current_request_status.downcase + '.'
+    = " Sí aparece un símbolo de "
+    = image_tag('missing.gif', :border => 0) 
+    = " esto significa que aún debe completar información."
+  - blueprint 'span-11 prepend-7 last' do
+    %br
+  - user_request_is_complete = true
+  - @user_request.requirements.each do |a|
+    - blueprint 'span-11 prepend-7 last', :style => 'text-align: left;' do
+      = link_to image_tag((a[2] == true ? 'ok.gif' : 'missing.gif'), :border => 0) + t(a.first), a[1]
+      - user_request_is_complete = a[2] if a[2] == false
+    %br
+       
+  - if user_request_is_complete == true and @user_request.is_current_request_saved?
+    - blueprint 'span-11 prepend-7 last', :style => 'text-align: left;' do
+      = link_to image_tag('attachment.gif', :border => 0) + 'Enviar Solicitud de Estudiante Asociado', send_user_request_path(:id => @user_request.current_request.id), :method => :put, :confirm => '¿Desea enviar su solicitud?'
+- else
+  = link_to 'Capture los datos de la solicitud de estudiante asociado', user_requests_path
