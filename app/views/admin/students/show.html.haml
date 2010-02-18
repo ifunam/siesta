@@ -1,0 +1,21 @@
+- blueprint 'span-23 prepend-1 last', :id=> 'collection_tr', :style => 'border-bottom: 1px solid silver;' do
+  - blueprint 'span-3' do
+    = link_to 'Fotografía', edit_admin_photo_path(:id => @student.person.id)
+  - blueprint 'span-4' do
+    = link_to 'Correo electrónico', admin_email_path(:id => @student.id)
+  - blueprint 'span-5' do
+    = link_to 'Imprimir credencial (frente)', card_front_admin_student_path(:id => @student.id, :format => 'jpg'), :target => '_new'
+  - blueprint 'span-5' do
+    = link_to 'Imprimir credencial (atrás)', card_back_admin_student_path(:id => @student.id, :format => 'jpg'), :target => '_new'
+  - blueprint 'span-4' do
+    = link_to 'Lista de estudiantes', admin_students_path
+- blueprint 'span-20 prepend-2 last', :id=> 'collection_tr' do
+  = render :partial => 'user_request', :object => @student
+= render :partial => 'people/person', :object => @student.person
+= render :partial => 'addresses/address', :object => @student.address
+- blueprint 'span-20 prepend-2 last', :id=> 'collection_tr' do
+  %h3= 'Antecedentes académicos'
+  = render :partial => 'schoolings/schooling_show', :collection => @student.schoolings.find(:all, :order => 'startyear DESC')
+- blueprint 'span-20 prepend-2 last', :id=> 'collection_tr' do
+  %h3= 'Documentos probatorios'
+  = render :partial => 'user_documents/user_document_show', :collection => @student.user_documents

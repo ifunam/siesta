@@ -1,0 +1,11 @@
+- blueprint 'span-21 last', :id => 'collection_tr'do
+  - email = user[:username] + '@fisica.unam.mx'
+  - blueprint 'span-6', :id => 'collection_td' do
+    = email
+  - blueprint 'span-8', :id => 'collection_td' do
+    = user[:gecos]
+  - blueprint 'span-7 last', :id => 'collection_td' do
+    - if user[:username] + '@fisica.unam.mx' == @student.email
+      = 'Cuenta asignada'
+    - else
+      = link_to 'Asignar cuenta', admin_email_path(:id => @student.id, :email => email ), :method => :put 
