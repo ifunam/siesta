@@ -1,3 +1,4 @@
+require 'digest/sha2'
 class User < ActiveRecord::Base
   attr_reader :random_password
 
@@ -15,4 +16,14 @@ class User < ActiveRecord::Base
     self.password = self.password_confirmation = @random_password
     save(:validate => true)
   end
+
+  def self.myauthenticate?(login,password)
+    @user = User.find_by_login(login)
+    !@user.nil? and !@user.password_salt.nil? and @user.crypted_password == User.encrypt(password, @user.password_salt) ? true : false
+  end
+
+  def self.encrypt(password, mysalt)
+    Digest::SHA512.hexdigest(password + mysalt)
+  end
+
 end
