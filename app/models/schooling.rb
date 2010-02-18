@@ -1,7 +1,7 @@
 class Schooling < ActiveRecord::Base
   has_attached_file :file
-  validates_attachment_content_type :file, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'application/pdf', 'application/postscript']
-  validates_attachment_size :file, :max_size => 1..2048
+  #validates_attachment_content_type :file, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'application/pdf', 'application/postscript']
+  #validates_attachment_size :file, :max_size => 1..2048
 
   validates_presence_of :degree_id, :career, :school, :institution, :average, :credits, :startyear
   validates_numericality_of :id, :allow_nil => true, :greater_than => 0, :only_integer => true
@@ -12,22 +12,4 @@ class Schooling < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :degree
-
-  # def degree_name
-  #    self.career.degree.name
-  #  end
-  # 
-  #  def career_and_institution
-  #    [career_name, institution_name].join(', ')
-  #  end
-  # 
-  #  def career_name
-  #    self.career.name
-  #  end
-  # 
-  #  def institution_name
-  #    values = [ self.career.institution.name ]
-  #    values << self.career.institution.parent.name if !self.career.institution.parent.nil?
-  #    values.join(', ')
-  #  end
 end
