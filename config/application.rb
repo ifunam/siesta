@@ -3,7 +3,7 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 # Auto-require default libraries and those for the current Rails environment.
-Bundler.require :default, Rails.env
+Bundler.require :default, Rails.env 
 
 module Siesta
   class Application < Rails::Application
@@ -20,7 +20,7 @@ module Siesta
 
     # Activate observers that should always be running
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
-    config.active_record.observers = :user_observer
+    config.active_record.observers = :user_observer, :user_request_observer
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
@@ -36,6 +36,15 @@ module Siesta
       g.template_engine :haml
       g.test_framework :rspec, :fixture => true, :views => false
       g.fixture_replacement :factory_girl, :dir => "spec/factories"
+    end
+
+    config.action_mailer do |am|
+      am.default_url_options = { :host => "siesta.fisica.unam.mx" }
+      am.action_mailer.delivery_method = :sendmail
+      am.action_mailer.sendmail_settings = {
+          :location       => '/usr/sbin/sendmail',
+          :arguments      => '-i -t -f noreply@fisica.unam.mx'
+       }
     end
 
     # Configure sensitive parameters which will be filtered from the log file.
