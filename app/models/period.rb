@@ -4,7 +4,7 @@ class Period < ActiveRecord::Base
   validates_inclusion_of :is_active, :in=> [true, false]
   validates_uniqueness_of :name
 
-  def validate
+  def validate!
    if startdate && enddate
       errors.add("startdate", "must be after checkout") if time_at_midnight(startdate) >= time_at_midnight(enddate)
     end
