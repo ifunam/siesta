@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   include AuthenticationSystem
-  protect_from_forgery
+  #protect_from_forgery
   before_filter :require_login
 
   private 
@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
       return false
     end
   end
+
 
   # Authorization filter
   # def set_user_authorization

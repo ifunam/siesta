@@ -4,16 +4,20 @@ class MyFormBuilder < ActionView::Helpers::FormBuilder
   # include ActionView::Helpers::TranslationHelper
 
   include ERB::Util
-  (field_helpers + [:collection_select]).each do |selector|
+  
+  (field_helpers + [:collection_select, :file_field]).each do |selector|
     src = <<-end_src
     def #{selector}(method, *args)
       label_key = '.' + method.to_s
       options = args.last
-      puts @object_name
-      if options.is_a? Hash and options.has_key? :blueprint
-        @template.content_tag(:div, @template.label(@object_name, method, I18n.t(label_key)) + super, :class => options[:blueprint])
+      unless "#{selector}" == 'hidden_field' or "#{selector}" == 'radio_button'
+        if options.is_a? Hash and options.has_key? :blueprint
+          @template.content_tag(:div, @template.label(@object_name, method, I18n.t(label_key)) + super, :class => options[:blueprint])
+        else
+          @template.label(@object_name, method, I18n.t(label_key)) + super
+        end
       else
-        @template.label(@object_name, method, I18n.t(label_key)) + super
+        super
       end
     end 
     end_src

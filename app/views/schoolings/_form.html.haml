@@ -1,6 +1,6 @@
-%h3= t :schooling_new
+%h3= 'Grado académico'
 - blueprint 'span-21 prepend-2 last', :style => 'text-align: left;' do
-  = f.collection_select :degree_id, Degree.all, :id, :name, {:prompt => true}, :required => true, :blueprint => 'span-6'
+  = f.collection_select :degree_id, Degree.all, :id, :name, {:prompt => '-- Seleccionar --'}, :required => true, :blueprint => 'span-6'
 - blueprint 'span-21 prepend-2 last', :style => 'text-align: left;' do
   = f.text_field :career, :size => 25, :maxlength => 60, :required => true, :blueprint => 'span-6'
   = f.text_field :school, :size => 30, :maxlength => 60, :required => true, :blueprint => 'span-7'
@@ -14,11 +14,18 @@
   = f.text_field :startyear, :size => 4, :maxlength => 4, :required => true, :blueprint => 'span-6' 
   = f.text_field :endyear, :size => 4, :maxlength => 4, :blueprint => 'span-7 last'
 - blueprint 'span-21 prepend-2 last', :style => 'text-align: left;' do
-  = f.text_field :is_studying_this, :size => 4, :maxlength => 4, :blueprint => 'span-6' 
-  = f.text_field :is_titleholder, :size => 4, :maxlength => 4, :blueprint => 'span-7'
+  - blueprint 'span-6' do
+    = label :gender, '¿Concluyó actividades académicas?'
+    = (f.radio_button :is_studying_this, true, :checked => (f.object.is_studying_this unless f.object.nil?)) + 'Sí'
+    = (f.radio_button :is_studying_this, false, :checked => (!f.object.is_studying_this unless f.object.nil?)) + 'No'
+  - blueprint 'span-6 last' do
+    = label :gender, '¿Tiene título profesional?'
+    = (f.radio_button :is_titleholder, true, :checked => (f.object.is_titleholder unless f.object.nil?)) + 'Sí'
+    = (f.radio_button :is_titleholder, false, :checked => (!f.object.is_titleholder unless f.object.nil?)) + 'No'
 - blueprint 'span-21 prepend-2 last', :style => 'text-align: left;' do
-  = f.file_field :file, :required => true,  :blueprint => 'span-8 last'
-- blueprint 'span-21 prepend-2 last', :style => 'text-align: left;' do
-  = f.submit
+  = label :file, 'Historial académico o Cardex'
+  = file_field :schooling, :file, :required => true,  :blueprint => 'span-8 last'
+- blueprint 'span-21 prepend-2 last', :id => 'buttons' do
+  = f.submit(t(:save))
   = ' | '
   = link_to t(:cancel), schoolings_path

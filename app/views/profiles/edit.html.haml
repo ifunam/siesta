@@ -5,4 +5,5 @@
   - f.fields_for 'address_attributes', @user.address do |address_form|
     = render :partial => 'addresses/form', :locals => { :f => address_form }
   - blueprint 'span-20 prepend-2 last', :style => 'text-align: left;' do
-    = f.submit
+    = f.submit t(:save)
+    = link_to t(:cancel), profile_path

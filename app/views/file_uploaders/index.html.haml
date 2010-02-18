@@ -1,10 +1,11 @@
-%h3= t :user_documents
+%h3= 'Documentos probatorios'
 #collection
-  - blueprint('span-20 prepend-2 last', :style => 'text-align: left;  margin-bottom: 10px;') do
-    - blueprint('span-15 ', :style => 'border-bottom: 1px solid blue; margin-bottom: 10px;') do
-      %b= t :document_type
-    - blueprint('span-5 last', :style => 'border-bottom: 1px solid blue; margin-bottom: 10px;') do
-      %b= t :actions
+  - blueprint('span-20 prepend-2 last', :id => 'collection') do
+    - blueprint('span-15 ', :id => 'collection_th') do
+      %b= 'Documento probatorio'
+    - blueprint('span-5 last', :id => 'collection_th') do
+      %b= 'Acciones'
     = render :partial => @documents
-- blueprint('span-20 prepend-3 last', :style => 'text-align: left;') do
-  = link_to t(:new), new_file_uploader_path
+- if @documents.size < 2
+  - blueprint('span-20 prepend-2 last', :style => 'text-align: left;') do
+    = link_to 'Agregar documento', new_file_uploader_path

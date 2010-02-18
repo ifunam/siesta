@@ -1,3 +1,3 @@
 = error_messages_for :document
-- form_for(@document, :user_document, :url => file_uploader_path(@document), :html => {:multipart => true}) do |f|
+- form_for(@document, :user_document, :url => file_uploader_path(@document), :html => {:multipart => true}, :builder => MyFormBuilder) do |f|
    = render :partial => 'user_documents/form', :locals => { :f => f}

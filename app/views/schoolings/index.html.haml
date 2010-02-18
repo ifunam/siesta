@@ -1,16 +1,16 @@
-%h3= t :schoolings
+%h3= 'Antecedentes Académicos'
 #collection
-  - blueprint('span-22 prepend-1 last', :style => 'text-align: left;  margin-bottom: 10px;') do
-    - blueprint('span-3', :style => 'border-bottom: 1px solid blue; margin-bottom: 10px;') do
-      %b= t :degree
-    - blueprint('span-10', :style => 'border-bottom: 1px solid blue; margin-bottom: 10px;') do
-      %b= t :description
-    - blueprint('span-2', :style => 'border-bottom: 1px solid blue; margin-bottom: 10px;') do
-      %b= t :start_year
-    - blueprint('span-2', :style => 'border-bottom: 1px solid blue; margin-bottom: 10px;') do
-      %b= t :start_year
-    - blueprint('span-4 last', :style => 'border-bottom: 1px solid blue; margin-bottom: 10px;') do
-      %b= t :actions
+  - blueprint('span-23 prepend-1 last', :id => 'collection') do
+    - blueprint('span-3', :id => 'collection_th') do
+      %b= 'Grado'
+    - blueprint('span-10', :id => 'collection_th') do
+      %b= 'Descripción'
+    - blueprint('span-3', :id => 'collection_th') do
+      %b= 'Año de inicio'
+    - blueprint('span-3', :id => 'collection_th') do
+      %b= 'Año de término'
+    - blueprint('span-4 last', :id => 'collection_th') do
+      %b= 'Acciones'
     = render :partial => @schoolings
 - blueprint('span-22 prepend-1 last', :style => 'text-align: left;') do
-  = link_to t(:new), new_schooling_path
+  = link_to 'Agregar', new_schooling_path

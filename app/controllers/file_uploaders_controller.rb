@@ -1,7 +1,7 @@
 class FileUploadersController < ApplicationController
   respond_to :html
   def index
-    @documents = UserDocument.find_all_by_user_id(current_user.id)
+    @documents = UserDocument.where(:user_id => current_user.id)
     respond_with(@documents)
   end
 
@@ -36,6 +36,8 @@ class FileUploadersController < ApplicationController
   def destroy
     @document = UserDocument.find(params[:id])
     flash[:notice] = "Your document has been deleted" if @document.destroy
-    respond_with(@document)
+    respond_with(@document) do |format|
+      format.html { redirect_to file_uploaders_path }
+    end
   end
 end
