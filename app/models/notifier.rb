@@ -29,9 +29,10 @@ class Notifier < ActionMailer::Base
     send_mail_to(user, "Solicitud de Estudiante Asociado no autorizada")
   end
 
-  def new_unix_user(login, password)
+  def new_local_user(login, password, fullname)
     @login = login
     @passwd = password
+    @fullname = fullname
     mail(:to => 'javo@fisica.unam.mx', :subject => $subject_prefix + 'Nueva cuenta de Estudiante Asociado - IFUNAM') do |format|
         format.text
     end
