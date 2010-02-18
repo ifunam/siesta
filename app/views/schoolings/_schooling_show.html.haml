@@ -1,0 +1,40 @@
+- blueprint('span-23 last', :id => 'collection') do
+  - blueprint('span-3', :id => 'collection_td') do
+    %b= 'Grado'
+  - blueprint('span-10', :id => 'collection_td') do
+    %b= 'Descripción'
+  - blueprint('span-3', :id => 'collection_td') do
+    %b= 'Año de inicio'
+  - blueprint('span-3', :id => 'collection_td') do
+    %b= 'Año de término'
+- blueprint 'span-23 last', :style => 'text-align: left;'  do
+  - blueprint('span-3') do
+    = schooling_show.degree.name
+  - blueprint('span-10') do
+    %p
+      = t(:career) + ': '
+      = schooling_show.career
+    %p 
+      = t(:school) + ': '
+      = schooling_show.school
+    %p
+      = t(:institution) + ': '
+      = schooling_show.institution
+    %p 
+      = t(:average) + ': '
+      = schooling_show.average
+      = ', '
+      = t(:credits) + ': '
+      = schooling_show.credits || '-'
+    %p 
+      = t(:is_studying_this) + ': '
+      = schooling_show.is_studying_this? ? 'Sí' : 'No'
+    %p 
+      = t(:is_titleholder) + ': '
+      = schooling_show.is_titleholder? ? 'Sí' : 'No'
+    %p
+      = link_to t(:cardex), schooling_show.file.url, :target => :new
+  - blueprint('span-3') do
+    = schooling_show.startyear
+  - blueprint('span-3') do
+    = schooling_show.endyear || '-'
