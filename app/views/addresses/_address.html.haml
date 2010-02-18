@@ -1,0 +1,33 @@
+- blueprint 'span-20 prepend-2 last', :id=> 'collection_tr' do
+  %h3= 'Domicilio particular'
+  - blueprint 'span-10' do 
+    = content_tag(:label, 'Dirección')
+    = address.location
+  - blueprint 'span-10 last' do 
+    = content_tag(:label, 'Apartado postal')
+    = address.pobox
+- blueprint 'span-20 prepend-2 last', :id=> 'collection_tr' do
+  - blueprint 'span-5' do 
+    %label='País'
+    %br
+    = address.country.name
+  - blueprint 'span-5' do 
+    = content_tag(:label, 'Estado')
+    = address.country_id == 484 ? address.state.name  : '-'
+  - blueprint 'span-5' do 
+    = content_tag(:label, 'Ciudad')
+    = address.city
+  - blueprint 'span-5 last' do 
+    = content_tag(:label, 'Código postal')
+    = address.zipcode
+- blueprint 'span-20 prepend-2 last', :id=> 'collection_tr' do
+  - blueprint 'span-5' do 
+    = content_tag(:label, 'Teléfono')
+    = address.phone
+  - blueprint 'span-5' do 
+    = content_tag(:label, 'Fax')
+    = address.fax
+  - blueprint 'span-10 last' do 
+    = content_tag(:label, 'Cubículo o área de trabajo')
+    = address.other
+  

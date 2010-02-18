@@ -1,0 +1,10 @@
+= error_messages_for :user
+- form_for(@user, :profile, :url => profile_path, :builder => MyFormBuilder, :html => {:method => :post}) do |f|
+  - f.hidden_field :id, :value => current_user.id
+  - f.fields_for 'person_attributes', @user.person do |person_form|
+    = render :partial => 'people/form', :locals => { :f => person_form }
+  - f.fields_for 'address_attributes', @user.address do |address_form|
+    = render :partial => 'addresses/form', :locals => { :f => address_form }
+  - blueprint 'span-20 prepend-2 last', :style => 'text-align: left;' do
+    = f.submit t(:save)
+    = link_to t(:cancel), profile_path
