@@ -20,12 +20,12 @@ class SchoolingsController < ApplicationController
   end
 
   def edit
-    @schooling = Schooling.first(params[:id])
+    @schooling = Schooling.find(params[:id])
     respond_with(@schooling)
   end
 
   def update
-    @schooling = Schooling.first(params[:id])
+    @schooling = Schooling.find(params[:id])
     @schooling.user_id = current_user.id
     flash[:notice] = "Your schooling has been saved" if @schooling.update_attributes(params[:schooling])
     respond_with(@schooling) do |format|
@@ -34,7 +34,7 @@ class SchoolingsController < ApplicationController
   end
 
   def destroy
-    @schooling = Schooling.first(params[:id])
+    @schooling = Schooling.find(params[:id])
     flash[:notice] = "Your document has been deleted" if @schooling.destroy
     respond_with(@schooling)
   end
