@@ -50,5 +50,13 @@ module Siesta
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters << :password
     config.filter_parameters << :password_confirmation
+    
+    config.middleware.use Rack::Mole, { 
+        :moleable    => true,
+        :environment => Rails.env,
+        :app_name => "SIESTA", 
+        :store => Rackamole::Store::MongoDb.new( :db_name => "mole_siesta_#{Rails.env.to_s}_mdb"), 
+        :email => { :from => 'noreply@fisica.unam.mx',  :to => ['alex@fisica.unam.mx'], :alert_on => [Rackamole.perf, Rackamole.fault, Rackamole.feature] }
+    }
   end
 end
