@@ -1,4 +1,3 @@
-require 'rmagick'
 class Person < ActiveRecord::Base
   include Magick
   validates_numericality_of :id, :allow_nil => true, :only_integer => true, :greater_than => 0
