@@ -5,7 +5,6 @@
     = label(:user_request, t(:remote_user_incharge_id))
     %div{:id=>'remote_user_incharge'}
       = 'Para asignar un responsable académico seleccione un departamento'
-
 - blueprint('span-20 prepend-2 last', :id => 'collection_tr') do
   = f.collection_select :role_id, Role.all, :id, :name, {:prompt => '-- Seleccionar --', :blueprint => 'span-10'}
   - blueprint 'span-10 last' do
@@ -17,8 +16,7 @@
 - else
   %div{:id => 'form_dates'}
 = hidden_field :user_request, :period_id, :value => Period.most_recent.id
-- blueprint 'span-20 prepend-2 last', :id => 'collection_tr' do
-  = f.submit(t(:save))
-  = ' | '
-  = link_to t(:cancel), user_requests_path
+- blueprint('span-22 prepend-2 last', :id => 'buttons') do
+  = f.submit t(:save), :class => 'ui-state-default ui-corner-all button'
+  = link_to t(:cancel), user_requests_path, :class => 'ui-state-default ui-corner-all button'
 

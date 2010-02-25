@@ -1,13 +1,11 @@
-%h3= 'Envío de solicitud de Estudiante Asociado al IFUNAM'
+%h3= 'Enviar Solicitud de Estudiante Asociado'
 - if !@user_request.nil? and !@user_request.current_request.nil?
-  - blueprint 'span-14 prepend-5 last', :style => 'text-align: left;' do 
-    = "Estado actual de su solicitud para el periodo #{Period.most_recent.name} es "
-    %b= @user_request.current_request_status.downcase + '.'
-    = " Sí aparece un símbolo de "
-    = image_tag('missing.gif', :border => 0) 
-    = " esto significa que aún debe completar información."
-  - blueprint 'span-11 prepend-7 last' do
-    %br
+  %center
+    %p{:class => 'notice_box blue'}
+      = "El estado actual de su solicitud para el periodo #{Period.most_recent.name} es "
+      %b= @user_request.current_request_status.downcase + '.'
+      = "Debe completar de una sección cuando aparezca el símbolo: "
+      = image_tag('missing.gif', :border => 0, :style => 'float: none; text-align: left; vertical-align: bottom;') 
   - user_request_is_complete = true
   - @user_request.requirements.each do |a|
     - blueprint 'span-11 prepend-7 last', :style => 'text-align: left;' do
@@ -16,7 +14,11 @@
     %br
        
   - if user_request_is_complete == true and @user_request.is_current_request_saved?
-    - blueprint 'span-11 prepend-7 last', :style => 'text-align: left;' do
-      = link_to image_tag('attachment.gif', :border => 0) + 'Enviar Solicitud de Estudiante Asociado', send_user_request_path(:id => @user_request.current_request.id), :method => :put, :confirm => '¿Desea enviar su solicitud?'
+    %br
+    - blueprint 'span-11 prepend-7 last', :style => 'text-align: left;', :id => 'buttons' do
+      = link_to 'Enviar Solicitud', send_user_request_path(:id => @user_request.current_request.id), :method => :put, :confirm => '¿Desea enviar su solicitud?', :class => 'ui-state-default ui-corner-all button'
 - else
-  = link_to 'Capture los datos de la solicitud de estudiante asociado', user_requests_path
+  %center
+    %p{:class => 'notice_box red'}
+      = 'Registre su solicitud de estudiante asociado: '
+      = link_to 'Solicitud', user_requests_path

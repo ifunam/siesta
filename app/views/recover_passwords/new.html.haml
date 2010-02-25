@@ -5,6 +5,6 @@
       = f.label 'Correo electrónico con el que registro su cuenta'
     %p
       = f.text_field :email, :size => 30
-    - blueprint 'span-15 last' do
-      = submit_tag('Enviar contraseña')
-      = link_to 'Cancelar', new_session_path
+    - blueprint 'span-15 last', :id => 'buttons' do
+      = f.submit 'Enviar contraseña', :class => 'ui-state-default ui-corner-all button'
+      = link_to 'Cancelar', new_session_path, :class => 'ui-state-default ui-corner-all button'

@@ -5,6 +5,6 @@
     = f.text_field :email, :size => 30, :required => true, :blueprint => 'span-18 last'
     = f.password_field :password, :size => 12, :required => true, :blueprint => 'span-18 last'
     = f.password_field :password_confirmation, :size => 12, :blueprint => 'span-18 last'
-    - blueprint 'span-18 last' do
-      = submit_tag('Crear cuenta')
-      = link_to 'Cancelar', new_session_path
+    - blueprint 'span-18 last', :id => 'buttons' do
+      = f.submit 'Crear cuenta', :class => 'ui-state-default ui-corner-all button'
+      = link_to 'Cancelar', new_session_path, :class => 'ui-state-default ui-corner-all button'
