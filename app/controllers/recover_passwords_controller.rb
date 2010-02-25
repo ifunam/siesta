@@ -13,6 +13,7 @@ class RecoverPasswordsController < ApplicationController
     @user = User.find_by_email(params[:user][:email])
     flash[:notice] = "Password was sent successfully." 
     if !@user.nil? and @user.randomize_password
+      current_user_session.destroy unless current_user_session.nil?            
       render 'show'
     else
       redirect_to new_recover_password_path

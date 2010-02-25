@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     flash[:notice] = "User account has been created" if @user.save
+    current_user_session.destroy
     respond_with(@user) do |format|
       format.html { render 'show' }
     end
