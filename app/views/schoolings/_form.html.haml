@@ -26,6 +26,5 @@
   = label :file, 'Historial académico o Cardex'
   = file_field :schooling, :file, :required => true,  :blueprint => 'span-8 last'
 - blueprint 'span-21 prepend-2 last', :id => 'buttons' do
-  = f.submit(t(:save))
-  = ' | '
-  = link_to t(:cancel), schoolings_path
+  = f.submit t(:save), :class => 'ui-state-default ui-corner-all button'
+  = link_to t(:cancel), schoolings_path, :class => 'ui-state-default ui-corner-all button'

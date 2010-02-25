@@ -14,4 +14,4 @@
     %b= 'Acciones'
   = render :partial => @user_requests
 - blueprint('span-22 prepend-1 last', :id => 'buttons') do
-  = link_to 'Agregar solicitud', new_user_request_path
+  = link_to 'Agregar solicitud', new_user_request_path, :class => 'ui-state-default ui-corner-all button'

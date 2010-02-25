@@ -14,4 +14,17 @@ class UserRequest < ActiveRecord::Base
     belongs_to :user_incharge, :class_name => "AcademicClient", :foreign_key => 'remote_user_incharge_id'
     belongs_to :local_user_incharge, :class_name => "User", :foreign_key => 'user_incharge_id'
     has_many :comments
+    def send_request
+      change_requeststatus(2)
+    end
+    def is_unauthorized?
+      requeststatus_id == 1 or requeststatus_id == 4
+    end
+
+    private
+    
+    def change_requeststatus(id)
+      self.requeststatus_id = id
+      save(true)
+    end
 end

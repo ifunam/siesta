@@ -21,7 +21,7 @@
       = f.label :password, "Contraseña:", :class => 'login'
       = f.password_field :password, :size => 12
     %p
-      = submit_tag('Entrar')
+      = f.submit 'Entrar', :class => 'ui-state-default ui-corner-all button'
   %p
     = '¿No tiene una cuenta en el sistema?'
     %br

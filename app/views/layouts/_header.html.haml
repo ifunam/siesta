@@ -1,5 +1,7 @@
 %div{:id => 'header', :class => "span-24 last"}
-  %h1= link_to "Instituto de Física - UNAM", "http://www.fisica.unam.mx", :target => '_new'
-- unless current_user.nil?
-  - blueprint 'span-24 last', :style => 'text-align: right; padding-right: 100px;' do
-    = link_to 'Salir', logout_url
+  %h1= link_to "Instituto de Física - UNAM", "http://www.fisica.unam.mx", :target => '_new', :class => 'button'
+  - unless current_user.nil?
+    - blueprint 'span-24 last', :id => 'topmenu' do
+      %div{:id => 'item'}= current_user.login
+      %div{:id => 'item'}
+        = link_to 'Salir', logout_url

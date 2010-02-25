@@ -7,5 +7,5 @@
       %b= 'Acciones'
     = render :partial => @documents
 - if @documents.size < 2
-  - blueprint('span-20 prepend-2 last', :style => 'text-align: left;') do
-    = link_to 'Agregar documento', new_file_uploader_path
+  - blueprint('span-20 prepend-2 last', :style => 'text-align: left;', :id => 'buttons') do
+    = link_to 'Agregar documento', new_file_uploader_path, :class => 'ui-state-default ui-corner-all button'

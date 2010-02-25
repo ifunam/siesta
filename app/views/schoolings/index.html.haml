@@ -12,5 +12,5 @@
     - blueprint('span-4 last', :id => 'collection_th') do
       %b= 'Acciones'
     = render :partial => @schoolings
-- blueprint('span-22 prepend-1 last', :style => 'text-align: left;') do
-  = link_to 'Agregar', new_schooling_path
+- blueprint('span-22 prepend-1 last', :style => 'text-align: left;', :id => 'buttons') do
+  = link_to 'Agregar', new_schooling_path, :class => 'ui-state-default ui-corner-all button'
