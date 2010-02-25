@@ -17,6 +17,9 @@ class UserRequest < ActiveRecord::Base
     def send_request
       change_requeststatus(2)
     end
+    def is_unauthorized?
+      requeststatus_id == 1 or requeststatus_id == 4
+    end
 
     private
     
