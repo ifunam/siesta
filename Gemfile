@@ -1,5 +1,5 @@
 # Edit this Gemfile to bundle your application's dependencies.
-source 'http://gemcutter.org'
+source :gemcutter
 
 gem "rails", "3.0.0.beta"
 
@@ -21,12 +21,13 @@ gem "rackamole"
 
 group :development do
   # DB performance tools
-  gem "bullet"
-  gem "rails_indexes", "0.0.0", :git => "git://github.com/eladmeidar/rails_indexes.git", :branch => "master"
-#  gem "methodmissing-scrooge", :source => "http://gems.github.com"
+  gem "bullet" # Gem to identify N+1 queries and unused eager loading 
+  gem "rails_indexes", "0.0.0", :git => "git://github.com/eladmeidar/rails_indexes.git", :branch => "master" # Gem to identify potential db indexes
+  gem "slim_scrooge", "1.0.5" # Gem to heavily optimize your database interactions 
 end
 
 group :test do
   gem "rspec"
-  gem "rspec-rails"
+  gem "rspec-rails", "2.0.0.a9", :git => "git://github.com/rspec/rspec-rails.git", :branch => "master"
+  gem "webrat"
 end
