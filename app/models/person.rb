@@ -29,7 +29,7 @@ class Person < ActiveRecord::Base
 
   def build_card_image
     unless self.photo.nil?
-      if File.exist? self.photo.path
+      if File.exist? self.photo.path.to_s
         pic = Magick::Image.read(self.photo.path).first
         maxwidth = 200
         maxheight = 250
