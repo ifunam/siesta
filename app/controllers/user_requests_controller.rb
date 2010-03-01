@@ -1,5 +1,5 @@
 class UserRequestsController < ApplicationController
-  respond_to :html
+  respond_to :html, :except => [:remote_incharge_users, :remote_dates]
   respond_to :js, :only => [:remote_incharge_users, :remote_dates]
 
   def index
@@ -8,17 +8,13 @@ class UserRequestsController < ApplicationController
   end
 
   def new
-    @user_request = UserRequest.new
-    respond_with(@user_request)
+    respond_with(@user_request = UserRequest.new)
   end
 
   def create
-    @user_request = UserRequest.new(params[:user_request])
-    @user_request.user_id = current_user.id
-    flash[:notice] = "Your user_request has been saved" if @user_request.save
-    respond_with(@user_request) do |format|
-      format.html { redirect_to user_requests_path}
-    end
+    @user_request = UserRequest.new(params[:user_request].merge(:user_id => current_user.id))
+    @user_request.save
+    respond_with(@user_request, :status => :created, :location => user_requests_path)
   end
 
   def edit
@@ -28,16 +24,13 @@ class UserRequestsController < ApplicationController
 
   def update
     @user_request = UserRequest.find(params[:id])
-    @user_request.user_id = current_user.id
-    flash[:notice] = "Your user_request has been saved" if @user_request.update_attributes(params[:user_request])
-    respond_with(@user_request) do |format|
-      format.html { redirect_to user_requests_path}
-    end
+    @user_request.update_attributes(params[:user_request].merge(:user_id => current_user.id))
+    respond_with(@user_request, :status => :updated, :location => user_requests_path)
   end
 
   def destroy
     @user_request = UserRequest.find(params[:id])
-    flash[:notice] = "Your user_request has been deleted" if @user_request.destroy
+    @user_request.destroy
     respond_with(@user_request)
   end
   
@@ -47,5 +40,4 @@ class UserRequestsController < ApplicationController
   
   def form_dates  
   end
-  
 end
