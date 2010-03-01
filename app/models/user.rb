@@ -2,8 +2,8 @@ require 'digest/sha2'
 class User < ActiveRecord::Base
   attr_reader :random_password
 
-  validates :login, :uniqueness => true 
-  validates :email, :uniqueness => true 
+  #validates :login, :uniqueness => true 
+  #validates :email, :uniqueness => true 
   
   acts_as_authentic do |c|
     c.logged_in_timeout = 120.minutes
