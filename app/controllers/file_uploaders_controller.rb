@@ -1,22 +1,19 @@
 class FileUploadersController < ApplicationController
   respond_to :html
+
   def index
-    @documents = UserDocument.where(:user_id => current_user.id)
-    respond_with(@documents)
+    respond_with(@documents = UserDocument.where(:user_id => current_user.id))
   end
 
   def new
-    @document = UserDocument.new
-    respond_with(@document)
+    respond_with(@document = UserDocument.new)
   end
 
   def create
     @document = UserDocument.new(params[:user_document])
     @document.user_id = current_user.id
-    flash[:notice] = "Your document has been saved" if @document.save
-    respond_with(@document) do |format|
-      format.html { redirect_to file_uploaders_path }
-    end	
+    @document.save
+    respond_with(@document, :status => :created, :location => file_uploaders_path ) 
   end
 
   def edit
@@ -27,17 +24,13 @@ class FileUploadersController < ApplicationController
   def update
     @document = UserDocument.find(params[:id])
     @document.user_id = current_user.id
-    flash[:notice] = "Your document has been saved" if @document.update_attributes(params[:user_document])
-    respond_with(@document) do |format|
-      format.html { redirect_to file_uploaders_path }
-    end
+    @document.update_attributes(params[:user_document])
+    respond_with(@document, :status => :created, :location => file_uploaders_path ) 
   end
 
   def destroy
     @document = UserDocument.find(params[:id])
-    flash[:notice] = "Your document has been deleted" if @document.destroy
-    respond_with(@document) do |format|
-      format.html { redirect_to file_uploaders_path }
-    end
+    @document.destroy
+    respond_with(@document, :status => :ok, :location => file_uploaders_path) 
   end
 end
