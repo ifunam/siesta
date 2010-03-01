@@ -28,6 +28,7 @@ end
 
 group :test do
   gem "rspec"
-  gem "rspec-rails", "2.0.0.a9", :git => "git://github.com/rspec/rspec-rails.git", :branch => "master"
+  gem "rspec-rails", "2.0.0.a10", :git => "git://github.com/rspec/rspec-rails.git", :branch => "master"
+  gem "factory_girl", :git => "git://github.com/thoughtbot/factory_girl.git", :branch => "rails3"
   gem "webrat"
 end
