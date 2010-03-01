@@ -11,14 +11,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    respond_with(@session = UserSession.create(params[:user_session])) do |format|
-      format.html { redirect_to dashboard_path, :protocol => 'http'}
-    end
+    respond_with(@session = UserSession.create(params[:user_session]), :status => :created, :location =>  dashboard_path)
   end
 
   def destroy
-    respond_with(current_user_session.destroy) do |format|
-      format.html { redirect_to new_session_url }
-    end
+    current_user_session.destroy
+    redirect_to new_session_url
   end
 end
