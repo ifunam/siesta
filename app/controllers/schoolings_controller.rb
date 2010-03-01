@@ -6,17 +6,13 @@ class SchoolingsController < ApplicationController
   end
 
   def new
-    @schooling = Schooling.new
-    respond_with(@schooling)
+    respond_with(@schooling = Schooling.new)
   end
 
   def create
-    @schooling = Schooling.new(params[:schooling])
-    @schooling.user_id = current_user.id
-    flash[:notice] = "Your schooling has been saved" if @schooling.save
-    respond_with(@schooling) do |format|
-      format.html { redirect_to schoolings_path }
-    end
+    @schooling = Schooling.new(params[:schooling].merge(:user_id => current_user.id))
+    @schooling.save
+    respond_with(@schooling, :status => :created, :location => schoolings_path)
   end
 
   def edit
@@ -26,16 +22,13 @@ class SchoolingsController < ApplicationController
 
   def update
     @schooling = Schooling.find(params[:id])
-    @schooling.user_id = current_user.id
-    flash[:notice] = "Your schooling has been saved" if @schooling.update_attributes(params[:schooling])
-    respond_with(@schooling) do |format|
-      format.html { redirect_to schoolings_path }
-    end
+    @schooling.update_attributes(params[:schooling].merge(:user_id => current_user.id))
+    respond_with(@schooling, :status => :updated, :location => schoolings_path)
   end
 
   def destroy
     @schooling = Schooling.find(params[:id])
-    flash[:notice] = "Your document has been deleted" if @schooling.destroy
+    @schooling.destroy
     respond_with(@schooling)
   end
 end

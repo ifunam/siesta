@@ -10,8 +10,7 @@ class FileUploadersController < ApplicationController
   end
 
   def create
-    @document = UserDocument.new(params[:user_document])
-    @document.user_id = current_user.id
+    @document = UserDocument.new(params[:user_document].merge(:user_id => current_user.id))
     @document.save
     respond_with(@document, :status => :created, :location => file_uploaders_path ) 
   end
@@ -23,14 +22,13 @@ class FileUploadersController < ApplicationController
 
   def update
     @document = UserDocument.find(params[:id])
-    @document.user_id = current_user.id
-    @document.update_attributes(params[:user_document])
+    @document.update_attributes(params[:user_document].merge(:user_id => current_user.id))
     respond_with(@document, :status => :created, :location => file_uploaders_path ) 
   end
 
   def destroy
     @document = UserDocument.find(params[:id])
     @document.destroy
-    respond_with(@document, :status => :ok, :location => file_uploaders_path) 
+    respond_with(@document, :status => :ok, :location => file_uploaders_path)
   end
 end
