@@ -1,5 +1,4 @@
 class Academic::ApplicationController < ActionController::Base
-  
   before_filter :require_academic_login
   include AuthenticationSystem
   
