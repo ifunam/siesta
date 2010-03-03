@@ -8,7 +8,7 @@
         = student_request.user.person.fullname
       - blueprint 'span-7 last' do
         %b= 'Teléfono: '
-        = student_request.user.address.phone
+        = student_request.user.address.phone unless student_request.user.address.nil?
     - blueprint 'span-17  last', :id => 'collection_tr' do
       - blueprint 'span-10' do
         %b= 'Actividad a realizar: '

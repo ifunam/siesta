@@ -11,24 +11,23 @@ class Period < ActiveRecord::Base
   end
 
   def self.most_recent
-    Period.get_active || Period.get_last
+    Period.activated || Period.last_started
   end
 
-  def self.get_last
-    self.find(:first, :conditions => ['enddate >= ?', Date.today], :order => "startdate ASC")
+  def self.last_started
+    self.where(['enddate >= ?', Date.today]).order("startdate ASC").limit(1).first
   end
 
-  def self.get_previus
-    self.find(:first, :conditions => ['enddate < ?', Period.get_last.enddate], :order => "startdate ASC")
+  def self.activated
+    self.where(:is_active=>true).first
   end
 
-  def self.get_active
-    self.find_by_is_active(true)
+  def self.previous
+    self.where(['startdate < ?', Period.most_recent.startdate]).order('startdate DESC').limit(1).first
   end
-
+  
   private
   def time_at_midnight(date)
     date.to_date
   end
-
 end
