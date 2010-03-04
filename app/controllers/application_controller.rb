@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include AuthenticationSystem
-  #protect_from_forgery
+  protect_from_forgery :except => [:destroy] # Fix it: Enable forgery protection for destroy
+  
   before_filter :require_login
 
   private 

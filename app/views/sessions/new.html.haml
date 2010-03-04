@@ -12,7 +12,10 @@
     = "Esta aplicación es compatible con las versiones más recientes de los navegadores: Firefox, Internet Explorer, Safari o Chrome."
 
 %div{:class => 'span-8 prepend-1 last', :style => 'text-align: left;'}
+  = error_messages_for :session
+
   %h3= 'Inicio de Sesión'
+  
   - form_for @session, :session, :url => session_path do |f|
     %p{:style => 'vertical-align: middle;'}
       = f.label :login, "Usuario:", :class => 'login'

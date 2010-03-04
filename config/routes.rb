@@ -51,6 +51,10 @@ Siesta::Application.routes.draw do |map|
     resources :photos
     resources :emails
   end
+
+  namespace :public do
+    resources :students
+  end
   # Default controllers
   root :to => "sessions#new"
 end

@@ -33,7 +33,7 @@ class Notifier < ActionMailer::Base
     @login = login
     @passwd = password
     @fullname = fullname
-    mail(:to => 'javo@fisica.unam.mx', :subject => $subject_prefix + 'Nueva cuenta de Estudiante Asociado - IFUNAM') do |format|
+    mail(:to => 'javier@fisica.unam.mx', :subject => $subject_prefix + 'Nueva cuenta de Estudiante Asociado - IFUNAM') do |format|
         format.text
     end
   end

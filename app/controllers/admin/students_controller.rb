@@ -1,13 +1,15 @@
 class Admin::StudentsController < Academic::ApplicationController 
   layout 'academic'
-
+  respond_to :html, :only => [:index, :show]
   def index
      @user_requests = UserRequest.all(:conditions => ["user_requests.requeststatus_id > 1 AND people.lastname1 ~* ?", '^' + (params[:char] || 'A') ], :order => 'periods.startdate DESC', :include => [:period, {:user => :person}]).paginate(:page => params[:page] || 1, :per_page => params[:per_page] || 10)
+     respond_with(@user_requests)
   end
   
   def show
     @student = StudentProfile.find(params[:id])
     @student.person.build_card_image
+    respond_with(@student)
   end
   
   def card_front
