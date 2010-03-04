@@ -9,7 +9,7 @@
       = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
   %body
     %div{:class =>'container'}
-      = render :partial => 'layouts/header'
+      %div{:id => 'main_header', :class => 'span-24 last'}
       %div{:id => 'main', :class => 'span-24 last', :style => 'padding-top: 25px'}
         =yield
       %div{:id => 'main_footer', :class => 'span-24 last'}
