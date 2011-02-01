@@ -1,34 +1,33 @@
 # Edit this Gemfile to bundle your application's dependencies.
 source :gemcutter
 
-gem "rails", "3.0.0.beta"
+gem "rails", "3.0.4.rc1"
 
-gem "pg"
-gem "haml-edge", "2.3.155", :require => 'haml'
-gem "compass", "0.10.0.pre8", :git => "git://github.com/chriseppstein/compass.git", :branch => 'master'
-gem "authlogic", "2.1.3", :git => "git://github.com/binarylogic/authlogic.git", :branch => 'master'
+gem "haml"
+gem "pg", "0.10.0"
+gem "compass", "0.10.6"
+gem "authlogic", "2.1.6"
+gem "devise", "1.1.3"
+gem "devise_ldap_authenticatable"
+gem "net-ldap"
 gem "ssl_requirement"
-gem "paperclip", "2.3.1.1", :git => "git://github.com/thoughtbot/paperclip.git", :branch => 'rails3'
-gem "dom_id", "0.0.0", :git => "git://github.com/nazgum/domid_gum.git", :branch => "master", :require => 'domid_gum'
-gem "net-ssh", :require => 'net/ssh'
-gem "will_paginate"
-gem "rmagick", :require => 'RMagick'
-gem 'barby'
-gem 'bcrypt-ruby', :require => 'bcrypt'
-gem "jquery_helpers", "0.0.0", :git => 'git://github.com/CodeOfficer/jquery-helpers-for-rails3.git', :branch => 'master'
-gem "mongrel"
-gem "rackamole"
+gem "paperclip", "2.3.8"
+gem "will_paginate", "3.0.pre2"
+gem "rmagick", "2.12.2", :require => 'RMagick'
+gem 'barby', "0.4.2"
+gem 'bcrypt-ruby', "2.1.4"
+gem "tzinfo"
+gem "acts_as_tree", :git => 'git://github.com/parasew/acts_as_tree.git'
 
 group :development do
   # DB performance tools
   gem "bullet" # Gem to identify N+1 queries and unused eager loading 
-  gem "rails_indexes", "0.0.0", :git => "git://github.com/eladmeidar/rails_indexes.git", :branch => "master" # Gem to identify potential db indexes
-  gem "slim_scrooge", "1.0.5" # Gem to heavily optimize your database interactions 
+  gem "slim_scrooge", "1.0.11"
+  gem "hpricot"
+  gem "ruby_parser"
 end
 
 group :test do
-  gem "rspec"
-  gem "rspec-rails", "2.0.0.a10", :git => "git://github.com/rspec/rspec-rails.git", :branch => "master", :require => 'spec/rails'
-  gem "factory_girl", :git => "git://github.com/thoughtbot/factory_girl.git", :branch => "rails3"
-  gem "webrat"
+  gem "rspec-rails", "2.4.1"
+  gem "factory_girl", "1.3.3"
 end
