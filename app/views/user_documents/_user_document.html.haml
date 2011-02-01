@@ -1,4 +1,4 @@
-%div{:id => user_document.dom_id}
+%div{:id => dom_id(user_document)}
   - blueprint('span-16') do
     = link_to user_document.document.name, user_document.file.url, :target => :new
   - blueprint('span-4 last') do

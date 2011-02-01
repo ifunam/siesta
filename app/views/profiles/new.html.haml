@@ -1,4 +1,4 @@
-= error_messages_for :user
+= render :partial => "/shared/errors", :object => @user.errors
 - form_for(@user, :profile, :url => profile_path, :builder => MyFormBuilder, :html => {:method => :post}) do |f|
   - f.hidden_field :id, :value => current_user.id
   - f.fields_for 'person_attributes', @user.person do |person_form|
