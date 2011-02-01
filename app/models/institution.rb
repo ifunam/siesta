@@ -1,5 +1,5 @@
 class Institution < ActiveRecord::Base
-  acts_as_tree
+  # acts_as_tree
 
   validates_numericality_of :id, :greater_than => 0, :only_integer => true, :allow_nil => true
   validates_presence_of :name, :country_id

@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Notifier < ActionMailer::Base
   default :from => "no-reply-siesta@fisica.unam.mx"
   $subject_prefix = '[SIESTA] - '
@@ -22,18 +23,48 @@ class Notifier < ActionMailer::Base
   end
 
   def authorized_notification(user)
-    send_mail_to(user, "Solicitud de Estudiante Asociado autorizada")
+    subject = 'Solicitud de Estudiante Asociado autorizada'
+    @user = user
+    filename = 'ReglasOperacionEstudiantesAsociadosIFUNAMAgosto2010.pdf'
+    mail(:to => user.email, :subject => $subject_prefix + subject) do |format|
+      format.text
+      attachments[filename] = File.read(Rails.root.to_s + "/app/views/notifier/#{filename}")  
+    end
   end
+  
+  def authorized_notification_academic(user, user_incharge)
+    subject = 'Solicitud de Estudiante Asociado autorizada'
+    @user = user
+    filename = 'ReglasOperacionEstudiantesAsociadosIFUNAMAgosto2010.pdf'
+    mail(:to => user_incharge.email, :subject => $subject_prefix + subject) do |format|
+      format.text
+      attachments[filename] = File.read(Rails.root.to_s + "/app/views/notifier/#{filename}")  
+    end
+  end
+
 
   def unauthorized_notification(user)
-    send_mail_to(user, "Solicitud de Estudiante Asociado no autorizada")
+    subject = 'Solicitud de Estudiante Asociado no autorizada'
+    @user = user
+    mail(:to => user.email, :subject => $subject_prefix + subject) do |format|
+      format.text
+    end
   end
 
-  def new_local_user(login, password, fullname)
+  def unauthorized_notification_academic(user, user_incharge)
+    subject = 'Solicitud de Estudiante Asociado no autorizada'
+    @user = user
+    mail(:to => user_incharge.email, :subject => $subject_prefix + subject) do |format|
+      format.text
+    end
+  end
+
+  def new_local_user(login, password, fullname, group)
     @login = login
     @passwd = password
     @fullname = fullname
-    mail(:to => 'javier@fisica.unam.mx', :subject => $subject_prefix + 'Nueva cuenta de Estudiante Asociado - IFUNAM') do |format|
+    @group = group 
+    mail(:to => 'vic@fisica.unam.mx', :subject => $subject_prefix + 'Nueva cuenta de Estudiante Asociado - IFUNAM') do |format|
         format.text
     end
   end

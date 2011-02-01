@@ -17,7 +17,7 @@ class UserRequest < ActiveRecord::Base
     def self.find_by_academic_login(login)
       user_incharge = AcademicClient.find_by_login(login)
       unless user_incharge.nil?
-        select('DISTINCT(user_id)').where(["(period_id = ? OR period_id = ?) AND remote_user_incharge_id = ? AND requeststatus_id = 3",  Period.previous.id, Period.most_recent.id, user_incharge.id]).all.collect { |record|
+        select('DISTINCT(user_id)').where(["(period_id = ?) AND remote_user_incharge_id = ? AND requeststatus_id = 3",  Period.most_recent.id, user_incharge.id]).all.collect { |record|
             where(:user_id => record.user_id).includes(:period).order('periods.startdate DESC').limit(1).first
         }.compact
       end
