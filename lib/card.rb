@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'RMagick'
 require 'barby'
 require 'barby/outputter/rmagick_outputter'
@@ -20,14 +21,23 @@ class Card
   
   def back
     @image = Magick::Image.read(Rails.root.to_s+"/public/images/cards/back.jpg").first
-    add_text!(Date.today.to_s, 280, 331, 20, BoldWeight)
+    add_text!(Date.today.to_s, 280, 331, 24, BoldWeight)
     set_code
-    add_text!(self.code, 800, 400, 20, BoldWeight)
+    add_text!(self.code, 800, 400, 24, BoldWeight)
     recent_period = Period.most_recent
-    add_text!(recent_period.name + ' [*]', 310, 605, 20, BoldWeight)
-    x = 330 
-    Period.find(:all, :conditions => ['startdate > ?', recent_period.enddate], :limit => 3, :order => 'startdate ASC').each do |period|
-      add_text!(period.name + '[ ]', x+=105, 605, 20, BoldWeight)
+    x = 265 
+    y = 485 
+    add_text!(recent_period.name + ' [*]', x, y, 24, BoldWeight)
+    #x += 35 
+    counter = 1 
+    Period.find(:all, :conditions => ['startdate > ?', recent_period.enddate], :limit => 7, :order => 'startdate ASC').each do |period|
+      add_text!(period.name + '[ ]', x+=125, y, 24, BoldWeight)
+      counter += 1
+      if counter == 4 
+         counter = 0
+         x = 140
+         y += 50 
+      end
     end
     @image.composite(barcode_image.resize(350,300), 650, 100, Magick::OverCompositeOp).to_blob
   end

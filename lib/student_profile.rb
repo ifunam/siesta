@@ -1,3 +1,4 @@
+# encoding: utf-8
 class StudentProfile < User
   has_one :person, :foreign_key => :user_id
   has_one :address, :foreign_key => :user_id
@@ -39,6 +40,10 @@ class StudentProfile < User
 
   def department
     most_recent_user_request.user_incharge.adscription_name
+  end
+
+  def group 
+    most_recent_user_request.adscription.group
   end
 
   def phone

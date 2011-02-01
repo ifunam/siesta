@@ -16,6 +16,10 @@ class AdscriptionClient < ActiveResource::Base
   def name
     @attributes['name']
   end
+  
+  def group
+    @attributes['abbrev']
+  end
 
   def fullname_remote_user(attributes)
     %w(lastname1 lastname2 firstname).collect {|k| attributes['person'][k] }.join(' ')
