@@ -1,9 +1,0 @@
-%h3= 'Fotografía'
-= error_messages_for :person
-- form_for(@person, :person, :url => admin_photo_path(@person), :html => {:multipart => true}) do |f|
-  - blueprint('span-20 prepend-2 last', :id => 'collection_tr') do
-    = f.label :photo, 'Archivo'
-    = f.file_field :photo, :size => 20, :blueprint => 'span-10 last'
-  - blueprint 'span-10 prepend-2 last', :id => 'buttons' do
-    = f.submit(t(:save))
-    = link_to t(:cancel), admin_student_path(:id => @person.user_id)
