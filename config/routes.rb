@@ -1,13 +1,11 @@
 Siesta::Application.routes.draw do |map|
-  # Authentication is not required for this controllers
-  resource :session
-  match '/logout', :to => "sessions#destroy", :as => 'logout'
+  devise_for :users
+  devise_for :accounts, :controllers => { :sessions => "accounts/sessions" }
+  devise_for :managers
+  devise_for :academics
 
-  resource :recover_password
-  resource :user
-
-  # Student controllers
-  resource :profile 
+  ## Student controllers
+  resource :profile
   get "/profile/person_state_list/:id", :to => "profiles#person_state_list"
   resource :dashboard
   resources :file_uploaders
@@ -27,21 +25,17 @@ Siesta::Application.routes.draw do |map|
   end
   resource :send_user_request
 
-  # Academic controllers
-  namespace :academic do 
-    resource :session
+  ## Academic controllers
+  namespace :academics do 
     resources :student_requests do
       member do 
         get :update
       end
     end
-    match 'logout', :to => "academic/sessions#destroy", :as => 'logout'
   end
 
   # Admin controllers
-  namespace :admin do 
-    resource :session
-    match 'logout', :to => "admin/sessions#destroy", :as => 'logout'
+  namespace :managers do 
     resources :students do
       member do
         get :card_back
@@ -55,6 +49,6 @@ Siesta::Application.routes.draw do |map|
   namespace :public do
     resources :students
   end
-  # Default controllers
-  root :to => "sessions#new"
+  ## Default controllers
+  root :to => "profiles#show"
 end

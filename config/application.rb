@@ -1,16 +1,45 @@
 require File.expand_path('../boot', __FILE__)
+
 require 'rails/all'
 
-# Auto-require default libraries and those for the current Rails environment.
-Bundler.require :default, Rails.env 
+# If you have a Gemfile, require the gems listed there, including any gems
+# you've limited to :test, :development, or :production.
+Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module Siesta
   class Application < Rails::Application
-    config.load_paths += %W( #{config.root}/lib #{config.root}/lib/clients )
-    config.active_record.observers = :user_observer, :user_request_observer
+    # Settings in config/environments/* take precedence over those specified here.
+    # Application configuration should go into files in config/initializers
+    # -- all .rb files in that directory are automatically loaded.
+
+    # Custom directories with classes and modules you want to be autoloadable.
+    config.autoload_paths += %W( #{config.root}/lib #{config.root}/lib/clients )
+
+    # Only load the plugins named here, in the order given (default is alphabetical).
+    # :all can be used as a placeholder for all plugins not explicitly named.
+    #config.plugins = [ :exception_notification, :ssl_requirement, :all ]
+
+    # Activate observers that should always be running.
+    config.active_record.observers = :user_request_observer
+
+    # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
+    # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     config.time_zone = 'Mexico City'
-    config.i18n.load_path << Dir[Rails.root.join('my', 'locales', '**', '*.{rb,yml}').to_s]
+
+    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
+    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+    config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '**', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :es
+
+    # JavaScript files you want as :defaults (application.js is always included).
+    # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
+
+    # Configure the default encoding used in templates for Ruby 1.9.
+    config.encoding = "utf-8"
+
+    # Configure sensitive parameters which will be filtered from the log file.
+    # config.filter_parameters += [:password]
+    #config.filter_parameters += [:password_confirmation]
 
     config.generators do |g|
       g.orm             :active_record
@@ -19,27 +48,15 @@ module Siesta
       g.fixture_replacement :factory_girl, :dir => "spec/factories"
     end
 
-    if Rails.env != 'test'
-      config.action_mailer do |am|
-        am.default_url_options = { :host => "siesta.fisica.unam.mx" }
-        am.action_mailer.delivery_method = :sendmail
-        am.action_mailer.sendmail_settings = {
-          :location       => '/usr/sbin/sendmail',
-          :arguments      => '-i -t -f noreply@fisica.unam.mx'
-        }
-      end
-
-      # Configure sensitive parameters which will be filtered from the log file.
-      config.filter_parameters << :password
-      config.filter_parameters << :password_confirmation
-
-      config.middleware.use Rack::Mole, { 
-        :moleable    => true,
-        :environment => Rails.env,
-        :app_name => "SIESTA", 
-        :store => Rackamole::Store::MongoDb.new( :db_name => "mole_siesta_#{Rails.env.to_s}_mdb"), 
-        :email => { :from => 'noreply@fisica.unam.mx',  :to => ['alex@fisica.unam.mx'], :alert_on => [Rackamole.perf, Rackamole.fault, Rackamole.feature] }
-      }
-    end
+   # if Rails.env != 'test'
+   #   config.action_mailer do |am|
+   #     am.default_url_options = { :host => "siesta.fisica.unam.mx" }
+   #     am.action_mailer.delivery_method = :sendmail
+   #     am.action_mailer.sendmail_settings = {
+   #       :location       => '/usr/sbin/sendmail',
+   #       :arguments      => '-i -t -f noreply@fisica.unam.mx'
+   #     }
+   #   end
+   # end
   end
 end
