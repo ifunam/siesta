@@ -13,7 +13,7 @@ module Siesta
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    config.autoload_paths += %W( #{config.root}/lib #{config.root}/lib/clients )
+    config.autoload_paths += %W( #{config.root}/lib #{config.root}/lib/clients  #{config.root}/ldap)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -37,10 +37,6 @@ module Siesta
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
-    # Configure sensitive parameters which will be filtered from the log file.
-    # config.filter_parameters += [:password]
-    #config.filter_parameters += [:password_confirmation]
-
     config.generators do |g|
       g.orm             :active_record
       g.template_engine :haml
@@ -48,15 +44,5 @@ module Siesta
       g.fixture_replacement :factory_girl, :dir => "spec/factories"
     end
 
-   # if Rails.env != 'test'
-   #   config.action_mailer do |am|
-   #     am.default_url_options = { :host => "siesta.fisica.unam.mx" }
-   #     am.action_mailer.delivery_method = :sendmail
-   #     am.action_mailer.sendmail_settings = {
-   #       :location       => '/usr/sbin/sendmail',
-   #       :arguments      => '-i -t -f noreply@fisica.unam.mx'
-   #     }
-   #   end
-   # end
   end
 end
