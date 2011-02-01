@@ -1,0 +1,51 @@
+%div{:class => 'span-12	 prepend-1', :style => 'margin: 10px; padding: 10px; border-right: 1px solid silver;'}
+  %h2 Solicitud de resello
+
+  %p{:class => 'notice_box blue'}
+    = image_tag('ok.png')
+    = 'Resello de credenciales para Estudiantes Asociados al Instituto de Física de la UNAM '
+    %b= '(Período: 2011-1).'
+  %div{:class => 'span-5', :style => 'text-align: left;'}
+
+    %h3 Inicio de sesión
+    = form_for(resource, :as => :user, :url => session_path(:user)) do |f|
+      %p
+        = f.label :login, 'Usuario', :class => 'login'
+        = f.text_field :login, :size => 12
+      %p
+        = f.label :password, 'Contraseña', :class => 'login'
+        = f.password_field :password, :size => 12
+      %p= f.submit "Entrar"
+  %div{:class => 'span-6', :style => 'text-align: left; background: #fff; border: 1px solid green; padding: 5px'}
+    %p='Para entrar al sistema debes usar el usuario y contraseña del correo electrónico del Instituto de Física.'
+    %p='Por ejemplo, si tu cuenta de correo es roberto@fisica.unam.mx, los datos para entrar al sistema son:'
+    %p{:class=>'example'}
+      %b='Usuario: '
+      = 'roberto'
+      %br
+      %b='Contraseña: '
+      = '***********'
+%div{:class => 'span-10 last', :style => 'margin: 10px; padding: 10px;'}
+  %h2 Solicitud de Estudiante
+  %div{:class => 'span-4', :style => 'text-align: left; background: #fff; border: 1px solid green; padding: 5px'}
+    %p='Para entrar al sistema debes usar el usuario y contraseña que registraste en el SIESTA.'
+    %p='Por ejemplo: '
+    %p{:class=>'example'}
+      %b='Usuario: '
+      = 'mariab'
+      %br
+      %b='Contraseña: '
+      = '***********'
+  %div{:class => 'span-4', :style => 'text-align: right;'}
+
+    %h3 Inicio de sesión
+    = form_for(resource, :as => :account, :url => account_session_path(:account)) do |f|
+      %p
+        = f.label :login, 'Usuario', :class => 'login'
+        = f.text_field :login, :size => 12
+      %p
+        = f.label :password, 'Contraseña', :class => 'login'
+        = f.password_field :password, :size => 12
+      %p= f.submit "Entrar"
+  %div{:class => 'span-9 last', :style => 'margin: 10px; padding: 10px;'}
+    = render :partial => "accounts/shared/links"

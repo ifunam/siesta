@@ -3,17 +3,21 @@
 *                            NO HAGA REPLY                         *
 ********************************************************************
 
-Usted ha recibido una  solicitud de estudiante asociado al Instituto 
-de Física. 
+Estimado Académico del IFUNAM, usted ha recibido una solicitud para 
+asociar un estudiante al Instituto de Física.
 
 Estudiante: <%= @user.person.fullname %>
 
 Para atender esta solicitud debe usar la siguiente dirección:
 
-<%= new_academic_session_url(:host => 'siesta.fisica.unam.mx') %>
+<%= academics_student_requests_url(:host => 'siesta.fisica.unam.mx') %>
+
+Recuerde que, de acuerdo a las reglas de operación para tener estudiantes
+asociados, también debe notificar a la Coordinación Docente cuando termine
+su relación con este estudiante.
 
 Gracias por usar el SIESTA.
 
-Instituto de Física
+Coordinación Docente, Instituto de Física
 Universidad Nacional Autónoma de México
 ====================================================================

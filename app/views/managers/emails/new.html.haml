@@ -1,0 +1,19 @@
+- blueprint 'span-20 prepend-2 last',  :style => 'text-align: left;' do
+  %h3= 'Nueva cuenta de correo electrónico'
+  = render :partial => 'managers/students/user_request', :object => @student
+  - form_for :user, :url => managers_emails_path, :html => { :method => :post} do |f|
+    - blueprint 'span-20' do
+      = f.label :login, "Usuario:", :class => 'login'
+      = f.text_field :login, :size => 12
+    - blueprint 'span-20' do
+      = f.label :password, "Contraseña:", :class => 'login'
+      = f.password_field :password, :size => 12
+    - blueprint 'span-20' do
+      = f.label :password, "Confirmación de la contraseña:", :class => 'login'
+      = f.password_field :password_confirmation, :size => 12
+      = f.hidden_field :fullname, :value => @student.fullname
+      = f.hidden_field :group, :value => @student.group
+      = hidden_field :student, :id, :value => @student.id
+    %p
+      = submit_tag('Guardar')
+      = link_to 'Cancelar', managers_student_path(:id => @student.id)

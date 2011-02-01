@@ -9,6 +9,9 @@ Asociados al Instituto de Física:
   Usuario: <%= @login %>
   Contraseña: <%= @passwd %>
   Nombre completo: <%= @fullname %>
+  Grupo: <%= @group %>
+
+  passwd: <%= [@login, @passwd, @group, @fullname, "/home/estud/#{@group}"].join(':') %>
 
 Gracias por usar el Sistema de Estudiantes Asociados - SIESTA.
 

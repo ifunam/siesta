@@ -1,0 +1,6 @@
+- if controller_name != 'sessions'
+  = link_to "Entrar al sistema", new_session_path(:account)
+  %br/
+= link_to "Crear una nueva cuenta", new_registration_path(:account)
+%br/
+= link_to "¿Cambiar mi contraseña?", new_password_path(:account)

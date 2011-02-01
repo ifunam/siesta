@@ -1,5 +1,2 @@
-- blueprint 'span-22 prepend-1 last' do
-  %h3= 'Estudiantes Asociados'
-  - blueprint 'span-22 last', :style => 'margin-bottom: 20px;' do
-    %b= "Académico responsable: " + @academic.fullname
+- blueprint 'span-22 last' do
   = render :partial => 'student_request', :collection => @collection
