@@ -19,12 +19,13 @@
   %body
     %div{:class =>'container'}
       = render :partial => 'layouts/header'
-      %div{:id => 'top_links', :class => "span-24 last"}
-        = link_to image_tag('profile_on.png'), profile_path, :alt => 'INICIO'
-        = link_to image_tag('schoolings_on.png'), schoolings_path, :alt => 'ANTECEDENTES ACADÉMICOS'
-        = link_to image_tag('file_uploaders_on.png'), file_uploaders_path, :alt => 'DOCUMENTOS PROBATORIOS'
-        = link_to image_tag('user_requests_on.png'), user_requests_path, :alt => 'SOLICITUD'
-        = link_to image_tag('send_user_request_on.png'), send_user_request_path, :alt => 'ENVIAR SOLICITUD'
+      - unless current_user.nil?
+        %div{:id => 'top_links', :class => "span-24 last"}
+          = link_to image_tag('profile_on.png'), profile_path, :alt => 'INICIO'
+          = link_to image_tag('schoolings_on.png'), schoolings_path, :alt => 'ANTECEDENTES ACADÉMICOS'
+          = link_to image_tag('file_uploaders_on.png'), file_uploaders_path, :alt => 'DOCUMENTOS PROBATORIOS'
+          = link_to image_tag('user_requests_on.png'), user_requests_path, :alt => 'SOLICITUD'
+          = link_to image_tag('send_user_request_on.png'), send_user_request_path, :alt => 'ENVIAR SOLICITUD'
       %div{:id => 'main', :class => 'span-24 last'}
         = yield :layout
       %div{:id => 'main_footer', :class => 'span-24 last'}

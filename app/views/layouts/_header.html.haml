@@ -4,4 +4,4 @@
     - blueprint 'span-24 last', :id => 'topmenu' do
       %div{:id => 'item'}= current_user.login
       %div{:id => 'item'}
-        = link_to 'Salir', logout_url
+        = link_to 'Salir', destroy_user_session_path
