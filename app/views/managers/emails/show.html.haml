@@ -3,7 +3,7 @@
   %h3= 'Cuenta de correo electrónico'
   = render :partial => 'managers/students/user_request', :object => @student
   - if @users.size > 0
-    - blueprint 'span-24 last 'do
+    = blueprint 'span-24 last 'do
       - blueprint 'span-7', :id => 'collection_th' do
         %b= 'Correo electrónico'
       - blueprint 'span-6', :id => 'collection_th' do
@@ -11,7 +11,7 @@
       - blueprint 'span-6 last', :id => 'collection_th' do
         %b= 'Acciones'
 
-  = render :partial => 'user', :collection => @users
+  = render :partial => 'managers/emails/user', :collection => @users
 - blueprint 'span-20 prepend-2 last', :id => 'collection_tr' do
   = link_to 'Nueva cuenta de correo', new_managers_email_path(:id => @student.id)
   = ' | '

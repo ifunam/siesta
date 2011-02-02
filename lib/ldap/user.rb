@@ -8,8 +8,8 @@ module LDAP
     extend  ActiveModel::Translation
 
     attr_accessor :login, :fullname, :email, :password, :group, :new_record
-    attr_accessible :login, :fullname, :email, :password, :group
-    validates_presence_of :login, :fullname, :email, :password, :group
+    attr_accessible :login, :fullname, :password, :group
+    validates_presence_of :login, :fullname, :password, :group
     validates_confirmation_of :password
 
     def self.all_by_login_likes(login)
@@ -19,12 +19,12 @@ module LDAP
       end
     end
 
-    def self.find_by_login(login)
+    def self.first_by_login(login)
       entry = self.ldap.search(:base => ldap_config['base'], :filter => Net::LDAP::Filter.eq("uid", login), :return_result => true ).first
       entry_to_record(entry) unless entry.nil?
     end
 
-    def self.find_all_by_fullname(fullname)
+    def self.all_by_fullname_likes(fullname)
       filter = Net::LDAP::Filter.eq("cn", "*#{fullname}*")
       self.ldap.search(:base => ldap_config['base'], :filter => filter, :return_result => true).collect do |entry|
         entry_to_record(entry)
@@ -32,7 +32,7 @@ module LDAP
     end
 
     def self.uid_exist?(uid)
-      !self.find_by_login(uid).nil?
+      !self.first_by_login(uid).nil?
     end
 
     def self.ldap
@@ -45,7 +45,7 @@ module LDAP
     end
 
     def self.entry_to_record(entry)
-      new(:login => entry.uid.first, :email => entry.mail.first, :fullname => entry.cn.first, :password => entry.userpassword.first, :group => entry.ou.first, :new_record => false)
+      new(:login => entry.uid.first, :email => entry.mailRoutingAddress.first, :fullname => entry.cn.first, :password => entry.userpassword.first, :group => entry.ou.first, :new_record => false)
     end
 
     def initialize(attributes={})
@@ -65,6 +65,13 @@ module LDAP
       end
     end
 
+    def valid?
+      unless LDAP::User.first_by_login(login).nil?
+        self.errors.add(:login, "El usuario #{login} ya existe")
+      end
+      super
+    end
+
     def save
       if valid?
         new_record? ? create : update
@@ -76,10 +83,16 @@ module LDAP
     def create
       unless LDAP::User.uid_exist?(login)
         LDAP::User.ldap.add(:dn => ldap_dn, :attributes => ldap_attributes)
+        add_member_to_group
         self.new_record = false
         return true
       end
       return false
+    end
+
+    def add_member_to_group
+      LDAP::User.ldap.modify(:dn => "cn=#{group},cn=estud,ou=groups,dc=fisica,dc=unam,dc=mx",
+                             :operations => [[:add, :member, ldap_dn]])
     end
 
     def update
@@ -104,7 +117,8 @@ module LDAP
         :objectClass => ldap_object_class,
         :cn => fullname,
         :sn => 'sn',
-        :mail => email,
+        :mail => "#{login}/",
+        :mailRoutingAddress => "#{login}@fisica.unam.mx",
         :ou => group,
         :uid => login,
         :userPassword => Net::LDAP::Password.generate(:sha, password)
