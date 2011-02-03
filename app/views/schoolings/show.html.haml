@@ -1,0 +1,6 @@
+%h3 Grado académico
+- blueprint 'span-21 prepend-2 last' do
+  = render :partial => 'schooling_show', :object => @schooling
+- blueprint 'span-21 prepend-2 last', :id => 'buttons' do
+  = link_to t(:edit), edit_schooling_path, :class => 'ui-state-default ui-corner-all button'
+  = link_to t(:back), schoolings_path, :class => 'ui-state-default ui-corner-all button'

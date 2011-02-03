@@ -7,6 +7,7 @@
     :user_documents => 'Documentos probatorios',
     :user_requests => 'Solicitud de estudiante asociado',
     
+    :back => 'Regresar',
     :save => 'Guardar',
     :cancel => 'Cancelar',
     :edit => 'Modificar',
