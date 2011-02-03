@@ -2,7 +2,7 @@
   %p{:class => 'notice_box blue'}
     = image_tag('ok.png')
     = 'Ingreso de Académicos al Sistema de Estudiantes Asociados al Instituto de Física de la UNAM '
-    %b= '(Período: 2011-2).'
+    %b= "(Período: #{Period.activated.name})."
   %p{:class => 'notice_box red'}
     = image_tag('calendar.png')
     = 'Para entrar al sistema debe usar el usuario y contraseña del correo electrónico del Instituto de Física.'  
