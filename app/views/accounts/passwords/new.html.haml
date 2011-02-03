@@ -1,9 +1,11 @@
-%h2 Nueva contraseña
-= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
-  = devise_error_messages!
-  %p
-    = f.label 'Correo electrónico'
-    %br/
-    = f.text_field :email
-  %p= f.submit "Enviar instrucciones para cambiar mi password"
-= render :partial => "accounts/shared/links"
+%div{:class => 'span-22 prepend-1 last'}
+  %h2 Nueva contraseña
+  = form_for(resource, :as => resource_name, :url => account_password_path(resource_name), :html => { :method => :post }) do |f|
+    = devise_error_messages!
+    %p
+      = f.label 'Correo electrónico'
+      %br/
+      = f.text_field :email
+    %p= f.submit "Enviar instrucciones para cambiar mi password"
+  %div{:class => 'span-10 last', :style => 'text-align: center;'}
+    = render :partial => "accounts/shared/links"

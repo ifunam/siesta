@@ -1,14 +1,14 @@
-%h2 Cambiar contraseña
-= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
-  = devise_error_messages!
-  = f.hidden_field :reset_password_token
-  %p
-    = f.label :password
-    %br/
-    = f.password_field :password
-  %p
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation
-  %p= f.submit "Cambiar mi contraseña"
-= render :partial => "accounts/shared/links"
+%div{:class => 'span-22 last'}
+  %h2 Cambiar contraseña
+  = form_for(resource, :as => resource_name, :url => account_password_path(resource_name), :html => { :method => :put }) do |f|
+    = devise_error_messages!
+    = f.hidden_field :reset_password_token
+    %p
+      = f.label 'Nueva contraseña'
+      %br/
+      = f.password_field :password
+    %p
+      = f.label 'Confirmación de la contraseña'
+      %br/
+      = f.password_field :password_confirmation
+    %p= f.submit "Cambiar mi contraseña"

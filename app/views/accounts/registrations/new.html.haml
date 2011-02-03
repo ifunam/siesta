@@ -1,18 +1,26 @@
-%div{:class => 'span-12  prepend-1', :style => 'margin: 10px; padding: 10px; border-right: 1px solid silver; text-align: left;'}
-  %h2 Registro de nuevo usuario 
+%div{:class => 'span-22 last', :style => 'margin: 10px; padding: 10px; text-align: left;'}
+  %h2 Registro de nuevo usuario
   = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
     = devise_error_messages!
-    %p
+    %div{:class=> 'span-10'}
       = f.label 'Usuario'
-      = f.text_field :login, :size => 12
-    %p
+      = f.text_field :login, :size => 12, :maxlength => 16
+      %b= 'Ejemplo: '
+      = 'juanhdez'
+      %p{:class=>'hint'}= 'No debes usar carácteres acentuados o mayúsculas'
+    %div{:class => 'span-11 last'}
       = f.label 'Correo electrónico' 
       = f.text_field :email
-    %p
-      = f.label 'Contraseña'
-      = f.password_field :password, :size => 12
-    %p
-      = f.label 'Confirmación de la contraseña'
-      = f.password_field :password_confirmation, :size => 12
-    %p= f.submit "Registrar nueva cuenta"
+      %b= 'Ejemplo: '
+      ='juanhernandez@gmail.com'
+      %p
+    %div{:class => 'span-22 last'}
+      %div{:class=> 'span-10'}
+        = f.label 'Contraseña'
+        = f.password_field :password, :size => 12
+      %div{:class => 'span-10 last'}
+        = f.label 'Confirmación de la contraseña'
+        = f.password_field :password_confirmation, :size => 12
+    %div{:class => 'span-22 last'}
+      %p= f.submit "Registrar nueva cuenta"
   = render :partial => "accounts/shared/links"

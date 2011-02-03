@@ -1,6 +1,11 @@
-- if controller_name != 'sessions'
-  = link_to "Entrar al sistema", new_session_path(:account)
-  %br/
-= link_to "Crear una nueva cuenta", new_registration_path(:account)
-%br/
-= link_to "¿Cambiar mi contraseña?", new_password_path(:account)
+%div{:class => 'span-9 session_links_box last'}
+  - if controller_name != 'sessions'
+    = link_to "Entrar al sistema", new_account_session_path(:account)
+    %p= 'Usa esta opción para entrar al SIESTA usando tu usuario y contraseña registrado.'
+  - if controller_name != 'registrations'
+    = link_to "Crear una nueva cuenta", new_account_registration_path(:account)
+    %p='Usa esta opción para crear tu cuenta y entrar al sistema.'
+  - if controller_name != 'passwords'
+    = link_to "¿Cambiar mi contraseña?", new_account_password_path(:account)
+    %p='Usa esta opción para recuperar tu contraseña usando tu cuenta de correo registrada en el SIESTA.'
+
