@@ -1,9 +1,9 @@
 class Academics::StudentRequestsController < Academics::ApplicationController 
+  respond_to :html
   def index
-    # @user_requests = UserRequest.where(:remote_user_incharge_id => session[:academic][:id].to_i).includes(:period).order('periods.startdate DESC').all
-      @academic = AcademicClient.find_by_login(current_academic.login)
-      @user_requests = UserRequest.where("user_requests.remote_user_incharge_id = #{@academic.user_id} AND user_requests.requeststatus_id <= 3").includes(:period).order('periods.startdate DESC').all
-    render 'index'
+    @academic = AcademicClient.find_by_login(current_academic.login)
+    @user_requests = UserRequest.where("user_requests.remote_user_incharge_id = #{@academic.user_id} AND user_requests.requeststatus_id <= 3").includes(:period).order('periods.startdate DESC').all
+    respond_with(@user_requests)
   end
 
   def update

@@ -2,8 +2,7 @@ class Managers::PhotosController < Managers::ApplicationController
   layout 'admin'
   respond_to :html
   def edit
-    @person = Person.find(params[:id])
-    respond_with(@person)
+    respond_with(@person =  Person.find(params[:id]))
   end
 
   def update
