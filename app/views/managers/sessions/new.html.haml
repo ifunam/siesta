@@ -1,11 +1,12 @@
-%h2 Sign in
+%h2 Administración de usuarios
 = form_for(resource, :as => resource_name, :url => manager_session_path(resource_name)) do |f|
   %p
-    = f.label :login
+    = f.label 'Usuario'
     %br/
-    = f.text_field :login
+    = f.text_field :login, :size => 12, :maxlength => 16
+
   %p
-    = f.label :password
+    = f.label 'Contraseña' 
     %br/
-    = f.password_field :password
-  %p= f.submit "Sign in"
+    = f.password_field :password, :size => 12
+  %p= f.submit "Entrar"

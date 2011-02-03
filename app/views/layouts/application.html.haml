@@ -27,6 +27,8 @@
           = link_to image_tag('user_requests_on.png'), user_requests_path, :alt => 'SOLICITUD'
           = link_to image_tag('send_user_request_on.png'), send_user_request_path, :alt => 'ENVIAR SOLICITUD'
       %div{:id => 'main', :class => 'span-24 last'}
+        - flash.keys.each do |name|
+          %div{:id => "flash_#{name}"}= flash[name]
         = yield :layout
       %div{:id => 'main_footer', :class => 'span-24 last'}
       = render :partial => 'layouts/footer'

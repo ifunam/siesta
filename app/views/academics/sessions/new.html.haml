@@ -13,9 +13,9 @@
     %p
       = f.label 'Usuario'
       %br/
-      = f.text_field :login
+      = f.text_field :login, :size => 12, :maxlength => 16
     %p
       = f.label 'Contraseña'
       %br/
-      = f.password_field :password
+      = f.password_field :password, :size => 12
     %p= f.submit "Entrar"
