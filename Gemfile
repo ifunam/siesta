@@ -18,6 +18,7 @@ gem 'barby', "0.4.2"
 gem 'bcrypt-ruby', "2.1.4"
 gem "tzinfo"
 gem "acts_as_tree", :git => 'git://github.com/parasew/acts_as_tree.git'
+gem "inherited_resources", "1.2.1"
 
 group :development do
   # DB performance tools
