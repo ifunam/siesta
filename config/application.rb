@@ -43,6 +43,6 @@ module Siesta
       g.test_framework :rspec, :fixture => true, :views => false
       g.fixture_replacement :factory_girl, :dir => "spec/factories"
     end
-    config.middleware.use Rack::SslEnforcer if Rails.env == 'production'
+    #config.middleware.use Rack::SslEnforcer if Rails.env == 'production'
   end
 end
