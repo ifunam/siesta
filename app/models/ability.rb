@@ -10,7 +10,8 @@ class Ability
     can :manage, :all
   end
 
-  def academic 
-    can :update, UserRequest
+  def academic
+    can :read, :all
+    can :update, :all # UserRequest
   end
 end
