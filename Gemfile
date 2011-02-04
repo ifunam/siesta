@@ -23,6 +23,7 @@ gem "inherited_resources", "1.2.1"
 
 group :production do
   gem "rack-ssl-enforcer", "0.2.0", :require => 'rack/ssl-enforcer'
+  gem "inploy", "1.9.0"
 end
 
 group :development do
