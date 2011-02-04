@@ -3,20 +3,21 @@ source :gemcutter
 
 gem "rails", "3.0.4.rc1"
 
-gem "haml"
+gem "haml", "3.0.25"
 gem "pg", "0.10.0"
 gem "compass", "0.10.6"
 gem "authlogic", "2.1.6"
-gem "devise", "1.2.rc", :git => 'git://github.com/plataformatec/devise.git'
-gem "devise_ldap_authenticatable"
-gem "net-ldap"
+gem "warden"
+gem "devise", "1.1.2", :path => 'tmp/devise-1.1.2'
+gem "devise_ldap_authenticatable", "0.4.6"
+gem "net-ldap", "0.1.1"
 gem "ssl_requirement"
 gem "paperclip", "2.3.8"
 gem "will_paginate", "3.0.pre2"
 gem "rmagick", "2.12.2", :require => 'RMagick'
 gem 'barby', "0.4.2"
 gem 'bcrypt-ruby', "2.1.4"
-gem "tzinfo"
+gem "tzinfo", "0.3.24"
 gem "acts_as_tree", :git => 'git://github.com/parasew/acts_as_tree.git'
 gem "inherited_resources", "1.2.1"
 
