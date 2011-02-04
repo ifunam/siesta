@@ -7,7 +7,7 @@ gem "haml"
 gem "pg", "0.10.0"
 gem "compass", "0.10.6"
 gem "authlogic", "2.1.6"
-gem "devise", "1.1.3"
+gem "devise", "1.2.rc", :git => 'git://github.com/plataformatec/devise.git'
 gem "devise_ldap_authenticatable"
 gem "net-ldap"
 gem "ssl_requirement"
