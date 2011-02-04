@@ -20,6 +20,7 @@ gem 'bcrypt-ruby', "2.1.4"
 gem "tzinfo", "0.3.24"
 gem "acts_as_tree", :git => 'git://github.com/parasew/acts_as_tree.git'
 gem "inherited_resources", "1.2.1"
+gem "cancan", "1.5.1"
 
 group :production do
   gem "rack-ssl-enforcer", "0.2.0", :require => 'rack/ssl-enforcer'
