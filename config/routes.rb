@@ -50,5 +50,5 @@ Siesta::Application.routes.draw do |map|
     resources :students
   end
   ## Default controllers
-  root :to => "profiles#show"
+  root :to => "dashboards#show"
 end
