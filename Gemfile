@@ -1,7 +1,7 @@
 # Edit this Gemfile to bundle your application's dependencies.
 source :gemcutter
 
-gem "rails", "3.0.4.rc1"
+gem "rails", "3.0.4"
 
 gem "haml", "3.0.25"
 gem "pg", "0.10.0"
