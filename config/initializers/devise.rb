@@ -1,8 +1,8 @@
 # Use this hook to configure devise mailer, warden hooks and so forth. The first
 # four configuration values can also be set straight in your models.
 Devise.setup do |config|
-config.ldap_logger = true
-  config.ldap_create_user = true 
+  config.ldap_logger = true
+  config.ldap_create_user = false
   config.ldap_update_password = false
   config.ldap_config = "#{Rails.root}/config/ldap.yml"
   config.ldap_check_group_membership = false
@@ -31,13 +31,13 @@ config.ldap_logger = true
   config.authentication_keys = [ :login ]
 
   # Tell if authentication through request.params is enabled. True by default.
-  # config.params_authenticatable = true
+  config.params_authenticatable = true
 
   # Tell if authentication through HTTP Basic Auth is enabled. False by default.
-  # config.http_authenticatable = false
+  config.http_authenticatable = false
 
   # Set this to true to use Basic Auth for AJAX requests.  True by default.
-  # config.http_authenticatable_on_xhr = true
+  config.http_authenticatable_on_xhr = false 
 
   # The realm used in Http Basic Authentication
   # config.http_authentication_realm = "Application"

@@ -1,54 +1,52 @@
 Siesta::Application.routes.draw do |map|
   devise_for :users
-  devise_for :accounts, :controllers => { :sessions => "accounts/sessions" }
+  devise_for :accounts, :controllers => { :sessions => "accounts/sessions",
+                                          :registrations => "accounts/registrations" }
   devise_for :managers
   devise_for :academics
 
-  ## Student controllers
-  resource :profile
-  get "/profile/person_state_list/:id", :to => "profiles#person_state_list"
+  # Student controllers
   resource :dashboard
-  resources :file_uploaders
-  resources :schoolings do
-    member do
-      get :show_document
-    end
+  resource :profile do
+    get :person_state_list, :on => :member
   end
+  resources :schoolings do
+    get :show_document, :on => :member
+  end
+  resources :file_uploaders
   resources :user_requests do
     # Fixt it: It should be a collection
-    member do 
-      get :remote_incharge_users
-    end
-    collection do
-      get :form_dates
-    end
+    get :remote_incharge_users, :on => :member
+    get :form_dates, :on => :collection
   end
   resource :send_user_request
+  ## Default controllers
+  root :to => "dashboards#show"
 
-  ## Academic controllers
+  namespace :accounts do
+    root :to => "dashboards#show"
+  end
+
+  # Academic controllers
   namespace :academics do 
     resources :student_requests do
-      member do 
-        get :update
-      end
+      get :update, :on => :member
     end
+    root :to => "student_requests#index"
   end
 
   # Admin controllers
   namespace :managers do 
     resources :students do
-      member do
-        get :card_back
-        get :card_front
-      end
+      get :card_back, :on => :member
+      get :card_front, :on => :member
     end
     resources :photos
     resources :emails
+    root :to => "students#index"
   end
 
   namespace :public do
     resources :students
   end
-  ## Default controllers
-  root :to => "dashboards#show"
 end
