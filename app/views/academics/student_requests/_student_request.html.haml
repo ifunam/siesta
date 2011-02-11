@@ -1,11 +1,14 @@
 - blueprint 'span-22 last', :style => 'border-bottom: 1px solid green; margin-bottom: 10px;' do
   - blueprint 'span-2' do
-    = image_tag(student_request.user.person.photo.url(:card), :size => '70x70')
+    = image_tag(student_request.user.person.photo.url(:card), :size => '70x70') unless student_request.user.person.nil?
   - blueprint 'span-17' do
     - blueprint 'span-17 last', :id => 'collection_tr' do
       - blueprint 'span-10' do
         %b= 'Nombre: '
-        = student_request.user.person.fullname
+        - if student_request.user.person.nil?
+          = 'No ha registrado datos personales'
+        - else
+          = student_request.user.person.fullname
       - blueprint 'span-7 last' do
         %b= 'Teléfono: '
         = student_request.user.address.phone unless student_request.user.address.nil?
