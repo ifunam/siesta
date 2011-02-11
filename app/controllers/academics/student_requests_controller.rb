@@ -2,7 +2,7 @@ class Academics::StudentRequestsController < Academics::ApplicationController
   respond_to :html
   def index
     @academic = AcademicClient.find_by_login(current_academic.login)
-    @user_requests = UserRequest.where("user_requests.remote_user_incharge_id = #{@academic.user_id} AND user_requests.requeststatus_id <= 3").includes(:period).order('periods.startdate DESC').all
+    @user_requests = UserRequest.find_sent_request_to_user_id(@academic.user_id).all
     respond_with(@user_requests)
   end
 

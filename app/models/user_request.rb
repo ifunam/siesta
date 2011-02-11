@@ -5,7 +5,7 @@ class UserRequest < ActiveRecord::Base
     validates_uniqueness_of :period_id, :scope => [:user_id]
     validates_inclusion_of :is_restamped, :in => [true, false]
     validates_inclusion_of :is_official, :in => [true, false]
-    
+
     belongs_to :user, :class_name => "User", :foreign_key => "user_id"
     belongs_to :period
     belongs_to :role
@@ -13,6 +13,10 @@ class UserRequest < ActiveRecord::Base
     belongs_to :adscription, :class_name => 'AdscriptionClient', :foreign_key => 'remote_adscription_id'
     belongs_to :user_incharge, :class_name => "AcademicClient", :foreign_key => 'remote_user_incharge_id'
     belongs_to :local_user_incharge, :class_name => "User", :foreign_key => 'user_incharge_id'
+
+    scope :find_sent_request_to_user_id, lambda { |user_id|
+        where("user_requests.remote_user_incharge_id = ? AND (user_requests.requeststatus_id = 2 OR user_requests.requeststatus_id = 3)", user_id).includes(:period).order('periods.startdate DESC')
+    }
 
     def self.find_by_academic_login(login)
       user_incharge = AcademicClient.find_by_login(login)
@@ -22,7 +26,7 @@ class UserRequest < ActiveRecord::Base
         }.compact
       end
     end
-    
+
     def send_request
       change_requeststatus(2)
     end
@@ -32,7 +36,7 @@ class UserRequest < ActiveRecord::Base
     end
 
     private
-    
+
     def change_requeststatus(id)
       self.requeststatus_id = id
       save(true)
