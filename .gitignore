@@ -38,3 +38,4 @@ public/stylesheets/screen.css
 public/stylesheets/session.css
 public/photos
 config/ldap.yml
+Gemfile.lock
