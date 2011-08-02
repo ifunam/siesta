@@ -15,7 +15,7 @@ class UserRequest < ActiveRecord::Base
     belongs_to :local_user_incharge, :class_name => "User", :foreign_key => 'user_incharge_id'
 
     scope :find_sent_request_to_user_id, lambda { |user_id|
-        where("user_requests.remote_user_incharge_id = ? AND (user_requests.requeststatus_id = 2 OR user_requests.requeststatus_id = 3)", user_id).includes(:period).order('periods.startdate DESC')
+        where("user_requests.remote_user_incharge_id = ? AND user_requests.requeststatus_id <= 3", user_id).includes(:period).order('periods.startdate DESC')
     }
 
     def self.find_by_academic_login(login)
