@@ -4,7 +4,7 @@
     %p{:class => 'notice_box blue'}
       = "El estado actual de su solicitud para el periodo #{Period.most_recent.name} es "
       %b= @user_request.current_request_status.downcase + '.'
-      = "Debe completar de una sección cuando aparezca el símbolo: "
+      = "Debe completar la información de una sección cuando aparezca el símbolo: "
       = image_tag('missing.gif', :border => 0, :style => 'float: none; text-align: left; vertical-align: bottom;') 
   - user_request_is_complete = true
   - @user_request.requirements.each do |a|
@@ -16,7 +16,7 @@
   - if user_request_is_complete == true and @user_request.is_current_request_saved?
     %br
     - blueprint 'span-11 prepend-7 last', :style => 'text-align: left;', :id => 'buttons' do
-      = link_to 'Enviar Solicitud', send_user_request_path(:id => @user_request.current_request.id), :method => :put, :confirm => '¿Desea enviar su solicitud?', :class => 'ui-state-default ui-corner-all button'
+      = link_to 'Enviar Solicitud', send_user_request_path(:id => @user_request.current_request.id), :method => :put, :confirm => '¿Desea enviar su solicitud?', :class => 'ui-state-default ui-corner-all button', :style => 'color: blue; font-weight:bold; text-decoration: blink;'
 - else
   %center
     %p{:class => 'notice_box red'}
