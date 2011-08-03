@@ -1,5 +1,4 @@
 class Managers::StudentsController < Managers::ApplicationController
-
   respond_to :html, :only => [:index, :show]
   respond_to :jpg, :only => [:card_front, :card_back]
   def index

@@ -1,5 +1,4 @@
 class Managers::PhotosController < Managers::ApplicationController
-  layout 'admin'
   respond_to :html
   def edit
     respond_with(@person =  Person.find(params[:id]))
