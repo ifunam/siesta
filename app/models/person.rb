@@ -15,6 +15,10 @@ class Person < ActiveRecord::Base
   belongs_to :country
   belongs_to :state
 
+  default_scope :order => 'people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC'
+  scope_by_difference :find_by_fullname, :fields => [:firstname, :lastname1, :lastname2]
+  search_methods :find_by_fullname
+
   def fullname
     [lastname1.strip, (lastname2 != nil ? lastname2.strip : nil), firstname].compact.join(' ')
   end
@@ -22,7 +26,7 @@ class Person < ActiveRecord::Base
   def fullname_firstname
     [firstname, lastname1.strip, (lastname2 != nil ? lastname2.strip : nil)].compact.join(' ')
   end
-  
+
   def placeofbirth
     [city.name,  state.name, country.name].compact.join(', ')
   end
