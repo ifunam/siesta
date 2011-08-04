@@ -1,9 +1,8 @@
 class Managers::StudentsController < Managers::ApplicationController
-  respond_to :html, :only => [:index, :show]
+  respond_to :html, :js, :only => [:index, :show]
   respond_to :jpg, :only => [:card_front, :card_back]
   def index
-     @user_requests = UserRequest.all(:conditions => ["user_requests.period_id = 9 AND user_requests.requeststatus_id > 1 AND people.lastname1 ~* ?", '^' + (params[:char] || 'A') ], :order => 'periods.startdate DESC', :include => [:period, {:user => :person}]).paginate(:page => params[:page] || 1, :per_page => params[:per_page] || 10)
-     respond_with(@user_requests)
+     respond_with(@users = User.student.fullname_asc.paginated_search(params))
   end
 
   def show

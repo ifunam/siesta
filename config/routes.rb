@@ -40,7 +40,6 @@ Siesta::Application.routes.draw do |map|
     resources :students do
       get :card_back, :on => :member
       get :card_front, :on => :member
-      get :search, :on => :collection
     end
     resources :photos
     resources :emails

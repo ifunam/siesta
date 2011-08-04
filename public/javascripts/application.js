@@ -45,5 +45,56 @@ $(document).ready(function(){
 		});
 	});
 
+  $('#search_link').live('click', function() {
+      resource = $('#search_form').attr('action') + '.js';
+      remote_collection_list(resource, $.param($("#search_form").serializeArray()));
+      return false;
+   });
 
+   $(".ajaxed_paginator a").live("click", function() {
+        remote_collection_list(this.href);
+        return false;
+   });
 });
+
+function open_dialog_with_progressbar() {
+    $('#dialog').dialog({ width: 260, height: 130, bgiframe: true, modal: true, hide: 'slide', 
+    open: function(event, ui) { $(this).parent().children('.ui-dialog-titlebar').hide(); }
+    }).dialog('open');
+    $('#dialog').html('<div id="progressbar"></div><p style="font-size:12px">Cargando, por favor espere...</p>');
+    $( "#progressbar" ).progressbar({value: 100});
+}
+
+function close_dialog_with_progressbar() {
+    $('#dialog').dialog('close');
+    $('#dialog').html('');
+}
+
+function collection_from_remote_resource(resource, params) {
+  options = {
+        url: resource,
+        async: false,
+        beforeSend: function() {
+            open_dialog_with_progressbar();
+        },
+        complete: function(request) {
+            set_button_behaviour();
+            close_dialog_with_progressbar();
+        },
+        type: 'get'
+    }
+  if (params != undefined) {
+    options['data'] = params;
+  }
+
+  return $.ajax(options).responseText;
+}
+
+function remote_collection_list(resource, params) {
+    var html = collection_from_remote_resource(resource, params);
+    $('#collection').remove();
+    $('#paginator').remove();
+    $('#filters').after(html);
+    return false;
+}
+

@@ -1,0 +1,31 @@
+- blueprint 'span-21 prepend-1 last' do
+  - blueprint 'span-2' do
+    - if !user.person.nil? and !user.person.photo.nil?
+      = image_tag(user.person.photo.url(:card), :size => '70x70') 
+  - blueprint 'span-17' do
+    - blueprint 'span-17 last', :id => 'collection_tr' do
+      - blueprint 'span-10' do
+        %b= 'Nombre: '
+        - unless user.person.nil?
+          = user.person.fullname 
+      - blueprint 'span-7 last' do
+        %b= 'Teléfono: '
+        - unless user.address.nil?
+          = user.address.phone
+    - blueprint 'span-17  last', :id => 'collection_tr' do
+      - blueprint 'span-10' do
+        %b= 'Actividad a realizar: '
+        = '-'
+      - blueprint 'span-7 last' do
+        %b= 'Período: '
+        = '-'
+    - blueprint 'span-17  last', :id => 'collection_tr' do
+      - blueprint 'span-10' do
+        %b= 'Correo electrónico: '
+        = user.email
+      - blueprint 'span-7 last' do
+        %b= 'Estado de solicitud:' 
+        = '-'
+- blueprint 'span-20 prepend-1 last', :style => 'border-bottom: 1px solid green; padding-top: 10px; padding-bottom: 10px; margin-bottom: 30px; text-align: left;' do
+  - blueprint 'span-5' do
+    = link_to 'Ver ficha completa', managers_student_path(:id => user.id) 
