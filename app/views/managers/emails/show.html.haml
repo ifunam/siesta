@@ -1,7 +1,10 @@
 
 - blueprint 'span-20 prepend-2 last' do
-  %h3= 'Cuenta de correo electrónico'
-  = render :partial => 'managers/students/user_request', :object => @student
+  %h3='Datos del Estudiante y de la solicitud'
+  = render :partial => 'student', :object => @student
+
+  %h3= 'Asignar cuenta de correo electrónico'
+
   - if @users.size > 0
     = blueprint 'span-24 last 'do
       - blueprint 'span-7', :id => 'collection_th' do

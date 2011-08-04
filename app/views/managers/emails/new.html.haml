@@ -1,8 +1,11 @@
-- blueprint 'span-20 prepend-2 last',  :style => 'text-align: left;' do
+- blueprint 'span-20 prepend-2 last' do
+  %h3='Datos del Estudiante y de la solicitud'
+  = render :partial => 'student', :object => @student
+  %br
   %h3= 'Nueva cuenta de correo electrónico'
   = render :partial => "/shared/errors", :object => @user.errors
-  = render :partial => 'managers/students/user_request', :object => @student
-  - form_for :user, :url => managers_emails_path, :html => { :method => :post} do |f|
+  
+  - form_for :user, :url => managers_emails_path, :html => { :method => :post, :style => 'text-align: left;'} do |f|
     - blueprint 'span-20' do
       = f.label :login, "Usuario:", :class => 'login'
       = f.text_field :login, :size => 12
