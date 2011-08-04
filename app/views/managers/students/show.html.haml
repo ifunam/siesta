@@ -9,10 +9,24 @@
     = link_to 'Imprimir credencial (atrás)', card_back_managers_student_path(:id => @student.id, :format => 'jpg'), :target => '_new'
   - blueprint 'span-4' do
     = link_to 'Lista de estudiantes', managers_students_path
-- blueprint 'span-20 prepend-2 last', :id=> 'collection_tr' do
-  = render :partial => 'user_request', :object => @student
+
 = render :partial => 'people/person', :object => @student.person
+- blueprint 'span-20  prepend-2 last', :id => 'collection_tr' do
+  %h3= "Solicitudes"
+  - blueprint 'span-3' do
+    %b= 'Periodo'
+  - blueprint 'span-4' do
+    %b= 'Tipo de actividad'
+  - blueprint 'span-3' do
+    %b= 'Estado de solicitud'
+  - blueprint 'span-3' do
+    %b= 'Tipo de solicitud'
+  - blueprint 'span-3' do
+    %b= 'Aprobado por CD-IF'
+  = render :partial => 'user_request', :collection => @student.user_requests
+
 = render :partial => 'addresses/address', :object => @student.address
+
 - blueprint 'span-20 prepend-2 last', :id=> 'collection_tr' do
   %h3= 'Antecedentes académicos'
   = render :partial => 'schoolings/schooling_show', :collection => @student.schoolings.find(:all, :order => 'startyear DESC')
