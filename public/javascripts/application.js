@@ -20,17 +20,21 @@ $(document).ready(function(){
 	});
 
 	$("#user_request_remote_adscription_id").change(function(){
-		$.ajax({
-			url: "/user_requests/" + $("#user_request_remote_adscription_id").val() + "/remote_incharge_users",
+		options ={
+			url: "/user_requests/" + $("#user_request_remote_adscription_id").val() + "/remote_incharge_users.js",
+      dataType: "HTML",
 			success: function(data){ $("#remote_user_incharge").html(data); }
-		});
-	});
+    }
+   $.ajax(options);
+   return false;
+});
 
 	$("#user_request_role_id").change(function(){
 		if ($("#user_request_role_id").val() == 1) 
 		{
 			$.ajax({
 				url:  "form_dates",
+        dataType: "HTML",
 				success: function(data){ $("#form_dates").html(data); }
 			});
 		} else {
@@ -39,10 +43,14 @@ $(document).ready(function(){
 	});
 
 	$("#user_person_attributes_country_id").change(function(){
-		$.ajax({
-			url: '/profile/person_state_list.js?id=' + $("#user_person_attributes_country_id").val(),
-			success: function(data){ $("#person_state_list").html(data); }
-		});
+    options = {
+      url: '/profile/person_state_list.js?id=' + $("#user_person_attributes_country_id").val(),
+      dataType: "HTML",
+      success: function(data) {
+        $("#person_state_list").html(data);
+      }
+    };
+    $.ajax(options);
 	});
 
   $('#search_link').live('click', function() {
