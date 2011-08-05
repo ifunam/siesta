@@ -22,23 +22,31 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  def authorized_notification(user)
+  def authorized_notification(user_request)
     subject = 'Solicitud de Estudiante Asociado autorizada'
-    @user = user
+    @user_request = user_request
     filename = 'ReglasOperacionEstudiantesAsociadosIFUNAMAgosto2010.pdf'
-    mail(:to => user.email, :subject => $subject_prefix + subject) do |format|
+    mail(:to => @user_request.user.email, :subject => $subject_prefix + subject) do |format|
       format.text
       attachments[filename] = File.read(Rails.root.to_s + "/app/views/notifier/#{filename}")  
     end
   end
   
-  def authorized_notification_academic(user, user_incharge)
+  def authorized_notification_academic(user_request)
     subject = 'Solicitud de Estudiante Asociado autorizada'
-    @user = user
+    @user_request = user_request
     filename = 'ReglasOperacionEstudiantesAsociadosIFUNAMAgosto2010.pdf'
-    mail(:to => user_incharge.email, :subject => $subject_prefix + subject) do |format|
+    mail(:to => @user_request.user_incharge.email, :subject => $subject_prefix + subject) do |format|
       format.text
       attachments[filename] = File.read(Rails.root.to_s + "/app/views/notifier/#{filename}")  
+    end
+  end
+
+  def authorized_notification_academic_coordination(user_request)
+    subject = 'Solicitud de autorización de Estudiante Asociado'
+    @user_request = user_request
+    mail(:to => 'cd-if@fisica.unam.mx', :subject => $subject_prefix + subject) do |format|
+      format.text
     end
   end
 

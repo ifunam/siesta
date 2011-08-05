@@ -3,7 +3,8 @@
 *                          NO HAGA REPLY                             *
 **********************************************************************
 
-Usted ha autorizado la siguiente solicitud de estudiante asociado:
+La siguiente solicitud de estudiante asociado ha sido *autorizada* por
+el académico del Instituto de Física.
 
 Estudiante: <%= @user_request.user.person.fullname %>
 Académico: <%= @user_request.user_incharge.fullname %>
@@ -11,9 +12,12 @@ Periodo: <%= @user_request.period.name %>
 Actividad a realizar:  <%= @user_request.role.name %>
 Tipo de solicitud: <%= @user_request.is_restamped == true ? 'Resello' : 'Solicitud nueva' %>
 
-La solicitud será aprobada de forma electrónica por la Coordinación
-Docente y se notificará al estudiante por este medio.
+Para autorizar esta solicitud debe usar la siguiente liga:
+
+<%= managers_student_path(@user_request.user) %>
+
 
 Coordinación Docente, Instituto de Física
 Universidad Nacional Autónoma de México
 **********************************************************************
+
