@@ -1,0 +1,33 @@
+**********************************************************************
+*              Este es un mensaje generado automáticamente           *
+*                          NO HAGA REPLY                             *
+**********************************************************************
+
+Su solicitud de estudiante asociado ha sido *autorizada* por la 
+Coordinación Docente.
+
+<% if @user_request.is_restamped %>
+Su cuenta correo electrónico y el servicio  de biblioteca para el periodo 
+<%= @user_request.period.name %> han sido activados. 
+
+No es necesario que se presente  a la oficina de la Coordinación 
+Docente, a menos que necesite imprimir de nuevo su credencial.
+
+El trámite de esta solicitud ha concluído.
+<% else %>
+Para concluir este trámite y ser oficialmente estudiante asociado al 
+Instituto de Física, debe presentarse en la oficina de la Coordinación 
+Docente para poder elaborar su credencial, dar de alta su cuenta de correo 
+electrónico (la cual deberá usar al menos para recibir notificaciones de
+esta Coordinación) y llenar el formato para la tarjeta de ingreso al 
+instituto. De lo contrario, se le puede negar la entrada al mismo.
+<% end %>
+
+Cuando concluya su trabajo de investigación en el instituto, debe notificar 
+a esta Coordinación al respecto.
+
+Gracias por usar  el Sistema de Estudiantes Asociados - SIESTA.
+
+Coordinación Docente, Instituto de Física
+Universidad Nacional Autónoma de México
+**********************************************************************

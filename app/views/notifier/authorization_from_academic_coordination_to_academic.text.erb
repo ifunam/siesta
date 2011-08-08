@@ -1,0 +1,19 @@
+**********************************************************************
+*              Este es un mensaje generado automáticamente           *
+*                          NO HAGA REPLY                             *
+**********************************************************************
+
+Se le notifica que la Coordinación docente ha autorizado la siguiente 
+solicitud de estudiante asociado:
+
+Estudiante: <%= @user_request.user.person.fullname %>
+Académico: <%= @user_request.user_incharge.fullname %>
+Periodo: <%= @user_request.period.name %>
+Actividad a realizar:  <%= @user_request.role.name %>
+Tipo de solicitud: <%= @user_request.is_restamped == true ? 'Resello' : 'Solicitud nueva' %>
+
+El trámite de esta solicitud ha concluído.
+
+Coordinación Docente, Instituto de Física
+Universidad Nacional Autónoma de México
+**********************************************************************

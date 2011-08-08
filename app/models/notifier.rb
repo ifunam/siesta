@@ -50,6 +50,22 @@ class Notifier < ActionMailer::Base
     end
   end
 
+  def authorization_from_academic_coordination_to_student(user_request)
+    subject = 'Solicitud autorizada por la Coordinación Docente'
+    @user_request = user_request
+    mail(:to => @user_request.user.email, :subject => $subject_prefix + subject) do |format|
+      format.text
+    end
+  end
+
+  def authorization_from_academic_coordination_to_academic(user_request)
+    subject = 'Solicitud autorizada por la Coordinación Docente'
+    @user_request = user_request
+    mail(:to => @user_request.user_incharge.email, :subject => $subject_prefix + subject) do |format|
+      format.text
+    end
+  end
+
 
   def unauthorized_notification(user)
     subject = 'Solicitud de Estudiante Asociado no autorizada'

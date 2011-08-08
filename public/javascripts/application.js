@@ -22,12 +22,12 @@ $(document).ready(function(){
 	$("#user_request_remote_adscription_id").change(function(){
 		options ={
 			url: "/user_requests/" + $("#user_request_remote_adscription_id").val() + "/remote_incharge_users.js",
-      dataType: "HTML",
+      		dataType: "HTML",
 			success: function(data){ $("#remote_user_incharge").html(data); }
     }
-   $.ajax(options);
-   return false;
-});
+   	$.ajax(options);
+   	return false;
+	});
 
 	$("#user_request_role_id").change(function(){
 		if ($("#user_request_role_id").val() == 1) 
@@ -43,26 +43,37 @@ $(document).ready(function(){
 	});
 
 	$("#user_person_attributes_country_id").change(function(){
-    options = {
-      url: '/profile/person_state_list.js?id=' + $("#user_person_attributes_country_id").val(),
-      dataType: "HTML",
-      success: function(data) {
-        $("#person_state_list").html(data);
-      }
-    };
-    $.ajax(options);
+    	options = {
+      		url: '/profile/person_state_list.js?id=' + $("#user_person_attributes_country_id").val(),
+      		dataType: "HTML",
+      		success: function(data) {
+        		$("#person_state_list").html(data);
+      		}
+    	};
+    	$.ajax(options);
 	});
 
-  $('#search_link').live('click', function() {
+  	$('#search_link').live('click', function() {
       resource = $('#search_form').attr('action') + '.js';
       remote_collection_list(resource, $.param($("#search_form").serializeArray()));
       return false;
-   });
+   	});
 
-   $(".ajaxed_paginator a").live("click", function() {
+	$('.authorize_link').live('click', function() {
+		options = {
+      		url: this.href,
+      		dataType: "HTML",
+      		success: function(data) {
+        		$("#authorization_"+this.id).replaceWith(data);
+      			}
+		};
+              $.ajax(options);
+      });
+	
+    $(".ajaxed_paginator a").live("click", function() {
         remote_collection_list(this.href);
         return false;
-   });
+    });
 });
 
 function open_dialog_with_progressbar() {
