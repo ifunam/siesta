@@ -10,6 +10,6 @@
   - blueprint 'span-3' do
     - if is_user_request_authorizable?(user_request)
       %span{:id=>'authorization_'+user_request.id.to_s}
-        = link_to 'Autorizar solicitud',  authorize_managers_student_path(user_request), :class => 'ui-state-default ui-corner-all button authorize_link', :id => user_request.id, :remote => true
+        = link_to 'Autorizar solicitud',  '#', :link => authorize_managers_student_path(user_request), :class => 'ui-state-default ui-corner-all button authorize_link', :id => user_request.id, :confirm => '¿Desear autorizar esta solicitud?'
     - else
       %b= user_request.is_official == true ? 'Sí' : 'No'

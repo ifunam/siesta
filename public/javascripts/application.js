@@ -60,14 +60,14 @@ $(document).ready(function(){
    	});
 
 	$('.authorize_link').live('click', function() {
+		var url = this.getAttribute('link') + '.js';
 		options = {
-      		url: this.href,
-      		dataType: "HTML",
-      		success: function(data) {
-        		$("#authorization_"+this.id).replaceWith(data);
-      			}
+      		url: url,
+        	dataType: "HTML"
 		};
               $.ajax(options);
+              $("#authorization_"+this.id).empty();
+	      $("#authorization_"+this.id).html('Solicitud autorizada');
       });
 	
     $(".ajaxed_paginator a").live("click", function() {
@@ -100,7 +100,8 @@ function collection_from_remote_resource(resource, params) {
             set_button_behaviour();
             close_dialog_with_progressbar();
         },
-        type: 'get'
+        type: 'get',
+        dataType: "HTML"
     }
   if (params != undefined) {
     options['data'] = params;
