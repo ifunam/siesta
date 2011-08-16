@@ -61,19 +61,30 @@ $(document).ready(function(){
 
 	$('.authorize_link').live('click', function() {
 		var url = this.getAttribute('link') + '.js';
-		options = {
+		  options = {
       		url: url,
         	dataType: "HTML"
-		};
-              $.ajax(options);
-              $("#authorization_"+this.id).empty();
-	      $("#authorization_"+this.id).html('Solicitud autorizada');
-      });
+		  };
+      $.ajax(options);
+      $("#authorization_"+this.id).empty();
+	    $("#authorization_"+this.id).html('Solicitud autorizada');
+   });
 	
     $(".ajaxed_paginator a").live("click", function() {
         remote_collection_list(this.href);
         return false;
     });
+
+	$('.destroy_user_link').live('click', function() {
+		var url = this.getAttribute('link') + '.js';
+		options = {
+     		url: url,
+          type: "DELETE"
+		};
+      	$.ajax(options);
+      	$("#user_"+this.id).empty();
+      	$("#user_"+this.id).html('Usuario borrado');
+ 	});
 });
 
 function open_dialog_with_progressbar() {

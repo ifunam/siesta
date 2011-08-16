@@ -2,7 +2,7 @@ class Managers::StudentsController < Managers::ApplicationController
   respond_to :html, :js
   respond_to :jpg, :only => [:card_front, :card_back]
   def index
-     respond_with(@users = User.fullname_asc.paginated_search(params))
+     respond_with(@users = User.student.fullname_asc.paginated_search(params))
   end
 
   def show
@@ -28,10 +28,16 @@ class Managers::StudentsController < Managers::ApplicationController
       end
     end
   end
-  
+
   def authorize
     @user_request = UserRequest.find(params[:id])
     @user_request.update_attribute(:is_official,true)
     respond_with(@user_request)
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    respond_with(@user, :status => :deleted, :location => managers_students_path)
   end
 end

@@ -36,7 +36,7 @@ Siesta::Application.routes.draw do |map|
   end
 
   # Admin controllers
-  namespace :managers do 
+  namespace :managers do
     resources :students do
       get :card_back, :on => :member
       get :card_front, :on => :member

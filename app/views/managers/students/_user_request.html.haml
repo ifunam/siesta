@@ -1,13 +1,15 @@
--blueprint 'span-17  last', :id => 'collection_tr' do
+-blueprint 'span-18  last', :id => 'collection_tr' do
   - blueprint 'span-3' do
     = user_request.period.name
-  - blueprint 'span-4' do
+  - blueprint 'span-3' do
+    = user_request.user_incharge.fullname
+  - blueprint 'span-3' do
     = user_request.role.name
   - blueprint 'span-3' do
     = user_request.requeststatus.name
   - blueprint 'span-3' do
     = user_request.is_restamped == true ? 'Resello' : 'Nueva solicitud'
-  - blueprint 'span-3' do
+  - blueprint 'span-3 last' do
     - if is_user_request_authorizable?(user_request)
       %span{:id=>'authorization_'+user_request.id.to_s}
         = link_to 'Autorizar solicitud',  '#', :link => authorize_managers_student_path(user_request), :class => 'ui-state-default ui-corner-all button authorize_link', :id => user_request.id, :confirm => '¿Desear autorizar esta solicitud?'

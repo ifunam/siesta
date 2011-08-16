@@ -11,17 +11,19 @@
     = link_to 'Lista de estudiantes', managers_students_path
 
 = render :partial => 'people/person', :object => @student.person
-- blueprint 'span-20  prepend-2 last', :id => 'collection_tr' do
+- blueprint 'span-18  prepend-2 last', :id => 'collection_tr' do
   %h3= "Solicitudes"
   - blueprint 'span-3' do
     %b= 'Periodo'
-  - blueprint 'span-4' do
+  - blueprint 'span-3' do
+    %b= 'Responsable Académico'
+  - blueprint 'span-3' do
     %b= 'Tipo de actividad'
   - blueprint 'span-3' do
     %b= 'Estado de solicitud'
   - blueprint 'span-3' do
     %b= 'Tipo de solicitud'
-  - blueprint 'span-3' do
+  - blueprint 'span-3 last' do
     %b= 'Aprobado por CD-IF'
   = render :partial => 'user_request', :collection => @student.user_requests
 
