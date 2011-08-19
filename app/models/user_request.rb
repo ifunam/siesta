@@ -16,7 +16,9 @@ class UserRequest < ActiveRecord::Base
     default_scope includes(:period).order('periods.startdate DESC')
     
     scope :find_sent_request_to_user_id, lambda { |user_id|
-        where("user_requests.remote_user_incharge_id = ? AND user_requests.requeststatus_id <= 3", user_id).includes(:period).order('periods.startdate DESC')
+        where("user_requests.remote_user_incharge_id = ? AND user_requests.requeststatus_id <= 3 
+               AND user_requests.period_id = ? ", user_id, Period.activated.id).includes(:period).
+               order('periods.startdate DESC')
     }
 
     def self.find_by_academic_login(login)
