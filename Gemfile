@@ -7,8 +7,9 @@ gem "haml", "~> 3.1.2"
 gem "pg", "~> 0.11.0"
 gem "compass", "~> 0.11.5"
 gem "warden", "~> 1.0.5"
-gem "devise", "~> 1.4.0" #, :path => 'tmp/devise-1.1.2'
+gem "devise", "~> 1.4.0"
 gem "devise_ldap_authenticatable", "~> 0.4.9"
+
 gem "net-ldap", "~> 0.2.2"
 
 gem "ssl_requirement", "~> 0.1.0"
@@ -36,6 +37,7 @@ group :development do
   gem "slim_scrooge", "~> 1.0.11"
   gem "hpricot", "~> 0.8.4"
   gem "ruby_parser", "~> 2.1.0"
+  gem "ruby-debug", "~> 0.10.4"
 end
 
 group :test do
