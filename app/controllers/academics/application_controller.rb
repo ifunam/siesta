@@ -1,9 +1,7 @@
 class Academics::ApplicationController < ActionController::Base
   protect_from_forgery :except => [:update]
   layout 'academic'
-  before_filter :authenticate_academic!
-
-  # The current_user method is required by CanCan gem
-  alias_method :current_user, :current_academic
-  authorize_resource  :class => false
+  before_filter :authenticate_academics_user!
+  alias :current_user :current_academics_user
+  authorize_resource :class => false
 end

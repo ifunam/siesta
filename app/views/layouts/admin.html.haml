@@ -1,4 +1,4 @@
-!!!
+ΩΩ!!!
 %html
   %head
     %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "content-type" }
@@ -23,7 +23,7 @@
     %div{:class =>'container'}
       = render :partial => 'layouts/header'
       - blueprint 'span-24 last', :style => 'text-align: right; padding-right: 100px;' do
-        // = link_to 'Salir', destroy_admin_session_path
+        = link_to 'Salir', destroy_managers_user_session_path
       %div{:id => 'main', :class => 'span-24 last'}
         = yield :layout
       %div{:id => 'main_footer', :class => 'span-24 last'}
