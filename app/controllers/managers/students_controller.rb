@@ -1,6 +1,6 @@
 class Managers::StudentsController < Managers::ApplicationController
   respond_to :html, :js
-  respond_to :jpg, :only => [:card_front, :card_back]
+
   def index
      respond_with(@users = User.student.fullname_asc.paginated_search(params))
   end
