@@ -27,5 +27,6 @@ class ProfilesController < ApplicationController
   end
 
   def person_state_list
+    render :action => 'person_state_list', :layout => false
   end
 end
