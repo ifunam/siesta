@@ -1,7 +1,7 @@
-- blueprint 'span-22 last', :style => 'border-bottom: 1px solid green; margin-bottom: 10px; text-align: left;' do
+- blueprint 'span-20 last record', :style => 'border-bottom: 1px solid green; margin-bottom: 10px; text-align: left;' do
   - blueprint 'span-2' do
     = image_tag(student_request.user.person.photo.url(:card), :size => '70x70')
-  - blueprint 'span-16' do
+  - blueprint 'span-17 personal_info' do
     - blueprint 'span-17 last', :id => 'collection_tr' do
       - blueprint 'span-9' do
         %b= 'Name: '
