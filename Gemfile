@@ -1,7 +1,7 @@
 # Edit this Gemfile to bundle your application's dependencies.
 source :gemcutter
 
-gem "rails", "~> 3.0.9"
+gem "rails", "~> 3.0.10"
 
 gem "haml", "~> 3.1.2"
 gem "pg", "~> 0.11.0"
@@ -38,6 +38,7 @@ group :development do
   gem "hpricot", "~> 0.8.4"
   gem "ruby_parser", "~> 2.1.0"
   gem "ruby-debug", "~> 0.10.4"
+  gem "jquery-rails", "~> 1.0.13"
 end
 
 group :test do
