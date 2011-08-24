@@ -21,6 +21,7 @@
     = javascript_include_tag 'ui/jquery.ui.dialog'
     = javascript_include_tag "siesta_application"
     = javascript_include_tag "manager_application"
+    = csrf_meta_tag 
   %body
   %body
     %div{:class =>'container'}
@@ -36,3 +37,4 @@
         = yield :layout
       %div{:id => 'main_footer', :class => 'span-24 last'}
       = render :partial => 'layouts/footer'
+    %div{:id => 'dialog'}

@@ -13,9 +13,9 @@
         %th="-"
         %th="-"
       %tr
-        %td= f.text_field :fullname_like, :size => 5 
-        %td= f.text_field :firstname1_like, :size => 5 
-        %td= f.text_field :firstname2_like, :size => 5
+        %td= f.text_field :firstname_like, :size => 5 
+        %td= f.text_field :lastname1_like, :size => 5 
+        %td= f.text_field :lastname2_like, :size => 5
         %td= f.collection_select :period_id_equals, Period.all, :id, :name, :prompt => true
         %td= f.collection_select :role_id_equals, Role.all, :id, :name, :prompt => true
         %td= f.collection_select :requeststatus_id_equals, Requeststatus.all, :id, :name, :prompt => true

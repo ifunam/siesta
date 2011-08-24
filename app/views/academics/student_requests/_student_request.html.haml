@@ -1,7 +1,7 @@
-- blueprint 'span-22 last', :style => 'border-bottom: 1px solid green; margin-bottom: 10px;' do
+- blueprint 'span-22 last record', :style => 'border-bottom: 1px solid green; margin-bottom: 10px;' do
   - blueprint 'span-2' do
-    = image_tag(student_request.user.person.photo.url(:card), :size => '70x70') unless student_request.user.person.nil?
-  - blueprint 'span-17' do
+    = image_tag(student_request.user.person.photo.url(:card), :size => '70x70') if !student_request.user.person.nil? and !student_request.user.person.photo.nil?
+  - blueprint 'span-19 personal_info' do
     - blueprint 'span-17 last', :id => 'collection_tr' do
       - blueprint 'span-10' do
         %b= 'Nombre: '
@@ -26,10 +26,10 @@
       - blueprint 'span-7 last' do
         %b= 'Estado de solicitud:' 
         = student_request.requeststatus.name
-  - blueprint 'span-3 last' do
-    - if student_request.requeststatus_id == 2 or student_request.requeststatus_id == 4
-      = '¿Autorizar solicitud?'
-      %br
-      = link_to 'Sí', academics_student_request_path(:id => student_request.id, :requeststatus_id => 3 )
-      = ' o '
-      = link_to 'No', academics_student_request_path(:id => student_request.id, :requeststatus_id => 4 )
+    - blueprint 'span-3 last' do
+      - if student_request.requeststatus_id == 2 or student_request.requeststatus_id == 4
+        = '¿Autorizar solicitud?'
+        %br
+        = link_to 'Sí', academics_student_request_path(:id => student_request.id, :requeststatus_id => 3 )
+        = ' o '
+        = link_to 'No', academics_student_request_path(:id => student_request.id, :requeststatus_id => 4 )

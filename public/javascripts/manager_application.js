@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	$('#search_link').live('click', function() {
     	resource = $('#search_form').attr('action') + '.js';
-    	remote_collection_list(resource, $.param($("#search_form").serializeArray()));
+    	$.remote_collection_list(resource, $.param($("#search_form").serializeArray()));
     	return false;
 	});
 
@@ -17,7 +17,7 @@ $(document).ready(function(){
 	});
 
 	$(".ajaxed_paginator a").live("click", function() {
-    	remote_collection_list(this.href);
+    	$.remote_collection_list(this.href);
     	return false;
 	});
 	
@@ -25,11 +25,16 @@ $(document).ready(function(){
         var url = this.getAttribute('link') + '.js';
         options = {
             url: url,
-            type: "DELETE"
+			async: false,
+            type: "DELETE",
+			dataType: "HTML",
+			success: function(request) {
+	        	$("#user_"+this.id).empty();
+		        $("#user_"+this.id).html('Usuario borrado');
+			}
         };
         $.ajax(options);
-        $("#user_"+this.id).empty();
-        $("#user_"+this.id).html('Usuario borrado');
+		return false;
     });
 });
 
