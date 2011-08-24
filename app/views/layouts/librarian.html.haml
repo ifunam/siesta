@@ -9,7 +9,6 @@
     = stylesheet_link_tag 'dashboard.css', :media => 'screen, projection'
     = stylesheet_link_tag 'ui/themes/smoothness/jquery.ui.all'
     = stylesheet_link_tag "ui/themes/smoothness/jquery-ui-1.8.14.custom"
-    = stylesheet_link_tag "ui/themes/smoothness/jquery.ui.dialog"
     /[if lt IE 8]
       = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
     = javascript_include_tag "jquery"
@@ -20,19 +19,13 @@
     = javascript_include_tag 'ui/jquery.ui.button'
     = javascript_include_tag 'ui/jquery.ui.dialog'
     = javascript_include_tag "siesta_application"
-    = javascript_include_tag "manager_application"
-  %body
+    = javascript_include_tag "librarians_application"
   %body
     %div{:class =>'container'}
       %div{:id => 'header', :class => "span-24 last"}
         %h1= link_to "Instituto de Física - UNAM", "http://www.fisica.unam.mx", :target => '_new', :class => 'button'
-      - if managers_user_signed_in?
-        - blueprint 'span-23 last top_links' do
-          = current_managers_user.login
-          = ' | '
-          = link_to 'Salir', destroy_managers_user_session_path
-
       %div{:id => 'main', :class => 'span-24 last'}
         = yield :layout
       %div{:id => 'main_footer', :class => 'span-24 last'}
       = render :partial => 'layouts/footer'
+    %div{:id => 'dialog'}

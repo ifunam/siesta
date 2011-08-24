@@ -1,0 +1,21 @@
+%table{:class=>"ui-widget-header ui-corner-all ui-helper-clearfix", :id=>"table_search_form"}
+  %thead
+    = form_for :search, :url => librarians_students_path, :remote => true, :html => {:id => "search_form"} do |f|
+      %tr
+        %th="Código de barras"
+        %th="Nombre"
+        %th="Apellido Paterno"
+        %th="Apellido Materno"
+        %th="Tipo de actividad"
+        %th="-"
+        %th="-"
+        %th="-"
+      %tr
+        %td= f.text_field :student_code, :size => 8
+        %td= f.text_field :fullname_like, :size => 20
+        %td= f.text_field :lastname1_like, :size => 20
+        %td= f.text_field :lastname2_like, :size => 20
+        %td= f.collection_select :role_id_equals, Role.all, :id, :name, :prompt => true
+        %td="-"
+        %td= link_to "Buscar", '#', :class => 'ui-state-default ui-corner-all button', :id => 'search_link'
+        %td= link_to 'Mostrar todos',  managers_students_path, :class => 'ui-state-default ui-corner-all button'

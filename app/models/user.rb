@@ -11,7 +11,9 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :person, :address, :user_documents
 
   attr_accessible :person_attributes, :address_attributes, :user_documents_attributes
-
+  scope :firstname_like, lambda { |firstname| where(" users.id IN (#{Person.search(:firstname_like => firstname).select('user_id').to_sql}) ") }
+  scope :lastname1_like, lambda { |lastname| where(" users.id IN (#{Person.search(:lastname1_like => lastname).select('user_id').to_sql}) ") }
+  scope :lastname2_like, lambda { |lastname| where(" users.id IN (#{Person.search(:lastname2_like => lastname).select('user_id').to_sql}) ") }
   scope :fullname_like, lambda { |fullname| where(" users.id IN (#{Person.find_by_fullname(fullname).select('user_id').to_sql}) ") }
   scope :fullname_asc, joins(:person).order('people.lastname1 ASC, people.lastname2 ASC, people.firstname ASC')
   scope :student, where(:role => nil)
@@ -22,8 +24,12 @@ class User < ActiveRecord::Base
   scope :user_request_is_restamped, lambda { |is_restamped| joins(:user_requests).where(["user_requests.is_restamped = ?", is_restamped] ) }
   scope :user_request_is_official, lambda { |is_official| joins(:user_requests).where(["user_requests.is_official = ?", is_official] ) }
   scope :lastname_start_with, lambda { |char| joins(:person).where("people.lastname1 ~* ?", ('^' + char)) }
+  scope :activated, period_id_equals(Period.activated.id).user_request_is_official(true)
+  scope :student_code, lambda { |code| where(:id => code.sub(/^E(0)+/,'').to_i) }
+
   search_methods :fullname_like, :period_id_equals, :requeststatus_id_equals, :role_id_equals,
-                  :user_request_is_restamped, :user_request_is_official, :lastname_start_with
+                  :user_request_is_restamped, :user_request_is_official, :lastname_start_with,
+                  :student_code, :firstname_like, :lastname1_like, :lastname2_like
 
   def self.paginated_search(options={})
     search(options[:search]).paginate(:page => options[:page] || 1, :per_page =>  options[:per_page] || 10)

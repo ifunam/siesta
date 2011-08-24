@@ -1,9 +1,9 @@
-- blueprint 'span-21 prepend-1 last record', :id => 'user_'+user.id.to_s do
+- blueprint "span-21 prepend-1 last record", :id => 'user_'+user.id.to_s do
   - blueprint 'span-2' do
     - if !user.person.nil? and !user.person.photo.nil?
       = image_tag(user.person.photo.url(:card), :size => '70x70') 
   - blueprint 'span-18 personal_info' do
-    - blueprint 'span-17 last', :id => 'collection_tr' do
+    - blueprint 'span-18 last', :id => 'collection_tr' do
       - blueprint 'span-10' do
         %b= 'Nombre: '
         - unless user.person.nil?
@@ -15,13 +15,16 @@
     - blueprint 'span-17  last', :id => 'collection_tr' do
       - blueprint 'span-10' do
         %b= 'Correo electrónico: '
-        =  mail_to user.email,user.email, :encode => "hex"
+        = mail_to user.email,user.email, :encode => "hex"
+      - blueprint 'span-7 last' do
+        %b= 'Código de barras: '
+        = 'E' + '0' * ( 5 - user.id.to_s.length ) + user.id.to_s
     - blueprint 'span-18 last', :id => 'collection_tr' do
-      %h3= "Solicitudes"
+      %h3= "Solicitud"
       - blueprint 'span-3' do
         %b= 'Periodo'
       - blueprint 'span-3' do
-        %b= 'Responsble académico'
+        %b= 'Responsable académico'
       - blueprint 'span-3' do
         %b= 'Tipo de actividad'
       - blueprint 'span-3' do
@@ -30,11 +33,5 @@
         %b= 'Tipo de solicitud'
       - blueprint 'span-3 last' do
         %b= 'Aprobado por CD-IF'
-      = render :partial => 'user_request', :collection => user.user_requests
-
-- blueprint 'span-20 prepend-1 last', :style => 'border-bottom: 1px solid green; padding-top: 10px; padding-bottom: 10px; margin-bottom: 30px; text-align: left;' do
-  - blueprint 'span-5' do
-    = link_to 'Ver ficha completa', managers_student_path(:id => user.id), :class => 'ui-state-default ui-corner-all button'
-  - blueprint 'span-5 prepend-10 last' do
-    = link_to 'Borrar', managers_student_path(user.id), :method => :delete, :confirm => t(:confirm_question), :class => 'ui-state-default ui-corner-all button destroy_button'
+      = render :partial => 'user_request', :object => user.user_requests.first
 

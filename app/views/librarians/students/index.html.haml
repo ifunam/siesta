@@ -1,0 +1,18 @@
+- blueprint 'span-22 prepend-2 last' do
+  %h3= 'Estudiantes Asociados al periodo ' + Period.activated.name
+%div{:id=>"filters"} 
+  - blueprint 'span-24 last' do
+    = render :partial => 'search_form'
+
+  - blueprint 'span-23 prepend-1 last' do
+    - blueprint 'span-23  last', :style => 'font-size: 16px;' do
+      - %w(a b c d e f g h i j k l m n ñ o p q r s t u v w x y z).each do |char| 
+        = link_to char + ' ',  librarians_students_path(:search => {:lastname_start_with =>char})
+
+%div{:id => 'collection'}
+  - blueprint 'span-23 prepend-1 last' do
+    = render :partial => 'user', :collection => @users
+
+%div{:id => 'paginator'}
+  - blueprint 'span-23 prepend-1 last' do
+    = will_paginate(@users)
