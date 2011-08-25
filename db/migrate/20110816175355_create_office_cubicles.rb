@@ -1,6 +1,6 @@
-class CreateRooms < ActiveRecord::Migration
+class CreateOfficeCubicles < ActiveRecord::Migration
   def self.up
-    create_table :rooms do |t|
+    create_table :office_cubicles do |t|
       t.string :name_or_number
       t.references :building
       t.references :room_type
