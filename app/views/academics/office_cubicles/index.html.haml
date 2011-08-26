@@ -1,0 +1,23 @@
+- blueprint 'span-23 prepend-1 last' do
+  %h3 Listado de cubículos
+
+- blueprint 'span-23 prepend-1 last' do
+  %table
+    %tr
+      %th{:class => 'office_cubicles'}='Cubículo'
+      %th{:class => 'office_cubicles'}
+      %th{:class => 'office_cubicles'}
+      %th{:class => 'office_cubicles'}
+
+    - @office_cubicles.each do |office_cubicle|
+      %tr
+        %td{:class=>'office_cublice_record'}= office_cubicle.as_text
+        %td= link_to t(:show), academics_office_cubicle_path(office_cubicle)
+        %td= link_to t(:edit), edit_academics_office_cubicle_path(office_cubicle)
+        %td= link_to t(:delete), academics_office_cubicle_path(office_cubicle), :confirm => 'Are you sure?', :method => :delete
+
+  %br
+  = link_to t(:add), new_academics_office_cubicle_path, :class => 'ui-state-default ui-corner-all button'
+
+- blueprint 'span-23 prepend-1 last' do
+  = will_paginate(@office_cubicles)

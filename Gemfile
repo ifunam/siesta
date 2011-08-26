@@ -2,16 +2,13 @@
 source :gemcutter
 
 gem "rails", "~> 3.0.10"
-
 gem "haml", "~> 3.1.2"
 gem "pg", "~> 0.11.0"
 gem "compass", "~> 0.11.5"
 gem "warden", "~> 1.0.5"
 gem "devise", "~> 1.4.0"
 gem "devise_ldap_authenticatable", "~> 0.4.9"
-
 gem "net-ldap", "~> 0.2.2"
-
 gem "ssl_requirement", "~> 0.1.0"
 gem "paperclip", "~> 2.3.16"
 gem "will_paginate", "~> 3.0.0"
@@ -25,6 +22,9 @@ gem "cancan", "~> 1.6.5"
 gem "meta_search", "~> 1.0.6"
 gem "meta_where", "~> 1.0.4"
 gem "scope_by_fuzzy", "~> 0.0.2"
+gem "gcal4ruby", "~> 0.5.5"
+gem "simple_form", "~> 1.4.2"
+gem "show_for", "~> 0.2.4"
 
 group :production do
   gem "rack-ssl-enforcer", "~> 0.2.3", :require => 'rack/ssl-enforcer'
@@ -37,8 +37,11 @@ group :development do
   gem "slim_scrooge", "~> 1.0.11"
   gem "hpricot", "~> 0.8.4"
   gem "ruby_parser", "~> 2.1.0"
-  gem "ruby-debug", "~> 0.10.4"
+  gem "ruby-debug19", "~> 0.11.6", :platforms => :ruby_19
+  gem "ruby-debug", "~> 0.10.4", :platforms => :ruby_18
   gem "jquery-rails", "~> 1.0.13"
+  gem "haml-rails", "~> 0.3.4"
+  gem "rails3-generators", "~> 0.17.4"
 end
 
 group :test do

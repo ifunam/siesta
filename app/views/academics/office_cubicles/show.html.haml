@@ -1,0 +1,14 @@
+- blueprint 'span-23  prepend-1 last' do
+  %h3 Cubículo
+  %p#notice= notice
+
+  - blueprint 'span-21 last record' do
+    - show_for @office_cubicle do |o|
+      = o.association :building, :using => :name
+      = o.association :cubicle_type, :using => :name
+      = o.attribute :name_or_number
+      = o.attribute :number_of_desktops
+
+    .actions
+      = link_to t(:edit), edit_academics_office_cubicle_path(@office_cubicle), :class => 'ui-state-default ui-corner-all button'
+      = link_to t(:back), academics_office_cubicles_path, :class => 'ui-state-default ui-corner-all button'

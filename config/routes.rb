@@ -1,4 +1,5 @@
 Siesta::Application.routes.draw do |map|
+
   # Student controllers
   devise_for :users
   resource :dashboard
@@ -27,6 +28,7 @@ Siesta::Application.routes.draw do |map|
     resources :student_requests do
       get :update, :on => :member
     end
+    resources :office_cubicles
     root :to => "student_requests#index"
     devise_for :users, :only => :sessions, :format => false
   end

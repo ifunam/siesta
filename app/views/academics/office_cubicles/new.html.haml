@@ -1,0 +1,6 @@
+- blueprint 'span-24 prepend-1 last ' do
+  %h3 Nuevo cubículo
+
+  - blueprint 'span-21 last record' do
+    = simple_form_for(@office_cubicle, :url => academics_office_cubicles_path) do |f|
+      = render :partial => 'form', :locals => { :f => f}
