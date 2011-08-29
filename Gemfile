@@ -42,6 +42,9 @@ group :development do
   gem "jquery-rails", "~> 1.0.13"
   gem "haml-rails", "~> 0.3.4"
   gem "rails3-generators", "~> 0.17.4"
+  gem "pry", "~> 0.9.3"
+  gem "pry-doc", "~> 0.3.0"
+  gem "git", "~> 1.2.5"
 end
 
 group :test do
