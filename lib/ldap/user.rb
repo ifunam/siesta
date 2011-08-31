@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'digest/sha1'
 module LDAP
   class User
@@ -25,10 +26,11 @@ module LDAP
     end
 
     def self.all_by_fullname_likes(fullname)
-      filter = Net::LDAP::Filter.eq("cn", "*#{fullname}*")
+      filter = Net::LDAP::Filter.eq("cn", "*#{ldap_encode(fullname)}*")
       self.ldap.search(:base => ldap_config['base'], :filter => filter, :return_result => true).collect do |entry|
-        entry_to_record(entry)
+         entry_to_record(entry)
       end
+
     end
 
     def self.uid_exist?(uid)
@@ -45,7 +47,11 @@ module LDAP
     end
 
     def self.entry_to_record(entry)
-      new(:login => entry.uid.first, :email => entry.mailRoutingAddress.first, :fullname => entry.cn.first, :password => entry.userpassword.first, :group => entry.ou.first, :new_record => false)
+      new(:login => entry.uid.first, :email => entry.mailRoutingAddress.first, :fullname => ldap_encode(entry.cn.first), :password => entry.userpassword.first, :group => entry.ou.first, :new_record => false)
+    end
+    
+    def self.ldap_encode(string) 
+      string.to_s.force_encoding('utf-8').tr("áéíóúñÁÉÍÓÚÑ","aeiounAEIOUN").force_encoding('ascii').to_s
     end
 
     def initialize(attributes={})
