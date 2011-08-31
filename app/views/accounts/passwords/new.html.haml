@@ -1,6 +1,6 @@
 %div{:class => 'span-22 prepend-1 last'}
   %h2 Nueva contraseña
-  = form_for(resource, :as => resource_name, :url => account_password_path(resource_name), :html => { :method => :post }) do |f|
+  = form_for(resource, :as => resource_name, :url =>  accounts_account_password_path(resource_name), :html => { :method => :post }) do |f|
     = devise_error_messages!
     %p
       = f.label 'Correo electrónico'

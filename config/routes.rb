@@ -2,6 +2,7 @@ Siesta::Application.routes.draw do |map|
 
   # Student controllers
   devise_for :users
+  
   resource :dashboard
   resource :profile do
     get :person_state_list, :on => :member
@@ -19,9 +20,7 @@ Siesta::Application.routes.draw do |map|
   ## Default controllers
   root :to => "dashboards#show"
 
-  namespace :accounts do
-    root :to => "dashboards#show"
-  end
+  
 
   # Academic controllers
   namespace :academics do 
@@ -57,7 +56,12 @@ Siesta::Application.routes.draw do |map|
     resources :students
   end
   
-  devise_for :accounts, :controllers => { :sessions => "accounts/sessions",
-                                          :registrations => "accounts/registrations" },
-                        :format => false
+  namespace :accounts do
+    root :to => "dashboards#show"
+    resources :registrations 
+    devise_for :accounts, :controllers => { :sessions => "accounts/sessions",
+                                            :registrations => "accounts/registrations" },
+                          :format => false
+    
+  end
 end

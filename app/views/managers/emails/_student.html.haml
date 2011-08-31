@@ -20,5 +20,6 @@
       %i= 'Tipo de solicitud'
     - blueprint 'span-3 last' do
       %i= 'Aprobado por CD-IF'
-  - blueprint 'span-17 prepend-1 last' do
-    = render :partial => 'managers/students/user_request', :object => student.user_requests.first
+  - unless  student.user_requests.first.nil?
+    - blueprint 'span-17 prepend-1 last' do
+      = render :partial => 'managers/students/user_request', :object => student.user_requests.first

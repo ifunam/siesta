@@ -38,6 +38,6 @@ class Managers::StudentsController < Managers::ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    respond_with(@user, :status => :deleted)
+    respond_with(@user, :status => :deleted, :location => managers_users_path)
   end
 end

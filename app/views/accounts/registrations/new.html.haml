@@ -1,6 +1,6 @@
 %div{:class => 'span-22 last', :style => 'margin: 10px; padding: 10px; text-align: left;'}
   %h2 Registro de nuevo usuario
-  = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+  = form_for(resource, :as => resource_name, :url => accounts_account_registration_path(resource_name)) do |f|
     = devise_error_messages!
     %div{:class=> 'span-10'}
       = f.label 'Usuario'

@@ -50,7 +50,7 @@ class StudentProfile < User
     self.address.phone
   end
   
-  private
+  # private
   def user_incharge
     most_recent_user_request.user_incharge.login
   end
