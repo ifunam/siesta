@@ -121,7 +121,7 @@ module LDAP
     def ldap_attributes
       {
         :objectClass => ldap_object_class,
-        :cn => fullname,
+        :cn => LDAP::User.ldap_encode(fullname),
         :sn => 'sn',
         :mail => "#{login}/",
         :mailRoutingAddress => "#{login}@fisica.unam.mx",
