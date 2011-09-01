@@ -1,5 +1,6 @@
 class Accounts::SessionsController < Devise::SessionsController
   skip_before_filter :authenticate_user!
+  skip_before_filter :authenticate_accounts_account!
   # GET /resource/sign_in
   def new
     reset_session

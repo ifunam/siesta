@@ -35,7 +35,7 @@
       %b='Contraseña: '
       = '***********'
   %div{:class => 'span-3', :style => 'text-align: right;'}
-    = form_for(resource, :as => :account, :url => accounts_account_session_path(:account)) do |f|
+    = form_for(resource, :as => resource_name, :url => accounts_account_session_path(:account)) do |f|
       %p
         = f.label :login, 'Usuario', :class => 'login'
         = f.text_field :login, :size => 12, :maxlength => 16
