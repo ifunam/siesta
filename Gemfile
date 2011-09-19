@@ -22,7 +22,6 @@ gem "cancan", "~> 1.6.5"
 gem "meta_search", "~> 1.0.6"
 gem "meta_where", "~> 1.0.4"
 gem "scope_by_fuzzy", "~> 0.0.2"
-gem "gcal4ruby", "~> 0.5.5"
 gem "simple_form", "~> 1.4.2"
 gem "show_for", "~> 0.2.4"
 
