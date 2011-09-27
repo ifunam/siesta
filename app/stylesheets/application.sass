@@ -1,3 +1,4 @@
+@import "jquery-ui-smoothness"
 html
   font-size: 14px
 
@@ -135,6 +136,7 @@ input[type="password"]
   background: #C3D9FF
   border: 1px solid #AAAAAA
   font-size: 12px
+  text-align: left
 
 .personal_info
   -moz-border-radius: 5px 5px 5px 5px
@@ -278,3 +280,28 @@ td
   background-image: url(/images/pbar-ani.gif)
 
 
+#top-navigation
+  @extend .ui-tabs 
+  @extend .ui-widget
+  @extend .ui-widget-content
+  @extend .ui-corner-all
+  ul
+    @extend .ui-tabs-nav
+    @extend .ui-helper-reset
+    @extend .ui-helper-clearfix 
+    @extend .ui-widget-header 
+    @extend .ui-corner-all
+    li
+      @extend .ui-state-default
+      @extend .ui-corner-top 
+      list-style-type: none
+    li.selected
+      @extend .ui-tabs-selected 
+      @extend .ui-state-active
+    li:hover
+      @extend .ui-state-hover
+
+.hours
+  border-bottom: 1px solid silver
+  select
+    width: 100px

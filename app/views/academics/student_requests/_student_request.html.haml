@@ -33,3 +33,7 @@
         = link_to 'Sí', academics_student_request_path(:id => student_request.id, :requeststatus_id => 3 )
         = ' o '
         = link_to 'No', academics_student_request_path(:id => student_request.id, :requeststatus_id => 4 )
+    #collection_tr.span-17.last
+      - if !student_request.want_office_cubicle? 
+        %b= 'Asignación de cubículo:'
+        = link_to_office_cubicle(student_request)
