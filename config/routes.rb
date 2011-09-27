@@ -24,8 +24,10 @@ Siesta::Application.routes.draw do |map|
 
   # Academic controllers
   namespace :academics do 
+    resources :events
     resources :student_requests do
       get :update, :on => :member
+      resources :events
     end
     resources :office_cubicles
     root :to => "student_requests#index"
