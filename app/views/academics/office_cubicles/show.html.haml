@@ -1,8 +1,8 @@
-- blueprint 'span-23  prepend-1 last' do
+- blueprint 'span-24 prepend-1 last' do
   %h3 Cubículo
   %p#notice= notice
 
-  - blueprint 'span-21 last record' do
+  - blueprint 'span-21 prepend-1 last record' do
     - show_for @office_cubicle do |o|
       = o.association :building, :using => :name
       = o.association :cubicle_type, :using => :name
