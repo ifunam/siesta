@@ -1,0 +1,11 @@
+- blueprint 'span-19 hours last', :id => 'day_'+f.object.day.to_s  do
+  .span-3
+    = f.label 'Día'
+    = day_list[f.object.day]
+    = f.hidden_field :day
+  .span-6
+    = f.input :start_at, :as => :string, :input_html => { :size => 5, :class => 'time start_at'}
+  .span-6
+    = f.input :end_at, :as => :string, :input_html => { :size => 5, :class => 'time end_at'}
+  .span-3.last
+    = remove_child_link(f)

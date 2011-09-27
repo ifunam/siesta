@@ -1,0 +1,45 @@
+= f.error_notification
+%h3='Datos del estudiante'
+- blueprint 'span-18 record last '  do
+  .span-8
+    = @user_request.user.person.fullname
+  .span-5
+    %b="Periodo: "
+    = @user_request.period.name
+  .span-5.last
+    %b="Actividad a realizar: "
+    = @user_request.role.name
+
+%h3='Fecha de inicio y término'
+- blueprint 'span-19 last '  do
+  .span-7
+    = f.label "Cubículo"
+    = f.hidden_field :user_request_id, :value => @user_request.id
+    = f.collection_select :office_cubicle_id, OfficeCubicle.all, :id, :as_text
+  .span-6
+    = f.input :start_at, :as => :string, :input_html => { :size => 11, :class => 'date' }
+  .span-6.last
+    = f.input :end_at, :as => :string, :input_html => { :size => 11, :class => 'date' }
+
+
+- blueprint 'span-19 hours last ', :id => 'schedule_for_all_day'  do
+  %h3='Horario de lunes a viernes'
+  .span-4
+    = label :schedule, 'Hora de inicio'
+    = text_field(:schedule, :start_at, :class => 'time', :size => 5)
+  .span-15.last
+    = label :schedule, 'Hora de término'
+    = text_field(:schedule, :end_at, :class => 'time', :size => 5)
+  .span-19.last
+    =  link_to 'Si deseas asignar un horario distinto para cada día de la semana presiona aquí', '#', :id => 'show_schedule_per_day'
+
+- blueprint 'span-19 hours last ', :id => 'schedule_per_day', :style => 'display: none;'  do
+  %h3='Horarios de la semana'
+  - day_list_builder(f)
+  = f.simple_fields_for :event_days do |form|
+    = render :partial => 'academics/event_days/form', :locals => { :f => form }
+  =  link_to 'Si deseas asignar el mismo horario para todos los días de la semana presiona aquí', '#', :id => 'show_schedule_for_all_day'
+
+- blueprint 'span-18 last'  do
+  = f.submit t(:save), :class => 'ui-state-default ui-corner-all button'
+  = link_to 'Cancelar', academics_student_requests_path, :class => 'ui-state-default ui-corner-all button'
