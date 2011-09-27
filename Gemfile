@@ -24,6 +24,7 @@ gem "meta_where", "~> 1.0.4"
 gem "scope_by_fuzzy", "~> 0.0.2"
 gem "simple_form", "~> 1.4.2"
 gem "show_for", "~> 0.2.4"
+gem "simple-navigation", "~> 3.5.0"
 
 group :production do
   gem "rack-ssl-enforcer", "~> 0.2.3", :require => 'rack/ssl-enforcer'
