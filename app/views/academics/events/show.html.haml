@@ -1,0 +1,28 @@
+.span-20.prepend-2.last
+  .span-19.prepend-2.last.record
+    - show_for @event do |e|
+      .span-18.last.record
+        .span-8
+          = @event.user_request.user.person.fullname
+        .span-5
+          = e.label 'Periodo: '
+          = @event.user_request.period.name
+        .span-5.last
+          = e.label 'Actividad a realizar: '
+          = @event.user_request.role.name
+
+      = e.association :office_cubicle, :using => :as_text
+      = e.attribute :start_at
+      = e.attribute :end_at
+      %h3='Horarios de la semana'
+      %table{:class => 'personal_info'}
+        %theader
+          %tr
+            %th= 'Día'
+            %th= 'Hora de inicio'
+            %th= 'Hora de término'
+        - e.association :event_days, :collection_tag => :tbody, :label => nil do |d|
+          %tr
+            %td= day_list[d.day]
+            %td= d.start_time
+            %td= d.end_time

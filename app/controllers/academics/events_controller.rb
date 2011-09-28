@@ -6,4 +6,9 @@ class Academics::EventsController < Academics::ResourcesController
      super
    end
    
+   def create
+     build_resource.remote_user_incharge_id = current_academics_user.id
+     super
+   end
+   
 end
