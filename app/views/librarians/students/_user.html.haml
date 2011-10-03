@@ -28,10 +28,10 @@
       - blueprint 'span-3' do
         %b= 'Tipo de actividad'
       - blueprint 'span-3' do
-        %b= 'Estado de solicitud'
+        %b= '¿Esta autorizada por el académico responsable?'
       - blueprint 'span-3' do
         %b= 'Tipo de solicitud'
       - blueprint 'span-3 last' do
-        %b= 'Aprobado por CD-IF'
+        %b= '¿Esta aprobada por la Coordinación Docente?'
       = render :partial => 'user_request', :object => user.user_requests.first
 

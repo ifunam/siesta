@@ -10,10 +10,14 @@
     = stylesheet_link_tag 'dashboard.css', :media => 'screen, projection'
     = stylesheet_link_tag 'ui/themes/smoothness/jquery.ui.all'
     = stylesheet_link_tag "ui/themes/smoothness/jquery-ui-1.8.14.custom"
+    = stylesheet_link_tag "ui/themes/smoothness/ui.timepickr"
     /[if lt IE 8]
       = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
     = javascript_include_tag "jquery"
     = javascript_include_tag "ui/jquery-ui-1.8.14.custom"
+    = javascript_include_tag "jquery.strings"
+    = javascript_include_tag "jquery.utils"
+    = javascript_include_tag "ui/ui.timepickr"
     = javascript_include_tag 'jquery_ujs'
     = javascript_include_tag "application"
   %body

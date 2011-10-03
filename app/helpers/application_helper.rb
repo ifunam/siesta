@@ -12,7 +12,7 @@ module ApplicationHelper
     if student_request.events.size == 0
       link_to 'Asignar cubículo', new_academics_student_request_event_path(student_request)
     else
-      link_to 'Modificar cubículo asignado', academics_student_request_events_path(student_request)
+      link_to 'Modificar cubículo asignado', academics_student_request_event_path(:student_request_id => student_request.id, :id => student_request.event.id)
     end
   end
 

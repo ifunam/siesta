@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   scope :user_request_is_official, lambda { |is_official| joins(:user_requests).where(["user_requests.is_official = ?", is_official] ) }
   scope :lastname_start_with, lambda { |char| joins(:person).where("people.lastname1 ~* ?", ('^' + char)) }
   scope :activated, period_id_equals(Period.activated.id).user_request_is_official(true)
+  scope :approved, period_id_equals(Period.activated.id).requeststatus_id_equals(3)
   scope :student_code, lambda { |code| where(:id => code.sub(/^(E|e)(0)+/,'').to_i) }
 
   search_methods :fullname_like, :period_id_equals, :requeststatus_id_equals, :role_id_equals,
