@@ -11,4 +11,9 @@ class Academics::EventsController < Academics::ResourcesController
      super
    end
    
+   def edit
+     @user_request = resource.user_request
+     super
+   end
+
 end

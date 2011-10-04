@@ -1,0 +1,5 @@
+- blueprint 'span-20 prepend-2  last' do
+  %h3='Modificar asignación de cubículo'
+  - blueprint 'span-19 record last' do
+    = simple_form_for @event, :url => academics_event_path(@event) do |f|
+      = render :partial => 'form', :locals => { :f => f }

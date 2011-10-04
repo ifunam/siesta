@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def link_to_office_cubicle(student_request)
-    if student_request.events.size == 0
+    if student_request.event.nil?
       link_to 'Asignar cubículo', new_academics_student_request_event_path(student_request)
     else
       link_to 'Modificar cubículo asignado', academics_student_request_event_path(:student_request_id => student_request.id, :id => student_request.event.id)
@@ -50,7 +50,7 @@ module ApplicationHelper
       if f.object.new_record?
         f.object.event_days << EventDay.new(:day => d)
       else
-        if object.event_days.where(:day => d).first.nil?
+        if f.object.event_days.where(:day => d).first.nil?
           f.object.event_days << EventDay.new(:day => d)
         end
       end

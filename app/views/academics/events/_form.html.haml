@@ -21,8 +21,7 @@
   .span-6.last
     = f.input :end_at, :as => :string, :input_html => { :size => 11, :class => 'date' }
 
-
-- blueprint 'span-19 hours last ', :id => 'schedule_for_all_day'  do
+- blueprint 'span-19 hours last ', :id => 'schedule_for_all_day',  :style => "display: #{f.object.new_record? ? "block;" : "none;"}" do
   %h3='Horario de lunes a viernes'
   .span-4
     = label :schedule, 'Hora de inicio'
@@ -33,7 +32,7 @@
   .span-19.last
     =  link_to 'Si deseas asignar un horario distinto para cada día de la semana presiona aquí', '#', :id => 'show_schedule_per_day'
 
-- blueprint 'span-19 hours last ', :id => 'schedule_per_day', :style => 'display: none;'  do
+- blueprint 'span-19 hours last ', :id => 'schedule_per_day',  :style => "display: #{f.object.new_record? ? "none;" : "block;"}" do
   %h3='Horarios de la semana'
   - day_list_builder(f)
   = f.simple_fields_for :event_days do |form|
@@ -43,3 +42,4 @@
 - blueprint 'span-18 last'  do
   = f.submit t(:save), :class => 'ui-state-default ui-corner-all button'
   = link_to 'Cancelar', academics_student_requests_path, :class => 'ui-state-default ui-corner-all button'
+

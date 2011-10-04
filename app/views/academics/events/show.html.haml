@@ -26,3 +26,5 @@
             %td= day_list[d.day]
             %td= d.start_time
             %td= d.end_time
+    .span-19.last
+      = link_to t(:edit), edit_academics_event_path(@event), :class => 'ui-state-default ui-corner-all button'
