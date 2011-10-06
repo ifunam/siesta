@@ -1,7 +1,7 @@
 - blueprint 'span-19 hours last', :id => 'day_'+f.object.day.to_s  do
   .span-3
     = f.label 'Día'
-    = day_list[f.object.day]
+    = day_list[(f.object.day - 1)]
     = f.hidden_field :day
   .span-6
     = f.input :start_at, :as => :string, :input_html => { :size => 5, :class => 'time start_at'}

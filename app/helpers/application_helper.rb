@@ -47,6 +47,7 @@ module ApplicationHelper
   
   def day_list_builder(f)
     day_list.each_index do |d|
+      d += 1
       if f.object.new_record?
         f.object.event_days << EventDay.new(:day => d)
       else

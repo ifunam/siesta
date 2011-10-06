@@ -1,0 +1,7 @@
+.span-19.prepend-2.last
+  %h3= "Calendario del #{@office_cubicle.as_text} en el periodo #{@period.name}"
+  .span-19.prepend-1.last.record
+    #calendar
+    #office_cubicle_id{:value => @office_cubicle.id}
+  .span-19.last
+    = link_to t(:back), academics_calendars_path, :class => 'ui-state-default ui-corner-all button'

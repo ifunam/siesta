@@ -1,6 +1,20 @@
 class Academics::EventsController < Academics::ResourcesController
-   defaults :resource_class => Event, :collection_name => 'events', :instance_name => 'event'
-   
+  defaults :resource_class => Event, :collection_name => 'events', :instance_name => 'event'
+
+  def index
+    @events = Event.all_by_activated_period
+              .find_all_by_office_cubicle_id(params[:office_cubicle_id])
+    #@events = @events.after(params['start']) if (params['start'])
+    #@events = @events.before(params['end']) if (params['end'])
+    respond_to do |format|
+           format.html # index.html.erb
+           format.xml  { render :xml => @events }
+           format.js  {
+             render :json => @events.collect(&:event_days_as_json).flatten
+           }
+     end
+   end
+
    def new
      @user_request = UserRequest.find(params[:student_request_id]) 
      super

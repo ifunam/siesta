@@ -23,7 +23,7 @@
             %th= 'Hora de término'
         - e.association :event_days, :collection_tag => :tbody, :label => nil do |d|
           %tr
-            %td= day_list[d.day]
+            %td= day_list[(d.day - 1)]
             %td= d.start_time
             %td= d.end_time
     .span-19.last

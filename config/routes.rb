@@ -20,8 +20,6 @@ Siesta::Application.routes.draw do |map|
   ## Default controllers
   root :to => "dashboards#show"
 
-  
-
   # Academic controllers
   namespace :academics do 
     resources :events
@@ -29,12 +27,14 @@ Siesta::Application.routes.draw do |map|
       get :update, :on => :member
       resources :events
     end
-    resources :office_cubicles
+    resources :calendars
+    resources :office_cubicles do
+      resources :calendars
+    end
     root :to => "student_requests#index"
     devise_for :users, :only => :sessions, :format => false
   end
 
-  
   # Admin controllers
   namespace :managers do
     resources :students do
@@ -64,6 +64,5 @@ Siesta::Application.routes.draw do |map|
     devise_for :accounts, :controllers => { :sessions => "accounts/sessions",
                                             :registrations => "accounts/registrations" },
                           :format => false
-    
   end
 end

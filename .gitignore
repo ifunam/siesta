@@ -39,3 +39,4 @@ public/stylesheets/session.css
 public/photos
 config/ldap.yml
 Gemfile.lock
+.idea

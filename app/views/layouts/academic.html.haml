@@ -10,6 +10,7 @@
     = stylesheet_link_tag 'ui/themes/smoothness/jquery.ui.all'
     = stylesheet_link_tag "ui/themes/smoothness/jquery-ui-1.8.14.custom"
     = stylesheet_link_tag "ui/themes/smoothness/ui.timepickr"
+    = stylesheet_link_tag "fullcalendar.css"
     /[if lt IE 8]
       = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
     = javascript_include_tag "jquery"
@@ -19,7 +20,9 @@
     = javascript_include_tag "jquery.utils"
     = javascript_include_tag "ui/ui.timepickr"
     = javascript_include_tag 'jquery_ujs'
+    = javascript_include_tag "fullcalendar"
     = javascript_include_tag "application"
+    = javascript_include_tag "calendar"
   %body
     .container
       #header.span-24.last
