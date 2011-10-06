@@ -5,14 +5,14 @@
   %table
     %tr
       %th{:class => 'office_cubicles'}='Cubículo'
-      %th{:class => 'office_cubicles'}
-      %th{:class => 'office_cubicles'}
-      %th{:class => 'office_cubicles'}
+      %th{:class => 'office_cubicles'}='Ver calendario'
+      %th{:class => 'office_cubicles'}='Modificar'
+      %th{:class => 'office_cubicles'}='Borrar'
 
     - @office_cubicles.each do |office_cubicle|
       %tr
         %td{:class=>'office_cublice_record'}= office_cubicle.as_text
-        %td= link_to t(:show), academics_office_cubicle_path(office_cubicle)
+        %td=link_to t(:show), academics_calendar_path(:id =>office_cubicle.id, :period_id =>Period.activated.id)
         %td= link_to t(:edit), edit_academics_office_cubicle_path(office_cubicle)
         %td= link_to t(:delete), academics_office_cubicle_path(office_cubicle), :confirm => 'Are you sure?', :method => :delete
 
