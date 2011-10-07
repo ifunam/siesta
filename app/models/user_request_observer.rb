@@ -3,7 +3,7 @@ class UserRequestObserver < ActiveRecord::Observer
     case user_request.requeststatus_id
     when 2
       Notifier.student_notification(user_request.user).deliver
-      Notifier.academic_notification(user_request.user_incharge.email, user_request.user).deliver
+      Notifier.academic_notification(user_request).deliver
     when 3
       if user_request.is_official?
         Notifier.authorization_from_academic_coordination_to_student(user_request).deliver

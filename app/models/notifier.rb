@@ -15,9 +15,9 @@ class Notifier < ActionMailer::Base
     send_mail_to(user, "Su solicitud de Estudiante Asociado fue enviada")
   end
 
-  def academic_notification(academic_email, user)
-    @user = user 
-    mail(:to => academic_email, :subject => $subject_prefix + 'Solicitud de Estudiante Asociado - IFUNAM') do |format|
+  def academic_notification(user_request)
+    @user_request = user_request
+    mail(:to => @user_request.user_incharge.email, :subject => $subject_prefix + 'Solicitud de Estudiante Asociado - IFUNAM') do |format|
       format.text
     end
   end

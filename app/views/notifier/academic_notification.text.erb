@@ -6,12 +6,21 @@
 Estimado Académico del IFUNAM, usted ha recibido una solicitud para 
 asociar un estudiante al Instituto de Física.
 
-Estudiante: <%= @user.person.fullname %>
+Estudiante: <%= @user_request.user.person.fullname %>
+Periodo: <%= @user_request.period.name %>
+Actividad a realizar:  <%= @user_request.role.name %>
+Tipo de solicitud: <%= @user_request.is_restamped == true ? 'Resello' : 'Solicitud nueva' %>
 
 Para atender esta solicitud debe usar la siguiente dirección:
 
 http://siesta.fisica.unam.mx/academics/
 
+<% if @user_request.want_office_cubicle %>
+El estudiante también ha solicitado asignación de un espacio en los cubículos de estudiantes,
+por favor realizé esta asignación después de haber autorizado la solicitud de estudiante
+asociado.
+
+<% end %>
 Recuerde que, de acuerdo a las reglas de operación para tener estudiantes
 asociados, también debe notificar a la Coordinación Docente cuando termine
 su relación con este estudiante.
