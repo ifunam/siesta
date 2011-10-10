@@ -17,9 +17,11 @@
     = f.hidden_field :user_request_id, :value => @user_request.id
     = f.collection_select :office_cubicle_id, OfficeCubicle.all, :id, :as_text
   .span-6
-    = f.input :start_at, :as => :string, :input_html => { :size => 11, :class => 'date' }
+    - f.object.start_date = Date.today f.object.new_record?
+    = f.input :start_date, :as => :string, :input_html => { :size => 11, :class => 'date' }
   .span-6.last
-    = f.input :end_at, :as => :string, :input_html => { :size => 11, :class => 'date' }
+    - f.object.start_date = Period.activated.enddate f.object.new_record?
+    = f.input :end_date, :as => :string, :input_html => { :size => 11, :class => 'date' }
 
 - blueprint 'span-19 hours last ', :id => 'schedule_for_all_day',  :style => "display: #{f.object.new_record? ? "block;" : "none;"}" do
   %h3='Horario de lunes a viernes'

@@ -12,8 +12,8 @@
           = @event.user_request.role.name
 
       = e.association :office_cubicle, :using => :as_text
-      = e.attribute :start_at
-      = e.attribute :end_at
+      = e.attribute :start_date
+      = e.attribute :end__date
       %h3='Horarios de la semana'
       %table{:class => 'personal_info'}
         %theader
