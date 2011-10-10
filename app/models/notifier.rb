@@ -1,5 +1,7 @@
 # encoding: utf-8
 class Notifier < ActionMailer::Base
+  include ApplicationHelper
+
   default :from => "no-reply-siesta@fisica.unam.mx"
   $subject_prefix = '[SIESTA] - '
 
@@ -79,6 +81,14 @@ class Notifier < ActionMailer::Base
     subject = 'Solicitud de Estudiante Asociado no autorizada'
     @user = user
     mail(:to => user_incharge.email, :subject => $subject_prefix + subject) do |format|
+      format.text
+    end
+  end
+
+  def office_cubicle_notification(event)
+    subject = 'Notificación de asignación de Oficina o cubículo'
+    @event  = event
+    mail(:to => @event.user_request.user.email,:cc => @event.user_request.user_incharge.email, :subject => $subject_prefix + subject) do |format|
       format.text
     end
   end

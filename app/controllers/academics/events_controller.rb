@@ -4,8 +4,6 @@ class Academics::EventsController < Academics::ResourcesController
   def index
     @events = Event.all_by_activated_period
               .find_all_by_office_cubicle_id(params[:office_cubicle_id])
-    #@events = @events.after(params['start']) if (params['start'])
-    #@events = @events.before(params['end']) if (params['end'])
     respond_to do |format|
            format.html # index.html.erb
            format.xml  { render :xml => @events }
