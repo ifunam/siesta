@@ -1,6 +1,6 @@
 # encoding: utf-8
 class Event < ActiveRecord::Base
-  validates :start_at, :end_at, :presence => true
+  validates :start_date, :end_date, :presence => true
   belongs_to :user_request
   belongs_to :office_cubicle
   belongs_to :user_incharge, :class_name => "AcademicClient", :foreign_key => 'remote_user_incharge_id'
