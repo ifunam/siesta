@@ -58,10 +58,16 @@ module ApplicationHelper
     end
   end
   
-  def search_options(user_id, params)
+  def search_options(user_id, params)    
     search_options = %w(period_id_equals role_id_equals requeststatus_id_equals user_request_is_restamped user_request_is_official).inject({}) {|h,k|
       if !params[k].nil? and !params[k].to_s.strip.empty?
-        h[k]= params[k];
+        if k == 'user_request_is_restamped'
+          h['is_restamped_equals'] = params[k]
+        elsif k == 'user_request_is_official'
+          h['is_official_equals'] = params[k]
+        else
+          h[k]= params[k]
+        end
       end
       h
     }
