@@ -27,6 +27,10 @@ class Person < ActiveRecord::Base
     [firstname, lastname1.strip, (lastname2 != nil ? lastname2.strip : nil)].compact.join(' ')
   end
 
+  def lastname
+    [lastname1.strip, (lastname2 != nil ? lastname2.strip : nil)].compact.join(' ')
+  end
+
   def placeofbirth
     [city.name,  state.name, country.name].compact.join(', ')
   end

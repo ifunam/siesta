@@ -7,8 +7,8 @@
     %h3= 'Nueva cuenta de correo electrónico'
     - form_for :user, :url => managers_emails_path, :html => { :method => :post, :style => 'text-align: left;'} do |f|
       - blueprint 'span-20' do
-        = f.label :login, "Usuario:", :class => 'login'
-        = f.text_field :login, :size => 12
+        = f.label :login, "Usuario (máximo 18 caracteres):", :class => 'login'
+        = f.text_field :login, :size => 12, :maxlength => 18
       - blueprint 'span-20' do
         = f.label :password, "Contraseña:", :class => 'login'
         = f.password_field :password, :size => 12

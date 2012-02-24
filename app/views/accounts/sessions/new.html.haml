@@ -9,7 +9,7 @@
     = form_for(resource, :as => :user, :url => session_path(:user)) do |f|
       %p
         = f.label :login, 'Usuario', :class => 'login'
-        = f.text_field :login, :size => 12, :maxlength => 16
+        = f.text_field :login, :size => 12, :maxlength => 30
       %p
         = f.label :password, 'Contraseña', :class => 'login'
         = f.password_field :password, :size => 12

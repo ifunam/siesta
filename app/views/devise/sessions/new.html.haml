@@ -1,5 +1,10 @@
 %div{:class => 'span-12	 prepend-1', :style => 'margin: 10px; padding: 10px; border-right: 1px solid silver;'}
-  %h2 Solicitud de Resello
+  %h2 Solicitud de Resello o cambio de actividad a realizar
+  %p{:class => 'notice_box blue'}
+    = 'Use esta opción si ya tiene una cuenta de correo en el IFUNAM o si cambiará de actividad a realizar.'
+
+  %p{:class => 'notice_box red'}
+    = 'El acceso a la opción de resello ha sido desactivado, estará disponible hasta el siguiente periodo.'
 
   %p{:class => 'notice_box blue'}
     = image_tag('ok.png')
@@ -9,10 +14,10 @@
     = form_for(resource, :as => :user, :url => session_path(:user)) do |f|
       %p
         = f.label :login, 'Usuario', :class => 'login'
-        = f.text_field :login, :size => 12, :maxlength => 21
+        = f.text_field :login, :size => 12, :maxlength => 30
       %p
         = f.label :password, 'Contraseña', :class => 'login'
-        = f.password_field :password, :size => 12, :maxlength => 21
+        = f.password_field :password, :size => 12, :maxlength => 30
       %p= f.submit "Entrar"
   %div{:class => 'span-8 round_box'}
     %p='Para entrar al sistema debes usar el usuario y contraseña del correo electrónico del Instituto de Física.'

@@ -1,11 +1,11 @@
 class AdscriptionClient < ActiveResource::Base
-  self.site = 'http://salva.fisica.unam.mx:8080/'
+  self.site = 'https://salva.fisica.unam.mx/api'
   self.element_name = "adscription"
   
   def users
     i = 0
-    AdscriptionClient.get("users/#{self.id}").collect { |attributes|
-      [fullname_remote_user(attributes), attributes['id']] 
+    AdscriptionClient.get("#{self.id}/users").collect { |attributes|
+      [attributes['fullname'], attributes['id']]
     }.compact.sort {|a, b| a[i] <=> b[i]}
   end 
   
@@ -21,7 +21,4 @@ class AdscriptionClient < ActiveResource::Base
     @attributes['abbrev']
   end
 
-  def fullname_remote_user(attributes)
-    %w(lastname1 lastname2 firstname).collect {|k| attributes['person'][k] }.join(' ')
-  end
 end

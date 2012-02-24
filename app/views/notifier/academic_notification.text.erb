@@ -13,7 +13,11 @@ Tipo de solicitud: <%= @user_request.is_restamped == true ? 'Resello' : 'Solicit
 
 Para atender esta solicitud debe usar la siguiente dirección:
 
-http://siesta.fisica.unam.mx/academics/
+https://siesta.fisica.unam.mx/academics/
+
+NOTA: Los usuarios de Internet Explorer deben copiar y pegar la liga en su navegador
+en caso de que el sistema no se abra automáticamente. Esto se debe a un problema
+de compatibilidad entre el servidor web y su navegador.
 
 <% if @user_request.want_office_cubicle %>
 El estudiante también ha solicitado asignación de un espacio en los cubículos de estudiantes,

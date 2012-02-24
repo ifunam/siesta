@@ -10,12 +10,13 @@
   - blueprint 'span-10 last' do
     = label :is_restamped, 'Tipo de solicitud'
     = (f.radio_button :is_restamped, false, :checked => !f.object.is_restamped) + 'Solicitud nueva'
-    = (f.radio_button :is_restamped, true, :checked => f.object.is_restamped) + 'Resello de credencial'
+    - # = (f.radio_button :is_restamped, true, :checked => f.object.is_restamped) + 'Resello de credencial'
 
 - blueprint('span-20 prepend-2 last', :id => 'collection_tr') do
-  = label :is_restamped, '¿Necesita espacio en un cubículo para estudiantes?'
-  = (f.radio_button :want_office_cubicle, true, :checked => f.object.want_office_cubicle) + 'Sí'
-  = (f.radio_button :want_office_cubicle, false, :checked => !f.object.want_office_cubicle) + 'No'
+  - # = label :is_restamped, '¿Necesita espacio en un cubículo para estudiantes?'
+  - # = (f.radio_button :want_office_cubicle, true, :checked => f.object.want_office_cubicle) + 'Sí'
+  - # = (f.radio_button :want_office_cubicle, false, :checked => !f.object.want_office_cubicle) + 'No'
+  = f.hidden_field :want_office_cubicle, :value => false
 - if f.object.role_id.to_i == 1
   = render :partial => 'form_dates'
 - else

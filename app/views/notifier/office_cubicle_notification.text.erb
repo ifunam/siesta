@@ -8,8 +8,8 @@ cubículo/oficina para el perido <%= @event.user_request.period.name %>:
 
 Estudiante: <%= @event.user_request.user.person.fullname %>
 Académico: <%= @event.user_request.user_incharge.fullname %>
-Actividad a realizar:  <%= @user_request.role.name %>
-Tipo de solicitud: <%= @user_request.is_restamped == true ? 'Resello' : 'Solicitud nueva' %>
+Actividad a realizar:  <%= @event.user_request.role.name %>
+Tipo de solicitud: <%= @event.user_request.is_restamped == true ? 'Resello' : 'Solicitud nueva' %>
 Oficina o Cubículo: <%= @event.office_cubicle.as_text %>
 
 Fecha de inicio:  <%= @event.start_date %>
@@ -17,9 +17,9 @@ Fecha de término: <%= @event.end_date %>
 
 == Horarios ==
 <%- @event.event_days.each do |event_day| %>
-    <%= "Día: #{day_list[(event_day.day - 1)]}" %>
-    <%= "Fecha de inicio #{event_day.start_time}" %>
-    <%= "Fecha de término #{event_day.end_time}" %>
+    <%= "Día: #{event_day.day}" %>
+    <%= "Hora de inicio: #{event_day.start_time}" %>
+    <%= "Hora de término: #{event_day.end_time}" %>
 
 <% end %>
 Coordinación Docente, Instituto de Física

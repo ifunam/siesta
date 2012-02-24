@@ -4,8 +4,12 @@
     %p= 'Usa esta opción para entrar al SIESTA usando tu usuario y contraseña registrado.'
   - if controller_name != 'registrations'
     = link_to "Crear una nueva cuenta",  new_accounts_account_registration_path
-    %p='Usa esta opción para crear tu cuenta y entrar al sistema.'
+    %p
+      ='Usa esta opción para crear tu cuenta y entrar al sistema.'
+      %br
+      %b='NOTA: '
+      = 'Si ya tienes cuenta de correo en el Instituto de Física debes hacer el trámite con esa cuenta, de lo contrario el proceso será inválido y deberas repetirlo con tu cuenta registrada. Si no recuerdas la contraseña, acude al cubículo 241 del edificio principal del IFUNAM y solicita que te cambien la contraseña, en horario de 10 a las 14, y de las 16 a las 18 horas, de lunes a viernes.'
   - if controller_name != 'passwords'
     = link_to "Enviar una nueva contraseña",  new_accounts_account_password_path
-    %p='Usa esta opción para recuperar tu contraseña usando tu cuenta de correo registrada en el SIESTA.'
+    %p='Usa esta opción solamente si no tienes una cuenta de correo en el servidor del Instituto de Física.'
 

@@ -93,11 +93,8 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  def new_local_user(login, password, fullname, group)
-    @login = login
-    @passwd = password
-    @fullname = fullname
-    @group = group 
+  def new_ldap_user(user_profile)
+    @user_profile = user_profile
     mail(:to => 'vic@fisica.unam.mx', :subject => $subject_prefix + 'Nueva cuenta de Estudiante Asociado - IFUNAM') do |format|
         format.text
     end
