@@ -37,6 +37,14 @@ class UserRequest < ActiveRecord::Base
       change_requeststatus(2)
     end
 
+    def type
+      is_restamped ? 'Resello' : 'Solicitud nueva'
+    end
+    
+    def status
+      is_official ? 'Autorizada por CD-IF' : 'Sin autorización de la CD-IF'
+    end
+    
     def is_unauthorized?
       requeststatus_id != 3
     end
