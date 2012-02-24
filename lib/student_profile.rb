@@ -5,6 +5,7 @@ class StudentProfile < User
   has_many :schoolings, :foreign_key => :user_id
   has_many :user_documents, :foreign_key => :user_id
   has_many :user_requests, :foreign_key => :user_id 
+  attr_accessible :login, :email
 
   def fullname
     self.person.fullname  unless person.nil?
