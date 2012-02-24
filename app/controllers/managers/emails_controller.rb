@@ -9,7 +9,8 @@ class Managers::EmailsController < Managers::ApplicationController
    @user = LDAP::User.new(params[:user])
    @student = StudentProfile.find(params[:student][:id])
    if @user.save
-       @student.update_attribute(:email, params[:user][:login] + '@fisica.unam.mx')
+       @student.update_attributes(:email =>params[:user][:login] + '@fisica.unam.mx', :login => params[:user][:login])
+       Notifier.new_ldap_user(@student).deliver
      redirect_to managers_email_path(@student)
    else
      render :action => :new
@@ -27,6 +28,7 @@ class Managers::EmailsController < Managers::ApplicationController
  def update
     @user = User.find(params[:id])
     @user.email = params[:email]
+    @user.login = params[:email].split('@').first
     if @user.save
       redirect_to managers_email_path(@user)
     else
