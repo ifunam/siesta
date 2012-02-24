@@ -35,4 +35,8 @@ class User < ActiveRecord::Base
   def self.paginated_search(options={})
     search(options[:search]).paginate(:page => options[:page] || 1, :per_page =>  options[:per_page] || 10)
   end
+
+  def self.simple_search(options={})
+    search(options[:search]).all
+  end
 end
