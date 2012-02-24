@@ -1,0 +1,4 @@
+- ['Nombre completo', 'Departamento', 'Académico responsable', 'Tipo de actividad', 'Periodo', 'No de estudiante', 'Correo electrónico']
+- @users.each do |record|  
+  - user_request = UserRequest.search(search_options(record.id, params[:search])).first
+  = [record.fullname, user_request.adscription.name, user_request.user_incharge.fullname, user_request.role.name, user_request.period.name, record.code, record.email].join(',')

@@ -41,9 +41,11 @@ Siesta::Application.routes.draw do |map|
       get :card_back, :on => :member
       get :card_front, :on => :member
       get :authorize, :on => :member
+      get :search, :on => :collection
     end
     resources :photos
     resources :emails
+    resources :periods
     root :to => "students#index"
     devise_for :users, :only => :sessions, :format => false
   end

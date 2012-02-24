@@ -1,8 +1,19 @@
 class Managers::StudentsController < Managers::ApplicationController
-  respond_to :html, :js
+  respond_to :html, :js, :csv
 
   def index
-     respond_with(@users = User.student.fullname_asc.paginated_search(params))
+    respond_with(@users = User.student.fullname_asc.paginated_search(params))
+  end
+
+  def search
+    respond_with(@users = StudentProfile.student.fullname_asc.simple_search(params)) do |format|
+      format.js
+      format.csv do
+        headers["Content-Type"] = 'text/csv'
+        headers['Content-Disposition'] = "attachment; filename=\"search_report_#{Time.now.strftime("%Y%m%d%H%m")}.csv\""
+        render :action => 'search.csv', :layout => false
+      end
+    end
   end
 
   def show
@@ -40,4 +51,5 @@ class Managers::StudentsController < Managers::ApplicationController
     @user.destroy
     respond_with(@user, :status => :deleted, :location => managers_users_path)
   end
+
 end

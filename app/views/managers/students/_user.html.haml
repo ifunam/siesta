@@ -36,5 +36,5 @@
   - blueprint 'span-5' do
     = link_to 'Ver ficha completa', managers_student_path(:id => user.id), :class => 'ui-state-default ui-corner-all button'
   - blueprint 'span-5 prepend-10 last' do
-    = link_to 'Borrar', managers_student_path(user.id), :method => :delete, :confirm => t(:confirm_question), :class => 'ui-state-default ui-corner-all button destroy_button'
+    = link_to 'Borrar', managers_student_path(user.id), :method => :delete, :confirm => t(:confirm_question), :class => 'ui-state-default ui-corner-all button destroy_button destroy_user_link'
 

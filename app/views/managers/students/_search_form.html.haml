@@ -33,4 +33,8 @@
           = 'Sin Aprobar'
         %td= link_to "Buscar", '#', :class => 'ui-state-default ui-corner-all button', :id => 'search_link'
         %td= link_to 'Mostrar todos',  managers_students_path, :class => 'ui-state-default ui-corner-all button'
+      %tr
+        - 9.times do
+          %td
+        %td= link_to "Obtener reporte en excel", '#', :class => 'ui-state-default ui-corner-all button', :id => 'excel_report_link'
 

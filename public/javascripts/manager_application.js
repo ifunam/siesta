@@ -5,6 +5,17 @@ $(document).ready(function(){
     	return false;
 	});
 
+	$('#excel_report_link').live('click', function() {
+    	resource = "/managers/students/search.csv?" + $.param($("#search_form").serializeArray());
+      document.location.href = resource;
+    	return false;
+	});
+
+	current_year = new Date().getFullYear();
+	end_year = current_year + 1;
+	year_range = current_year + ':' + end_year;
+    $('.date').datepicker({ changeYear: true,  changeMonth: true, yearRange: year_range, dateFormat: 'dd-mm-yy' });
+
 	$('.authorize_link').live('click', function() {
     	var url = this.getAttribute('link') + '.js';
     	options = {
