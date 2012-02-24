@@ -2,14 +2,14 @@
   %h2 Solicitud de Resello o cambio de actividad a realizar
   %p{:class => 'notice_box blue'}
     = 'Use esta opción si ya tiene una cuenta de correo en el IFUNAM o si cambiará de actividad a realizar.'
-  - if Period.activated.enddate >= Date.today
+  - unless Period.activated.enddate >= Date.today
     %p{:class => 'notice_box red'}
-    = 'El acceso a la opción de resello ha sido desactivado, estará disponible hasta el siguiente periodo.'
-
-  %p{:class => 'notice_box blue'}
-    = image_tag('ok.png')
-    = 'Resello de credenciales para Estudiantes Asociados al Instituto de Física de la UNAM '
-    %b= "(Período: #{Period.activated.name})."
+      = 'El acceso a la opción de resello ha sido desactivado, estará disponible hasta el siguiente periodo.'
+  - else
+    %p{:class => 'notice_box blue'}
+      = image_tag('ok.png')
+      = 'Resello de credenciales para Estudiantes Asociados al Instituto de Física de la UNAM '
+      %b= "(Período: #{Period.activated.name})."
   - if Period.activated.enddate >= Date.today
     %div{:class => 'span-3', :style => 'text-align: left;'}
       = form_for(resource, :as => :user, :url => session_path(:user)) do |f|
