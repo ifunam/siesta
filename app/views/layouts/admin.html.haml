@@ -27,13 +27,8 @@
     %div{:class =>'container'}
       %div{:id => 'header', :class => "span-24 last"}
         %h1= link_to "Instituto de Física - UNAM", "http://www.fisica.unam.mx", :target => '_new', :class => 'button'
-      - if managers_user_signed_in?
-        - blueprint 'span-23 last top_links' do
-          = current_managers_user.login
-          = ' | '
-          = link_to 'Salir', destroy_managers_user_session_path
-
       %div{:id => 'main', :class => 'span-24 last'}
+        #top-navigation.span-23.last= render_navigation(:context => :manager)
         = yield :layout
       %div{:id => 'main_footer', :class => 'span-24 last'}
       = render :partial => 'layouts/footer'

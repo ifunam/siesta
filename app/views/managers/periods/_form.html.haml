@@ -1,0 +1,20 @@
+.span-20.prepend-2.last
+  = f.label :name, "Nombre del periodo"
+  = f.text_field :name
+
+.span-20.prepend-2.last
+  = f.label :startdate, "Fecha de inicio"
+  = f.text_field :startdate, :class => 'date', :size => 12
+
+.span-20.prepend-2.last
+  = f.label :enddate, "Fecha de término"
+  = f.text_field :enddate, :class => 'date', :size => 12
+  
+.span-20.prepend-2.last
+  = label :status, 'Status'
+  = (f.radio_button :is_active, false, :checked => (!f.object.is_active unless f.object.nil?)) + 'Inactivo'
+  = (f.radio_button :is_active, true, :checked => (f.object.is_active unless f.object.nil?)) + 'Vigente'
+
+.span-20.prepend-2.last
+  = submit_tag('Guardar')
+  = link_to 'Cancelar', managers_periods_path

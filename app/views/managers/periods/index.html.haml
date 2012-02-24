@@ -1,0 +1,27 @@
+- blueprint 'span-23 prepend-1 last' do
+  %h3= 'Periodos'
+
+.span-21.prepend-1.last
+  .span-4
+    %b Periodo
+  .span-4
+    %b Fecha de inicio
+  .span-4
+    %b Fecha de término
+  .span-4
+    %b Estado
+  .span-2
+  .span-2.last
+
+
+%div{:id => 'collection'}
+  - blueprint 'span-23 prepend-1 last' do
+    = render :partial => 'record', :collection => @periods
+
+%div{:id => 'paginator'}
+  - blueprint 'span-23 prepend-1 last' do
+    = will_paginate(@periods)
+
+- blueprint 'span-20 prepend-1 last', :style => 'border-bottom: 1px solid green; padding-top: 10px; padding-bottom: 10px; margin-bottom: 30px; text-align: left;' do
+  - blueprint 'span-5' do
+    = link_to 'Agregar nuevo periodo', new_managers_period_path

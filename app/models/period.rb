@@ -26,6 +26,10 @@ class Period < ActiveRecord::Base
   def self.previous
     self.where(['startdate < ?', Period.most_recent.startdate]).order('startdate DESC').limit(1).first
   end
+
+  def status
+    is_active ? 'Vigente' : 'Desactivado'
+  end
   
   private
   def time_at_midnight(date)

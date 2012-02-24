@@ -1,0 +1,7 @@
+.span-21.prepend-1.last{:id => 'user_'+record.id.to_s}
+  .span-4= record.name
+  .span-4= record.startdate
+  .span-4= record.enddate
+  .span-4= record.status
+  .span-2= link_to t(:edit), edit_managers_period_path(record)
+  .span-2= link_to t(:delete), managers_period_path(record), :method => :destroy
