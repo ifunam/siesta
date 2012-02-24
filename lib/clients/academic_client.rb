@@ -1,11 +1,11 @@
 class AcademicClient < ActiveResource::Base
-  self.site = 'http://salva.fisica.unam.mx:8080/'
-  self.element_name = "academic"
+  self.site = 'https://salva.fisica.unam.mx/api'
+  self.element_name = "user"
 
   # Fix It: Remove this method after of the UpdateRemoteAttributesInUserRequests migration
   def self.find_by_login(login)
-     @attributes = self.get("show_by_login/#{login}")
-     self.find(@attributes['user_id'])
+     @attributes = self.get("find_by_login/#{login}")
+     self.find(@attributes['id'])
   end
   
   def fullname
