@@ -2,8 +2,8 @@
   %h2 Solicitud de Resello o cambio de actividad a realizar
   %p{:class => 'notice_box blue'}
     = 'Use esta opción si ya tiene una cuenta de correo en el IFUNAM o si cambiará de actividad a realizar.'
-
-  %p{:class => 'notice_box red'}
+  - if Period.activated.enddate >= Date.today
+    %p{:class => 'notice_box red'}
     = 'El acceso a la opción de resello ha sido desactivado, estará disponible hasta el siguiente periodo.'
 
   %p{:class => 'notice_box blue'}
