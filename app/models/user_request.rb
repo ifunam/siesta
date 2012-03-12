@@ -1,3 +1,4 @@
+# encoding: utf-8
 class UserRequest < ActiveRecord::Base
     validates_presence_of  :user_id, :period_id, :role_id, :remote_user_incharge_id, :remote_adscription_id
     validates_numericality_of :period_id, :role_id, :remote_user_incharge_id, :greater_than => 0, :only_integer => true

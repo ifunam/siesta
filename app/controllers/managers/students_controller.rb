@@ -1,5 +1,8 @@
+# encoding: utf-8
+require Rails.root.to_s + '/lib/reporter'
 class Managers::StudentsController < Managers::ApplicationController
-  respond_to :html, :js, :csv
+  include ApplicationHelper
+  respond_to :html, :js, :csv, :xls
 
   def index
     respond_with(@users = User.student.fullname_asc.paginated_search(params))
@@ -12,6 +15,11 @@ class Managers::StudentsController < Managers::ApplicationController
         headers["Content-Type"] = 'text/csv'
         headers['Content-Disposition'] = "attachment; filename=\"search_report_#{Time.now.strftime("%Y%m%d%H%m")}.csv\""
         render :action => 'search.csv', :layout => false
+      end
+      format.xls do
+        @report = Siesta::Reporter.new(@users, params[:search])
+        @report.build
+        send_file(@report.file_path, :type => "application/vnd.ms-excel", :disposition => 'attachment')
       end
     end
   end
@@ -51,5 +59,4 @@ class Managers::StudentsController < Managers::ApplicationController
     @user.destroy
     respond_with(@user, :status => :deleted, :location => managers_users_path)
   end
-
 end

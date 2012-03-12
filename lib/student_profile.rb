@@ -27,7 +27,7 @@ class StudentProfile < User
   end
   
   def most_recent_schooling
-    self.schoolings.find(:first, :select => 'degree_id', :order => 'startyear DESC')
+    self.schoolings.find(:first, :order => 'startyear DESC')
   end
 
   def student_type

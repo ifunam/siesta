@@ -6,9 +6,9 @@ $(document).ready(function(){
 	});
 
 	$('#excel_report_link').live('click', function() {
-    	resource = "/managers/students/search.csv?" + $.param($("#search_form").serializeArray());
+      resource = "/managers/students/search.xls?" + $.param($("#search_form").serializeArray());
       document.location.href = resource;
-    	return false;
+      return false;
 	});
 
 	current_year = new Date().getFullYear();

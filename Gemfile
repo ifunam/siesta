@@ -27,6 +27,7 @@ gem "show_for", "~> 0.2.4"
 gem "simple-navigation", "~> 3.5.0"
 gem "rest-client", "~> 1.6.7"
 gem "spreadsheet", "~> 0.6.8"
+gem "to_xls", "~> 1.5.0"
 
 group :production do
   gem "rack-ssl-enforcer", "~> 0.2.3", :require => 'rack/ssl-enforcer'

@@ -1,5 +1,10 @@
+- # encoding: utf-8
 = ['Nombre completo', 'Departamento', 'Académico responsable', 'Tipo de actividad', 'Periodo', 'No de estudiante', 'Correo electrónico', 'Tipo', 'Status'].join(', ')
 
 - @users.each do |record|  
   - user_request = UserRequest.search(search_options(record.id, params[:search])).first
-  = [record.fullname, user_request.adscription.name, user_request.user_incharge.fullname, user_request.role.name, user_request.period.name, record.code, record.email, user_request.type, user_request.status].join(',')
+  - adscription_name = user_request.adscription.nil? ? 'No definida' : user_request.adscription.name
+  - user_incharge = user_request.user_incharge.nil? ? 'No definido' : user_request.user_incharge.fullname
+  - role_name = user_request.role.nil? ? 'No definida' : user_request.role.name
+  - period_name = user_request.period.nil? ? 'No definido' : user_request.period.name
+  = [record.fullname, adscription_name, user_incharge, role_name, period_name, record.code, record.email, user_request.type, user_request.status].join(',')
