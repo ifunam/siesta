@@ -1,5 +1,7 @@
 class UserDocument < ActiveRecord::Base
-  has_attached_file :file
+  has_attached_file :file,
+                    :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+                    :url => "/system/:attachment/:id/:style/:filename"
   validates :document_id, :presence => true, :numericality => true
   
   #validates_attachment_content_type :file, :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'application/pdf', 'application/postscript']

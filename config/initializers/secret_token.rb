@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Siesta::Application.config.secret_token = '436059903cc86c32167e441e5a9ad10c0e2a4da7c8e64bde2bd9a1bf97274612a0244a9f640f6be2df1f9169b37e029578ca3d6cd9b624dc502d6cb38f997f36'
+Siesta::Application.config.secret_token = '5c54a131e0ae81eb8966810e6c29259cce5505613f889ff78405b96fe45dc0dbb8674d619b61586eb61c0119cd8a2cea188d9ba00ffa7f5e6b72dd1a11d12758'

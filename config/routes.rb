@@ -1,4 +1,4 @@
-Siesta::Application.routes.draw do |map|
+Siesta::Application.routes.draw do
 
   # Student controllers
   devise_for :users

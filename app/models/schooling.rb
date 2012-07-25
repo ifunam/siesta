@@ -1,5 +1,7 @@
 class Schooling < ActiveRecord::Base
-  has_attached_file :file
+  has_attached_file :file,
+                    :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+                    :url => "/system/:attachment/:id/:style/:filename"
   #validates_attachment_content_type :file, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'application/pdf', 'application/postscript']
   #validates_attachment_size :file, :max_size => 1..2048
 

@@ -7,7 +7,9 @@ class Person < ActiveRecord::Base
   validates_inclusion_of :gender, :in => [true, false]
   validates_uniqueness_of :user_id
 
-  has_attached_file :photo, :styles => { :medium => "150x150>", :thumb => "50x50>", :normal => "170x170", :card => '100x100' }  
+  has_attached_file :photo, :styles => { :medium => "150x150>", :thumb => "50x50>", :normal => "170x170", :card => '100x100' },
+            :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+            :url => "/system/:attachment/:id/:style/:filename"
   #  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'application/pdf', 'application/postscript']
   #  validates_attachment_size :photo, :max_size => 1..2048
 
