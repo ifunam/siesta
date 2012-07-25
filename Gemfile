@@ -30,7 +30,7 @@ gem "to_xls", "~> 1.5.1"
 group :development do
   gem "rspec-rails", '2.10.1'
   gem "jquery-rails", '2.0.2'
-  gem "slim-rails", "~> 1.0.3"
+  gem "haml-rails", "~> 0.3.4"
   gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
   gem "capistrano", "~> 2.12.0"
   gem "rvm-capistrano", "~> 1.2.1"
