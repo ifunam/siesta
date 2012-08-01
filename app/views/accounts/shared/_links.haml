@@ -1,15 +1,50 @@
-%div{:class => 'span-9 session_links_box last'}
-  - if controller_name != 'sessions'
-    = link_to "Entrar al sistema", new_user_session_path
-    %p= 'Usa esta opción para entrar al SIESTA usando tu usuario y contraseña registrado.'
-  - if controller_name != 'registrations'
-    = link_to "Crear una nueva cuenta",  new_accounts_account_registration_path
-    %p
-      ='Usa esta opción para crear tu cuenta y entrar al sistema.'
-      %br
-      %b='NOTA: '
-      = 'Si ya tienes cuenta de correo en el Instituto de Física debes hacer el trámite con esa cuenta, de lo contrario el proceso será inválido y deberas repetirlo con tu cuenta registrada. Si no recuerdas la contraseña, acude al cubículo 241 del edificio principal del IFUNAM y solicita que te cambien la contraseña, en horario de 10 a las 14, y de las 16 a las 18 horas, de lunes a viernes.'
-  - if controller_name != 'passwords'
-    = link_to "Enviar una nueva contraseña",  new_accounts_account_password_path
-    %p='Usa esta opción solamente si no tienes una cuenta de correo en el servidor del Instituto de Física.'
+- if controller_name != 'sessions'
+  .span4.alert.alert-success
+    = link_to t(:sign_in), new_session_path(resource_name), :class => 'btn btn-info' 
+    .clearfix
+    %br/
+    .well.alert.alert-info
+      .i.icon-info-sign
+      = ' '
+      = t('.hint_5')
+  
+- if devise_mapping.registerable? && controller_name != 'registrations'
+  .span4.alert.alert-info
+    = link_to t(:sign_up), new_registration_path(resource_name), :class => 'btn btn-success'
+    .clearfix
+    %br/
+    .well.alert.alert-success
+      .i.icon-info-sign
+      = ' '
+      = t('.hint_1')
+    .well.alert.alert-success
+      .i.icon-info-sign
+      = ' '
+      = t('.hint_2')
+    .well.alert.alert-success
+      .i.icon-info-sign
+      = ' '
+      = t('.hint_3')
+  .clearfix
+  %br/
+- if devise_mapping.recoverable? && controller_name != 'passwords'
+  .span4.alert.alert-warning
+    = link_to t(:new_password), new_password_path(resource_name), :class => 'btn btn-warning'
+    .clearfix
+    %br/
+    .well.alert.alert-success
+      .i.icon-info-sign
+      = ' '
+      = t('.hint_4')
 
+  %br/
+- if devise_mapping.confirmable? && controller_name != 'confirmations'
+  = link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name)
+  %br/
+- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks'
+  = link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name)
+  %br/
+- if devise_mapping.omniauthable?
+  - resource_class.omniauth_providers.each do |provider|
+    = link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider)
+    %br/

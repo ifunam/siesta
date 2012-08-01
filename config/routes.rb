@@ -60,11 +60,7 @@ Siesta::Application.routes.draw do
     resources :students
   end
   
-  namespace :accounts do
-    root :to => "dashboards#show"
-    resources :registrations 
-    devise_for :accounts, :controllers => { :sessions => "accounts/sessions",
-                                            :registrations => "accounts/registrations" },
-                          :format => false
-  end
+  devise_for :accounts, :controllers => { :sessions => "accounts/sessions",
+                                          :passwords => "accounts/passwords",
+                                          :registrations => "accounts/registrations" }
 end
