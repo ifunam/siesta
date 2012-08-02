@@ -13,9 +13,17 @@ es:
         password: 'Contraseña'
         password_confirmation: 'Confirmación de la contraseña'
         remember_me: 'Recordar contraseña'
+      user:
+        login: 'Usuario'
+        email: 'Correo electrónico'
+        password: 'Contraseña'
+        password_confirmation: 'Confirmación de la contraseña'
+        remember_me: 'Recordar contraseña'
 
   helpers:
     submit:
+      user:
+        create: 'Entrar'
       account:
         create: 'Entrar'
         sign_up: 'Crear cuenta'
@@ -39,14 +47,10 @@ es:
     "yes": "Sí"
     "no": "No"
 
-  public_sheets:
-    index:
-      title: "Sábanas electorales recibidas recientemente"
-
   accounts:
     sessions:
-      new:
-         title: "Estudiantes de nuevo ingreso"
+      form:
+        title: "Estudiantes de nuevo ingreso"
     registrations:
       new:
          title: "Registro para estudiantes de nuevo ingreso"
@@ -81,14 +85,15 @@ es:
          hint_4: "Usa esta opción para cambiar tu contraseña en caso de que no la recuerdes y eres estudiante de nuevo ingreso."
          hint_5: "Usa esta opción si ya te has registrado como estudiante de nuevo ingreso en el sistema."
 
-  sessions:
-    new:
-      title: "Solicitud de resello o cambio de actividad"
-      hint_1: "Use esta opción si ya tiene una cuenta de correo en el IFUNAM o si cambiará de actividad a realizar."
-      hint_2: "Si no recuerdas la contraseña, acude al cubículo 241 del edificio principal del IFUNAM y solicita que te cambien la contraseña, en horario de 10 a las 14, y de las 16 a las 18 horas, de lunes a viernes."
-      hint_3: "Para entrar al sistema debes usar el usuario y contraseña del correo electrónico del Instituto de Física."
-      hint_4: "Por ejemplo, si tu cuenta de correo es <b>roberto@fisica.unam.mx</b>, los datos para entrar al sistema son:"
-      disabled_message: "El acceso a la opción de resello ha sido desactivado, estará disponible hasta el siguiente periodo."
+  users:
+    sessions:
+      form:
+        title: "Resello de credenciales"
+        hint_3: "Utiliza esta opción si tienes una cuenta de correo en el IFUNAM para hacer la solicitud de resello de credencial o para cambiar de actividad a realizar."
+        hint_4: "Si no recuerdas la contraseña, acude al cubículo 241 del edificio principal del IFUNAM para cambiar tu contraseña, en horario de 10 a las 14, y de las 16 a las 18 horas, de lunes a viernes."
+        hint_1: "Para entrar al sistema debes usar el usuario y contraseña del correo electrónico del Instituto de Física."
+        hint_2: "Por ejemplo, si tu cuenta de correo es <b>roberto@fisica.unam.mx</b>, los datos para entrar al sistema son: <br/> <br/> <b>Usuario:</b> roberto <br/> <b>Contraseña:</b>*******"
+        disabled_message: "El acceso a la opción de resello ha sido desactivado, estará disponible hasta el siguiente periodo."
 
   sign_up: Registrar nuevo usuario
   new_password: Recuperar/Cambiar tu contraseña

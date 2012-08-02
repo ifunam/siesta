@@ -1,8 +1,8 @@
 Siesta::Application.routes.draw do
 
   # Student controllers
-  devise_for :users
-  
+  devise_for :users, :controllers => { :sessions => "users/sessions" }
+
   resource :dashboard
   resource :profile do
     get :person_state_list, :on => :member
@@ -59,7 +59,7 @@ Siesta::Application.routes.draw do
   namespace :public do
     resources :students
   end
-  
+
   devise_for :accounts, :controllers => { :sessions => "accounts/sessions",
                                           :passwords => "accounts/passwords",
                                           :registrations => "accounts/registrations" }

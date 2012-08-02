@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  devise :ldap_authenticatable
+  devise :ldap_authenticatable, :rememberable
 
   validates :login, :uniqueness => true
   validates :email, :uniqueness => true
@@ -8,9 +8,11 @@ class User < ActiveRecord::Base
   has_one :address
   has_many :user_documents
   has_many :user_requests
+
   accepts_nested_attributes_for :person, :address, :user_documents
 
   attr_accessible :person_attributes, :address_attributes, :user_documents_attributes
+
   scope :firstname_like, lambda { |firstname| where(" users.id IN (#{Person.search(:firstname_like => firstname).select('user_id').to_sql}) ") }
   scope :lastname1_like, lambda { |lastname| where(" users.id IN (#{Person.search(:lastname1_like => lastname).select('user_id').to_sql}) ") }
   scope :lastname2_like, lambda { |lastname| where(" users.id IN (#{Person.search(:lastname2_like => lastname).select('user_id').to_sql}) ") }

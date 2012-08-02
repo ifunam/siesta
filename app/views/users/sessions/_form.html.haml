@@ -1,0 +1,24 @@
+.well.span5
+  %h2= t('.title')
+  = simple_form_for(@user, :as => :user, :url => session_path(:user)) do |f|
+    .form-inputs
+      = f.input :login, :required => true, :autofocus => true, :as => :string, :input_html => { :class => 'input-small'}
+      = f.input :password, :required => true, :input_html => { :class => 'input-small' } 
+      = f.input :remember_me, :as => :boolean
+    .form-actions
+      = f.button :submit, :class => 'btn btn-primary'
+  .span4.alert.alert-success
+    - %w(hint_1 hint_2).each do |hint|
+      .well.alert.alert-warning
+        .i.icon-info-sign
+        = ' '
+        = t('.'+hint).html_safe
+  .clearfix 
+  %br/
+  .span4.alert.alert-info
+    - %w(hint_3 hint_4).each do |hint|
+      .well.alert.alert-success
+        .i.icon-info-sign
+        = ' '
+        = t('.'+hint).html_safe
+
