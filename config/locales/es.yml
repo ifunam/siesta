@@ -50,6 +50,16 @@ es:
     registrations:
       new:
          title: "Registro para estudiantes de nuevo ingreso"
+      edit:
+         title: "Edición de la cuenta para estudiantes de nuevo ingreso"
+         password_hint: "Deja el campo de la contraseña y el de su confirmación en blanco si no quieres cambiarla"
+         current_password_hint: "Necesitamo tu contraseña actual para confirmar tus cambios"
+         update: "Guardar cambios"
+         cancel_my_account: "Cancelar mi cuenta"
+    confirmations:
+      new:
+        title: "Envío de instrucciones de confirmación de mi cuenta"
+        send_me_confirmation_instructions: 'Enviar las instrucciones para confirmar el registro de mi cuenta'
     passwords:
       new:
         title: "Recuperar/Cambiar contraseña"
@@ -59,7 +69,10 @@ es:
         new_password: "Nueva contraseña"
         confirm_new_password: "Confirmar nueva contraseña"
         change_password: "Cambiar contraseña"
-
+    unlocks:
+      new:
+        title: "Envío de instrucciones para desbloquear la cuenta de estudiantes de nuevo ingreso"
+        submit: "Enviar instrucciones"
     shared:
       links:
          hint_1: "Usa esta opción para crear tu cuenta y entrar al sistema."
@@ -80,3 +93,4 @@ es:
   sign_up: Registrar nuevo usuario
   new_password: Recuperar/Cambiar tu contraseña
   sign_in: Iniciar sessión
+  action_confirmation_message: ¿ Estás seguro ?

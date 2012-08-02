@@ -1,4 +1,4 @@
 %p
-  Welcome #{@resource.email}!
-%p You can confirm your account email through the link below:
-%p= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)
+  Bienvenido(a) #{@resource.email}!
+%p Para activar tu cuenta, debes confirmar el registro de tu cuenta de correo usando la siguiente liga:
+%p= link_to 'Confirmar', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)
