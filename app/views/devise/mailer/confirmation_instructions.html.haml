@@ -1,0 +1,4 @@
+%p
+  Bienvenido(a) #{@resource.email}!
+%p Para activar tu cuenta, debes confirmar el registro de tu cuenta de correo usando la siguiente liga:
+%p= link_to 'Confirmar', confirmation_url(:account, :confirmation_token => @resource.confirmation_token)

@@ -1,0 +1,5 @@
+%p
+  Hola #{@resource.email}!
+%p Tu cuenta ha sido bloqueada en el SIESTA debido a una cantidad excesiva de intentos de acceso.
+%p Usa la siguiente liga para desbloquear tu cuenta:
+%p= link_to 'Desbloquear mi cuenta', unlock_url(:account, :unlock_token => @resource.unlock_token)

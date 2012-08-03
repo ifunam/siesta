@@ -32,8 +32,8 @@ es:
       unlocked: 'Su cuenta ha sido desbloqueada exitosamente. Ahora usted ingresar.'
     mailer:
       confirmation_instructions:
-        subject: "Instrucciones de Confirmación"
+        subject: "Instrucciones de confirmación"
       reset_password_instructions:
-        subject: "Instrucciones para re establecer contraseña"
+        subject: "Instrucciones para cambiar la contraseña"
       unlock_instructions:
-        subject: 'Instrucciones para des bloquear'
+        subject: 'Instrucciones para desbloquear su cuenta'
