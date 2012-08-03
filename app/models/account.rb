@@ -3,7 +3,7 @@ class Account < User
 
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :trackable, :validatable, :encryptable,
-         :authentication_keys => [:email]
+         :confirmable, :authentication_keys => [:email]
 
   attr_accessible :email, :password, :password_confirmation, :remember_me
 end
