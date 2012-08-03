@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  devise :ldap_authenticatable, :rememberable
+  devise :ldap_authenticatable, :rememberable, :authentication_keys => [:login]
 
   validates :login, :uniqueness => true
   validates :email, :uniqueness => true
@@ -40,5 +40,9 @@ class User < ActiveRecord::Base
 
   def self.simple_search(options={})
     search(options[:search]).all
+  end
+
+  def login_or_email
+    login || email
   end
 end
