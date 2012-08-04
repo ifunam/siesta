@@ -11,7 +11,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
   # Specify the class that will be applied to the current leaf of
   # active navigation items. Defaults to 'simple-navigation-active-leaf'
-  # navigation.active_leaf_class = 'your_active_leaf_class'
+  navigation.active_leaf_class = 'active'
 
   # Item keys are normally added to list items as id.
   # This setting turns that off
@@ -29,10 +29,20 @@ SimpleNavigation::Configuration.run do |navigation|
   # The auto highlight feature is turned on by default.
   # This turns it off globally (for the whole plugin)
   # navigation.auto_highlight = false
-
-  # Define the primary navigation
-  navigation.items do |primary|
-    sub_nav.item :user_requests, "Solicitud de estudiante asociado", user_requests_path
+  def label_tag(label_name, icon_class=nil)
+    unless icon_class.nil?
+      "<i class=\"#{icon_class}\"></i> " + t(label_name.to_sym)
+    else
+      t(label_name.to_sym)
+    end
   end
-
+  navigation.items do |primary|
+    primary.item :profile,  label_tag(:profile, 'icon-user'), profile_path
+    primary.item :schoolings, label_tag(:schoolings, 'icon-star'), schoolings_path
+    primary.item :file_uploaders, label_tag(:file_uploaders, 'icon-hdd'), file_uploaders_path
+    primary.item :user_requests, label_tag(:user_requests, 'icon-book'), user_requests_path
+    primary.dom_id = 'menu-id'
+    primary.dom_class = 'nav nav-pills nav-stacked'
+    # primary.auto_highlight = false
+  end
 end
