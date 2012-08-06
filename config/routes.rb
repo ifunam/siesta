@@ -4,9 +4,10 @@ Siesta::Application.routes.draw do
   devise_for :users, :controllers => { :sessions => "users/sessions" }
 
   resource :dashboard
-  resource :profile do
-    get :person_state_list, :on => :member
+  resource :profile, :only => [:show, :edit, :update] do
+    get :state_list, :on => :member
   end
+
   resources :schoolings do
     get :show_document, :on => :member
   end

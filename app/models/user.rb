@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
   has_many :user_requests
 
   accepts_nested_attributes_for :person, :address, :user_documents
-
   attr_accessible :person_attributes, :address_attributes, :user_documents_attributes
 
   scope :firstname_like, lambda { |firstname| where(" users.id IN (#{Person.search(:firstname_like => firstname).select('user_id').to_sql}) ") }
@@ -42,7 +41,30 @@ class User < ActiveRecord::Base
     search(options[:search]).all
   end
 
+  def self.find_profile(user_id)
+    @user = self.find(user_id)
+    @user.build_person_and_address unless @user.person_or_address? 
+    @user
+  end
+
   def login_or_email
     login || email
+  end
+
+  def person?
+    !person.nil?
+  end
+
+  def address?
+    !address.nil? 
+  end
+
+  def person_or_address?
+    person? || address?
+  end
+
+  def build_person_and_address
+    build_person unless person?
+    build_address unless address?
   end
 end

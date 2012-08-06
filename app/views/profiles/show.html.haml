@@ -1,5 +1,4 @@
-%h3='Inicio'
-= render :partial => @user.person unless @user.person.nil?
-= render :partial => @user.address unless @user.address.nil?
-- blueprint 'span-21 prepend-2 last', :style => 'text-align: left;', :id => 'buttons' do
-  = link_to t(:edit), edit_profile_path, :class => 'ui-state-default ui-corner-all button'
+%h3=t(:profile)
+= render :partial => @user.person if @user.person?
+= render :partial => @user.address if @user.address?
+= link_to t(:edit), edit_profile_path, :class => 'btn btn-primary'

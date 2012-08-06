@@ -1,18 +1,19 @@
 = f.hidden_field :id unless f.object.nil?
-= f.hidden_field :user_id, :value => current_user.id
-- blueprint 'span-20 prepend-2 last', :style => 'text-align: left;' do
-  %h3= t :personal_info
-  = f.text_field :firstname, :size => 15, :required => true, :blueprint => 'span-5'
-  = f.text_field :lastname1, :size => 15, :required => true, :blueprint => 'span-5'
-  = f.text_field :lastname2, :size => 15, :blueprint => 'span-5'
-  - blueprint 'span-5 last' do
-    = label :gender, 'Género'
-    = (f.radio_button :gender, false, :checked => (!f.object.gender unless f.object.nil?)) + 'Femenino'
-    = (f.radio_button :gender, true, :checked => (f.object.gender unless f.object.nil?)) + 'Másculino'
-- blueprint 'span-20 prepend-2 last', :style => 'text-align: left;' do
-  %h3= t :date_and_place_of_birth
-  = f.text_field :birthdate, :size => 15, :required => true, :blueprint => 'span-5'
-  = f.collection_select :country_id, Country.all, :id, :name, {:required => true, :selected => 484, :blueprint => 'span-5'} 
-  %div{:id=>'person_state_list', :class =>'span-5'}
-    = f.collection_select :state_id, State.find_all_by_country_id(484), :id, :name
-  = f.text_field :city, :size => 15, :required => true, :blueprint => 'span-5 last'
+
+%h3= t :personal_info
+= f.input :firstname, :as => :string, :required => true, :input_html => { :class => 'input-medium' }
+= f.input :lastname1, :as => :string, :required => true, :input_html => { :class => 'input-medium' }
+= f.input :lastname2, :as => :string, :input_html => { :class => 'input-medium' }
+
+%div.control-group.string.required
+  = label :gender, 'Género', :class => 'string required control-label'
+  = (f.radio_button :gender, false, :checked => (!f.object.gender unless f.object.nil?)) + 'Femenino'
+  = (f.radio_button :gender, true, :checked => (f.object.gender unless f.object.nil?)) + 'Másculino'
+
+%h3= t :date_and_place_of_birth
+= f.input :birthdate,  :as => :string, :required => true, :input_html => { :class => 'input-small' }
+= f.association :country
+
+%div#person_state_list
+
+= f.input :city, :required => true, :as => :string

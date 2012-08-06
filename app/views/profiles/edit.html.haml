@@ -1,9 +1,8 @@
-= render :partial => "/shared/errors", :object => @user.errors
-- form_for(@user, :profile, :url => profile_path, :builder => MyFormBuilder) do |f|
-  - f.fields_for 'person_attributes', @user.person do |person_form|
+= simple_form_for(@user, :url => profile_path, :method => :put) do |f|
+  = f.simple_fields_for :person do |person_form|
     = render :partial => 'people/form', :locals => { :f => person_form }
-  - f.fields_for 'address_attributes', @user.address do |address_form|
+  = f.simple_fields_for :address do |address_form|
     = render :partial => 'addresses/form', :locals => { :f => address_form }
-  - blueprint 'span-20 prepend-2 last', :style => 'text-align: left;', :id => 'buttons' do
-    = f.submit t(:save), :class => 'ui-state-default ui-corner-all button'
-    = link_to t(:cancel), profile_path, :class => 'ui-state-default ui-corner-all button'
+  = f.submit t(:save), :class => 'btn btn-primary'
+  = ' '
+  = link_to t(:cancel), profile_path, :class => 'btn'

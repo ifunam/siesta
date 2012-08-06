@@ -1,19 +1,18 @@
 class ProfilesController < ApplicationController
-  respond_to :html, :except => [:person_state_list]
-  respond_to :js, :only => [:person_state_list]
+  respond_to :html, :except => [:state_list]
+  respond_to :js, :only => [:state_list]
 
-  def new 
-    respond_with(@user = User.find(current_user.id))
-  end
-
-  def create
+  def show
     @user = User.find(current_user.id)
-    @user.update_attributes(params[:user])
-    respond_with(@user, :status => :created, :location => profile_path)
+    unless @user.person_or_address?
+      respond_with(@user)
+    else
+      redirect_to edit_profile_path(@user)
+    end
   end
 
   def edit
-    respond_with(@user = User.find(current_user.id), :status => :ok )
+    respond_with(@user = User.find_profile(current_user.id), :status => :ok )
   end
 
   def update
@@ -22,11 +21,7 @@ class ProfilesController < ApplicationController
     respond_with(@user, :status => :updated, :location => profile_path)
   end
 
-  def show
-    respond_with(@user = User.find(current_user.id), :status => :ok )
-  end
-
-  def person_state_list
+  def state_list
     render :action => 'person_state_list', :layout => false
   end
 end

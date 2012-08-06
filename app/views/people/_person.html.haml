@@ -1,28 +1,13 @@
-- blueprint 'span-20 prepend-2 last', :id=> 'collection_tr' do
-  %h3= 'Información personal'
-  - blueprint 'span-5' do 
-    = content_tag(:label, 'Nombre(s)')
-    = person.firstname
-  - blueprint 'span-5' do 
-    = content_tag(:label, 'Apellido Paterno')
-    = person.lastname1
-  - blueprint 'span-5' do 
-    = content_tag(:label, 'Apellido Materno')
-    = person.lastname2
-  - blueprint 'span-5 last' do 
-    = content_tag(:label, 'Género')
-    = person.gender? ? 'Másculino' : 'Femenino'
-- blueprint 'span-20 prepend-2 last', :id=> 'collection_tr' do
-  %h3= 'Lugar y fecha de nacimiento'
-  - blueprint 'span-5' do 
-    = content_tag(:label, 'Fecha de nacimiento')
-    = person.birthdate
-  - blueprint 'span-5' do 
-    = content_tag(:label, 'Pais')
-    = person.country.name
-  - blueprint 'span-5' do 
-    = content_tag(:label, 'Estado')
-    = person.country_id == 484 ? person.state.name  : '-'
-  - blueprint 'span-5 last' do 
-    = content_tag(:label, 'Ciudad')
-    = person.city
+%b=t(:person)
+= show_for person do |p|
+  = p.attribute :firstname
+  = p.attribute :lastname1
+  = p.attribute :lastname2
+  = p.attribute :gender
+
+%b=t(:place_and_date_of_birth)
+= show_for person do  |p|
+  = p.attribute :birthdate
+  = p.association :country, :using => :name
+  = p.association :state, :using => :name
+  = p.association :city, :using => :name
