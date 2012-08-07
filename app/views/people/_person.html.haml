@@ -3,7 +3,9 @@
   = p.attribute :firstname
   = p.attribute :lastname1
   = p.attribute :lastname2
-  = p.attribute :gender
+  %p.wrapper.person_gender
+    %strong=t(:gender, :scope => 'activerecord.attributes.person') + ': '
+    = person.gender? ? t(:male) : t(:female)
 
 %b= t :date_and_place_of_birth
 = show_for person do  |p|
