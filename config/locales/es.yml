@@ -5,95 +5,116 @@ es:
 
   activerecord:
     models:
-      account: "Usuario"
-      state: "Estado"
+      account: Usuario
+      state: Estado
+      person: Información General
+      address: Domicilio particular
     attributes:
       account:
-        email: 'Correo electrónico'
-        password: 'Contraseña'
-        password_confirmation: 'Confirmación de la contraseña'
-        remember_me: 'Recordar contraseña'
+        email: Correo electrónico
+        password: Contraseña
+        password_confirmation: Confirmación de la contraseña
+        remember_me: Recordar contraseña
       user:
-        login: 'Usuario'
-        email: 'Correo electrónico'
-        password: 'Contraseña'
-        password_confirmation: 'Confirmación de la contraseña'
-        remember_me: 'Recordar contraseña'
+        login: Usuario
+        email: Correo electrónico
+        password: Contraseña
+        password_confirmation: Confirmación de la contraseña
+        remember_me: Recordar contraseña
+      person:
+        firstname: Nombre(s)
+        lastname1: Apellido paterno
+        lastname2: Apellido materno
+        gender: Género
+        birthdate: Fecha de nacimiento
+        country: País
+        state: Estado
+        city: Ciudad
+      address:
+        location: Dirección
+        pobox: Apartado postal
+        zipcode: Código postal
+        phone: Teléfono
+        fax: Fax
+        other: Cubículo o área de trabajo
+        country: País
+        state: Estado
+        city: Ciudad
 
   helpers:
     submit:
       user:
-        create: 'Entrar'
+        create: Entrar
       account:
-        create: 'Entrar'
-        sign_up: 'Crear cuenta'
+        create: Entrar
+        sign_up: Crear cuenta
       electoral_sheet:
-        create: "Enviar"
+        create: Enviar
 
   simple_form:  
-    "yes": 'Sí'  
-    "no": 'No'  
+    yes: Sí  
+    no: No  
     required:  
-      text: 'requerido'  
-      mark: '*'  
+      text: requerido  
+      mark: "*"
     error_notification:  
-      default_message: "Se encontraron algunos errores, por favor revisa y corrije los campos que se indican. Al finalizar presiona el botón enviar."
+      default_message: Se encontraron algunos errores, por favor revisa y corrije los campos que se indican. Al finalizar presiona el botón enviar.
     labels:
       defaults:
-        yes: 'Sí'
+        yes: Sí
 
   show_for:
-    blank: ""
-    "yes": "Sí"
-    "no": "No"
+    blank: 
+    yes: Sí
+    no: No
 
   accounts:
     sessions:
       form:
-        title: "Estudiantes de nuevo ingreso"
+        title: Estudiantes de nuevo ingreso
     registrations:
       new:
-         title: "Registro para estudiantes de nuevo ingreso"
+         title: Registro para estudiantes de nuevo ingreso
       edit:
-         title: "Edición de la cuenta para estudiantes de nuevo ingreso"
-         password_hint: "Deja el campo de la contraseña y el de su confirmación en blanco si no quieres cambiarla"
-         current_password_hint: "Necesitamo tu contraseña actual para confirmar tus cambios"
-         update: "Guardar cambios"
-         cancel_my_account: "Cancelar mi cuenta"
+         title: Edición de la cuenta para estudiantes de nuevo ingreso
+         password_hint: Deja el campo de la contraseña y el de su confirmación en blanco si no quieres cambiarla
+         current_password_hint: Necesitamo tu contraseña actual para confirmar tus cambios
+         update: Guardar cambios
+         cancel_my_account: Cancelar mi cuenta
     confirmations:
       new:
-        title: "Envío de instrucciones de confirmación de mi cuenta"
-        send_me_confirmation_instructions: 'Enviar las instrucciones para confirmar el registro de mi cuenta'
+        title: Envío de instrucciones de confirmación de mi cuenta
+        send_me_confirmation_instructions: Enviar las instrucciones para confirmar el registro de mi cuenta
     passwords:
       new:
-        title: "Recuperar/Cambiar contraseña"
-        send_me_reset_password_instructions: 'Enviar las instrucciones para cambiar mi contraseña'
+        title: Recuperar/Cambiar contraseña
+        send_me_reset_password_instructions: Enviar las instrucciones para cambiar mi contraseña
       edit:
-        title: "Cambiar contraseña"
-        new_password: "Nueva contraseña"
-        confirm_new_password: "Confirmar nueva contraseña"
-        change_password: "Cambiar contraseña"
+        title: Cambiar contraseña
+        new_password: Nueva contraseña
+        confirm_new_password: Confirmar nueva contraseña
+        change_password: Cambiar contraseña
     unlocks:
       new:
-        title: "Envío de instrucciones para desbloquear la cuenta de estudiantes de nuevo ingreso"
-        submit: "Enviar instrucciones"
+        title: Envío de instrucciones para desbloquear la cuenta de estudiantes de nuevo ingreso
+        submit: Enviar instrucciones
     shared:
       links:
-         hint_1: "Usa esta opción para crear tu cuenta y entrar al sistema."
-         hint_2: "Si ya tienes cuenta de correo en el Instituto de Física debes hacer el trámite con esa cuenta, de lo contrario el proceso será inválido y deberas repetirlo con tu cuenta registrada."
-         hint_3: "Usa esta opción solamente si NO tienes una cuenta de correo en el servidor del Instituto de Física y eres estudiante de nuevo ingreso."
-         hint_4: "Usa esta opción para cambiar tu contraseña en caso de que no la recuerdes y eres estudiante de nuevo ingreso."
-         hint_5: "Usa esta opción si ya te has registrado como estudiante de nuevo ingreso en el sistema."
+         hint_1: Usa esta opción para crear tu cuenta y entrar al sistema.
+         hint_2: Si ya tienes cuenta de correo en el Instituto de Física debes hacer el trámite con esa cuenta, de lo contrario el proceso será inválido y deberas repetirlo con tu cuenta registrada.
+         hint_3: Usa esta opción solamente si NO tienes una cuenta de correo en el servidor del Instituto de Física y eres estudiante de nuevo ingreso.
+         hint_4: Usa esta opción para cambiar tu contraseña en caso de que no la recuerdes y eres estudiante de nuevo ingreso.
+         hint_5: Usa esta opción si ya te has registrado como estudiante de nuevo ingreso en el sistema.
 
   users:
     sessions:
       form:
-        title: "Resello de credenciales"
-        hint_3: "Utiliza esta opción si tienes una cuenta de correo en el IFUNAM para hacer la solicitud de resello de credencial o para cambiar de actividad a realizar."
-        hint_4: "Si no recuerdas la contraseña, acude al cubículo 241 del edificio principal del IFUNAM para cambiar tu contraseña, en horario de 10 a las 14, y de las 16 a las 18 horas, de lunes a viernes."
-        hint_1: "Para entrar al sistema debes usar el usuario y contraseña del correo electrónico del Instituto de Física."
+        title: Resello de credenciales
+        hint_3: Utiliza esta opción si tienes una cuenta de correo en el IFUNAM para hacer la solicitud de resello de credencial o para cambiar de actividad a realizar.
+        hint_4: Si no recuerdas la contraseña, acude al cubículo 241 del edificio principal del IFUNAM para cambiar tu contraseña, en horario de 10 a las 14, y de las 16 a las 18 horas, de lunes a viernes.
+        hint_1: Para entrar al sistema debes usar el usuario y contraseña del correo electrónico del Instituto de Física.
         hint_2: "Por ejemplo, si tu cuenta de correo es <b>roberto@fisica.unam.mx</b>, los datos para entrar al sistema son: <br/> <br/> <b>Usuario:</b> roberto <br/> <b>Contraseña:</b>*******"
-        disabled_message: "El acceso a la opción de resello ha sido desactivado, estará disponible hasta el siguiente periodo."
+        disabled_message: El acceso a la opción de resello ha sido desactivado, estará disponible hasta el siguiente periodo.
 
   sign_up: Registrar nuevo usuario
   new_password: Recuperar/Cambiar tu contraseña
