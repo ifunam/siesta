@@ -13,7 +13,7 @@
   - f.object.city = 'Ciudad de México'
   - f.object.state_id = 9
 
-= f.association :state, :collection => State.find_all_by_country_id(484), :as => :select, :required => true, :selected => f.object.state_id
+= f.association :state, :collection => State.find_all_by_country_id(484), :as => :select, :required => true, :selected => f.object.state_id, :input_html => { :class => 'chzn-select' }
 = f.input :city, :as => :string, :required => true, :input_html => { :class => 'input-medium' } 
 = f.input :zipcode,:as => :string, :required => true, :input_html => { :class => 'input-small' } 
 = f.input :phone, :as => :string, :required => true, :input_html => { :class => 'input-medium' }

@@ -64,7 +64,7 @@ es:
         yes: Sí
 
   show_for:
-    blank: 
+    blank: ""
     yes: Sí
     no: No
 
