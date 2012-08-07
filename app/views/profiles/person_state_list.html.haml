@@ -1,6 +1,0 @@
-- blueprint 'span-5' do
-  = label :person, 'Estado'
-  - if params[:id].to_i == 484
-    = collection_select 'user[person_attributes]', :state_id, State.find_all_by_country_id(484), :id, :name
-  - else
-    = 'No requerido'

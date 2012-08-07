@@ -1,21 +1,23 @@
-= f.hidden_field :id unless f.object.nil?
-= f.hidden_field :user_id, :value => current_user.id
-- blueprint 'span-20 prepend-2 last', :style => 'text-align: left;' do
-  %h3= 'Domicilio particular'
-  = f.text_area :location, :size => '45x2', :required => true, :blueprint => 'span-10'
-  = f.text_field :pobox, :size => 40, :maxlength => 40, :blueprint => 'span-10 last'
-- blueprint 'span-20 prepend-2 last', :style => 'text-align: left;' do
-  - blueprint 'span-5' do
-    = f.hidden_field :country_id, :value => 484
-    = 'México'
-  = f.collection_select :state_id, State.find_all_by_country_id(484), :id, :name, {:blueprint => 'span-5'}
-  = f.text_field :city, :size => 15, :required => true, :blueprint => 'span-5'
-  = f.text_field :zipcode, :size => 5, :required => true, :blueprint => 'span-5 last'
-- blueprint 'span-20 prepend-2 last', :style => 'text-align: left;' do
-  = f.text_field :phone, :size => 15, :required => true, :blueprint => 'span-5'
-  = f.text_field :fax, :size => 15, :blueprint => 'span-5 last'
-  - if f.object.nil?
-    = f.text_area :other, :size => '45x2', :required => true, :value => 'Edificio y número de cubículo, o el área de trabajo',  :blueprint => 'span-10 last'
-  - else
-    = f.text_area :other, :size => '45x2', :required => true, :blueprint => 'span-10 last'
-  = f.hidden_field :addresstype_id, :value => 1
+= f.hidden_field :id unless f.object.new_record?
+
+%h3= t :address
+= f.input :location, :as => :text, :required => true, :input_html => { :class => 'input-xsmall', :size => '40x3' }
+= f.input :pobox, :as => :string, :input_html => { :class => 'input-medium' }
+
+%div.control-group.string.required
+  = label :country, t(:country, :scope => 'activerecord.attributes.address'), :class => 'string required control-label'
+  %div.controls='México'
+
+- if f.object.new_record?
+  - f.object.other = 'Edificio y número de cubículo, o el área de trabajo'
+  - f.object.city = 'Ciudad de México'
+  - f.object.state_id = 9
+
+= f.association :state, :collection => State.find_all_by_country_id(484), :as => :select, :required => true, :selected => f.object.state_id
+= f.input :city, :as => :string, :required => true, :input_html => { :class => 'input-medium' } 
+= f.input :zipcode,:as => :string, :required => true, :input_html => { :class => 'input-small' } 
+= f.input :phone, :as => :string, :required => true, :input_html => { :class => 'input-medium' }
+= f.input :fax, :as => :string, :input_html => { :class => 'input-medium' } 
+
+= f.input :other, :as => :text, :required => true, :input_html => { :class => 'input-xlarge', :size => '40x3' }
+

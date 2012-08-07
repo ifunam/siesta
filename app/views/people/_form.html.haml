@@ -1,4 +1,4 @@
-= f.hidden_field :id unless f.object.nil?
+= f.hidden_field :id unless f.object.new_record?
 
 %h3= t :personal_info
 = f.input :firstname, :as => :string, :required => true, :input_html => { :class => 'input-medium' }
@@ -6,9 +6,10 @@
 = f.input :lastname2, :as => :string, :input_html => { :class => 'input-medium' }
 
 %div.control-group.string.required
-  = label :gender, 'Género', :class => 'string required control-label'
-  = (f.radio_button :gender, false, :checked => (!f.object.gender unless f.object.nil?)) + 'Femenino'
-  = (f.radio_button :gender, true, :checked => (f.object.gender unless f.object.nil?)) + 'Másculino'
+  = label :gender, t(:gender, :scope => 'activerecord.attributes.person'), :class => 'string required control-label'
+  %div.controls
+    = (f.radio_button :gender, false, :checked => (!f.object.gender unless f.object.nil?)) + 'Femenino'
+    = (f.radio_button :gender, true, :checked => (f.object.gender unless f.object.nil?)) + 'Másculino'
 
 %h3= t :date_and_place_of_birth
 = f.input :birthdate,  :as => :string, :required => true, :input_html => { :class => 'input-small' }

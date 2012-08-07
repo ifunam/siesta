@@ -1,13 +1,13 @@
-%b=t(:person)
+%h3= t :person
 = show_for person do |p|
   = p.attribute :firstname
   = p.attribute :lastname1
   = p.attribute :lastname2
   = p.attribute :gender
 
-%b=t(:place_and_date_of_birth)
+%b= t :date_and_place_of_birth
 = show_for person do  |p|
   = p.attribute :birthdate
   = p.association :country, :using => :name
   = p.association :state, :using => :name
-  = p.association :city, :using => :name
+  = p.association :city

@@ -4,10 +4,10 @@ class ProfilesController < ApplicationController
 
   def show
     @user = User.find(current_user.id)
-    unless @user.person_or_address?
+    if @user.person_or_address?
       respond_with(@user)
     else
-      redirect_to edit_profile_path(@user)
+      redirect_to edit_profile_path
     end
   end
 
@@ -18,10 +18,6 @@ class ProfilesController < ApplicationController
   def update
     @user = User.find(current_user.id)
     @user.update_attributes(params[:user])
-    respond_with(@user, :status => :updated, :location => profile_path)
-  end
-
-  def state_list
-    render :action => 'person_state_list', :layout => false
+    respond_with(@user, :status => :updated, :location => profile_path, :notice => t(:profile_saved))
   end
 end

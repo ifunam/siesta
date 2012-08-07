@@ -1,5 +1,8 @@
 class Person < ActiveRecord::Base
   include Magick
+
+  attr_accessible :firstname, :lastname1, :lastname2, :gender, :birthdate, :country_id, :state_id, :city, :id
+
   validates_numericality_of :id, :allow_nil => true, :only_integer => true, :greater_than => 0
   validates_presence_of :firstname, :lastname1, :birthdate, :country_id, :city
   validates_numericality_of :country_id, :greater_than => 0, :only_integer => true
@@ -8,8 +11,8 @@ class Person < ActiveRecord::Base
   validates_uniqueness_of :user_id
 
   has_attached_file :photo, :styles => { :medium => "150x150>", :thumb => "50x50>", :normal => "170x170", :card => '100x100' },
-            :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
-            :url => "/system/:attachment/:id/:style/:filename"
+    :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+    :url => "/system/:attachment/:id/:style/:filename"
   #  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'application/pdf', 'application/postscript']
   #  validates_attachment_size :photo, :max_size => 1..2048
 
@@ -59,7 +62,7 @@ class Person < ActiveRecord::Base
     end
   end
 
- def age
+  def age
     now = Time.now.utc.to_date
     now.year - birthdate.year - (birthdate.to_date.change(:year => now.year) > now ? 1 : 0)
   end

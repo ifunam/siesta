@@ -37,7 +37,8 @@
           .well.sidebar-nav
             %h3=t(:main_menu)
             = render_navigation
-        .hero-unit.span8
+        .span8.well.sidebar-nav
+          = bootstrap_flash
           = yield
     
       %footer
