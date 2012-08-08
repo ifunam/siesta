@@ -1,10 +1,6 @@
 .navbar.navbar-fixed-bottom
   .navbar-inner
-    .container-fluid
-      .span= "2010 Instituto de Física | Circuito de la Investigación Científica Ciudad Universitaria"
-      %br/
-      .span= "CP 04510 México, D.F. Teléfono: +52 (55) 56-22-50-01 ext 289"
-      %br/
-      .span= "Contacto: ".html_safe + mail_to('soporte@fisica.unam.mx')
-      %br/
-      .span= "Hecho en México con software libre | Última actualización: Agosto de 2012" 
+    .container
+      Instituto de Física | Circuito de la Investigación Científica Ciudad Universitaria
+      | CP 04510 México, D.F. Teléfono: +52 (55) 56-22-50-01 ext 289 | Contacto: 
+      = mail_to('soporte@fisica.unam.mx')

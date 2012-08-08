@@ -10,7 +10,4 @@ class State < ActiveRecord::Base
   belongs_to :country
   has_many :cities
 
-  def self.filter_by_country_id(country_id)
-    self.where(:country_id => country_id).all
-  end
 end
