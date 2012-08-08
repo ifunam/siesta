@@ -5,6 +5,12 @@ class State < ActiveRecord::Base
   validates_numericality_of :country_id,  :greater_than => 0, :only_integer => true
   validates_uniqueness_of :name, :scope => [:country_id]
 
+  default_scope order('name ASC')
+
   belongs_to :country
   has_many :cities
+
+  def self.filter_by_country_id(country_id)
+    self.where(:country_id => country_id).all
+  end
 end
