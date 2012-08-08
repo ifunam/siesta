@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   respond_to :html
+
   def show
     @user = User.find(current_user.id)
     if @user.person_or_address?
@@ -18,4 +19,5 @@ class ProfilesController < ApplicationController
     @user.update_attributes(params[:user])
     respond_with(@user, :status => :updated, :location => profile_path, :notice => t(:profile_saved))
   end
+
 end

@@ -13,8 +13,10 @@
 
 %h3= t :date_and_place_of_birth
 = f.input :birthdate,  :as => :string, :required => true, :input_html => { :class => 'input-small birthdate' }
-= f.association :country, :input_html => { :class => 'chzn-select' }
+- f.object.country_id = 484 if f.object.new_record?
+= f.association :country, :as => :select, :input_html => { :class => 'chzn-select' }, :id => 'person_country', :required => true, :selected => f.object.country_id
 
-%div#person_state_list
+#person_state{:style => "display:#{f.object.country_id == 484 ? 'block-inline' : 'none'}"}
+  = f.association :state, :collection => State.find_all_by_country_id(484), :as => :select, :input_html => { :class => 'chzn-select' }
 
 = f.input :city, :required => true, :as => :string
