@@ -1,7 +1,5 @@
 class ProfilesController < ApplicationController
-  respond_to :html, :except => [:state_list]
-  respond_to :js, :only => [:state_list]
-
+  respond_to :html
   def show
     @user = User.find(current_user.id)
     if @user.person_or_address?

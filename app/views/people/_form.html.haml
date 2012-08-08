@@ -12,7 +12,7 @@
     = (f.radio_button :gender, true, :checked => (f.object.gender unless f.object.nil?)) + 'Másculino'
 
 %h3= t :date_and_place_of_birth
-= f.input :birthdate,  :as => :string, :required => true, :input_html => { :class => 'input-small' }
+= f.input :birthdate,  :as => :string, :required => true, :input_html => { :class => 'input-small birthdate' }
 = f.association :country, :input_html => { :class => 'chzn-select' }
 
 %div#person_state_list
