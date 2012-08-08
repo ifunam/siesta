@@ -1,3 +1,3 @@
-= render :partial => "/shared/errors", :object => @schooling.errors
-- form_for(@schooling, :builder => MyFormBuilder, :html => { :multipart => true }) do |f|
+%h3= t '.title'
+= simple_form_for(@schooling, :html => { :multipart => true }) do |f|
   = render :partial => 'form', :locals => { :f => f}

@@ -9,6 +9,7 @@ es:
       state: Estado
       person: Información General
       address: Domicilio particular
+      schooling: Grado académico
     attributes:
       account:
         email: Correo electrónico
@@ -40,6 +41,19 @@ es:
         country: País
         state: Estado
         city: Ciudad
+      schooling:
+        degree: Grado
+        career: Nombre de la carrera
+        school: Escuela o facultad
+        institution: Institución
+        studentid: Matrícula
+        average: Promedio
+        credits: Créditos
+        startyear: Año de inicio
+        endyear: Año de término
+        is_studying_this: ¿Concluyó actividades académicas?
+        is_titleholder: ¿Tiene título profesional?
+        file: Historial académico o cardex
 
   helpers:
     submit:
@@ -48,16 +62,17 @@ es:
       account:
         create: Entrar
         sign_up: Crear cuenta
-      electoral_sheet:
-        create: Enviar
+      schooling:
+        create: Guardar
+        update: Guardar cambios
 
-  simple_form:  
-    yes: Sí  
-    no: No  
-    required:  
-      text: requerido  
+  simple_form:
+    yes: Sí
+    no: No
+    required:
+      text: requerido
       mark: "*"
-    error_notification:  
+    error_notification:
       default_message: Se encontraron algunos errores, por favor revisa y corrije los campos que se indican. Al finalizar presiona el botón enviar.
     labels:
       defaults:
@@ -122,6 +137,21 @@ es:
     edit:
       title: Información general
 
+  schoolings:
+    index:
+      title: Escolaridad
+      degree: Grado
+      description: Descripción
+      startyear: Año de inicio
+      endyear: Año de término
+      actions: Acciones
+    new:
+      title: Grado académico
+    form:
+      degree_docs: Documentación
+      degree_details: Detalles
+      degree_and_school: Grado y carrera
+
   sign_up: Registrar nuevo usuario
   new_password: Recuperar/Cambiar tu contraseña
   sign_in: Iniciar sessión
@@ -133,4 +163,7 @@ es:
   main_menu: Menú principal
   male: Másculino
   female: Femenino
-
+  unauthorized_msg: NO estás authorizado para hacer esta operación!
+  back: Regresar
+  cancel: Cancelar
+  new: Agregar

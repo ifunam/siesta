@@ -5,12 +5,10 @@ Siesta::Application.routes.draw do
 
   resource :dashboard
   resource :profile, :only => [:show, :edit, :update]
-  match '/states/filter_by/:country_id' => 'states#filter_by', :as => :states_filter_by
 
-  resources :schoolings do
-    get :show_document, :on => :member
-  end
+  resources :schoolings
   resources :file_uploaders
+
   resources :user_requests do
     # Fixt it: It should be a collection
     get :remote_incharge_users, :on => :member

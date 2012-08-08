@@ -1,16 +1,15 @@
-%h3= 'Antecedentes Académicos'
-#collection
-  - blueprint('span-23 prepend-1 last', :id => 'collection') do
-    - blueprint('span-3', :id => 'collection_th') do
-      %b= 'Grado'
-    - blueprint('span-10', :id => 'collection_th') do
-      %b= 'Descripción'
-    - blueprint('span-3', :id => 'collection_th') do
-      %b= 'Año de inicio'
-    - blueprint('span-3', :id => 'collection_th') do
-      %b= 'Año de término'
-    - blueprint('span-4 last', :id => 'collection_th') do
-      %b= 'Acciones'
+%h3= t '.title'
+
+%table.table.table-bordered.table-striped.table-condensed
+  %thead
+    %tr
+      %th= t '.degree'
+      %th= t '.description'
+      %th= t '.startyear'
+      %th= t '.endyear'
+      %th= t '.actions'
+  %tbody
     = render :partial => @schoolings
-- blueprint('span-22 prepend-1 last', :style => 'text-align: left;', :id => 'buttons') do
-  = link_to 'Agregar', new_schooling_path, :class => 'ui-state-default ui-corner-all button'
+
+.span12
+  = link_to t(:new), new_schooling_path, :class => 'btn btn-primary'

@@ -1,7 +1,7 @@
-- blueprint 'span-23 last', :id => dom_id(schooling)  do
-  - blueprint('span-3') do
+%tr
+  %td
     = schooling.degree.name
-  - blueprint('span-10') do
+  %td
     %p
       = t(:career) + ': '
       = schooling.career
@@ -25,11 +25,10 @@
       = schooling.is_titleholder? ? 'Sí' : 'No'
     %p
       = link_to t(:cardex), schooling.file.url, :target => :new
-  - blueprint('span-3') do
+  %td
     = schooling.startyear
-  - blueprint('span-3') do
-    = schooling.endyear || '-'
-  - blueprint('span-4 last') do
-    = link_to t(:edit), edit_schooling_path(schooling), :method => :get
-    = ' | '
-    = link_to t(:delete), schooling_path(schooling), :method => :delete, :confirm => t(:confirm_question)
+  %td
+    = schooling.endyear
+  %td.btn-group
+    = link_to t(:edit), edit_schooling_path(schooling), :class => 'btn btn-info'
+    = link_to t(:delete), schooling_path(schooling), :method => :delete, :confirm => t(:confirm_question), :class => 'btn btn-warning'
