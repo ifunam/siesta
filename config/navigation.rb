@@ -36,10 +36,11 @@ SimpleNavigation::Configuration.run do |navigation|
       t(label_name.to_sym)
     end
   end
+
   navigation.items do |primary|
     primary.item :profile,  label_tag(:profile, 'icon-user'), profile_path
     primary.item :schoolings, label_tag(:schoolings, 'icon-star'), schoolings_path
-    primary.item :file_uploaders, label_tag(:file_uploaders, 'icon-hdd'), file_uploaders_path
+    primary.item :user_documents, label_tag(:user_documents, 'icon-hdd'), user_documents_path
     primary.item :user_requests, label_tag(:user_requests, 'icon-book'), user_requests_path
     primary.dom_id = 'menu-id'
     primary.dom_class = 'nav nav-pills nav-stacked'

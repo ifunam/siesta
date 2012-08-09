@@ -1,7 +1,0 @@
-%h3 Documento probatorio
-- blueprint 'span-21 prepend-2 last' do
-  = render :partial => 'user_documents/user_document_show', :object => @document
-- blueprint 'span-21 prepend-2 last', :id => 'buttons' do
-  = link_to t(:edit), edit_file_uploader_path, :class => 'ui-state-default ui-corner-all button'
-  = link_to t(:back), file_uploaders_path, :class => 'ui-state-default ui-corner-all button'
-

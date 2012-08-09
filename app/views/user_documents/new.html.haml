@@ -1,0 +1,3 @@
+%h3= t '.title'
+= simple_form_for(@user_document, :html => { :multipart => true }) do |f|
+  = render :partial => 'user_documents/form', :locals => { :f => f }

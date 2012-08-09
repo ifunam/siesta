@@ -31,7 +31,7 @@ class UserRequestRequirement < User
      [:person, :edit_profile, has_person?],
      [:address, :edit_profile, has_address?],
      [:schoolings, :schoolings, has_schooling?],
-     [:user_documents, :file_uploaders, has_user_documents?],
+     [:user_documents, :user_documents, has_user_documents?],
      [:user_requests, :user_requests, has_user_request?]
     ]
   end

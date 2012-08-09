@@ -1,7 +1,5 @@
-%div{:id => dom_id(user_document)}
-  - blueprint('span-16') do
-    = link_to user_document.document.name, user_document.file.url, :target => :new
-  - blueprint('span-4 last') do
-    = link_to 'Modificar', edit_file_uploader_path(user_document), :method => :get
-    = ' | '
-    = link_to 'Borrar', file_uploader_path(user_document.id), :method => :delete, :confirm => t(:confirm_question)
+%tr
+  %td= link_to user_document.document.name, user_document.file.url, :target => :new
+  %td.btn-group
+    = link_to t(:edit), edit_user_document_path(user_document), :class => 'btn btn-info'
+    = link_to t(:delete), user_document_path(user_document), :method => :delete, :confirm => t(:confirm_question), :class => 'btn btn-warning'

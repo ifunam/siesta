@@ -1,7 +1,8 @@
-%h3= 'Documento probatorio'
-- blueprint('span-20 prepend-2 last', :id => 'collection_tr') do
-  = f.collection_select :document_id, Document.all, :id, :name, :blueprint => 'span-6 prepend-3'
-  = f.file_field :file, :size => 20, :blueprint => 'span-10 last'
-- blueprint 'span-10 prepend-5 last', :id => 'buttons' do
-  = f.submit t(:save), :class => 'ui-state-default ui-corner-all button'
-  = link_to t(:cancel), file_uploaders_path, :class => 'ui-state-default ui-corner-all button'
+= render :partial => 'shared/errors', :locals => { :f => f}
+
+= f.association :document, :as => :radio, :required => true
+= f.input :file, :as => :file, :required => true
+
+.span12
+  = f.button :submit, :class => 'btn btn-success'
+  = link_to t(:cancel), user_documents_path, :class => 'btn'

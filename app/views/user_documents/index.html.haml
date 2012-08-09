@@ -1,0 +1,13 @@
+%h3= 'Documentos probatorios'
+
+%table.table.table-bordered.table-striped.table-condensed
+  %thead
+    %tr
+      %th= t :user_document
+      %th= t '.actions'
+  %tbody
+    = render :partial => @user_documents
+
+- if @user_documents.size < 2
+  .span12
+    = link_to t(:new), new_user_document_path, :class => 'btn btn-primary'

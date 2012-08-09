@@ -10,6 +10,7 @@ es:
       person: Información General
       address: Domicilio particular
       schooling: Grado académico
+      user_document: Documento probatorio
     attributes:
       account:
         email: Correo electrónico
@@ -54,6 +55,9 @@ es:
         is_studying_this: ¿Concluyó actividades académicas?
         is_titleholder: ¿Tiene título profesional?
         file: Historial académico o cardex
+      user_document:
+        file: Archivo
+        document: Tipo de documento
 
   helpers:
     submit:
@@ -147,10 +151,20 @@ es:
       actions: Acciones
     new:
       title: Grado académico
+    edit:
+      title: Edición de grado académico
     form:
       degree_docs: Documentación
       degree_details: Detalles
       degree_and_school: Grado y carrera
+
+  user_documents:
+   index:
+     title: Documentos probatorios
+   new:
+     title: Documento probatorio
+   edit:
+     title: Edición de documento probatorio
 
   sign_up: Registrar nuevo usuario
   new_password: Recuperar/Cambiar tu contraseña
@@ -158,7 +172,7 @@ es:
   action_confirmation_message: ¿ Estás seguro ?
   profile: Información general
   schoolings: Escolaridad
-  file_uploaders: Documentos probatorios
+  user_documents: Documentos probatorios
   user_requests: Solicitud de estudiante asociado
   main_menu: Menú principal
   male: Másculino

@@ -1,0 +1,2 @@
+class UserDocumentsController <  UserResourcesController
+end

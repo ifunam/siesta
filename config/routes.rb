@@ -7,7 +7,7 @@ Siesta::Application.routes.draw do
   resource :profile, :only => [:show, :edit, :update]
 
   resources :schoolings
-  resources :file_uploaders
+  resources :user_documents
 
   resources :user_requests do
     # Fixt it: It should be a collection
