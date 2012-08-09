@@ -3,7 +3,6 @@ Siesta::Application.routes.draw do
   # Student controllers
   devise_for :users, :controllers => { :sessions => "users/sessions" }
 
-  resource :dashboard
   resource :profile, :only => [:show, :edit, :update]
 
   resources :schoolings
@@ -15,8 +14,9 @@ Siesta::Application.routes.draw do
     get :form_dates, :on => :collection
   end
   resource :send_user_request
+
   ## Default controllers
-  root :to => "dashboards#show"
+  root :to => "profiles#show"
 
   # Academic controllers
   namespace :academics do 
