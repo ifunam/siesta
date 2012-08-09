@@ -1,29 +1,39 @@
-%h3= "Solicitud de Estudiante Asociado - Período #{Period.most_recent.name}"
-- blueprint('span-20 prepend-2 last', :id => 'collection_tr') do
-  = f.collection_select :remote_adscription_id, AdscriptionClient.all, :id, :name, {:prompt => '-- Seleccionar --'}, :blueprint => 'span-10'
-  - blueprint 'span-10 last' do
-    = label(:user_request, t(:remote_user_incharge_id))
-    %div{:id=>'remote_user_incharge'}
-      = 'Para asignar un responsable académico seleccione un departamento'
-- blueprint('span-20 prepend-2 last', :id => 'collection_tr') do
-  = f.collection_select :role_id, Role.all, :id, :name, {:prompt => '-- Seleccionar --', :blueprint => 'span-10'}
-  - blueprint 'span-10 last' do
-    = label :is_restamped, 'Tipo de solicitud'
-    = (f.radio_button :is_restamped, false, :checked => !f.object.is_restamped) + 'Solicitud nueva'
-    - if Period.activated.enddate >= Date.today
-      = (f.radio_button :is_restamped, true, :checked => f.object.is_restamped) + 'Resello de credencial'
+= render :partial => 'shared/errors', :locals => { :f => f }
 
-- blueprint('span-20 prepend-2 last', :id => 'collection_tr') do
-  - # = label :is_restamped, '¿Necesita espacio en un cubículo para estudiantes?'
-  - # = (f.radio_button :want_office_cubicle, true, :checked => f.object.want_office_cubicle) + 'Sí'
-  - # = (f.radio_button :want_office_cubicle, false, :checked => !f.object.want_office_cubicle) + 'No'
-  = f.hidden_field :want_office_cubicle, :value => false
-- if f.object.role_id.to_i == 1
-  = render :partial => 'form_dates'
+= label(:user_request, t(:period))
+= Period.activated.name
+
+= label(:user_request, t(:remote_adscription))
+= f.collection_select :remote_adscription_id, AdscriptionClient.all, :id, :name, {:prompt => '-- Seleccionar --'}, :class => 'chzn-select'
+
+= label(:user_request, t(:remote_user))
+%div#remote_user_incharge_id
+  = 'Para asignar un responsable académico seleccione un departamento'
+
+= f.association :role, :as => :radio, :required => true
+
+= label :is_restamped, 'Tipo de solicitud'
+- if Period.activated.enddate >= Date.today and current_user.user_requests.where(:requeststatus_id => 3).count > 0
+  = (f.radio_button :is_restamped, true, :checked => f.object.is_restamped) + 'Resello de credencial'
 - else
-  %div{:id => 'form_dates'}
-= hidden_field :user_request, :period_id, :value => Period.most_recent.id
-- blueprint('span-22 prepend-2 last', :id => 'buttons') do
-  = f.submit t(:save), :class => 'ui-state-default ui-corner-all button'
-  = link_to t(:cancel), user_requests_path, :class => 'ui-state-default ui-corner-all button'
+  = (f.radio_button :is_restamped, false, :checked => !f.object.is_restamped) + 'Solicitud nueva'
 
+- # = label :is_restamped, '¿Necesita espacio en un cubículo para estudiantes?'
+- # = (f.radio_button :want_office_cubicle, true, :checked => f.object.want_office_cubicle) + 'Sí'
+- # = (f.radio_button :want_office_cubicle, false, :checked => !f.object.want_office_cubicle) + 'No'
+= f.input :want_office_cubicle, :value => false, :as => :hidden
+
+%b= t '.start_date'
+= label :start_month, t(:start_month)
+= select_month(Date.today, :use_month_names => %w(Enero Febrero Marzo Abril Mayo Junio Julio Agosto Septiembre Octubre Noviembre Diciembre), :field_name => 'user_request[start_month]')
+= f.input :start_year, :as => :string, :required => true, :input_html => { :class => 'chzn-select input-small' }
+
+%b= t '.end_date'
+= f.input :end_month, :as => :string, :required => true, :input_html => { :class => 'chzn-select input-small' }
+= label :end_month, t(:end_month)
+= select_month(Date.today, :use_month_names => %w(Enero Febrero Marzo Abril Mayo Junio Julio Agosto Septiembre Octubre Noviembre Diciembre), :field_name => 'user_request[end_month]')
+= f.input :end_year, :as => :string, :required => true, :input_html => { :class => 'chzn-select input-small' }
+
+.span12
+  = f.button :submit, :class => 'btn btn-primary'
+  = link_to t(:cancel), user_requests_path, :class => 'btn'

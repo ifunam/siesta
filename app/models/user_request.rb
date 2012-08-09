@@ -1,8 +1,10 @@
 # encoding: utf-8
 class UserRequest < ActiveRecord::Base
-    validates_presence_of  :user_id, :period_id, :role_id, :remote_user_incharge_id, :remote_adscription_id
-    validates_numericality_of :period_id, :role_id, :remote_user_incharge_id, :greater_than => 0, :only_integer => true
-    validates_numericality_of :id, :user_id, :allow_nil => true, :greater_than => 0, :only_integer => true
+    attr_accessible :role_id, :remote_user_incharge_id, :remote_adscription_id, :start_month, :end_month, :start_year, :end_year, :is_restamped
+
+    validates_presence_of  :role_id, :remote_user_incharge_id, :remote_adscription_id, :start_month, :end_month, :start_year, :end_year, :is_restamped
+    validates_numericality_of :role_id, :remote_user_incharge_id, :remote_adscription_id, :greater_than => 0, :only_integer => true
+    validates_numericality_of :period_id, :id, :user_id, :allow_nil => true, :greater_than => 0, :only_integer => true
     validates_uniqueness_of :period_id, :scope => [:user_id]
     validates_inclusion_of :is_restamped, :in => [true, false]
     validates_inclusion_of :is_official, :in => [true, false]
@@ -16,9 +18,9 @@ class UserRequest < ActiveRecord::Base
     belongs_to :local_user_incharge, :class_name => "User", :foreign_key => 'user_incharge_id'
     has_one :event
     has_many :events
-    
+
     default_scope includes(:period).order('periods.startdate DESC')
-    
+
     scope :find_sent_request_to_user_id, lambda { |user_id|
         where("user_requests.remote_user_incharge_id = ? AND user_requests.requeststatus_id <= 3 
                AND user_requests.period_id = ? ", user_id, Period.activated.id).includes(:period).
@@ -41,11 +43,11 @@ class UserRequest < ActiveRecord::Base
     def type
       is_restamped ? 'Resello' : 'Solicitud nueva'
     end
-    
+
     def status
       is_official ? 'Autorizada por CD-IF' : 'Sin autorización de la CD-IF'
     end
-    
+
     def is_unauthorized?
       requeststatus_id != 3
     end

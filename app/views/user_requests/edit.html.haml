@@ -1,3 +1,4 @@
-= render :partial => "/shared/errors", :object => @user_request.errors
-- form_for(@user_request, :builder => MyFormBuilder) do |f|
-   = render :partial => 'form', :locals => { :f => f }
+%h3= t '.title'
+
+= simple_form_for(@user_request) do |f|
+  = render :partial => 'form', :locals => { :f => f }

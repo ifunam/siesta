@@ -1,14 +1,18 @@
 class UserRequestsController < UserResourcesController
-  respond_to :html, :except => [:remote_incharge_users, :remote_dates]
-  respond_to :js, :only => [:remote_dates]
-  
-  def remote_incharge_users
-    respond_with(@collection = AdscriptionClient.find(params[:id]).users) do |format|
-      format.html { render :action => 'remote_incharge_users', :layout => false}
+  def index
+    set_collection_ivar resource_class.find_all_by_user_id(current_user.id)
+    if collection.size > 0
+      super
+    else
+      redirect_to new_user_request_path
     end
   end
 
-  def form_dates
-    render :action => 'form_dates', :layout => false
+  def create
+    build_resource.user_id = current_user.id
+    resource.period_id = Period.most_recent.id
+    create! do
+      resource.send_request
+    end
   end
 end

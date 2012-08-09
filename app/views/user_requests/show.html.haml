@@ -1,27 +1,17 @@
-- blueprint 'span-21 prepend-1 last', :id => 'buttons' do
-  %h3 
-    = 'Solicitud '
-    = @user_request.period.name
+%h3= t '.title'
 
-  - blueprint('span-23 last', :id => 'collection') do
-    - blueprint('span-5', :id => 'collection_td') do
-      %b= 'Actividad a realizar'
-    - blueprint('span-8', :id => 'collection_td') do
-      %b= 'Responsable académico'
-    - blueprint('span-4', :id => 'collection_td') do
-      %b= 'Departmento'
-    - blueprint('span-4', :id => 'collection_td') do
-      %b= 'Tipo de solicitud'
-  - blueprint 'span-23 last', :style => 'text-align: left;'  do
-    - blueprint('span-5') do
-      = @user_request.role.name
-    - blueprint('span-8') do
-      = @user_request.user_incharge.fullname
-    - blueprint('span-4') do
-      = @user_request.adscription.name
-    - blueprint('span-4') do
-      = @user_request.is_restamped? ? 'Resello' : 'Solicitud nueva'
+= show_for @user_request do |u|
+  = u.association :period, :using => :name
+  = u.association :role, :using => :name
+  = u.association :adscription, :using => :name
+  = u.association :user_incharge, :using => :fullname
+  %p.wrapper#user_request_is_restamped
+    %strong=t(:is_restamped, :scope => 'activerecord.attributes.user_request')
+    = @user_request.is_restamped? ? 'Resello' : 'Solicitud nueva'
+  = u.attribute :start_month
+  = u.attribute :start_year
+  = u.attribute :end_month
+  = u.attribute :end_year
 
-- blueprint 'span-21 prepend-1 last', :id => 'buttons' do
-  = link_to t(:edit), edit_user_request_path, :class => 'ui-state-default ui-corner-all button'
-  = link_to t(:back), user_requests_path, :class => 'ui-state-default ui-corner-all button'
+.span12
+  = link_to t(:back), user_requests_path, :class => 'btn'

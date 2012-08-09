@@ -1,19 +1,12 @@
-- blueprint('span-22 last', :id => 'collection_tr') do
-  - blueprint('span-3') do
-    = user_request.period.name
-  - blueprint('span-4') do
-    = user_request.role.name
-  - blueprint('span-4') do
-    = user_request.adscription.name
-  - blueprint('span-4') do
-    = user_request.user_incharge.fullname
-  - blueprint('span-4') do
-    = user_request.is_restamped? ? 'Resello' : 'Solicitud nueva'
-  - blueprint('span-3 last') do
+%td
+  %td= user_request.period.name
+  %td= user_request.role.name
+  %td= user_request.adscription.name
+  %td= user_request.user_incharge.fullname
+  %td= user_request.is_restamped? ? 'Resello' : 'Solicitud nueva'
+  %td.btn-group
     - if user_request.is_unauthorized?
-      = link_to t(:edit), edit_user_request_path(user_request)
-      = ' | '
-      = link_to t(:delete), user_request_path(:id => user_request.id), :method => :delete, :confirm => t(:confirm_question)
-
+      = link_to t(:edit), edit_user_request_path(user_request), :class => 'btn btn-info'
+      = link_to t(:delete), user_request_path(:id => user_request.id), :method => :delete, :confirm => t(:confirm_question), :class => 'btn btn-warning'
     - else
       = '-'

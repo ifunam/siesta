@@ -2,20 +2,12 @@ Siesta::Application.routes.draw do
 
   # Student controllers
   devise_for :users, :controllers => { :sessions => "users/sessions" }
-
-  resource :profile, :only => [:show, :edit, :update]
-
+  resource :profile, :only => [ :show, :edit, :update ]
   resources :schoolings
   resources :user_documents
-
-  resources :user_requests do
-    # Fixt it: It should be a collection
-    get :remote_incharge_users, :on => :member
-    get :form_dates, :on => :collection
-  end
-  resource :send_user_request
-
-  ## Default controllers
+  resources :user_requests
+  resources :remote_users, :only => [ :index ]
+  # Default controllers
   root :to => "profiles#show"
 
   # Academic controllers
