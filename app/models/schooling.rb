@@ -1,8 +1,7 @@
 class Schooling < ActiveRecord::Base
   has_attached_file :file
-  # validates_attachment_content_type :file, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'application/pdf', 'application/postscript', 'application/x-pdf']
   validates_attachment_size :file, :less_than => 10.megabytes
-
+  validates_attachment_content_type :file, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'application/pdf', 'application/postscript', 'application/x-pdf']
 
   attr_accessible :degree_id, :career, :school, :institution, :studentid, :average, :credits, :startyear, :endyear, :is_studying_this, :is_titleholder, :file
 
