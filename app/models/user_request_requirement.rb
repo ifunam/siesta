@@ -31,8 +31,7 @@ class UserRequestRequirement < User
      [:person, :edit_profile, has_person?],
      [:address, :edit_profile, has_address?],
      [:schoolings, :schoolings, has_schooling?],
-     [:user_documents, :user_documents, has_user_documents?],
-     [:user_requests, :user_requests, has_user_request?]
+     [:user_documents, :user_documents, has_user_documents?]
     ]
   end
 
@@ -42,7 +41,7 @@ class UserRequestRequirement < User
 
   def has_filled_requirements?
     status = true
-    self.requirements.each { |h| status = h[:filled] if  h[:filled] == false }
+    requirements.each { |h| status = h[2] if  h[2] == false }
     return status
   end
 

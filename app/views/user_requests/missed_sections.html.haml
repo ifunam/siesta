@@ -1,0 +1,10 @@
+%h3= t '.title'
+.well.alert.alert-warn
+  %p
+    = "Debe completar la información de una sección cuando aparezca el símbolo: "
+    = image_tag('missing.gif', :border => 0, :style => 'float: none; text-align: left; vertical-align: bottom;') 
+  - user_request_is_complete = true
+  %ul
+  - @requirements.requirements.each do |a|
+    %li= link_to image_tag((a[2] == true ? 'ok.gif' : 'missing.gif'), :border => 0) + t(a.first), a[1]
+    - user_request_is_complete = a[2] if a[2] == false
