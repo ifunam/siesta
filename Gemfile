@@ -1,7 +1,7 @@
 # Edit this Gemfile to bundle your application's dependencies.
 source :gemcutter
 
-gem "rails", "~> 3.2.7"
+gem "rails", "~> 3.2.8"
 gem "haml", "~> 3.1.6"
 gem "pg", "~> 0.14.0"
 gem "warden", "~> 1.2.1"
@@ -51,6 +51,7 @@ group :assets do
   gem "uglifier", "~> 1.2.4"
   gem "css_image_embedder", "~> 0.2.0"
   gem "sass-rails", "~> 3.2.5"
-  gem "therubyracer", "~> 0.10.1"
+  gem "therubyracer", "~> 0.11.0beta7"
   gem "yui-compressor", "~> 0.9.6"
+  gem 'libv8', '~> 3.11.8'
 end
