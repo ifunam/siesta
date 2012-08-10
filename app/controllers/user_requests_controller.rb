@@ -1,5 +1,6 @@
+require Rails.root.to_s + '/lib/data_section_verifier'
 class UserRequestsController < UserResourcesController
-  before_filter :verify_requirements!
+  before_filter :verify_data_sections!
 
   def index
     set_collection_ivar resource_class.find_all_by_user_id(current_user.id)
@@ -19,11 +20,10 @@ class UserRequestsController < UserResourcesController
   end
 
   private
-  def verify_requirements!
-    @requirements = UserRequestRequirement.find(current_user.id)
-    unless @requirements.has_filled_requirements?
-      render :action => :missed_sections, :status => 406, :layout => true
-     #authorize! :missed_sections, UserRequest, :message => 'Missed requirements!' 
+  def verify_data_sections!
+    @sections = DataSection::Verifier.find_by_user_id(current_user.id)
+    if @sections.missed?
+      render :action => :missed_sections, :status => 403, :layout => true
     end
   end
 end

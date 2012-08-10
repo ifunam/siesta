@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_one :person
   has_one :address
+  has_many :schoolings
   has_many :user_documents
   has_many :user_requests
 
@@ -61,6 +62,14 @@ class User < ActiveRecord::Base
 
   def person_or_address?
     person? || address?
+  end
+
+  def schoolings?
+    schoolings.count > 0
+  end
+
+  def user_documents?
+    user_documents.count > 0
   end
 
   def build_person_and_address
