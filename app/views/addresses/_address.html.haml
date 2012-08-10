@@ -1,4 +1,4 @@
-%h3= t :address
+%h3= t '.title'
 = show_for address do |record|
   = record.attribute :location
   = record.association :country, :using => :name

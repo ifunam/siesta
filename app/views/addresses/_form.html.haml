@@ -1,6 +1,6 @@
 = f.hidden_field :id unless f.object.new_record?
 
-%h3= t :address
+%h3= t '.address'
 = f.input :location, :as => :text, :required => true, :input_html => { :class => 'input-xsmall', :size => '40x3' }
 = f.input :pobox, :as => :string, :input_html => { :class => 'input-medium' }
 

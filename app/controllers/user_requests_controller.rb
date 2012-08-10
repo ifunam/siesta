@@ -22,8 +22,6 @@ class UserRequestsController < UserResourcesController
   private
   def verify_data_sections!
     @sections = DataSection::Verifier.find_by_user_id(current_user.id)
-    if @sections.missed?
-      render :action => :missed_sections, :status => 403, :layout => true
-    end
+    render :action => :missed_sections, :status => 403, :layout => true if @sections.missed?
   end
 end

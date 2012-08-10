@@ -1,13 +1,13 @@
-%h3= t '.title'
+%h3= I18n.t 'schoolings.index.title'
 
 %table.table.table-bordered.table-striped.table-condensed
   %thead
     %tr
-      %th= t '.degree'
-      %th= t '.description'
-      %th= t '.startyear'
-      %th= t '.endyear'
-      %th= t '.actions'
+      %th= t(".degree")
+      %th= t(".description")
+      %th= t(".startyear")
+      %th= t(".endyear")
+      %th= t(:actions)
   %tbody
     = render :partial => @schoolings
 

@@ -58,17 +58,35 @@ es:
       user_document:
         file: Archivo
         document: Tipo de documento
+      user_request:
+        period: Periodo
+        adscription: Adscripción
+        remote_adscription: Adscripción
+        user_incharge: Académico responsable
+        role: Actividad a realizar
+        is_restamped: Tipo de solicitud
+        start_month: Mes de inicio
+        start_year: Año de incio
+        end_month: Mes de término
+        end_year: Año de término
 
   helpers:
     submit:
       user:
         create: Entrar
+        update: Guardar cambios
       account:
         create: Entrar
         sign_up: Crear cuenta
       schooling:
         create: Guardar
         update: Guardar cambios
+      user_document:
+        create: Guardar
+        update: Guardar cambios
+      user_request:
+        create: Enviar
+        update: Enviar
 
   simple_form:
     yes: Sí
@@ -140,6 +158,21 @@ es:
       title: Información general
     edit:
       title: Información general
+    form:
+      personal_info: Información personal
+
+  people:
+    form:
+      personal_info: Información personal
+      date_and_place_of_birth: Fecha y lugar de nacimiento
+    person:
+      title: Información general
+
+  addresses:
+    form:
+      address: Domicilio particular
+    address:
+      title: Domicilio particular
 
   schoolings:
     index:
@@ -157,27 +190,52 @@ es:
       degree_docs: Documentación
       degree_details: Detalles
       degree_and_school: Grado y carrera
+      degree_status: Estado del grado académico
 
   user_documents:
-   index:
-     title: Documentos probatorios
-   new:
-     title: Documento probatorio
-   edit:
-     title: Edición de documento probatorio
+    index:
+      title: Documentos probatorios
+      user_document: Documento
+    new:
+      title: Documento probatorio
+    show:
+      title: Documento probatorio
+    edit:
+      title: Edición de documento probatorio
+
+  user_requests:
+    index:
+      title: Solicitudes de estudiante asociado
+      period: Periodo
+      role: Actividad a realizar
+      adscription: Adscripción
+      user_incharge: Académico responsable
+      actions: Acciones
+    new:
+      title: Nueva solicitud de estudiante asociado
+    edit:
+      title: Modificar solicitud de estudiante asociado
+    form:
+      start_date: Fecha de inicio
+      end_date: Fecha de término
+
+  navigation:
+    profile: Información general
+    schoolings: Escolaridad
+    user_documents: Documentos probatorios
+    user_requests: Solicitud de estudiante asociado
+    main_menu: Menú principal
 
   sign_up: Registrar nuevo usuario
   new_password: Recuperar/Cambiar tu contraseña
   sign_in: Iniciar sessión
-  action_confirmation_message: ¿ Estás seguro ?
-  profile: Información general
-  schoolings: Escolaridad
-  user_documents: Documentos probatorios
-  user_requests: Solicitud de estudiante asociado
-  main_menu: Menú principal
+  confirm_question: ¿ Estás seguro ?
   male: Másculino
   female: Femenino
   unauthorized_msg: NO estás authorizado para hacer esta operación!
   back: Regresar
   cancel: Cancelar
   new: Agregar
+  edit: Editar
+  delete: Borrar
+  actions: Acciones

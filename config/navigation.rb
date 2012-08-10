@@ -31,9 +31,9 @@ SimpleNavigation::Configuration.run do |navigation|
   # navigation.auto_highlight = false
   def label_tag(label_name, icon_class=nil)
     unless icon_class.nil?
-      "<i class=\"#{icon_class}\"></i> " + t(label_name.to_sym)
+      "<i class=\"#{icon_class}\"></i> " + t("navigation.#{label_name}")
     else
-      t(label_name.to_sym)
+      t("navigation.#{label_name}")
     end
   end
 
@@ -44,6 +44,5 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :user_requests, label_tag(:user_requests, 'icon-book'), user_requests_path
     primary.dom_id = 'menu-id'
     primary.dom_class = 'nav nav-pills nav-stacked'
-    # primary.auto_highlight = false
   end
 end
