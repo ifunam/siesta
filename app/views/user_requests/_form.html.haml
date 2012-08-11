@@ -1,42 +1,62 @@
 = render :partial => 'shared/errors', :locals => { :f => f }
 
-%div.control-group.required
-  = label :user_request, t(:period, :scope => 'activerecord.attributes.user_request'), :class => 'string required control-label'
-  = Period.activated.name
+%b= t '.user_incharge'
 
 %div.control-group.required
   = label :user_request, t(:remote_adscription, :scope => 'activerecord.attributes.user_request'), :class => 'string required control-label'
-  = f.collection_select :remote_adscription_id, AdscriptionClient.all, :id, :name, {:prompt => '-- Seleccionar --'}, :class => 'chzn-select'
+  %div.controls
+    = f.collection_select :remote_adscription_id, AdscriptionClient.all, :id, :name, {:prompt => '-- Seleccionar --'}, :class => 'chzn-select'
+
 
 %div.control-group.required
   = label :user_request, t(:user_incharge, :scope => 'activerecord.attributes.user_request'), :class => 'string required control-label'
-  %div#remote_user_incharge_id
+  %div#remote_user_incharge.controls
     = 'Para asignar un responsable académico seleccione un departamento'
+
+%hr/
+%b= t '.request_type'
+
+%div.control-group.required
+  = label :user_request, t(:period, :scope => 'activerecord.attributes.user_request'), :class => 'string required control-label'
+  %div.controls= Period.activated.name
 
 = f.association :role, :as => :radio, :required => true
 
+%div.control-group.radio_buttons.required
+  = label :user_request, t(:is_restamped, :scope => 'activerecord.attributes.user_request'), :class => 'radio_buttons required control-label'
+  %div.controls
+    - if Period.activated.enddate >= Date.today and current_user.user_requests.where(:requeststatus_id => 3).count > 0
+      = 'Resello de credencial'
+      = f.input :is_restamped, :as => :hidden, :value => true
+    - else
+      = 'Solicitud nueva'
+      = f.input :is_restamped, :as => :hidden, :value => true
+
+
+- if Period.activated.enddate >= Date.today and current_user.user_requests.where(:requeststatus_id => 3).count > 0
+  = f.input :activities, :as => :text, :input_html => { :class => 'input-xlarge', :size => '40x3' }
+
 %div.control-group.required
-  = label :user_request, t(:is_restamped, :scope => 'activerecord.attributes.user_request'), :class => 'string required control-label'
-  - if Period.activated.enddate >= Date.today and current_user.user_requests.where(:requeststatus_id => 3).count > 0
-    = (f.radio_button :is_restamped, true, :checked => f.object.is_restamped) + 'Resello de credencial'
-  - else
-    = (f.radio_button :is_restamped, false, :checked => !f.object.is_restamped) + 'Solicitud nueva'
+  = label :user_request, t(:want_office_cubicle, :scope => 'activerecord.attributes.user_request'), :class => 'radio_buttons required control-label'
+  %div.controls
+    = (f.radio_button :want_office_cubicle, true, :checked => f.object.want_office_cubicle) + 'Sí'
+    = (f.radio_button :want_office_cubicle, false, :checked => !f.object.want_office_cubicle) + 'No'
 
-- # = label :is_restamped, '¿Necesita espacio en un cubículo para estudiantes?'
-- # = (f.radio_button :want_office_cubicle, true, :checked => f.object.want_office_cubicle) + 'Sí'
-- # = (f.radio_button :want_office_cubicle, false, :checked => !f.object.want_office_cubicle) + 'No'
-= f.input :want_office_cubicle, :value => false, :as => :hidden
+#office= f.input :office, :as => :text, :input_html => { :class => 'input-xlarge', :size => '40x3' }
 
+%hr/
 %b= t '.start_date'
 %div.control-group.required
   = label :user_request, t(:start_month, :scope => 'activerecord.attributes.user_request'), :class => 'string required control-label'
-  = select_month(Date.today, :use_month_names => %w(Enero Febrero Marzo Abril Mayo Junio Julio Agosto Septiembre Octubre Noviembre Diciembre), :field_name => 'user_request[start_month]')
+  %div.controls
+    = select_month(Date.today, :use_month_names => %w(Enero Febrero Marzo Abril Mayo Junio Julio Agosto Septiembre Octubre Noviembre Diciembre), :field_name => 'user_request[start_month]')
 = f.input :start_year, :as => :string, :required => true, :input_html => { :class => 'chzn-select input-small' }
 
 %b= t '.end_date'
 %div.control-group.required
   = label :user_request, t(:end_month, :scope => 'activerecord.attributes.user_request'), :class => 'string required control-label'
-  = select_month(Date.today, :use_month_names => %w(Enero Febrero Marzo Abril Mayo Junio Julio Agosto Septiembre Octubre Noviembre Diciembre), :field_name => 'user_request[end_month]')
+  %div.controls
+    = select_month(Date.today, :use_month_names => %w(Enero Febrero Marzo Abril Mayo Junio Julio Agosto Septiembre Octubre Noviembre Diciembre), :field_name => 'user_request[end_month]')
 = f.input :end_year, :as => :string, :required => true, :input_html => { :class => 'chzn-select input-small' }
 
 .span12

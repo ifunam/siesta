@@ -20,5 +20,16 @@ $(document).ready ->
       $("#person_state").hide()
       $("#user_person_attributes_state_id").val('')
     false
+  false
 
+$("#user_request_remote_adscription_id").change ->
+  $.ajax url: '/remote_users/', data: { adscription_id: this.value }, dataType: "HTML", success: (data) ->
+    $("#remote_user_incharge").html(data)
+  false
+
+$('input[name="user_request[want_office_cubicle]"]').change ->
+  if this.value == "true"
+    $("#office").show()
+  else
+    $("#office").hide()
   false

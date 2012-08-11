@@ -1,6 +1,7 @@
 # encoding: utf-8
 class UserRequest < ActiveRecord::Base
-    attr_accessible :role_id, :remote_user_incharge_id, :remote_adscription_id, :start_month, :end_month, :start_year, :end_year, :is_restamped
+    attr_accessible :role_id, :remote_user_incharge_id, :remote_adscription_id, :start_month, :end_month, :start_year, :end_year, :is_restamped, 
+                    :office, :activities, :want_office_cubicle
 
     validates_presence_of  :role_id, :remote_user_incharge_id, :remote_adscription_id, :start_month, :end_month, :start_year, :end_year, :is_restamped
     validates_numericality_of :role_id, :remote_user_incharge_id, :remote_adscription_id, :greater_than => 0, :only_integer => true
@@ -14,6 +15,7 @@ class UserRequest < ActiveRecord::Base
     belongs_to :role
     belongs_to :requeststatus
     belongs_to :adscription, :class_name => 'AdscriptionClient', :foreign_key => 'remote_adscription_id'
+    belongs_to :remote_adscription, :class_name => 'AdscriptionClient', :foreign_key => 'remote_adscription_id'
     belongs_to :user_incharge, :class_name => "AcademicClient", :foreign_key => 'remote_user_incharge_id'
     belongs_to :local_user_incharge, :class_name => "User", :foreign_key => 'user_incharge_id'
     has_one :event

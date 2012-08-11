@@ -1,13 +1,22 @@
 %h3= t '.title'
 
 = show_for @user_request do |u|
-  = u.association :period, :using => :name
-  = u.association :role, :using => :name
   = u.association :adscription, :using => :name
   = u.association :user_incharge, :using => :fullname
+  = u.association :period, :using => :name
+  = u.association :role, :using => :name
+
   %p.wrapper#user_request_is_restamped
     %strong=t(:is_restamped, :scope => 'activerecord.attributes.user_request')
     = @user_request.is_restamped? ? 'Resello' : 'Solicitud nueva'
+  = u.attribute :activities if @user_request.is_restamped
+
+  %p.wrapper#user_request_want_office_cubicle
+    %strong=t(:want_office_cubicle, :scope => 'activerecord.attributes.user_request')
+    = @user_request.want_office_cubicle? ? 'Sí' : 'No'
+
+  = u.attribute :office
+
   = u.attribute :start_month
   = u.attribute :start_year
   = u.attribute :end_month

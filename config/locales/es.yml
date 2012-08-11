@@ -69,6 +69,9 @@ es:
         start_year: Año de incio
         end_month: Mes de término
         end_year: Año de término
+        office: Cubículo o área de trabajo
+        want_office_cubicle: ¿ Tiene escritorio/espacio asignado en el Instituto ?
+        activities: Principales actividades desarrolladas durante el periodo anterior
 
   helpers:
     submit:
@@ -191,6 +194,7 @@ es:
       degree_details: Detalles
       degree_and_school: Grado y carrera
       degree_status: Estado del grado académico
+      file_hint: "Formatos: GIF, JPEG, JPG, PNG, PDF y PS. Tamaño máximo: 10 MB"
 
   user_documents:
     index:
@@ -202,6 +206,8 @@ es:
       title: Documento probatorio
     edit:
       title: Edición de documento probatorio
+    form:
+      file_hint: "Formatos: GIF, JPEG, JPG, PNG, PDF y PS. Tamaño máximo: 10 MB"
 
   user_requests:
     index:
@@ -216,8 +222,11 @@ es:
     edit:
       title: Modificar solicitud de estudiante asociado
     form:
+      request_type: Información de la solicitud
       start_date: Fecha de inicio
-      end_date: Fecha de término
+      end_date: Fecha estimada de conclusión de actividades
+      user_incharge: Académico responsable y departamento
+      activities_hint: Máximo 300 carácteres
 
   navigation:
     profile: Información general
