@@ -1,6 +1,8 @@
 class AcademicClient < ActiveResource::Base
   self.site = 'https://salva.fisica.unam.mx/api'
   self.element_name = "user"
+  self.format = :xml
+
 
   # Fix It: Remove this method after of the UpdateRemoteAttributesInUserRequests migration
   def self.find_by_login(login)
