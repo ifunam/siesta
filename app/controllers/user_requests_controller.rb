@@ -14,9 +14,7 @@ class UserRequestsController < UserResourcesController
   def create
     build_resource.user_id = current_user.id
     resource.period_id = Period.activated.id
-    create! do
-      resource.send_request
-    end
+    super
   end
 
   private

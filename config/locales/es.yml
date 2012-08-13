@@ -66,7 +66,7 @@ es:
         role: Actividad a realizar
         is_restamped: Tipo de solicitud
         start_month: Mes de inicio
-        start_year: Año de incio
+        start_year: Año de inicio
         end_month: Mes de término
         end_year: Año de término
         office: Cubículo o área de trabajo
@@ -216,7 +216,9 @@ es:
       role: Actividad a realizar
       adscription: Adscripción
       user_incharge: Académico responsable
+      request_type: Tipo de solicitud
       actions: Acciones
+      new: Enviar nueva solicitud
     new:
       title: Nueva solicitud de estudiante asociado
     edit:
@@ -236,6 +238,7 @@ es:
     main_menu: Menú principal
 
   sign_up: Registrar nuevo usuario
+  sign_out: Salir
   new_password: Recuperar/Cambiar tu contraseña
   sign_in: Iniciar sessión
   confirm_question: ¿ Estás seguro ?

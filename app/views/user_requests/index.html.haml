@@ -6,9 +6,10 @@
       %th= t '.role'
       %th= t '.adscription'
       %th= t '.user_incharge'
+      %th= t '.request_type'
       %th= t '.actions'
   %tbody
     = render :partial => @user_requests
 
 .span12
-  = link_to t(:new), new_user_request_path, :class => 'btn btn-primary'
+  = link_to t('.new'), new_user_request_path, :class => 'btn btn-primary'

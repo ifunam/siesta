@@ -25,15 +25,15 @@
 %div.control-group.radio_buttons.required
   = label :user_request, t(:is_restamped, :scope => 'activerecord.attributes.user_request'), :class => 'radio_buttons required control-label'
   %div.controls
-    - if Period.activated.enddate >= Date.today and current_user.user_requests.where(:requeststatus_id => 3).count > 0
+    - if current_user.user_requests.where(:is_official => true).count > 0
       = 'Resello de credencial'
       = f.input :is_restamped, :as => :hidden, :value => true
     - else
       = 'Solicitud nueva'
-      = f.input :is_restamped, :as => :hidden, :value => true
+      = f.input :is_restamped, :as => :hidden, :value => false
 
 
-- if Period.activated.enddate >= Date.today and current_user.user_requests.where(:requeststatus_id => 3).count > 0
+- if current_user.user_requests.where(:is_official => true).count > 0
   = f.input :activities, :as => :text, :input_html => { :class => 'input-xlarge', :size => '40x3' }
 
 %div.control-group.required
@@ -49,14 +49,16 @@
 %div.control-group.required
   = label :user_request, t(:start_month, :scope => 'activerecord.attributes.user_request'), :class => 'string required control-label'
   %div.controls
-    = select_month(Date.today, :use_month_names => %w(Enero Febrero Marzo Abril Mayo Junio Julio Agosto Septiembre Octubre Noviembre Diciembre), :field_name => 'user_request[start_month]')
+    = select_month(Date.today, :use_month_names => %w(Enero Febrero Marzo Abril Mayo Junio Julio Agosto Septiembre Octubre Noviembre Diciembre), :field_name => 'start_month', :prefix => :user_request)
+- f.object.start_year = Date.today.year if f.object.new_record?
 = f.input :start_year, :as => :string, :required => true, :input_html => { :class => 'chzn-select input-small' }
 
 %b= t '.end_date'
 %div.control-group.required
   = label :user_request, t(:end_month, :scope => 'activerecord.attributes.user_request'), :class => 'string required control-label'
   %div.controls
-    = select_month(Date.today, :use_month_names => %w(Enero Febrero Marzo Abril Mayo Junio Julio Agosto Septiembre Octubre Noviembre Diciembre), :field_name => 'user_request[end_month]')
+    = select_month(Date.today, :use_month_names => %w(Enero Febrero Marzo Abril Mayo Junio Julio Agosto Septiembre Octubre Noviembre Diciembre), :field_name => 'end_month', :prefix => :user_request)
+- f.object.end_year = Date.today.year + 1 if f.object.new_record?
 = f.input :end_year, :as => :string, :required => true, :input_html => { :class => 'chzn-select input-small' }
 
 .span12
