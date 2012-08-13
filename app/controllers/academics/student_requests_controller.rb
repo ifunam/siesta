@@ -6,10 +6,13 @@ class Academics::StudentRequestsController < Academics::ApplicationController
     respond_with(@user_requests)
   end
 
-  def update
-    @user_request = UserRequest.find(params[:id])
-    if @user_request.update_attributes(:requeststatus_id => params[:requeststatus_id])
-      redirect_to academics_student_requests_path
-    end
+  def approve
+    UserRequest.find(params[:id]).approve
+    redirect_to academics_student_requests_path
+  end
+
+  def reject
+    UserRequest.find(params[:id]).reject
+    redirect_to academics_student_requests_path
   end
 end

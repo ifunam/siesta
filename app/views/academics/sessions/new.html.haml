@@ -1,21 +1,16 @@
-%div{:class => 'span-12  prepend-1'}
-  %p{:class => 'notice_box blue'}
-    = image_tag('ok.png')
-    = 'Ingreso de Académicos al Sistema de Estudiantes Asociados al Instituto de Física de la UNAM '
-    %b= "(Período: #{Period.activated.name})."
-  %p{:class => 'notice_box red'}
-    = image_tag('calendar.png')
-    = 'Para entrar al sistema debe usar el usuario y contraseña del correo electrónico del Instituto de Física.'  
-  %p{:class => 'browser_note'}
-    = "Esta aplicación es compatible con las versiones más recientes de los navegadores: Firefox, Internet Explorer, Safari o Chrome."
-%div{:class => 'span-8 prepend-1 last', :style => 'text-align: left;'}
-  = form_for(resource, :as => resource_name, :url => academics_user_session_path(resource_name)) do |f|
-    %p
-      = f.label 'Usuario'
-      %br/
-      = f.text_field :login, :size => 12, :maxlength => 16
-    %p
-      = f.label 'Contraseña'
-      %br/
-      = f.password_field :password, :size => 12
-    %p= f.submit "Entrar"
+.well.span6
+  %h3= t '.title'
+  = simple_form_for(resource, :as => resource_name, :url => academics_user_session_path) do |f|
+    .form-inputs
+      = f.input :login, :required => true, :autofocus => true, :as => :string, :input_html => { :class => 'input-small'}
+      = f.input :password, :required => true, :input_html => { :class => 'input-small' } 
+      = f.input :remember_me, :as => :boolean
+    .form-actions
+      = f.button :submit, :class => 'btn btn-primary'
+  .span12.alert.alert-success
+    - %w(hint_1 hint_2).each do |hint|
+      .well.alert.alert-warning
+        .i.icon-info-sign
+        = ' '
+        = t('.'+hint).html_safe
+  .clearfix

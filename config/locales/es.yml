@@ -156,6 +156,13 @@ es:
         hint_2: "Por ejemplo, si tu cuenta de correo es <b>roberto@fisica.unam.mx</b>, los datos para entrar al sistema son: <br/> <br/> <b>Usuario:</b> roberto <br/> <b>Contraseña:</b>*******"
         disabled_message: El acceso a la opción de resello ha sido desactivado, estará disponible hasta el siguiente periodo.
 
+  academics:
+    sessions:
+      new:
+        title: Ingreso de académicos al Sistema de Estudiantes Asociados
+        hint_1: Para entrar al sistema debes usar el usuario y contraseña del correo electrónico del Instituto de Física.
+        hint_2: "Por ejemplo, si tu cuenta de correo es <b>roberto@fisica.unam.mx</b>, los datos para entrar al sistema son: <br/> <br/> <b>Usuario:</b> roberto <br/> <b>Contraseña:</b>*******"
+
   profiles:
     show:
       title: Información general

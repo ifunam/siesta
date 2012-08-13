@@ -1,39 +1,30 @@
-- unless student_request.user.nil?
-  - blueprint 'span-22 last record', :style => 'border-bottom: 1px solid green; margin-bottom: 10px;' do
-    - blueprint 'span-2' do
-      - if !student_request.user.nil? and !student_request.user.person.nil? and !student_request.user.person.photo.nil?
-        = image_tag(student_request.user.person.photo.url(:card), :size => '70x70')
-    - blueprint 'span-19 personal_info' do
-      - blueprint 'span-17 last', :id => 'collection_tr' do
-        - blueprint 'span-10' do
-          %b= 'Nombre: '
-          - if student_request.user.nil? or student_request.user.person.nil?
-            = 'No ha registrado datos personales'
-          - else
-            = student_request.user.person.fullname
-        - blueprint 'span-7 last' do
-          %b= 'Teléfono: '
-          - if !student_request.user.nil? and !student_request.user.address.nil?
-            = student_request.user.address.phone unless student_request.user.address.nil?
-      - blueprint 'span-17  last', :id => 'collection_tr' do
-        - blueprint 'span-10' do
-          %b= 'Actividad a realizar: '
-          = student_request.role.name
-        - blueprint 'span-7 last' do
-          %b= 'Período: '
-          = student_request.period.name
-      - blueprint 'span-17  last', :id => 'collection_tr' do
-        - blueprint 'span-10' do
-          %b= 'Correo electrónico: '
-          - unless student_request.user.nil?
-            = student_request.user.email
-        - blueprint 'span-7 last' do
-          %b= 'Estado de solicitud:' 
-          = student_request.requeststatus.name
-      - blueprint 'span-3 last' do
-        - if student_request.requeststatus_id == 2 or student_request.requeststatus_id == 4
-          = '¿Autorizar solicitud?'
-          %br
-          = link_to 'Sí', academics_student_request_path(:id => student_request.id, :requeststatus_id => 3 )
-          = ' o '
-          = link_to 'No', academics_student_request_path(:id => student_request.id, :requeststatus_id => 4 )
+%tr
+  %td
+    - if !student_request.user.nil? and !student_request.user.person.nil? and !student_request.user.person.photo.nil?
+      = image_tag(student_request.user.person.photo.url(:card), :size => '70x70')
+  %td
+    - if student_request.user.nil? or student_request.user.person.nil?
+      = 'No ha registrado datos personales'
+    - else
+      = student_request.user.person.fullname
+  %td
+    - if !student_request.user.nil? and !student_request.user.address.nil?
+      = student_request.user.address.phone unless student_request.user.address.nil?
+  %td
+    = student_request.role.name
+  %td
+    = student_request.period.name
+  %td
+    - unless student_request.user.nil?
+      = student_request.user.email
+  %td
+    = student_request.activities
+  %td
+    = student_request.requeststatus.name
+  %td
+    - if student_request.requeststatus_id == 2 or student_request.requeststatus_id == 4
+      = '¿Autorizar solicitud?'
+      %br/
+      = link_to 'Sí', approve_academics_student_request_path(student_request.id), :confirm => t(:confirm_question)
+      = ' o '
+      = link_to 'No', reject_academics_student_request_path(student_request.id), :confirm => t(:confirm_question)

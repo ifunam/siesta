@@ -23,7 +23,7 @@ class UserRequest < ActiveRecord::Base
     default_scope includes(:period).order('periods.startdate DESC')
 
     scope :find_sent_request_to_user_id, lambda { |user_id|
-        where("user_requests.remote_user_incharge_id = ? AND user_requests.requeststatus_id <= 3 
+        where("user_requests.remote_user_incharge_id = ? 
                AND user_requests.period_id = ? ", user_id, Period.activated.id).includes(:period).
                order('periods.startdate DESC')
     }
@@ -39,6 +39,14 @@ class UserRequest < ActiveRecord::Base
 
     def send_request
       change_requeststatus(2)
+    end
+
+    def approve
+      change_requeststatus(3)
+    end
+
+    def reject
+      change_requeststatus(4)
     end
 
     def type

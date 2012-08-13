@@ -1,3 +1,16 @@
-- blueprint 'span-23 prepend-1 last' do
-  %h3= 'Solicitudes de Estudiantes Asociados ' + Period.activated.name
-  = render :partial => 'student_request', :collection => @user_requests
+%h3= 'Solicitudes de Estudiantes Asociados ' + Period.activated.name
+
+%table.table.table-bordered.table-condensed
+  %thead
+    %tr
+      %th= 'Fotografía'
+      %th= 'Nombre'
+      %th= 'Teléfono'
+      %th= 'Actividad a realizar'
+      %th= 'Periodo'
+      %th= 'Correo electrónico'
+      %th= 'Actividades del periodo anterior'
+      %th= 'Estado de la solicitud'
+      %th= 'Acción'
+  %tbody
+    = render :partial => 'student_request', :collection => @user_requests

@@ -12,15 +12,15 @@ Siesta::Application.routes.draw do
 
   # Academic controllers
   namespace :academics do 
-    resources :events
-    resources :student_requests do
-      get :update, :on => :member
-      resources :events
+    # resources :events
+    resources :student_requests, :only => [:index] do
+      get :approve, :on => :member
+      get :reject, :on => :member
     end
-    resources :calendars
-    resources :office_cubicles do
-      resources :calendars
-    end
+    #resources :calendars
+    #resources :office_cubicles do
+    #  resources :calendars
+    #end
     root :to => "student_requests#index"
     devise_for :users, :only => :sessions, :format => false
   end
