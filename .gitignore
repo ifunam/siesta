@@ -42,3 +42,4 @@ Gemfile.lock
 .idea
 .bundle
 config/aleph.yml
+public/assets

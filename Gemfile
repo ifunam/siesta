@@ -30,6 +30,14 @@ gem "state_machine", "~> 1.1.2"
 gem "i18n", "0.6.0"
 gem "rails-i18n", "~> 0.6.5"
 
+group :production do
+  gem "dalli", "~> 2.1.0"
+  gem "jquery-rails", '2.0.2'
+  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+  gem "execjs", "1.4.0"
+  gem "therubyracer", "~> 0.11.0beta7"
+end
+
 group :development do
   gem "rspec-rails", '2.10.1'
   gem "jquery-rails", '2.0.2'
