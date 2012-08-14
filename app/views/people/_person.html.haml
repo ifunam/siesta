@@ -7,7 +7,7 @@
     %strong=t(:gender, :scope => 'activerecord.attributes.person') + ': '
     = person.gender? ? t(:male) : t(:female)
 
-%b= t :date_and_place_of_birth
+%b= t '.date_and_place_of_birth'
 = show_for person do  |p|
   = p.attribute :birthdate
   = p.association :country, :using => :name

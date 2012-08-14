@@ -162,6 +162,10 @@ es:
         title: Ingreso de académicos al Sistema de Estudiantes Asociados
         hint_1: Para entrar al sistema debes usar el usuario y contraseña del correo electrónico del Instituto de Física.
         hint_2: "Por ejemplo, si tu cuenta de correo es <b>roberto@fisica.unam.mx</b>, los datos para entrar al sistema son: <br/> <br/> <b>Usuario:</b> roberto <br/> <b>Contraseña:</b>*******"
+  managers:
+    sessions:
+      new:
+        title: Ingreso para administrador del SIESTA
 
   profiles:
     show:
@@ -177,6 +181,7 @@ es:
       date_and_place_of_birth: Fecha y lugar de nacimiento
     person:
       title: Información general
+      date_and_place_of_birth: Fecha y lugar de nacimiento
 
   addresses:
     form:
