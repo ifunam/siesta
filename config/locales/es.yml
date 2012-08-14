@@ -236,6 +236,8 @@ es:
       end_date: Fecha estimada de conclusión de actividades
       user_incharge: Académico responsable y departamento
       activities_hint: Máximo 300 carácteres
+    missed_sections:
+      title: Información requerida
 
   navigation:
     profile: Información general
