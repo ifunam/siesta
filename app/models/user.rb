@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   devise :ldap_authenticatable, :rememberable, :authentication_keys => [:login]
 
-  validates :login, :uniqueness => true
   validates :email, :uniqueness => true
 
   has_one :person
