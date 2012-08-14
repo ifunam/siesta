@@ -1,13 +1,21 @@
-%html
+!!! 5
+%html(lang="en")
   %head
-    %meta{ :content => "text/html;charset=UTF-8", "http-equiv" => "content-type" }
-    %title&= yield(:title) || "Sistema de Estudiantes Asociados - SIESTA"
-    = stylesheet_link_tag 'screen.css', :media => 'screen, projection'
-    = stylesheet_link_tag 'print.css', :media => 'print'
-    = stylesheet_link_tag 'application.css', :media => 'screen, projection'
-    /[if lt IE 8]
-      = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
+    %meta(charset="utf-8")
+    %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %title= content_for?(:title) ? yield(:title) : "Siesta / Sistema de Estudiantes Asociados"
+    = csrf_meta_tags
+    / Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+      = javascript_include_tag "https://html5shim.googlecode.com/svn/trunk/html5.js"
+    = stylesheet_link_tag "devise", :media => "all"
+    %link(href="/assets/favicon.ico" rel="shortcut icon")
+
   %body
-    %div{:class =>'container'}
-      %div{:id => 'main', :class => 'span-24 last', :style => 'padding-top: 25px'}
-        =yield
+    .container
+
+      .content
+        .row
+          .span12
+            = yield

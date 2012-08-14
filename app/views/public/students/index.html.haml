@@ -1,2 +1,10 @@
-- blueprint 'span-22 last' do
-  = render :partial => 'student_request', :collection => @collection
+%table.table.table-bordered
+  %thead
+    %tr
+      %th= 'Fotografía'
+      %th= 'Nombre'
+      %th= 'Actividad que realiza'
+      %th= 'Correo electrónico'
+      %th= 'Periodo'
+  %tbody
+    = render :partial => 'student_request', :collection => @collection

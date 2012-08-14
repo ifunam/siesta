@@ -1,18 +1,11 @@
-- blueprint 'span-20 last record', :style => 'border-bottom: 1px solid green; margin-bottom: 10px; text-align: left;' do
-  - blueprint 'span-2' do
+%tr
+  %td
     = image_tag(student_request.user.person.photo.url(:card), :size => '70x70')
-  - blueprint 'span-17 personal_info' do
-    - blueprint 'span-17 last', :id => 'collection_tr' do
-      - blueprint 'span-9' do
-        %b= 'Name: '
-        = student_request.user.person.fullname
-      - blueprint 'span-7 last' do
-        %b= 'Role: '
-        = student_request.role.name
-    - blueprint 'span-16  last', :id => 'collection_tr' do
-      - blueprint 'span-9' do
-        %b= 'Email address: '
-        = raw mail_to student_request.user.email, student_request.user.email, :encode => "javascript"
-      - blueprint 'span-7 last' do
-        %b= 'Period: '
-        = student_request.period.name
+  %td
+    = student_request.user.person.fullname
+  %td
+    = student_request.role.name
+  %td
+    = mail_to student_request.user.email, student_request.user.email, :encode => "javascript"
+  %td
+    = student_request.period.name
