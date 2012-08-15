@@ -1,6 +1,7 @@
 # encoding: utf-8
 require 'RMagick'
 require 'barby'
+require 'barby/barcode/code_39'
 require 'barby/outputter/rmagick_outputter'
 class Card
   include Magick
