@@ -1,25 +1,24 @@
-- blueprint 'span-20 last' do
-  - blueprint 'span-8 last' do
-    %b='Nombre: '
-    = student.fullname
-  - blueprint 'span-8 last' do
-    %b='Correo electrónico: '
-    = student.email
-
-- blueprint 'span-20 last' do
-  - blueprint 'span-18 last' do
-    - blueprint 'span-3' do
-      %i= 'Periodo'
-    - blueprint 'span-3' do
-      %i= 'Responsable Académico'
-    - blueprint 'span-3' do
-      %i= 'Tipo de actividad'
-    - blueprint 'span-3' do
-      %i= 'Estado de solicitud'
-    - blueprint 'span-3' do
-      %i= 'Tipo de solicitud'
-    - blueprint 'span-3 last' do
-      %i= 'Aprobado por CD-IF'
-  - unless  student.user_requests.first.nil?
-    - blueprint 'span-17 prepend-1 last' do
-      = render :partial => 'managers/students/user_request', :object => student.user_requests.first
+%table.table.class-condensed
+  %tbody
+    %tr
+      %table.table
+      %td
+        %b='Nombre: ' 
+        = student.fullname
+        %br/ 
+        %b='Correo electrónico: '
+        = student.email
+        %br/
+    %td
+      - unless  student.user_requests.first.nil?
+        %table.table.table-bordered
+          %thead
+            %tr
+              %th= 'Periodo'
+              %th= 'Responsable académico'
+              %th= 'Tipo de actividad'
+              %th= 'Estado de solicitud'
+              %th= 'Tipo de solicitud'
+              %th= 'Aprobado por CD-IF'
+          %tbody
+            = render :partial => 'managers/students/user_request', :object => student.user_requests.first

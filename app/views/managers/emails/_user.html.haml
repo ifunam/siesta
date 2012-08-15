@@ -1,11 +1,9 @@
-= blueprint 'span-21 last', :id => 'collection_tr'do
+%tr
   - email = user.login + '@fisica.unam.mx'
-  - blueprint 'span-6', :id => 'collection_td' do
-    = email
-  - blueprint 'span-8', :id => 'collection_td' do
-    = user.fullname
-  - blueprint 'span-7 last', :id => 'collection_td' do
+  %td= email
+  %td= user.fullname
+  %td
     - if user.login + '@fisica.unam.mx' == @student.email
-      = 'Cuenta asignada'
+      .badge.badge-info= 'Cuenta asignada'
     - else
-      = link_to 'Asignar cuenta', managers_email_path(@student, :email => email ), :method => :put 
+      = link_to 'Asignar cuenta', managers_email_path(@student, :email => email ), :method => :put, :class => 'btn btn-success', :confirm => t(:confirm_question)

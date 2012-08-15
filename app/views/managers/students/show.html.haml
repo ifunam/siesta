@@ -1,14 +1,18 @@
 .tabbable
   %ul.nav.nav-tabs
-    %li= link_to 'Fotografía', edit_managers_photo_path(:id => @student.person.id)
-    %li= link_to 'Correo electrónico', managers_email_path(:id => @student.id)
+    %li= link_to 'Subir o cambiar fotografía', edit_managers_photo_path(:id => @student.person.id)
+    %li= link_to 'Crear o asignar correo electrónico', managers_email_path(:id => @student.id)
     %li= link_to 'Imprimir credencial (frente)', card_front_managers_student_path(:id => @student.id, :format => 'jpg'), :target => '_new'
     %li= link_to 'Imprimir credencial (atrás)', card_back_managers_student_path(:id => @student.id, :format => 'jpg'), :target => '_new'
-    %li= link_to 'Lista de estudiantes', managers_students_path
+    %li= link_to 'Regresar a la lista de estudiantes', managers_students_path
 
 .tab-content
 
-  .well= render :partial => 'people/person', :object => @student.person
+  .well
+    - if !@student.person.nil? and !@student.person.photo.nil?
+      = image_tag(@student.person.photo.url(:card), :size => '70x70') 
+
+    = render :partial => 'people/person', :object => @student.person
   .well
     %h3="Solicitudes"
     %table.table.table-condensed.table_bordered

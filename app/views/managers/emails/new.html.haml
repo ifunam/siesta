@@ -1,27 +1,25 @@
-- blueprint 'span-20 prepend-2 last' do
-  %h3='Datos del Estudiante y de la solicitud'
+%h3='Datos del Estudiante y de la solicitud'
+.well
   = render :partial => 'student', :object => @student
-  %br
-  
+
+.well
   - unless  @student.most_recent_user_request.nil?
     %h3= 'Nueva cuenta de correo electrónico'
-    - form_for :user, :url => managers_emails_path, :html => { :method => :post, :style => 'text-align: left;'} do |f|
-      - blueprint 'span-20' do
-        = f.label :login, "Usuario (máximo 18 caracteres):", :class => 'login'
-        = f.text_field :login, :size => 12, :maxlength => 18
-      - blueprint 'span-20' do
-        = f.label :password, "Contraseña:", :class => 'login'
-        = f.password_field :password, :size => 12
-      - blueprint 'span-20' do
-        = f.label :password, "Confirmación de la contraseña:", :class => 'login'
-        = f.password_field :password_confirmation, :size => 12
-        = f.hidden_field :fullname, :value => @student.fullname
-        = f.hidden_field :group, :value => @student.group
-        = hidden_field :student, :id, :value => @student.id
+    = simple_form_for :user, :url => managers_emails_path, :html => { :method => :post} do |f|
+      = f.label :login, "Usuario (máximo 18 caracteres):", :class => 'login'
+      = f.text_field :login, :size => 12, :maxlength => 18
+      = f.label :password, "Contraseña:", :class => 'login'
+      = f.password_field :password, :size => 12
+      = f.label :password, "Confirmación de la contraseña:", :class => 'login'
+      = f.password_field :password_confirmation, :size => 12
+      = f.hidden_field :fullname, :value => @student.fullname
+      = f.hidden_field :group, :value => @student.group
+      = hidden_field :student, :id, :value => @student.id
       %p
-        = submit_tag('Guardar')
-        = link_to 'Cancelar', managers_student_path(:id => @student.id)
+        = f.button :submit, t(:save), :class => 'btn btn-success'
+        = link_to 'Cancelar', managers_student_path(:id => @student.id), :class => 'btn'
   - else
-    %h3="El estudiante debe llenar y enviar la solicitud antes de generar una cuenta de correo."
-    %p
-      = link_to 'Cancelar', managers_student_path(:id => @student.id)
+    .alert.alert-info
+      %h3="El estudiante debe llenar y enviar la solicitud antes de generar una cuenta de correo."
+      %p
+        = link_to 'Cancelar', managers_student_path(:id => @student.id), :class => 'btn btn-primary'

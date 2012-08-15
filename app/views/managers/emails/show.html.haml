@@ -1,21 +1,19 @@
-
-- blueprint 'span-20 prepend-2 last' do
-  %h3='Datos del Estudiante y de la solicitud'
+%h3= 'Datos del Estudiante y de la solicitud'
+.well
   = render :partial => 'student', :object => @student
 
+.well
   %h3= 'Asignar cuenta de correo electrónico'
 
   - if @users.size > 0
-    = blueprint 'span-24 last 'do
-      - blueprint 'span-7', :id => 'collection_th' do
-        %b= 'Correo electrónico'
-      - blueprint 'span-6', :id => 'collection_th' do
-        %b= 'Nombre'
-      - blueprint 'span-6 last', :id => 'collection_th' do
-        %b= 'Acciones'
-
-  = render :partial => 'managers/emails/user', :collection => @users
-- blueprint 'span-20 prepend-2 last', :id => 'collection_tr' do
-  = link_to 'Nueva cuenta de correo', new_managers_email_path(:id => @student.id)
-  = ' | '
-  = link_to 'Cancelar', managers_student_path(:id => @student.id)
+    %table.table-bordered.table-condensed
+      %thead
+        %tr
+          %th= 'Correo electrónico'
+          %th= 'Nombre'
+          %th= 'Acciones'
+      %tbody
+        = render :partial => 'managers/emails/user', :collection => @users
+  %p
+  = link_to 'Nueva cuenta de correo', new_managers_email_path(:id => @student.id), :class => 'btn btn-primary'
+  = link_to 'Cancelar', managers_student_path(:id => @student.id), :class => 'btn'
