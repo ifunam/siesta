@@ -1,12 +1,9 @@
-%h2 Administración de usuarios
-= form_for(resource, :as => resource_name, :url => managers_user_session_path(resource_name)) do |f|
-  %p
-    = f.label 'Usuario'
-    %br/
-    = f.text_field :login, :size => 12, :maxlength => 16
-
-  %p
-    = f.label 'Contraseña' 
-    %br/
-    = f.password_field :password, :size => 12
-  %p= f.submit "Entrar"
+.well.span6
+  %h3= t '.title'
+  = simple_form_for(resource, :as => resource_name, :url => managers_user_session_path) do |f|
+    .form-inputs
+      = f.input :login, :required => true, :autofocus => true, :as => :string, :input_html => { :class => 'input-small'}
+      = f.input :password, :required => true, :input_html => { :class => 'input-small' } 
+      = f.input :remember_me, :as => :boolean
+    .form-actions
+      = f.button :submit, t(:sign_in), :class => 'btn btn-primary'

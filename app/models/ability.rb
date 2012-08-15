@@ -11,7 +11,6 @@ class Ability
   end
 
   def academic
-    can :read, :all
-    can :update, :all # UserRequest
+    can :manage, :all
   end
 end

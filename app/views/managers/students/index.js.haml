@@ -1,7 +1,14 @@
-%div{:id => 'collection'}
-  - blueprint 'span-23 prepend-1 last' do
+%table#collection.table.table-bordered.table-condensed
+  %thead
+    %tr
+      %th= 'Fotografía'
+      %th= 'Nombre'
+      %th= 'Teléfono'
+      %th= 'Correo electrónico'
+      %th= 'Solicitudes'
+      %th= 'Acciones'
+  %tbody
     = render :partial => 'user', :collection => @users
 
-%div{:id => 'paginator', :class => 'ajaxed_paginator'}
-  - blueprint 'span-23 prepend-1 last' do
-    = will_paginate(@users)
+#paginator.well.ajaxed_paginator
+  = will_paginate(@users)

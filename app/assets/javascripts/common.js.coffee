@@ -38,3 +38,21 @@ jQuery.extend
       type: "get"
     options["data"] = params  unless params == undefined
     $.ajax(options).responseText
+
+  remote_collection_list: (resource, params) ->
+    options =
+      url: resource
+      async: false
+      beforeSend: ->
+        $.open_dialog_with_progressbar()
+      complete: (request) ->
+        $.close_dialog_with_progressbar()
+      success: (data) ->
+        $("#collection").remove()
+        $("#paginator").remove()
+        $("#filters").after data
+      type: "get"
+      dataType: "HTML"
+    options["data"] = params  unless params is `undefined`
+    $.ajax options
+    false

@@ -1,9 +1,10 @@
-%h3= 'Fotografía'
-= render :partial => "/shared/errors", :object => @person.errors
-- form_for(@person, :person, :url => managers_photo_path(@person), :html => {:multipart => true}) do |f|
-  - blueprint('span-20 prepend-2 last', :id => 'collection_tr') do
+.well
+  %h3= 'Fotografía'
+
+  - simple_form_for(@person, :as => :person, :url => managers_photo_path(@person), :html => {:multipart => true}) do |f|
+    = render :partial => 'shared/errors', :locals => { :f => f }
     = f.label :photo, 'Archivo'
     = f.file_field :photo, :size => 20, :blueprint => 'span-10 last'
-  - blueprint 'span-10 prepend-2 last', :id => 'buttons' do
-    = f.submit(t(:save))
-    = link_to t(:cancel), managers_student_path(:id => @person.user_id)
+    .span11
+      = f.submit t(:save), :class => 'btn btn-success'
+      = link_to t(:cancel), managers_student_path(:id => @person.user_id), :class => 'btn'

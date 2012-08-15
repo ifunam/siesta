@@ -1,37 +1,34 @@
-- blueprint 'span-23 prepend-1 last', :id=> 'collection_tr', :style => 'border-bottom: 1px solid silver;' do
-  - blueprint 'span-3' do
-    = link_to 'Fotografía', edit_managers_photo_path(:id => @student.person.id)
-  - blueprint 'span-4' do
-    = link_to 'Correo electrónico', managers_email_path(:id => @student.id)
-  - blueprint 'span-5' do
-    = link_to 'Imprimir credencial (frente)', card_front_managers_student_path(:id => @student.id, :format => 'jpg'), :target => '_new'
-  - blueprint 'span-5' do
-    = link_to 'Imprimir credencial (atrás)', card_back_managers_student_path(:id => @student.id, :format => 'jpg'), :target => '_new'
-  - blueprint 'span-4' do
-    = link_to 'Lista de estudiantes', managers_students_path
+.tabbable
+  %ul.nav.nav-tabs
+    %li= link_to 'Fotografía', edit_managers_photo_path(:id => @student.person.id)
+    %li= link_to 'Correo electrónico', managers_email_path(:id => @student.id)
+    %li= link_to 'Imprimir credencial (frente)', card_front_managers_student_path(:id => @student.id, :format => 'jpg'), :target => '_new'
+    %li= link_to 'Imprimir credencial (atrás)', card_back_managers_student_path(:id => @student.id, :format => 'jpg'), :target => '_new'
+    %li= link_to 'Lista de estudiantes', managers_students_path
 
-= render :partial => 'people/person', :object => @student.person
-- blueprint 'span-18  prepend-2 last', :id => 'collection_tr' do
-  %h3= "Solicitudes"
-  - blueprint 'span-3' do
-    %b= 'Periodo'
-  - blueprint 'span-3' do
-    %b= 'Responsable Académico'
-  - blueprint 'span-3' do
-    %b= 'Tipo de actividad'
-  - blueprint 'span-3' do
-    %b= 'Estado de solicitud'
-  - blueprint 'span-3' do
-    %b= 'Tipo de solicitud'
-  - blueprint 'span-3 last' do
-    %b= 'Aprobado por CD-IF'
-  = render :partial => 'user_request', :collection => @student.user_requests
+.tab-content
 
-= render :partial => 'addresses/address', :object => @student.address
+  .well= render :partial => 'people/person', :object => @student.person
+  .well
+    %h3="Solicitudes"
+    %table.table.table-condensed.table_bordered
+      %thead
+        %tr
+          %th= 'Periodo'
+          %th= 'Responsable académico'
+          %th= 'Tipo de actividad'
+          %th= 'Estado de solicitud'
+          %th= 'Tipo de solicitud'
+          %th= 'Aprobado por CD-IF'
+      %tbody
+        = render :partial => 'user_request', :collection => @student.user_requests
 
-- blueprint 'span-20 prepend-2 last', :id=> 'collection_tr' do
-  %h3= 'Antecedentes académicos'
-  = render :partial => 'schoolings/schooling_show', :collection => @student.schoolings.find(:all, :order => 'startyear DESC')
-- blueprint 'span-20 prepend-2 last', :id=> 'collection_tr' do
-  %h3= 'Documentos probatorios'
-  = render :partial => 'user_documents/user_document_show', :collection => @student.user_documents
+  .well= render :partial => 'addresses/address', :object => @student.address
+
+  .well
+    %h3= 'Antecedentes académicos'
+    = render :partial => 'schoolings/schooling_show', :collection => @student.schoolings.find(:all, :order => 'startyear DESC')
+
+  .well
+    %h3= 'Documentos probatorios'
+    = render :partial => 'user_documents/user_document_show', :collection => @student.user_documents

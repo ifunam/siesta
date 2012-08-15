@@ -1,19 +1,27 @@
-- blueprint 'span-23 prepend-1 last' do
-  %h3= 'Estudiantes Asociados'
-%div{:id=>"filters"} 
-  - blueprint 'span-24 last' do
+#filters
+  .well.span12
+    %h3= 'Estudiantes Asociados'
     = render :partial => 'search_form'
+  .clearfix
 
-  - blueprint 'span-23 prepend-1 last' do
-    - blueprint 'span-23  last', :style => 'font-size: 16px;' do
-      - %w(a b c d e f g h i j k l m n ñ o p q r s t u v w x y z).each do |char| 
-        = link_to char + ' ',  managers_students_path(:search => {:lastname_start_with =>char})
+  .well
+    %h3= 'Listar estudiantes usando la letra como inicial del apellido paterno'
+    %br/
+    - %w(a b c d e f g h i j k l m n ñ o p q r s t u v w x y z).each do |char|
+      = link_to char, managers_students_path(:search => {:lastname_start_with =>char}), :class => 'badge badge-warning'
 
-%div{:id => 'collection'}
-  - blueprint 'span-23 prepend-1 last' do
+%table#collection.table.table-bordered.table-condensed
+  %thead
+    %tr
+      %th= 'Fotografía'
+      %th= 'Nombre'
+      %th= 'Teléfono'
+      %th= 'Correo electrónico'
+      %th= 'Solicitudes'
+      %th= 'Acciones'
+  %tbody
     = render :partial => 'user', :collection => @users
 
-%div{:id => 'paginator'}
-  - blueprint 'span-23 prepend-1 last' do
-    = will_paginate(@users)
+#paginator.well
+  = will_paginate(@users)
 
