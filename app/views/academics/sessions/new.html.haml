@@ -6,7 +6,7 @@
       = f.input :password, :required => true, :input_html => { :class => 'input-small' } 
       = f.input :remember_me, :as => :boolean
     .form-actions
-      = f.button :submit, :class => 'btn btn-primary'
+      = f.button :submit, t(:sign_in), :class => 'btn btn-primary'
   .span12.alert.alert-success
     - %w(hint_1 hint_2).each do |hint|
       .well.alert.alert-warning

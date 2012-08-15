@@ -207,6 +207,8 @@ es:
       degree_and_school: Grado y carrera
       degree_status: Estado del grado académico
       file_hint: "Formatos: GIF, JPEG, JPG, PNG, PDF y PS. Tamaño máximo: 10 MB"
+    show:
+      title: Grado académico
 
   user_documents:
     index:
@@ -243,6 +245,8 @@ es:
       activities_hint: Máximo 300 carácteres
     missed_sections:
       title: Información requerida
+    show:
+      title: Solicitud de estudiante
 
   navigation:
     profile: Información general
@@ -265,3 +269,4 @@ es:
   edit: Editar
   delete: Borrar
   actions: Acciones
+  sign_in: Entrar
