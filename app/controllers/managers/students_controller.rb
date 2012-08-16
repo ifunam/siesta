@@ -54,6 +54,12 @@ class Managers::StudentsController < Managers::ApplicationController
     respond_with(@user_request)
   end
 
+  def destroy_request
+    @user_request = UserRequest.find(params[:id])
+    @user_request.destroy
+    render :nothing => true
+  end
+
   def destroy
     @user = User.find(params[:id])
     @user.destroy

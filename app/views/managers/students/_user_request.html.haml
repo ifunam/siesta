@@ -1,4 +1,4 @@
-%tr
+%tr{:id => dom_id(user_request) }
   %td
     = user_request.period.name unless user_request.period_id.nil?
   %td
@@ -13,5 +13,6 @@
     - if is_user_request_authorizable?(user_request)
       %span{:id=>'authorization_'+user_request.id.to_s}
         = link_to 'Autorizar solicitud',  '#', :link => authorize_managers_student_path(user_request), :class => 'btn btn-success authorize_link', :id => user_request.id, :confirm => '¿Desear autorizar esta solicitud?'
+        = link_to 'Borrar solicitud', destroy_request_managers_student_path(user_request), :class => 'btn btn-danger destroy_request_link', :confirm => '¿Desear borrar esta solicitud?'
     - else
       %b= user_request.is_official == true ? 'Sí' : 'No'

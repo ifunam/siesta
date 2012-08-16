@@ -31,6 +31,7 @@ Siesta::Application.routes.draw do
       get :card_back, :on => :member
       get :card_front, :on => :member
       get :authorize, :on => :member
+      get :destroy_request, :on => :member
       get :search, :on => :collection
     end
     resources :photos
