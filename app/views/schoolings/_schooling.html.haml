@@ -3,25 +3,25 @@
     = schooling.degree.name
   %td
     %p
-      = t(:career) + ': '
+      = t(:career, :scope => 'activerecord.attributes.schooling') + ': '
       = schooling.career
     %p 
-      = t(:school) + ': '
+      = t(:school, :scope => 'activerecord.attributes.schooling') + ': '
       = schooling.school
     %p
-      = t(:institution) + ': '
+      = t(:institution, :scope => 'activerecord.attributes.schooling') + ': '
       = schooling.institution
     %p 
-      = t(:average) + ': '
+      = t(:average, :scope => 'activerecord.attributes.schooling') + ': '
       = schooling.average
       = ', '
-      = t(:credits) + ': '
+      = t(:credits, :scope => 'activerecord.attributes.schooling') + ': '
       = schooling.credits || '-'
     %p 
-      = t(:is_studying_this) + ': '
+      = t(:is_studying_this, :scope => 'activerecord.attributes.schooling') + ': '
       = schooling.is_studying_this? ? 'Sí' : 'No'
     %p 
-      = t(:is_titleholder) + ': '
+      = t(:is_titleholder, :scope => 'activerecord.attributes.schooling') + ': '
       = schooling.is_titleholder? ? 'Sí' : 'No'
     %p
       = link_to t(:cardex), schooling.file.url, :target => :new
