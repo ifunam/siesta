@@ -18,7 +18,7 @@ class UserResourcesController < InheritedResources::Base
 
   private
   def authorize_action!
-    unless current_user.current_sign_in_ip == request.remote_ip and resource.user_id == current_user.id
+    unless resource.user_id == current_user.id
       authorize! :unauthorized, resource.class.name, :message => 'Unauthorized action!'
     end
   end
