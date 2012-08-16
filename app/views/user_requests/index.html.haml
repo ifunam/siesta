@@ -10,6 +10,6 @@
       %th= t '.actions'
   %tbody
     = render :partial => @user_requests
-
-.span12
-  = link_to t('.new'), new_user_request_path, :class => 'btn btn-primary'
+- if current_user.user_requests.where(:period_id => Period.activated.id).count == 0
+  .span12
+    = link_to t('.new'), new_user_request_path, :class => 'btn btn-primary'
