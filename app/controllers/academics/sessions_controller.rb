@@ -1,6 +1,6 @@
 class Academics::SessionsController < Devise::SessionsController
   layout 'academic'
-  skip_before_filter :authenticate_user!, :only => [:create, :new]
+  skip_before_filter :authenticate_user!, :only => [:create, :new, :session]
 
   def create
     resource = warden.authenticate!(auth_options)
@@ -11,6 +11,6 @@ class Academics::SessionsController < Devise::SessionsController
 
   def destroy
     reset_session
-    redirect_to new_academics_session_path
+    redirect_to new_academics_user_session_path
   end
 end
