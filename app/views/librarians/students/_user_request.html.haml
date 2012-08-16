@@ -1,13 +1,13 @@
--blueprint 'span-18  last student_request', :id => 'collection_tr' do
-  - blueprint 'span-3' do
-    = user_request.period.name
-  - blueprint 'span-3' do
-    = link_to user_request.user_incharge.fullname, "http://olimpo.fisica.unam.mx/salva/public/home_pages/#{user_request.remote_user_incharge_id}?locale=en", :target => "_new"
-  - blueprint 'span-3' do
-    = user_request.role.name
-  - blueprint 'span-3' do
-    = user_request.requeststatus.name
-  - blueprint 'span-3' do
+%tr{:id => dom_id(user_request) }
+  %td
+    = user_request.period.name unless user_request.period_id.nil?
+  %td
+    = link_to user_request.user_incharge.fullname, "http://salva.fisica.unam.mx/web_site/home_pages/#{user_request.remote_user_incharge_id}?locale=en", :target => "_new"
+  %td
+    = user_request.role.name unless user_request.role_id.nil?
+  %td
+    = user_request.requeststatus.name unless user_request.requeststatus_id.nil?
+  %td
     = user_request.is_restamped == true ? 'Resello' : 'Nueva solicitud'
-  - blueprint 'span-3 last' do
+  %td
     = user_request.is_official == true ? 'Sí' : 'No'

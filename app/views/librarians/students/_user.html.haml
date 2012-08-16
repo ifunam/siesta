@@ -1,37 +1,25 @@
-- blueprint "span-21 prepend-1 last record", :id => 'user_'+user.id.to_s do
-  - blueprint 'span-2' do
+%tr
+  %td
     - if !user.person.nil? and !user.person.photo.nil?
       = image_tag(user.person.photo.url(:card), :size => '70x70') 
-  - blueprint 'span-18 personal_info' do
-    - blueprint 'span-18 last', :id => 'collection_tr' do
-      - blueprint 'span-10' do
-        %b= 'Nombre: '
-        - unless user.person.nil?
-          = user.person.fullname
-      - blueprint 'span-7 last' do
-        %b= 'Teléfono: '
-        - unless user.address.nil?
-          = user.address.phone
-    - blueprint 'span-17  last', :id => 'collection_tr' do
-      - blueprint 'span-10' do
-        %b= 'Correo electrónico: '
-        = mail_to user.email,user.email, :encode => "hex"
-      - blueprint 'span-7 last' do
-        %b= 'Código de barras: '
-        = 'E' + '0' * ( 5 - user.id.to_s.length ) + user.id.to_s
-    - blueprint 'span-18 last', :id => 'collection_tr' do
-      %h3= "Solicitud"
-      - blueprint 'span-3' do
-        %b= 'Periodo'
-      - blueprint 'span-3' do
-        %b= 'Responsable académico'
-      - blueprint 'span-3' do
-        %b= 'Tipo de actividad'
-      - blueprint 'span-3' do
-        %b= '¿Esta autorizada por el académico responsable?'
-      - blueprint 'span-3' do
-        %b= 'Tipo de solicitud'
-      - blueprint 'span-3 last' do
-        %b= '¿Esta aprobada por la Coordinación Docente?'
-      = render :partial => 'user_request', :object => user.user_requests.first
+  %td
+    - unless user.person.nil?
+      = user.person.fullname
+  %td
+    - unless user.address.nil?
+      = user.address.phone
+  %td
+    =  mail_to user.email,user.email, :encode => "hex"
+  %td
+    %table.table.table-condensed
+      %thead
+        %tr
+          %th= 'Periodo'
+          %th= 'Responsable académico'
+          %th= 'Tipo de actividad'
+          %th= 'Estado de solicitud'
+          %th= 'Tipo de solicitud'
+          %th= 'Aprobado por CD-IF'
+      %tbody
+        = render :partial => 'user_request', :object => user.user_requests.first
 
