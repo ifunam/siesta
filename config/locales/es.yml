@@ -246,7 +246,7 @@ es:
     missed_sections:
       title: Información requerida
     show:
-      title: Solicitud de estudiante
+      title: Solicitud de estudiante enviada
 
   navigation:
     profile: Información general
