@@ -10,17 +10,17 @@ class UserRequestObserver < ActiveRecord::Observer
         Notifier.authorization_from_academic_coordination_to_student(user_request).deliver
         Notifier.authorization_from_academic_coordination_to_academic(user_request).deliver
         @user = StudentProfile.find(user_request.user.id)
-        @aleph = nil
-        begin
-          @aleph = Aleph::User.find(@user.code)
-        rescue => e
-        end
-        if @aleph.nil?
-          Aleph::User.create(@user.attributes_to_hash)
-        else
-          @aleph.attributes = @user.attributes_to_hash
-          @aleph.update
-        end
+        # @aleph = nil
+        # begin
+        #   @aleph = Aleph::User.find(@user.code)
+        # rescue => e
+        # end
+        # if @aleph.nil?
+        #   Aleph::User.create(@user.attributes_to_hash)
+        # else
+        #   @aleph.attributes = @user.attributes_to_hash
+        #   @aleph.update
+        # end
       else
         Notifier.authorized_notification(user_request).deliver
         Notifier.authorized_notification_academic(user_request).deliver
