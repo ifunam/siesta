@@ -26,5 +26,5 @@ class Managers::PeriodsController < Managers::ApplicationController
     @period = Period.find(params[:id])
     @period.destroy
     respond_with(@period, :status => :deleted, :location => managers_periods_path)
-  end   
+  end
 end

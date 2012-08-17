@@ -32,3 +32,6 @@ $(document).ready ->
     $("#"+this.parentNode.parentNode.parentNode.id).remove()
     false
 
+  $('.date').datepicker(dateFormat: 'dd-mm-yy', changeYear: true)
+
+  false

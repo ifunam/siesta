@@ -11,6 +11,7 @@ es:
       address: Domicilio particular
       schooling: Grado académico
       user_document: Documento probatorio
+      period: Periodo
     attributes:
       account:
         email: Correo electrónico
@@ -72,6 +73,11 @@ es:
         office: Cubículo o área de trabajo
         want_office_cubicle: ¿ Tiene escritorio/espacio asignado en el Instituto ?
         activities: Principales actividades desarrolladas durante el periodo anterior
+      period:
+        name: Periodo
+        startdate: Fecha de inicio
+        enddate: Fecha de término
+        status: Status
 
   helpers:
     submit:

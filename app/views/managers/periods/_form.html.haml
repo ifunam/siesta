@@ -1,20 +1,16 @@
-.span-20.prepend-2.last
-  = f.label :name, "Nombre del periodo"
-  = f.text_field :name
+.well.span10.offset1
+  = render :partial => 'shared/errors', :locals => { :f => f }
+  = f.input :name, :as => :string, :required => 'true', :input_html => { :class => 'input-medium' }
+  = f.input :startdate, :as => :string, :required => 'true', :input_html => { :class => 'input-medium date' }
+  = f.input :enddate, :as => :string, :required => 'true', :input_html => { :class => 'input-medium date' }
 
-.span-20.prepend-2.last
-  = f.label :startdate, "Fecha de inicio del resello"
-  = f.text_field :startdate, :class => 'date', :size => 12
+  %div.control-group.string.required
+    = label :status, t(:status, :scope => 'activerecord.attributes.period'), :class => 'string required control-label'
+    %div.controls
+      = (f.radio_button :is_active, false, :checked => (!f.object.is_active unless f.object.nil?)) + 'Inactivo'
+      = (f.radio_button :is_active, true, :checked => (f.object.is_active unless f.object.nil?)) + 'Vigente'
 
-.span-20.prepend-2.last
-  = f.label :enddate, "Fecha de término del resello"
-  = f.text_field :enddate, :class => 'date', :size => 12
-  
-.span-20.prepend-2.last
-  = label :status, 'Status'
-  = (f.radio_button :is_active, false, :checked => (!f.object.is_active unless f.object.nil?)) + 'Inactivo'
-  = (f.radio_button :is_active, true, :checked => (f.object.is_active unless f.object.nil?)) + 'Vigente'
-
-.span-20.prepend-2.last
-  = submit_tag('Guardar')
-  = link_to 'Cancelar', managers_periods_path
+  %p
+    = f.button :submit, t(:save), :class => 'btn btn-success'
+    = ' '
+    = link_to 'Cancelar', managers_periods_path, :class => 'btn'
