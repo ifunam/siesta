@@ -261,6 +261,10 @@ es:
     user_requests: Solicitud de estudiante asociado
     main_menu: Menú principal
 
+  manager_navigation:
+    students: Estudiantes asociados
+    periods: Periodos
+
   sign_up: Registrar nuevo usuario
   sign_out: Salir
   new_password: Recuperar/Cambiar tu contraseña

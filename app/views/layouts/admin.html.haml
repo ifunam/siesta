@@ -28,7 +28,9 @@
     .container-fluid
 
       .row-fluid
-        .span12
+        .tabbable
+          = render_navigation(:context => :manager)
+          .tab-content
           = bootstrap_flash
           = yield
 
