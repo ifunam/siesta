@@ -5,34 +5,22 @@
         %th="Nombre"
         %th="Apellido Paterno"
         %th="Apellido Materno"
-        %th="Periodo"
+        %th="Tipo de actividad"
+        %th="Tipo de solicitud"
+
       %tr
         %td= f.text_field :firstname_like, :size => 5 
         %td= f.text_field :lastname1_like, :size => 5 
         %td= f.text_field :lastname2_like, :size => 5
-        %td= f.collection_select :period_id_equals, Period.all, :id, :name, :prompt => true
-
-      %tr
-        %th="Tipo de actividad"
-        %th="Estado de solicitud"
-        %th="Tipo de solicitud"
-        %th="Aprobada por CD-IF"
-      %tr
         %td= f.collection_select :role_id_equals, Role.all, :id, :name, :prompt => true
-        %td= f.collection_select :requeststatus_id_equals, Requeststatus.all, :id, :name, :prompt => true
         %td
           = f.radio_button :user_request_is_restamped, false
           = 'Solicitud nueva'
           %br
           = f.radio_button :user_request_is_restamped, true
           = 'Resello'
-        %td
-          = f.radio_button :user_request_is_official, true
-          = 'Aprobada'
-          %br
-          = f.radio_button :user_request_is_official, false
-          = 'Sin Aprobar'
       %tr
         %td= link_to "Buscar", '#', :class => 'btn btn-success', :id => 'search_link'
-        %td= link_to 'Mostrar todos',  managers_students_path, :class => 'btn btn-primary'
+        %td{:colspan => 4}
+          = link_to 'Mostrar todos',  librarians_students_path, :class => 'btn btn-primary'
 
