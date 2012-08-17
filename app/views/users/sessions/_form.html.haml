@@ -1,12 +1,19 @@
 .well.span5
   %h2= t('.title')
-  = simple_form_for(@user, :as => :user, :url => session_path(:user)) do |f|
-    .form-inputs
-      = f.input :login, :required => true, :autofocus => true, :as => :string, :input_html => { :class => 'input-small'}
-      = f.input :password, :required => true, :input_html => { :class => 'input-small' } 
-      = f.input :remember_me, :as => :boolean
-    .form-actions
-      = f.button :submit, :class => 'btn btn-primary'
+  - unless Period.activated.expired?
+    = simple_form_for(@user, :as => :user, :url => session_path(:user)) do |f|
+      .form-inputs
+        = f.input :login, :required => true, :autofocus => true, :as => :string, :input_html => { :class => 'input-small'}
+        = f.input :password, :required => true, :input_html => { :class => 'input-small' } 
+        = f.input :remember_me, :as => :boolean
+      .form-actions
+        = f.button :submit, :class => 'btn btn-primary'
+  - else
+    .span4.alert.alert-warning
+      .i.icon.icon-warning-sign
+      = ' '
+      = t(:expired_period)
+
   .span4.alert.alert-success
     - %w(hint_1 hint_2).each do |hint|
       .well.alert.alert-warning

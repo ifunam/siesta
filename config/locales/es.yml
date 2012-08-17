@@ -75,8 +75,8 @@ es:
         activities: Principales actividades desarrolladas durante el periodo anterior
       period:
         name: Periodo
-        startdate: Fecha de inicio
-        enddate: Fecha de término
+        startdate: Fecha de inicio del resello
+        enddate: Fecha de término del resello
         status: Status
 
   helpers:
@@ -281,3 +281,4 @@ es:
   actions: Acciones
   sign_in: Entrar
   save: Guardar
+  expired_period: El periodo de resello ha expirado

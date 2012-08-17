@@ -1,4 +1,5 @@
 class Period < ActiveRecord::Base
+  attr_accessible :name, :startdate, :enddate, :is_active
   validates_numericality_of :id, :allow_nil => true, :only_integer => true, :greater_than => 0
   validates_presence_of :name, :startdate, :enddate
   validates_inclusion_of :is_active, :in=> [true, false]
@@ -32,6 +33,10 @@ class Period < ActiveRecord::Base
 
   def status
     is_active ? 'Vigente' : 'Desactivado'
+  end
+
+  def expired?
+    self.enddate < Date.today
   end
   
   private
