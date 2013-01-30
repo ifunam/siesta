@@ -1,7 +1,7 @@
 # Edit this Gemfile to bundle your application's dependencies.
 source :gemcutter
 
-gem "rails", "~> 3.2.8"
+gem "rails", "~> 3.2.11"
 gem "haml", "~> 3.1.6"
 gem "pg", "~> 0.14.0"
 gem "warden", "~> 1.2.1"
@@ -20,7 +20,7 @@ gem "tzinfo", "~> 0.3.33"
 gem "inherited_resources", "~> 1.3.1"
 gem "cancan", "~> 1.6.8"
 gem "meta_search", "~> 1.1.3"
-gem "scope_by_fuzzy", "~> 0.0.2"
+gem "scope_by_fuzzy", "~> 0.0.2", :git => "git://github.com/monsterlabs/scope_by_fuzzy.git"
 gem "simple_form", "~> 2.0.2"
 gem "show_for", "~> 0.2.5"
 gem "simple-navigation", "~> 3.8.0"
@@ -30,20 +30,23 @@ gem "to_xls", "~> 1.5.1"
 gem "state_machine", "~> 1.1.2"
 gem "i18n", "0.6.0"
 gem "rails-i18n", "~> 0.6.5"
+gem "therubyracer", "~> 0.11.0beta8"
+gem "less-rails"
+gem "twitter-bootstrap-rails"
+
 
 group :production do
   gem "dalli", "~> 2.1.0"
   gem "jquery-rails", '2.1.1'
-  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
   gem "execjs", "1.4.0"
   gem "therubyracer", "~> 0.11.0beta8"
+  gem 'libv8', '~> 3.11.8'
 end
 
 group :development do
   gem "rspec-rails", '2.11.0'
   gem "jquery-rails", '2.1.1'
   gem "haml-rails", "~> 0.3.4"
-  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
   gem "capistrano", "~> 2.13.3"
   gem "rvm-capistrano", "~> 1.2.5"
   gem "faker", "~> 1.0.1"

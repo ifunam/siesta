@@ -1,7 +1,8 @@
 # encoding: utf-8
 class UserRequest < ActiveRecord::Base
     attr_accessible :role_id, :remote_user_incharge_id, :remote_adscription_id, :start_month, :end_month, :start_year, :end_year, :is_restamped,
-                    :office, :activities, :want_office_cubicle
+                    :office, :activities, :want_office_cubicle, :had_desktop_in_previous_period, :desktop, :has_disability, 
+                    :disability_id, :special_requeriment, :building_id, :schedule_id
 
     validates_presence_of  :role_id, :remote_user_incharge_id, :remote_adscription_id, :start_month, :end_month, :start_year, :end_year
     validates_numericality_of :role_id, :remote_user_incharge_id, :remote_adscription_id, :greater_than => 0, :only_integer => true
@@ -9,13 +10,17 @@ class UserRequest < ActiveRecord::Base
     validates_uniqueness_of :period_id, :scope => [:user_id]
     validates_inclusion_of :is_restamped, :in => [true, false]
     validates_inclusion_of :is_official, :in => [true, false]
-    validates_inclusion_of :want_office_cubicle, :in => [true, false]
+    # validates_inclusion_of :want_office_cubicle, :in => [true, false]
 
     belongs_to :user, :class_name => "User", :foreign_key => "user_id"
     belongs_to :period
     belongs_to :role
     belongs_to :requeststatus
     belongs_to :local_user_incharge, :class_name => "User", :foreign_key => 'user_incharge_id'
+    belongs_to :schedule
+    belongs_to :disability
+    belongs_to :building
+
     has_one :event
     has_many :events
     after_create :send_request

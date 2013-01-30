@@ -27,9 +27,17 @@ $("#user_request_remote_adscription_id").change ->
     $("#remote_user_incharge").html(data)
   false
 
-$('input[name="user_request[want_office_cubicle]"]').change ->
+$('input[name="user_request[had_desktop_in_previous_period]"]').change ->
   if this.value == "true"
     $("#office").show()
   else
     $("#office").hide()
   false
+
+$('input[name="user_request[has_disability]"]').change ->
+  if this.value == "true"
+    $("#disability").show()
+  else
+    $("#disability").hide()
+  false
+

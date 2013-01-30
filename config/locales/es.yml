@@ -72,7 +72,14 @@ es:
         end_year: Año de término
         office: Cubículo o área de trabajo
         want_office_cubicle: ¿ Tiene escritorio/espacio asignado en el Instituto ?
+        had_desktop_in_previous_period: ¿ Tuvo escritorio/espacio asignado en el Instituto ?
+        has_disability: ¿ Tiene alguna discapacidad?
         activities: Principales actividades desarrolladas durante el periodo anterior
+        building: Edificio
+        schedule: Horario
+        disability: Discapacidad
+        special_requeriment: Indique si tiene algún requerimiento especial
+        desktop: Escritorio
       period:
         name: Periodo
         startdate: Fecha de inicio del resello

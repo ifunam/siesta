@@ -11,16 +11,26 @@
     = @user_request.is_restamped? ? 'Resello' : 'Solicitud nueva'
   = u.attribute :activities if @user_request.is_restamped
 
-  %p.wrapper#user_request_want_office_cubicle
-    %strong=t(:want_office_cubicle, :scope => 'activerecord.attributes.user_request')
-    = @user_request.want_office_cubicle? ? 'Sí' : 'No'
-
-  = u.attribute :office
-
   = u.attribute :start_month
   = u.attribute :start_year
   = u.attribute :end_month
   = u.attribute :end_year
+
+  %p.wrapper#user_request_had_desktop_in_previous_period
+    %strong=t(:had_desktop_in_previous_period, :scope => 'activerecord.attributes.user_request')
+    = @user_request.had_desktop_in_previous_period? ? 'Sí' : 'No'
+
+  = u.association :building, :using => :name
+  = u.attribute :office
+  = u.attribute :desktop
+
+
+  %p.wrapper#user_request_has_disability
+    %strong=t(:has_disability, :scope => 'activerecord.attributes.user_request')
+    = @user_request.has_disability? ? 'Sí' : 'No'
+
+  = u.association :disability, :using => :name
+  = u.attribute :special_requeriment
 
 .span12
   = link_to t(:back), user_requests_path, :class => 'btn'

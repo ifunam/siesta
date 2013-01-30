@@ -27,7 +27,7 @@
   %div.controls
     - if current_user.user_requests.where(:is_official => true).count > 0
       = 'Resello de credencial'
-      = f.hidden_field :is_restamped, :value => true
+      
     - else
       = 'Solicitud nueva'
       = f.hidden_field :is_restamped, :value => false
@@ -35,14 +35,6 @@
 
 - if current_user.user_requests.where(:is_official => true).count > 0
   = f.input :activities, :as => :text, :input_html => { :class => 'input-xlarge', :size => '40x3' }
-
-%div.control-group.required
-  = label :user_request, t(:want_office_cubicle, :scope => 'activerecord.attributes.user_request'), :class => 'radio_buttons required control-label'
-  %div.controls
-    = (f.radio_button :want_office_cubicle, true, :checked => f.object.want_office_cubicle) + 'Sí'
-    = (f.radio_button :want_office_cubicle, false, :checked => !f.object.want_office_cubicle) + 'No'
-
-#office= f.input :office, :as => :text, :input_html => { :class => 'input-xlarge', :size => '40x3' }
 
 %hr/
 %b= t '.start_date'
@@ -60,6 +52,34 @@
     = select_month(Date.today, :use_month_names => %w(Enero Febrero Marzo Abril Mayo Junio Julio Agosto Septiembre Octubre Noviembre Diciembre), :field_name => 'end_month', :prefix => :user_request)
 - f.object.end_year = Date.today.year + 1 if f.object.new_record?
 = f.input :end_year, :as => :string, :required => true, :input_html => { :class => 'chzn-select input-small' }
+
+
+%hr/
+
+%div.control-group.required
+  = label :user_request, t(:had_desktop_in_previous_period, :scope => 'activerecord.attributes.user_request'), :class => 'radio_buttons required control-label'
+  %div.controls
+    = (f.radio_button :had_desktop_in_previous_period, true, :checked => f.object.had_desktop_in_previous_period) + 'Sí'
+    = (f.radio_button :had_desktop_in_previous_period, false, :checked => !f.object.had_desktop_in_previous_period) + 'No'
+
+#office
+  = f.association :building, :as => :radio
+  = f.input :office, :as => :text, :input_html => { :class => 'input-xlarge', :size => '40x3' }
+  = f.input :desktop
+  = f.association :schedule, :as => :radio, :required => true
+
+%hr/
+= f.input :want_office_cubicle, :as => :hidden, :value => false
+
+%div.control-group.radio_buttons.required
+  = label :user_request, t(:has_disability, :scope => 'activerecord.attributes.user_request'), :class => 'radio_buttons required control-label'
+  %div.controls
+    = (f.radio_button :has_disability, true, :checked => f.object.has_disability) + 'Sí'
+    = (f.radio_button :has_disability, false, :checked => !f.object.has_disability) + 'No'
+
+#disability
+  = f.association :disability, :as => :select, :required => true, :input_html => { :class => 'chzn-select' }
+  = f.input :special_requeriment
 
 .span12
   = f.button :submit, :class => 'btn btn-primary', :confirm => t(:confirm_question)
