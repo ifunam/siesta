@@ -77,6 +77,7 @@ es:
         activities: Principales actividades desarrolladas durante el periodo anterior
         building: Edificio
         schedule: Horario
+        disability_type: Tipo de discapacidad
         disability: Discapacidad
         special_requeriment: Indique si tiene algún requerimiento especial
         desktop: Escritorio

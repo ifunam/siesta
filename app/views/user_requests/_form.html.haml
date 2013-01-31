@@ -7,7 +7,6 @@
   %div.controls
     = f.collection_select :remote_adscription_id, AdscriptionClient.all, :id, :name, {:prompt => '-- Seleccionar --'}, :class => 'chzn-select'
 
-
 %div.control-group.required
   = label :user_request, t(:user_incharge, :scope => 'activerecord.attributes.user_request'), :class => 'string required control-label'
   %div#remote_user_incharge.controls
@@ -77,9 +76,19 @@
     = (f.radio_button :has_disability, true, :checked => f.object.has_disability) + 'Sí'
     = (f.radio_button :has_disability, false, :checked => !f.object.has_disability) + 'No'
 
-#disability
-  = f.association :disability, :as => :select, :required => true, :input_html => { :class => 'chzn-select' }
+#disability_type
+  %div.control-group.required
+    = label :user_request, t(:disability_type, :scope => 'activerecord.attributes.user_request'), :class => 'string required control-label'
+    %div.controls
+      = select :filter, :disability_type_id, DisabilityType.all.collect {|record| [record.name, record.id]}, {:prompt => '-- Seleccionar --', :class => 'chzn-select' }
+
+  %div.control-group.required
+    = label :user_request, t(:disability, :scope => 'activerecord.attributes.user_request'), :class => 'string required control-label'
+    %div#disability.controls
+      = 'Para seleccionar una discapacidad seleccione el tipo'
+
   = f.input :special_requeriment
+
 
 .span12
   = f.button :submit, :class => 'btn btn-primary', :confirm => t(:confirm_question)

@@ -36,8 +36,12 @@ $('input[name="user_request[had_desktop_in_previous_period]"]').change ->
 
 $('input[name="user_request[has_disability]"]').change ->
   if this.value == "true"
-    $("#disability").show()
+    $("#disability_type").show()
   else
-    $("#disability").hide()
+    $("#disability_type").hide()
   false
 
+$("#filter_disability_type_id").change ->
+  $.ajax url: '/disabilities/', data: { disability_type_id: this.value }, dataType: "HTML", success: (data) ->
+    $("#disability").html(data)
+  false

@@ -7,6 +7,7 @@ Siesta::Application.routes.draw do
   resources :user_documents
   resources :user_requests
   resources :remote_users, :only => [ :index ]
+  resources :disabilities, :only => [ :index ]
   # Default controllers
   root :to => "profiles#show"
 
