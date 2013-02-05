@@ -30,6 +30,7 @@
       = link_to 'No', reject_academics_student_request_path(student_request.id), :confirm => t(:confirm_question)
   %td= (student_request.had_desktop_in_previous_period?) ? 'Sí' : 'No'
   %td= student_request.building.name unless student_request.building.nil?
+  %td= student_request.office
   %td= student_request.desktop
   %td= student_request.schedule.name unless student_request.schedule.nil?
   %td= (student_request.has_disability?) ? 'Sí' : 'No'
