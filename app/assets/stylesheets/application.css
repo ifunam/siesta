@@ -6,4 +6,5 @@
  *= require bootstrap_and_overrides
  *= require chosen
  *= require themes/start/jquery-ui.custom
+ *= require base
 */

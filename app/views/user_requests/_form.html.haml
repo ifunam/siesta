@@ -61,7 +61,8 @@
     = (f.radio_button :had_desktop_in_previous_period, true, :checked => f.object.had_desktop_in_previous_period) + 'Sí'
     = (f.radio_button :had_desktop_in_previous_period, false, :checked => !f.object.had_desktop_in_previous_period) + 'No'
 
-#office
+- style_office = (!f.object.new_record? and f.object.had_desktop_in_previous_period?) ? 'display:block;' : 'display:none;'
+#office{:style => style_office}
   = f.association :building, :as => :radio
   = f.input :office, :as => :text, :input_html => { :class => 'input-xlarge', :size => '40x3' }
   = f.input :desktop
@@ -76,7 +77,8 @@
     = (f.radio_button :has_disability, true, :checked => f.object.has_disability) + 'Sí'
     = (f.radio_button :has_disability, false, :checked => !f.object.has_disability) + 'No'
 
-#disability_type
+- style_disability = (!f.object.new_record? and f.object.has_disability?) ? 'display:block;' : 'display:none;'
+#disability_type{:style => style_disability}
   %div.control-group.required
     = label :user_request, t(:disability_type, :scope => 'activerecord.attributes.user_request'), :class => 'string required control-label'
     %div.controls
