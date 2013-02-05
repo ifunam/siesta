@@ -16,3 +16,11 @@
         = link_to 'Borrar solicitud', destroy_request_managers_student_path(user_request), :class => 'btn btn-danger destroy_request_link', :confirm => '¿Desear borrar esta solicitud?'
     - else
       %b= user_request.is_official == true ? 'Sí' : 'No'
+
+  %td= (user_request.had_desktop_in_previous_period?) ? 'Sí' : 'No'
+  %td= user_request.building.name unless user_request.building.nil?
+  %td= user_request.desktop
+  %td= user_request.schedule.name unless user_request.schedule.nil?
+  %td= (user_request.has_disability?) ? 'Sí' : 'No'
+  %td= user_request.disability.name unless user_request.disability.nil?
+  %td= user_request.special_requeriment
