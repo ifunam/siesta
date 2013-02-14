@@ -1,7 +1,7 @@
 %tr
   - email = user.login + '@fisica.unam.mx'
   %td= email
-  %td= user.fullname
+  %td= user.fullname.force_encoding("UTF-8")
   %td
     - if user.login + '@fisica.unam.mx' == @student.email
       .badge.badge-info= 'Cuenta asignada'
