@@ -1,7 +1,7 @@
 # Edit this Gemfile to bundle your application's dependencies.
-source :gemcutter
+source "https://rubygems.org"
 
-gem "rails", "~> 3.2.12"
+gem "rails", "~> 3.2.13"
 gem "haml", "~> 3.1.6"
 gem "pg", "~> 0.14.0"
 gem "warden", "~> 1.2.1"
@@ -28,7 +28,7 @@ gem "rest-client", "~> 1.6.7"
 gem "spreadsheet", "~> 0.7.3"
 gem "to_xls", "~> 1.5.1"
 gem "state_machine", "~> 1.1.2"
-gem "i18n", "0.6.0"
+gem "i18n", "0.6.1"
 gem "rails-i18n", "~> 0.6.5"
 gem "therubyracer", "~> 0.11.0beta8"
 gem "less-rails"
@@ -50,9 +50,7 @@ group :development do
   gem "capistrano", "~> 2.13.3"
   gem "rvm-capistrano", "~> 1.2.5"
   gem "faker", "~> 1.0.1"
-  gem "debugger", "~> 1.2.0"
   gem "pry-rails", "~> 0.2.1"
-  gem "debugger-pry", "~> 0.1.1"
   gem "rails3-generators", "~> 0.17.4"
   gem "hpricot", "~> 0.8.6"
   gem "ruby_parser", "~> 2.3.1"
