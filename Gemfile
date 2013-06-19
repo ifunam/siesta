@@ -31,9 +31,9 @@ gem "state_machine", "~> 1.1.2"
 gem "i18n", "0.6.1"
 gem "rails-i18n", "~> 0.6.5"
 gem "therubyracer", "~> 0.11.0beta8"
-gem "less-rails"
-gem "twitter-bootstrap-rails"
-
+gem "less", "2.3.1"
+gem "less-rails", "2.3.2"
+gem "twitter-bootstrap-rails", "2.2.6"
 
 group :production do
   gem "dalli", "~> 2.1.0"
