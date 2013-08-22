@@ -7,7 +7,9 @@ class Event < ActiveRecord::Base
   has_many :event_days
   accepts_nested_attributes_for :event_days, :allow_destroy => true
 
-  scope :all_by_activated_period, includes(:user_request).where(:user_requests => {:period_id => Period.activated.id})
+  unless Period.activated.nil?
+  	scope :all_by_activated_period, includes(:user_request).where(:user_requests => {:period_id => Period.activated.id})
+  end
   scope :before, lambda {|end_time| {:conditions => ["end_at < ?", Event.format_date(end_time)] }}
   scope :after, lambda {|start_time| {:conditions => ["start_at > ?", Event.format_date(start_time)] }}
 

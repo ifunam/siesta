@@ -1,6 +1,6 @@
 .well.span5
   %h2= t('.title')
-  - unless Period.activated.expired?
+  - if !Period.activated.nil? and !Period.activated.expired?
     = simple_form_for(@user, :as => :user, :url => session_path(:user)) do |f|
       .form-inputs
         = f.input :login, :required => true, :autofocus => true, :as => :string, :input_html => { :class => 'input-small'}

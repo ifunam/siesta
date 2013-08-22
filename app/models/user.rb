@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :user_requests
 
   accepts_nested_attributes_for :person, :address, :user_documents
-  attr_accessible :person_attributes, :address_attributes, :user_documents_attributes
+  attr_accessible :login, :person_attributes, :address_attributes, :user_documents_attributes
 
   scope :firstname_like, lambda { |firstname| where(" users.id IN (#{Person.search(:firstname_like => firstname).select('user_id').to_sql}) ") }
   scope :lastname1_like, lambda { |lastname| where(" users.id IN (#{Person.search(:lastname1_like => lastname).select('user_id').to_sql}) ") }
@@ -25,8 +25,14 @@ class User < ActiveRecord::Base
   scope :user_request_is_restamped, lambda { |is_restamped| joins(:user_requests).where(["user_requests.is_restamped = ?", is_restamped] ) }
   scope :user_request_is_official, lambda { |is_official| joins(:user_requests).where(["user_requests.is_official = ?", is_official] ) }
   scope :lastname_start_with, lambda { |char| joins(:person).where("people.lastname1 ~* ?", ('^' + char)) }
-  scope :activated, period_id_equals(Period.activated.id).user_request_is_official(true)
-  scope :approved, period_id_equals(Period.activated.id).requeststatus_id_equals(3)
+
+  unless Period.activated.nil?
+  	scope :activated, period_id_equals(Period.activated.id).user_request_is_official(true)
+  	scope :approved, period_id_equals(Period.activated.id).requeststatus_id_equals(3)
+  else
+ 	scope :activated, where(:role => nil)
+ 	scope :approved, where(:role => nil)
+  end
   scope :student_code, lambda { |code| where(:id => code.sub(/^(E|e)(0)+/,'').to_i) }
 
   search_methods :fullname_like, :period_id_equals, :requeststatus_id_equals, :role_id_equals,

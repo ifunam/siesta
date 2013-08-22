@@ -20,7 +20,7 @@ class Period < ActiveRecord::Base
   end
 
   def self.last_started
-    self.where(['enddate >= ?', Date.today]).order("startdate ASC").limit(1).first
+    self.order("startdate DESC").limit(1).first
   end
 
   def self.activated
