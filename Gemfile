@@ -35,6 +35,7 @@ gem "therubyracer", "~> 0.11.0beta8"
 gem "less", "2.3.1"
 gem "less-rails", "2.3.2"
 gem "twitter-bootstrap-rails", "2.2.6"
+gem "active_model_serializers", "~> 0.8.1"
 
 group :production do
   gem "dalli", "~> 2.1.0"
