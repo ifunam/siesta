@@ -10,3 +10,5 @@
   = record.attribute :endyear
   = record.attribute :is_studying_this
   = record.attribute :is_titleholder
+- unless schooling_show.file.nil?
+  %p= link_to t(:cardex), schooling_show.file.url, :target => :new
