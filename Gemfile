@@ -1,7 +1,7 @@
 # Edit this Gemfile to bundle your application's dependencies.
 source "https://rubygems.org"
 
-gem "rails", "~> 3.2.13"
+gem "rails", "~> 3.2.14"
 gem "haml", "~> 3.1.6"
 gem "pg", "~> 0.14.0"
 gem "warden", "~> 1.2.1"
@@ -29,7 +29,7 @@ gem "rest-client", "~> 1.6.7"
 gem "spreadsheet", "~> 0.7.3"
 gem "to_xls", "~> 1.5.1"
 gem "state_machine", "~> 1.1.2"
-gem "i18n", "0.6.1"
+gem "i18n", "0.6.4"
 gem "rails-i18n", "~> 0.6.5"
 gem "therubyracer", "~> 0.11.0beta8"
 gem "less", "2.3.1"
