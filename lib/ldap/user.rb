@@ -127,7 +127,8 @@ module LDAP
         :mailRoutingAddress => "#{login}@fisica.unam.mx",
         :ou => group,
         :uid => login,
-        :userPassword => Net::LDAP::Password.generate(:sha, password)
+        :userPassword => Net::LDAP::Password.generate(:sha, password),
+        :title => 'Estudiante asociado'
       }
     end
 
