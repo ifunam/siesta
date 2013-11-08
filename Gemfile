@@ -1,7 +1,7 @@
 # Edit this Gemfile to bundle your application's dependencies.
 source "https://rubygems.org"
 
-gem "rails", "~> 3.2.14"
+gem "rails", "~> 3.2.15"
 gem "haml", "~> 3.1.6"
 gem "pg", "~> 0.14.0"
 gem "warden", "~> 1.2.1"
