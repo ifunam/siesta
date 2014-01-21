@@ -1,7 +1,7 @@
 # Edit this Gemfile to bundle your application's dependencies.
 source "https://rubygems.org"
 
-gem "rails", "~> 3.2.15"
+gem "rails", "~> 3.2.16"
 gem "haml", "~> 3.1.6"
 gem "pg", "~> 0.14.0"
 gem "warden", "~> 1.2.1"
@@ -13,7 +13,7 @@ gem "net-ldap", "~> 0.2.2"
 gem "cocaine", "~> 0.3.2"
 gem "paperclip", "~> 3.1.4"
 gem "will_paginate", "~> 3.0.3"
-gem "rmagick", "~> 2.13.1", :require => 'RMagick'
+gem "rmagick", "2.13.2"
 gem "rqrcode", "~> 0.4.2"
 gem "barby", "~> 0.5.0"
 gem "bcrypt-ruby", "~> 3.0.1", :require => 'bcrypt'
@@ -36,18 +36,17 @@ gem "less", "2.3.1"
 gem "less-rails", "2.3.2"
 gem "twitter-bootstrap-rails", "2.2.6"
 gem "active_model_serializers", "~> 0.8.1"
+gem "redis", "~> 3.0.6"
+gem 'libv8', '~> 3.11.8'
+gem "jquery-rails", '2.1.1'
 
 group :production do
   gem "dalli", "~> 2.1.0"
-  gem "jquery-rails", '2.1.1'
   gem "execjs", "1.4.0"
-  gem "therubyracer", "~> 0.11.0beta8"
-  gem 'libv8', '~> 3.11.8'
 end
 
 group :development do
   gem "rspec-rails", '2.11.0'
-  gem "jquery-rails", '2.1.1'
   gem "haml-rails", "~> 0.3.4"
   gem "capistrano", "~> 2.13.3"
   gem "rvm-capistrano", "~> 1.2.5"
@@ -63,7 +62,5 @@ group :assets do
   gem "uglifier", "~> 1.2.7"
   gem "css_image_embedder", "~> 0.2.0"
   gem "sass-rails", "~> 3.2.5"
-  gem "therubyracer", "~> 0.11.0beta8"
   gem "yui-compressor", "~> 0.9.6"
-  gem 'libv8', '~> 3.11.8'
 end
