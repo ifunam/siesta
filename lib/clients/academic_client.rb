@@ -1,3 +1,4 @@
+require 'redis'
 class AcademicClient < ActiveResource::Base
   self.site = 'https://salva.fisica.unam.mx/api'
   self.element_name = "user"
